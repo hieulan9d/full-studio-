@@ -14,6 +14,15 @@ Hệ thống làm video bằng lệnh và AI, gồm 3 mắt xích chạy cục b
 3. Sinh ảnh và video trên canvas (`edit/canvas-tools` gọi agent của `canvas/`).
 4. Dựng: `python -X utf8 -m vf check|render|capcut <project.json> ...` (xem `edit/vf/README.md`).
 
+## Nguồn gốc và giấy phép từng phần
+| Thư mục | Nguồn |
+|---|---|
+| `canvas/` | Giao diện từ [basketikun/infinite-canvas](https://github.com/basketikun/infinite-canvas) (MIT), Việt hóa và thêm vỏ Electron, script Flow (`desktop/`, `flow-canvas/`) |
+| `voice-studio/` | **[debpalash/VoiceStudio](https://github.com/debpalash/VoiceStudio) (AGPL-3.0), dự án của tác giả khác**, giữ nguyên LICENSE; mô hình giọng có giấy phép riêng |
+| `edit/` | Bộ lệnh `vf`, app web, script series và kiến thức: của chủ repo |
+
+Tài liệu tổng hợp cách hoạt động và cách dùng: [`HE-THONG-TONG-HOP.md`](HE-THONG-TONG-HOP.md).
+
 ## Cài đặt
 - Xem `edit/SETUP.md` (máy mới) và `edit/CLAUDE.md` (luật dựng, lệnh `vf`).
 - Các script trong `edit/` mặc định đọc canvas ở `E:\antigravyti\infinite-canvas` (xuất file ở `exports/manifest.json`). Đặt `canvas/` ở đường dẫn đó hoặc sửa lại trong script.

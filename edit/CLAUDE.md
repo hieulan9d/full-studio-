@@ -46,3 +46,6 @@ Chưa tự tách nền / tạo hình AI; dò beat là ước lượng; xuất Ca
 
 ## Kịch bản Đạo lý soạn sẵn (tập 9–27)
 - `kich-ban/` có sẵn kịch bản tập 9–27 (từ chương 2–6 của sách), chưa làm gì trên canvas. Khi người dùng báo "làm tập N": chạy `python -X utf8 canvas-tools/new_ep.py N` để tạo `projects/dao-ly-tapN/`, rồi theo `canvas-tools/README.md` và `kien-thuc/dao-ly/PHONG-CACH-DAO-LY.md`. Danh sách và quy tắc: `kich-ban/README.md`. Đối chiếu số điện thoại/luật với PDF trước khi đăng.
+
+## Tổng hợp toàn hệ thống
+- **`kien-thuc/HE-THONG-TONG-HOP.md`**: cách hoạt động và cách dùng cả 3 mắt xích (Infinity Studio, Voice Studio, vf), quy trình video USP sản phẩm, xuất CapCut, các bẫy đã gặp. Đọc khi làm việc mới hoặc ở máy mới.
