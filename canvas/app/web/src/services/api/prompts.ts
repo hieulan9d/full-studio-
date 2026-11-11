@@ -13,6 +13,8 @@ export type Prompt = RawPrompt & {
 
 export const ALL_PROMPTS_OPTION = "all";
 
+export const isVideoUrl = (url: string) => /\.(mp4|webm|mov)(\?|#|$)/i.test(url);
+
 export type PromptListResponse = {
     items: Prompt[];
     tags: string[];

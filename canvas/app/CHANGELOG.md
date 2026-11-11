@@ -2,6 +2,8 @@
 
 ## Unreleased
 
++ [新增] 提示词库新增两个内置来源「prompts.chat Image」和「prompts.chat Video」，分别收录 prompts.chat 的 650 条图片生成和 89 条视频生成提示词（CC0）；提示词卡片和详情支持视频封面（悬停播放）。
+
 + [调整] Flow 视频模型：Omni 1.2 Flash 最长 15 秒、Omni 1.1 Flash 最长 10 秒，分辨率仅保留 360p / 720p。
 + [新增] 设置中新增「Flow 账号」标签（仅桌面版）：可添加多个 Google 账号、查看各账号剩余积分，积分低于设定值时生成会自动切换到其他账号。
 

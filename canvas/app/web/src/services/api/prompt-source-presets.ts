@@ -31,6 +31,8 @@ export const DEFAULT_PROMPT_SOURCES: PromptSource[] = [
     registrySource("awesome-gpt4o-image-prompts", "Awesome GPT-4o", "https://github.com/ImgEdify/Awesome-GPT4o-Image-Prompts"),
     registrySource("youmind-gpt-image-2", "YouMind GPT Image 2", "https://github.com/YouMind-OpenLab/awesome-gpt-image-2"),
     registrySource("youmind-nano-banana-pro", "YouMind Nano Banana Pro", "https://github.com/YouMind-OpenLab/awesome-nano-banana-pro-prompts"),
+    { id: "prompts-chat-image", name: "prompts.chat Image", url: "/prompt-sources/prompts-chat-image.json", homepage: "https://prompts.chat", enabled: true, builtIn: true },
+    { id: "prompts-chat-video", name: "prompts.chat Video", url: "/prompt-sources/prompts-chat-video.json", homepage: "https://prompts.chat", enabled: true, builtIn: true },
 ];
 
 function registrySource(id: string, name: string, homepage: string): PromptSource {
