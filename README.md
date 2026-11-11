@@ -21,6 +21,8 @@ Hệ thống làm video bằng lệnh và AI, gồm 3 mắt xích chạy cục b
 | `voice-studio/` | **[debpalash/VoiceStudio](https://github.com/debpalash/VoiceStudio) (AGPL-3.0), dự án của tác giả khác**, giữ nguyên LICENSE; mô hình giọng có giấy phép riêng |
 | `edit/` | Bộ lệnh `vf`, app web, script series và kiến thức: của chủ repo |
 
+**Bắt đầu ở đây:** [`CAI-DAT.md`](CAI-DAT.md) (cài từ máy sạch, cấu hình, kiểm tra toàn hệ thống).
+
 Tài liệu tổng hợp cách hoạt động và cách dùng: [`HE-THONG-TONG-HOP.md`](HE-THONG-TONG-HOP.md).
 
 ## Cài đặt
