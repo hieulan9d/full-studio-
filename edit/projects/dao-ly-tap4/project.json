@@ -1,0 +1,469 @@
+{
+ "name": "Đạo lý - Tập 4",
+ "fps": 30,
+ "canvas": {
+  "w": 1080,
+  "h": 1920
+ },
+ "clips": [
+  {
+   "src": "media/v01.mp4",
+   "in": 0,
+   "dur": 5.293,
+   "speed": 1.25,
+   "size": "SP",
+   "label": "c01"
+  },
+  {
+   "src": "media/v02.mp4",
+   "in": 0,
+   "dur": 4.678,
+   "speed": 1.25,
+   "size": "SP",
+   "label": "c02"
+  },
+  {
+   "src": "media/v03.mp4",
+   "in": 0,
+   "dur": 6.037,
+   "speed": 1.0284,
+   "size": "SP",
+   "label": "c03"
+  },
+  {
+   "src": "media/v04.mp4",
+   "in": 0,
+   "dur": 8.043,
+   "speed": 1.0927,
+   "size": "SP",
+   "label": "c04"
+  },
+  {
+   "src": "media/v05.mp4",
+   "in": 0,
+   "dur": 7.459,
+   "speed": 1.25,
+   "size": "SP",
+   "label": "c05"
+  },
+  {
+   "src": "media/v06.mp4",
+   "in": 0,
+   "dur": 6.037,
+   "speed": 1.229,
+   "size": "SP",
+   "label": "c06"
+  },
+  {
+   "src": "media/v07.mp4",
+   "in": 0,
+   "dur": 5.029,
+   "speed": 1.25,
+   "size": "SP",
+   "label": "c07"
+  },
+  {
+   "src": "media/v08.mp4",
+   "in": 0,
+   "dur": 4.286,
+   "speed": 1.25,
+   "size": "SP",
+   "label": "c08"
+  },
+  {
+   "src": "media/v09.mp4",
+   "in": 0,
+   "dur": 10.027,
+   "speed": 1.1666,
+   "size": "SP",
+   "label": "c09"
+  },
+  {
+   "src": "media/v10.mp4",
+   "in": 0,
+   "dur": 6.037,
+   "speed": 1.23,
+   "size": "SP",
+   "label": "c10"
+  },
+  {
+   "src": "media/v11.mp4",
+   "in": 0,
+   "dur": 3.58,
+   "speed": 1.25,
+   "size": "SP",
+   "label": "c11"
+  },
+  {
+   "src": "media/v12.mp4",
+   "in": 0,
+   "dur": 4.235,
+   "speed": 1.25,
+   "size": "SP",
+   "label": "c12"
+  }
+ ],
+ "sections": [
+  {
+   "id": "c01",
+   "title": "c01",
+   "start": 0.0,
+   "end": 4.23,
+   "script": "",
+   "onscreen": [
+    {
+     "start": 0.0,
+     "end": 0.84,
+     "text": "Hai việc nhỏ trong bếp,",
+     "style": "Sub"
+    },
+    {
+     "start": 0.86,
+     "end": 2.28,
+     "text": "giúp bạn tránh ngộ độc thực phẩm.",
+     "style": "Sub"
+    },
+    {
+     "start": 2.3,
+     "end": 4.02,
+     "text": "Một – Không ăn nấm hoang.",
+     "style": "Sub"
+    },
+    {
+     "start": 4.04,
+     "end": 4.96,
+     "text": "Kim bạc đổi màu.",
+     "style": "Sub"
+    },
+    {
+     "start": 4.98,
+     "end": 6.82,
+     "text": "Nấm sâu ăn, nấm màu sặc sỡ mới độc.",
+     "style": "Sub"
+    },
+    {
+     "start": 6.84,
+     "end": 7.7,
+     "text": "Cả ba đều sai.",
+     "style": "Sub"
+    },
+    {
+     "start": 7.8,
+     "end": 8.58,
+     "text": "Năm 2025,",
+     "style": "Sub"
+    },
+    {
+     "start": 8.94,
+     "end": 11.24,
+     "text": "Trung Quốc ghi nhận 828 vụ ngộ độc nấm,",
+     "style": "Sub"
+    },
+    {
+     "start": 11.26,
+     "end": 13.66,
+     "text": "hơn 2.000 người mắc, 13 người mất mạng.",
+     "style": "Sub"
+    },
+    {
+     "start": 13.68,
+     "end": 14.44,
+     "text": "Và phát hiện thêm",
+     "style": "Sub"
+    },
+    {
+     "start": 14.46,
+     "end": 15.8,
+     "text": "34 loài nấm mới gây độc.",
+     "style": "Sub"
+    },
+    {
+     "start": 15.82,
+     "end": 16.92,
+     "text": "Theo cơ quan kiểm soát",
+     "style": "Sub"
+    },
+    {
+     "start": 16.94,
+     "end": 17.86,
+     "text": "dịch bệnh Trung Quốc,",
+     "style": "Sub"
+    },
+    {
+     "start": 17.92,
+     "end": 19.4,
+     "text": "hiện chưa có cách nhận biết nấm",
+     "style": "Sub"
+    },
+    {
+     "start": 19.42,
+     "end": 20.84,
+     "text": "độc vừa đơn giản, vừa đáng tin.",
+     "style": "Sub"
+    },
+    {
+     "start": 20.86,
+     "end": 22.58,
+     "text": "Năm 2026, ở Sơn La,",
+     "style": "Sub"
+    },
+    {
+     "start": 22.6,
+     "end": 23.88,
+     "text": "6 người ăn canh nấm rừng,",
+     "style": "Sub"
+    },
+    {
+     "start": 23.9,
+     "end": 25.54,
+     "text": "1 người mất mạng, 4 người nguy kịch,",
+     "style": "Sub"
+    },
+    {
+     "start": 25.56,
+     "end": 26.94,
+     "text": "phải chuyển lên Bạch Mai lọc máu.",
+     "style": "Sub"
+    },
+    {
+     "start": 26.96,
+     "end": 28.52,
+     "text": "Nghi ăn nhầm nấm độc, đi khám ngay.",
+     "style": "Sub"
+    },
+    {
+     "start": 28.54,
+     "end": 30.24,
+     "text": "Giữ lại nấm thừa và thức ăn còn lại.",
+     "style": "Sub"
+    },
+    {
+     "start": 30.28,
+     "end": 32.19,
+     "text": "Cần cấp cứu thì gọi số 115.",
+     "style": "Sub"
+    },
+    {
+     "start": 32.21,
+     "end": 33.22,
+     "text": "Hai – Mộc nhĩ,",
+     "style": "Sub"
+    },
+    {
+     "start": 33.24,
+     "end": 34.02,
+     "text": "nấm tuyết ngâm quá lâu và các bánh phở,",
+     "style": "Sub"
+    },
+    {
+     "start": 34.04,
+     "end": 36.0,
+     "text": "bánh cuốn có thể sinh độc tố nếu để hỏng.",
+     "style": "Sub"
+    },
+    {
+     "start": 36.22,
+     "end": 38.04,
+     "text": "Độc tố này không bị phá hủy khi đun sôi,",
+     "style": "Sub"
+    },
+    {
+     "start": 38.06,
+     "end": 39.34,
+     "text": "và chưa có thuốc giải đặc hiệu.",
+     "style": "Sub"
+    },
+    {
+     "start": 39.36,
+     "end": 41.56,
+     "text": "Ở Trung Quốc, giai đoạn 2010 đến 2020,",
+     "style": "Sub"
+    },
+    {
+     "start": 42.28,
+     "end": 44.46,
+     "text": "khoảng 30% người mắc đã mất mạng.",
+     "style": "Sub"
+    },
+    {
+     "start": 44.48,
+     "end": 46.34,
+     "text": "Đó là tỷ lệ trong các ca được ghi nhận,",
+     "style": "Sub"
+    },
+    {
+     "start": 46.36,
+     "end": 47.82,
+     "text": "không phải nguy cơ của một bữa ăn.",
+     "style": "Sub"
+    },
+    {
+     "start": 47.84,
+     "end": 48.96,
+     "text": "Ngâm vừa đủ dùng.",
+     "style": "Sub"
+    },
+    {
+     "start": 48.98,
+     "end": 50.36,
+     "text": "Mua bánh phở, bánh cuốn vừa dùng.",
+     "style": "Sub"
+    },
+    {
+     "start": 50.38,
+     "end": 51.46,
+     "text": "Bảo quản theo hướng dẫn,",
+     "style": "Sub"
+    },
+    {
+     "start": 51.48,
+     "end": 52.86,
+     "text": "và bỏ ngay thực phẩm biến chất.",
+     "style": "Sub"
+    },
+    {
+     "start": 52.88,
+     "end": 54.24,
+     "text": "Nếu nghi ngộ độc, không tự gây nôn",
+     "style": "Sub"
+    },
+    {
+     "start": 54.26,
+     "end": 55.62,
+     "text": "khi chưa có hướng dẫn của y tế.",
+     "style": "Sub"
+    },
+    {
+     "start": 55.64,
+     "end": 57.26,
+     "text": "Hai việc nhỏ, làm ngay hôm nay:",
+     "style": "Sub"
+    },
+    {
+     "start": 57.28,
+     "end": 58.08,
+     "text": "không ăn nấm hoang,",
+     "style": "Sub"
+    },
+    {
+     "start": 58.1,
+     "end": 59.36,
+     "text": "và bỏ thực phẩm đã biến chất.",
+     "style": "Sub"
+    }
+   ]
+  },
+  {
+   "id": "c02",
+   "title": "c02",
+   "start": 4.23,
+   "end": 7.98,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c03",
+   "title": "c03",
+   "start": 7.98,
+   "end": 13.85,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c04",
+   "title": "c04",
+   "start": 13.85,
+   "end": 21.21,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c05",
+   "title": "c05",
+   "start": 21.21,
+   "end": 27.17,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c06",
+   "title": "c06",
+   "start": 27.17,
+   "end": 32.09,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c07",
+   "title": "c07",
+   "start": 32.09,
+   "end": 36.11,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c08",
+   "title": "c08",
+   "start": 36.11,
+   "end": 39.54,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c09",
+   "title": "c09",
+   "start": 39.54,
+   "end": 48.13,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c10",
+   "title": "c10",
+   "start": 48.13,
+   "end": 53.04,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c11",
+   "title": "c11",
+   "start": 53.04,
+   "end": 55.91,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c12",
+   "title": "c12",
+   "start": 55.91,
+   "end": 59.29,
+   "script": "",
+   "onscreen": []
+  }
+ ],
+ "voice": {
+  "profile": "70afd348",
+  "pron": []
+ },
+ "voiceover": [
+  {
+   "section": "all",
+   "file": "voice/voice_all.wav",
+   "start": 0,
+   "dur": 59.293016,
+   "speedup": 1.0
+  }
+ ],
+ "music": null,
+ "subs": {
+  "mode": "sentence"
+ },
+ "rules": {
+  "shake_max": 9,
+  "alternate_sizes": false,
+  "shake_exempt": [
+   "media/"
+  ]
+ }
+}

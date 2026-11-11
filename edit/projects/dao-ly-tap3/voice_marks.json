@@ -1,0 +1,198 @@
+{
+ "total": 67.492426,
+ "marks": [
+  {
+   "scene": "c01",
+   "text": "Ba việc nhỏ trong nhà, tốn rất ít tiền, mà giúp trẻ nhỏ và người già tránh được tai nạn đáng tiếc.",
+   "start": 0.0,
+   "end": 4.454,
+   "item": false
+  },
+  {
+   "scene": "c01",
+   "text": "Một: Chốt giới hạn cho cửa sổ và ban công.",
+   "start": 4.621,
+   "end": 6.248,
+   "item": true
+  },
+  {
+   "scene": "c02",
+   "text": "Lưới chống muỗi không phải biện pháp bảo vệ.",
+   "start": 6.415,
+   "end": 8.103,
+   "item": false
+  },
+  {
+   "scene": "c02",
+   "text": "Chốt giới hạn giá rất rẻ, lắp chỉ mất khoảng mười phút.",
+   "start": 8.27,
+   "end": 10.614,
+   "item": false
+  },
+  {
+   "scene": "c03",
+   "text": "Ở New York, chính quyền phát chắn cửa sổ miễn phí cho hộ có nguy cơ cao.",
+   "start": 10.781,
+   "end": 13.888,
+   "item": false
+  },
+  {
+   "scene": "c03",
+   "text": "Sau ba năm, số trẻ rơi ngã ở một quận giảm một nửa.",
+   "start": 14.055,
+   "end": 16.078,
+   "item": false
+  },
+  {
+   "scene": "c04",
+   "text": "Ở Hà Nội, trẻ rơi từ chung cư đã xảy ra nhiều lần, có vụ từ tầng mười một, có vụ từ tầng hai mươi bốn.",
+   "start": 16.245,
+   "end": 20.7,
+   "item": false
+  },
+  {
+   "scene": "c05",
+   "text": "Một kiến trúc sư khuyến nghị: lan can cao tối thiểu một phẩy một mét, khe hở dưới mười xăng ti mét, cửa sổ chỉ mở hé khoảng mười lăm độ.",
+   "start": 20.867,
+   "end": 27.189,
+   "item": false
+  },
+  {
+   "scene": "c06",
+   "text": "Hai: Cho trẻ mặc áo phao khi ở gần nước.",
+   "start": 27.356,
+   "end": 29.234,
+   "item": true
+  },
+  {
+   "scene": "c07",
+   "text": "Áo phao giảm khoảng một nửa nguy cơ đuối nước khi rơi xuống nước.",
+   "start": 29.401,
+   "end": 32.131,
+   "item": false
+  },
+  {
+   "scene": "c07",
+   "text": "Năm 2021, nước ta có hơn bốn nghìn người đuối nước, bốn mươi phần trăm là trẻ dưới mười bốn tuổi.",
+   "start": 32.298,
+   "end": 36.979,
+   "item": false
+  },
+  {
+   "scene": "c08",
+   "text": "Đuối nước là nguyên nhân hàng đầu khiến trẻ mất mạng, nhất là từ năm đến mười bốn tuổi.",
+   "start": 37.146,
+   "end": 40.954,
+   "item": false
+  },
+  {
+   "scene": "c08",
+   "text": "Không để trẻ một mình gần nước, dù chỉ chốc lát.",
+   "start": 41.121,
+   "end": 43.231,
+   "item": false
+  },
+  {
+   "scene": "c09",
+   "text": "Dạy trẻ bơi và kỹ năng an toàn dưới nước.",
+   "start": 43.398,
+   "end": 45.254,
+   "item": false
+  },
+  {
+   "scene": "c09",
+   "text": "Rào chắn khu vực nguy hiểm.",
+   "start": 45.421,
+   "end": 46.667,
+   "item": false
+  },
+  {
+   "scene": "c09",
+   "text": "Và học sơ cứu.",
+   "start": 46.834,
+   "end": 47.669,
+   "item": false
+  },
+  {
+   "scene": "c10",
+   "text": "Ba: Người trên sáu mươi tuổi.",
+   "start": 47.836,
+   "end": 49.06,
+   "item": true
+  },
+  {
+   "scene": "c11",
+   "text": "Tập thăng bằng hai đến ba lần mỗi tuần, ví dụ thái cực quyền, giảm khoảng hai mươi ba phần trăm số lần ngã.",
+   "start": 49.227,
+   "end": 54.025,
+   "item": false
+  },
+  {
+   "scene": "c11",
+   "text": "Hơn một nửa số vụ ngã ở người cao tuổi xảy ra ngay trong nhà.",
+   "start": 54.192,
+   "end": 56.794,
+   "item": false
+  },
+  {
+   "scene": "c12",
+   "text": "Cải tạo nhà giảm khoảng hai mươi phần trăm.",
+   "start": 56.961,
+   "end": 58.746,
+   "item": false
+  },
+  {
+   "scene": "c12",
+   "text": "Thảm chống trượt trong phòng tắm, tay vịn cầu thang, đèn ngủ ban đêm đều là việc dễ làm.",
+   "start": 58.913,
+   "end": 62.776,
+   "item": false
+  },
+  {
+   "scene": "c13",
+   "text": "Ba việc nhỏ, làm một lần, giữ an toàn cho cả nhà.",
+   "start": 62.943,
+   "end": 65.353,
+   "item": false
+  },
+  {
+   "scene": "c13",
+   "text": "Hôm nay, hãy kiểm tra chốt cửa sổ nhà bạn.",
+   "start": 65.52,
+   "end": 67.492,
+   "item": false
+  }
+ ],
+ "low": [
+  [
+   7,
+   "Một kiến trúc sư khuyến nghị: lan can cao tối thiểu một phẩy một mét, khe hở dưới mười xăng ti mét, cửa sổ chỉ mở hé khoảng mười lăm độ.",
+   "Một kiến trúc sư khuyến nghị, lan can cao tối thiểu 1-1m, khe hở dưới 10cm, cửa sổ chỉ mở hé khoảng 15 độ",
+   0.81
+  ],
+  [
+   10,
+   "Năm 2021, nước ta có hơn bốn nghìn người đuối nước, bốn mươi phần trăm là trẻ dưới mười bốn tuổi.",
+   "Năm 2021, nước ta có hơn 4.000 người đối nước, 40% là trẻ dưới 14 tuổi",
+   0.72
+  ],
+  [
+   16,
+   "Ba: Người trên sáu mươi tuổi, tập thăng bằng.",
+   "3 người trên 60 tuổi Tập thăng bằng",
+   0.83
+  ],
+  [
+   17,
+   "Tập thăng bằng hai đến ba lần mỗi tuần, ví dụ thái cực quyền, giảm khoảng hai mươi ba phần trăm số lần ngã.",
+   "Tập thăng bằng 2-3 lần mỗi tuần, ví dụ thái cực quyền giảm khoảng 23% số lần ngã.",
+   0.81
+  ],
+  [
+   19,
+   "Cải tạo nhà giảm khoảng hai mươi phần trăm.",
+   "Cải tạo nhà giảm khoảng 20%.",
+   0.71
+  ]
+ ]
+}

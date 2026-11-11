@@ -1,0 +1,200 @@
+{
+    "app": "infinite-canvas",
+    "version": 1,
+    "exportedAt": "2026-10-26T10:09:09.465Z",
+    "config": {
+        "channelMode": "local",
+        "baseUrl": "http://127.0.0.1:8100",
+        "apiKey": "flowkit",
+        "apiFormat": "openai",
+        "channels": [
+            {
+                "id": "flow",
+                "name": "Google Flow (tự động)",
+                "baseUrl": "http://127.0.0.1:8100",
+                "apiKey": "flowkit",
+                "apiFormat": "openai",
+                "models": [
+                    {
+                        "name": "flow-nano-banana-pro",
+                        "capability": "image",
+                        "script": "/**\n * Infinite Canvas model request script: tạo ảnh qua Google Flow, app tự điều khiển giao diện web Flow\n * (không FlowKit, không Python). Chỉ chạy trong app desktop (window.desktop.flow).\n * Lần đầu: menu Flow > \"Mở Chrome Flow\", đăng nhập Google và mở 1 project; app nhớ project đó.\n * Base URL / API Key trong cài đặt canvas điền bừa, không dùng.\n * model: flow-nano-banana-pro | flow-nano-banana-2-lite | flow-nano-banana-2-1\n */\nasync function flowImage({ prompt, images, params, model }) {\n  const flow = window.desktop && window.desktop.flow;\n  if (!flow) throw new Error(\"Cần chạy trong app desktop (app.bat). Trình duyệt thường không điều khiển được Flow.\");\n\n  const MODEL = {\n    \"flow-nano-banana-pro\": \"Nano Banana Pro\", \"flow-nano-banana-2-lite\": \"Nano Banana 2 Lite\", \"flow-nano-banana-2-1\": \"Nano Banana 2.1\",\n  }[model] || \"Nano Banana 2.1\";\n\n  // tỉ lệ: Flow có 16:9, 4:3, 1:1, 3:4, 9:16\n  const size = String((params && params.size) || \"auto\");\n  let ratio = [\"16:9\", \"4:3\", \"1:1\", \"3:4\", \"9:16\"].includes(size) ? size : \"\";\n  if (!ratio) {\n    const m = size.match(/^(\\d+)x(\\d+)$/);\n    if (m) {\n      const r = m[1] / m[2];\n      ratio = r > 1.5 ? \"16:9\" : r > 1.1 ? \"4:3\" : r > 0.9 ? \"1:1\" : r > 0.7 ? \"3:4\" : \"9:16\";\n    } else ratio = \"16:9\";\n  }\n  const count = Math.min(4, Math.max(1, Number(params && params.count) || 1));\n\n  // tên ảnh trên Flow = tên node: canvas gắn nhãn \"Ảnh N (tên node)\" vào prompt (tên <= 24 ký tự)\n  const refNames = [];\n  for (const nm of String(prompt).matchAll(/Ảnh (\\d+) \\(([^)\\n]{1,24})\\)/g)) if (!refNames[nm[1] - 1]) refNames[nm[1] - 1] = nm[2].trim();\n  const fileNameOf = (i) => { const n = refNames[i] || `Ảnh ${i + 1}`; return /\\.(png|jpe?g|webp)$/i.test(n) ? n : n + \".png\"; };\n  const text = String(prompt)\n    .replace(/^Nhãn ảnh tham chiếu:[^\\n]*\\n+/, \"\")\n    .replace(/Ảnh (\\d+) \\(([^)\\n]{1,24})\\)/g, (_, n) => fileNameOf(n - 1))\n    .replace(/Ảnh (\\d+)(?!\\d)/g, (_, n) => fileNameOf(n - 1));\n\n  const imgs = (images || []).slice(0, 7).map((d, i) => {\n    const m = String(d).match(/^data:([^;]+);base64,(.*)$/);\n    if (!m) throw new Error(\"Ảnh tham chiếu không phải data URL\");\n    return { mime: m[1], base64: m[2], name: fileNameOf(i) };\n  });\n\n  const res = await flow.generateImage({ prompt: text, model: MODEL, ratio, count, images: imgs });\n  if (!res.ok) throw new Error(res.error);\n\n  // đổi sang data URL để canvas lưu được\n  const toDataUrl = (blob) => new Promise((ok, no) => { const fr = new FileReader(); fr.onload = () => ok(fr.result); fr.onerror = no; fr.readAsDataURL(blob); });\n  const out = [];\n  for (const it of res.items) out.push(await toDataUrl(new Blob([it.data], { type: it.mime || \"image/png\" })));\n  return out;\n}\n\nreturn await flowImage({ prompt, images, params, model });\n"
+                    },
+                    {
+                        "name": "flow-nano-banana-2-lite",
+                        "capability": "image",
+                        "script": "/**\n * Infinite Canvas model request script: tạo ảnh qua Google Flow, app tự điều khiển giao diện web Flow\n * (không FlowKit, không Python). Chỉ chạy trong app desktop (window.desktop.flow).\n * Lần đầu: menu Flow > \"Mở Chrome Flow\", đăng nhập Google và mở 1 project; app nhớ project đó.\n * Base URL / API Key trong cài đặt canvas điền bừa, không dùng.\n * model: flow-nano-banana-pro | flow-nano-banana-2-lite | flow-nano-banana-2-1\n */\nasync function flowImage({ prompt, images, params, model }) {\n  const flow = window.desktop && window.desktop.flow;\n  if (!flow) throw new Error(\"Cần chạy trong app desktop (app.bat). Trình duyệt thường không điều khiển được Flow.\");\n\n  const MODEL = {\n    \"flow-nano-banana-pro\": \"Nano Banana Pro\", \"flow-nano-banana-2-lite\": \"Nano Banana 2 Lite\", \"flow-nano-banana-2-1\": \"Nano Banana 2.1\",\n  }[model] || \"Nano Banana 2.1\";\n\n  // tỉ lệ: Flow có 16:9, 4:3, 1:1, 3:4, 9:16\n  const size = String((params && params.size) || \"auto\");\n  let ratio = [\"16:9\", \"4:3\", \"1:1\", \"3:4\", \"9:16\"].includes(size) ? size : \"\";\n  if (!ratio) {\n    const m = size.match(/^(\\d+)x(\\d+)$/);\n    if (m) {\n      const r = m[1] / m[2];\n      ratio = r > 1.5 ? \"16:9\" : r > 1.1 ? \"4:3\" : r > 0.9 ? \"1:1\" : r > 0.7 ? \"3:4\" : \"9:16\";\n    } else ratio = \"16:9\";\n  }\n  const count = Math.min(4, Math.max(1, Number(params && params.count) || 1));\n\n  // tên ảnh trên Flow = tên node: canvas gắn nhãn \"Ảnh N (tên node)\" vào prompt (tên <= 24 ký tự)\n  const refNames = [];\n  for (const nm of String(prompt).matchAll(/Ảnh (\\d+) \\(([^)\\n]{1,24})\\)/g)) if (!refNames[nm[1] - 1]) refNames[nm[1] - 1] = nm[2].trim();\n  const fileNameOf = (i) => { const n = refNames[i] || `Ảnh ${i + 1}`; return /\\.(png|jpe?g|webp)$/i.test(n) ? n : n + \".png\"; };\n  const text = String(prompt)\n    .replace(/^Nhãn ảnh tham chiếu:[^\\n]*\\n+/, \"\")\n    .replace(/Ảnh (\\d+) \\(([^)\\n]{1,24})\\)/g, (_, n) => fileNameOf(n - 1))\n    .replace(/Ảnh (\\d+)(?!\\d)/g, (_, n) => fileNameOf(n - 1));\n\n  const imgs = (images || []).slice(0, 7).map((d, i) => {\n    const m = String(d).match(/^data:([^;]+);base64,(.*)$/);\n    if (!m) throw new Error(\"Ảnh tham chiếu không phải data URL\");\n    return { mime: m[1], base64: m[2], name: fileNameOf(i) };\n  });\n\n  const res = await flow.generateImage({ prompt: text, model: MODEL, ratio, count, images: imgs });\n  if (!res.ok) throw new Error(res.error);\n\n  // đổi sang data URL để canvas lưu được\n  const toDataUrl = (blob) => new Promise((ok, no) => { const fr = new FileReader(); fr.onload = () => ok(fr.result); fr.onerror = no; fr.readAsDataURL(blob); });\n  const out = [];\n  for (const it of res.items) out.push(await toDataUrl(new Blob([it.data], { type: it.mime || \"image/png\" })));\n  return out;\n}\n\nreturn await flowImage({ prompt, images, params, model });\n"
+                    },
+                    {
+                        "name": "flow-nano-banana-2-1",
+                        "capability": "image",
+                        "script": "/**\n * Infinite Canvas model request script: tạo ảnh qua Google Flow, app tự điều khiển giao diện web Flow\n * (không FlowKit, không Python). Chỉ chạy trong app desktop (window.desktop.flow).\n * Lần đầu: menu Flow > \"Mở Chrome Flow\", đăng nhập Google và mở 1 project; app nhớ project đó.\n * Base URL / API Key trong cài đặt canvas điền bừa, không dùng.\n * model: flow-nano-banana-pro | flow-nano-banana-2-lite | flow-nano-banana-2-1\n */\nasync function flowImage({ prompt, images, params, model }) {\n  const flow = window.desktop && window.desktop.flow;\n  if (!flow) throw new Error(\"Cần chạy trong app desktop (app.bat). Trình duyệt thường không điều khiển được Flow.\");\n\n  const MODEL = {\n    \"flow-nano-banana-pro\": \"Nano Banana Pro\", \"flow-nano-banana-2-lite\": \"Nano Banana 2 Lite\", \"flow-nano-banana-2-1\": \"Nano Banana 2.1\",\n  }[model] || \"Nano Banana 2.1\";\n\n  // tỉ lệ: Flow có 16:9, 4:3, 1:1, 3:4, 9:16\n  const size = String((params && params.size) || \"auto\");\n  let ratio = [\"16:9\", \"4:3\", \"1:1\", \"3:4\", \"9:16\"].includes(size) ? size : \"\";\n  if (!ratio) {\n    const m = size.match(/^(\\d+)x(\\d+)$/);\n    if (m) {\n      const r = m[1] / m[2];\n      ratio = r > 1.5 ? \"16:9\" : r > 1.1 ? \"4:3\" : r > 0.9 ? \"1:1\" : r > 0.7 ? \"3:4\" : \"9:16\";\n    } else ratio = \"16:9\";\n  }\n  const count = Math.min(4, Math.max(1, Number(params && params.count) || 1));\n\n  // tên ảnh trên Flow = tên node: canvas gắn nhãn \"Ảnh N (tên node)\" vào prompt (tên <= 24 ký tự)\n  const refNames = [];\n  for (const nm of String(prompt).matchAll(/Ảnh (\\d+) \\(([^)\\n]{1,24})\\)/g)) if (!refNames[nm[1] - 1]) refNames[nm[1] - 1] = nm[2].trim();\n  const fileNameOf = (i) => { const n = refNames[i] || `Ảnh ${i + 1}`; return /\\.(png|jpe?g|webp)$/i.test(n) ? n : n + \".png\"; };\n  const text = String(prompt)\n    .replace(/^Nhãn ảnh tham chiếu:[^\\n]*\\n+/, \"\")\n    .replace(/Ảnh (\\d+) \\(([^)\\n]{1,24})\\)/g, (_, n) => fileNameOf(n - 1))\n    .replace(/Ảnh (\\d+)(?!\\d)/g, (_, n) => fileNameOf(n - 1));\n\n  const imgs = (images || []).slice(0, 7).map((d, i) => {\n    const m = String(d).match(/^data:([^;]+);base64,(.*)$/);\n    if (!m) throw new Error(\"Ảnh tham chiếu không phải data URL\");\n    return { mime: m[1], base64: m[2], name: fileNameOf(i) };\n  });\n\n  const res = await flow.generateImage({ prompt: text, model: MODEL, ratio, count, images: imgs });\n  if (!res.ok) throw new Error(res.error);\n\n  // đổi sang data URL để canvas lưu được\n  const toDataUrl = (blob) => new Promise((ok, no) => { const fr = new FileReader(); fr.onload = () => ok(fr.result); fr.onerror = no; fr.readAsDataURL(blob); });\n  const out = [];\n  for (const it of res.items) out.push(await toDataUrl(new Blob([it.data], { type: it.mime || \"image/png\" })));\n  return out;\n}\n\nreturn await flowImage({ prompt, images, params, model });\n"
+                    },
+                    {
+                        "name": "flow-omni-1.2-flash",
+                        "capability": "video",
+                        "script": "/**\n * Infinite Canvas model request script: video qua Google Flow, app tự điều khiển giao diện web Flow\n * (không FlowKit, không Python). Chỉ chạy trong app desktop (window.desktop.flow).\n * Lần đầu: menu Flow > \"Mở cửa sổ Flow\", đăng nhập Google và mở 1 project; app nhớ project đó.\n * Base URL / API Key trong cài đặt canvas điền bừa, không dùng.\n * Không ảnh = text-to-video | mode reference = ảnh tham chiếu (Thành phần) | mode frames = khung đầu/cuối.\n * model: flow-omni-flash | flow-omni-flash-11 | flow-veo-lite | flow-veo-fast | flow-veo-quality\n */\nasync function flowVideo({ prompt, images, videos, audios, params, model, signal }) {\n  const flow = window.desktop && window.desktop.flow;\n  if (!flow) throw new Error(\"Cần chạy trong app desktop (app.bat). Trình duyệt thường không điều khiển được Flow.\");\n  if ((videos && videos.length) || (audios && audios.length))\n    throw new Error(\"Flow chưa hỗ trợ video hoặc âm thanh tham chiếu. Hãy bỏ chúng ra, hoặc chụp khung hình từ video làm ảnh tham chiếu.\");\n\n  const p = params || {};\n  const seconds = Math.min(15, Math.max(3, Math.round(+p.seconds || 6)));\n  const ratioStr = String(p.ratio || p.size || \"16:9\");\n  const aspect = [\"9:16\", \"3:4\"].includes(ratioStr) ? \"portrait\" : \"landscape\";\n  const resolution = String(p.resolution || \"\").includes(\"360\") ? \"360p\" : \"720p\";\n  const MODEL = {\n    \"flow-omni-flash\": \"Omni 1.2 Flash\", \"flow-omni-flash-11\": \"Omni 1.1 Flash\",\n    \"flow-veo-lite\": \"Veo 3.1 - Lite\", \"flow-veo-fast\": \"Veo 3.1 - Fast\", \"flow-veo-quality\": \"Veo 3.1 - Quality\",\n  }[model] || \"Omni 1.2 Flash\";\n\n  // tên ảnh trên Flow = tên node: canvas gắn nhãn \"Ảnh N (tên node)\" vào prompt (tên <= 24 ký tự)\n  const refNames = [];\n  for (const nm of String(prompt).matchAll(/Ảnh (\\d+) \\(([^)\\n]{1,24})\\)/g)) if (!refNames[nm[1] - 1]) refNames[nm[1] - 1] = nm[2].trim();\n  const fileNameOf = (i) => { const n = refNames[i] || `Ảnh ${i + 1}`; return /\\.(png|jpe?g|webp)$/i.test(n) ? n : n + \".png\"; };\n  const text = String(prompt)\n    .replace(/^Nhãn ảnh tham chiếu:[^\\n]*\\n+/, \"\")\n    .replace(/Ảnh (\\d+) \\(([^)\\n]{1,24})\\)/g, (_, n) => fileNameOf(n - 1))\n    .replace(/Ảnh (\\d+)(?!\\d)/g, (_, n) => fileNameOf(n - 1));\n\n  const imgs = (images || []).slice(0, 7).map((d, i) => {\n    const m = String(d).match(/^data:([^;]+);base64,(.*)$/);\n    if (!m) throw new Error(\"Ảnh tham chiếu không phải data URL\");\n    return { mime: m[1], base64: m[2], name: fileNameOf(i) };\n  });\n\n  const res = await flow.generateVideo({\n    prompt: text, model: MODEL, aspect, resolution, seconds, count: 1, images: imgs,\n    mode: p.mode !== \"reference\" && imgs.length && imgs.length <= 2 ? \"frames\" : \"ingredients\",\n  });\n  if (!res.ok) throw new Error(res.error);\n  return { blob: new Blob([res.data], { type: res.mime || \"video/mp4\" }) };\n}\n\nreturn await flowVideo({ prompt, images, videos, audios, params, model, signal });\n"
+                    },
+                    {
+                        "name": "flow-omni-1.1-flash",
+                        "capability": "video",
+                        "script": "/**\n * Infinite Canvas model request script: video qua Google Flow, app tự điều khiển giao diện web Flow\n * (không FlowKit, không Python). Chỉ chạy trong app desktop (window.desktop.flow).\n * Lần đầu: menu Flow > \"Mở cửa sổ Flow\", đăng nhập Google và mở 1 project; app nhớ project đó.\n * Base URL / API Key trong cài đặt canvas điền bừa, không dùng.\n * Không ảnh = text-to-video | mode reference = ảnh tham chiếu (Thành phần) | mode frames = khung đầu/cuối.\n * model: flow-omni-flash | flow-omni-flash-11 | flow-veo-lite | flow-veo-fast | flow-veo-quality\n */\nasync function flowVideo({ prompt, images, videos, audios, params, model, signal }) {\n  const flow = window.desktop && window.desktop.flow;\n  if (!flow) throw new Error(\"Cần chạy trong app desktop (app.bat). Trình duyệt thường không điều khiển được Flow.\");\n  if ((videos && videos.length) || (audios && audios.length))\n    throw new Error(\"Flow chưa hỗ trợ video hoặc âm thanh tham chiếu. Hãy bỏ chúng ra, hoặc chụp khung hình từ video làm ảnh tham chiếu.\");\n\n  const p = params || {};\n  const seconds = Math.min(15, Math.max(3, Math.round(+p.seconds || 6)));\n  const ratioStr = String(p.ratio || p.size || \"16:9\");\n  const aspect = [\"9:16\", \"3:4\"].includes(ratioStr) ? \"portrait\" : \"landscape\";\n  const resolution = String(p.resolution || \"\").includes(\"360\") ? \"360p\" : \"720p\";\n  const MODEL = {\n    \"flow-omni-flash\": \"Omni 1.2 Flash\", \"flow-omni-flash-11\": \"Omni 1.1 Flash\",\n    \"flow-veo-lite\": \"Veo 3.1 - Lite\", \"flow-veo-fast\": \"Veo 3.1 - Fast\", \"flow-veo-quality\": \"Veo 3.1 - Quality\",\n  }[model] || \"Omni 1.2 Flash\";\n\n  // tên ảnh trên Flow = tên node: canvas gắn nhãn \"Ảnh N (tên node)\" vào prompt (tên <= 24 ký tự)\n  const refNames = [];\n  for (const nm of String(prompt).matchAll(/Ảnh (\\d+) \\(([^)\\n]{1,24})\\)/g)) if (!refNames[nm[1] - 1]) refNames[nm[1] - 1] = nm[2].trim();\n  const fileNameOf = (i) => { const n = refNames[i] || `Ảnh ${i + 1}`; return /\\.(png|jpe?g|webp)$/i.test(n) ? n : n + \".png\"; };\n  const text = String(prompt)\n    .replace(/^Nhãn ảnh tham chiếu:[^\\n]*\\n+/, \"\")\n    .replace(/Ảnh (\\d+) \\(([^)\\n]{1,24})\\)/g, (_, n) => fileNameOf(n - 1))\n    .replace(/Ảnh (\\d+)(?!\\d)/g, (_, n) => fileNameOf(n - 1));\n\n  const imgs = (images || []).slice(0, 7).map((d, i) => {\n    const m = String(d).match(/^data:([^;]+);base64,(.*)$/);\n    if (!m) throw new Error(\"Ảnh tham chiếu không phải data URL\");\n    return { mime: m[1], base64: m[2], name: fileNameOf(i) };\n  });\n\n  const res = await flow.generateVideo({\n    prompt: text, model: MODEL, aspect, resolution, seconds, count: 1, images: imgs,\n    mode: p.mode !== \"reference\" && imgs.length && imgs.length <= 2 ? \"frames\" : \"ingredients\",\n  });\n  if (!res.ok) throw new Error(res.error);\n  return { blob: new Blob([res.data], { type: res.mime || \"video/mp4\" }) };\n}\n\nreturn await flowVideo({ prompt, images, videos, audios, params, model, signal });\n"
+                    }
+                ]
+            },
+            {
+                "id": "default",
+                "name": "Nhà cung cấp mặc định",
+                "baseUrl": "https://api.openai.com",
+                "apiKey": "",
+                "apiFormat": "openai",
+                "models": [
+                    {
+                        "name": "gpt-5.5",
+                        "capability": "text"
+                    },
+                    {
+                        "name": "gpt-4o-mini-tts",
+                        "capability": "audio"
+                    }
+                ]
+            },
+            {
+                "id": "uceIu3NT0oAFMnrTCzwjF",
+                "name": "VoiceStudio",
+                "baseUrl": "http://127.0.0.1:3900/v1",
+                "apiKey": "",
+                "apiFormat": "openai",
+                "models": [
+                    {
+                        "name": "omnivoice",
+                        "capability": "audio"
+                    }
+                ]
+            },
+            {
+                "id": "muse",
+                "name": "Muse (muse2api)",
+                "baseUrl": "http://127.0.0.1:18610/v1",
+                "apiKey": "",
+                "apiFormat": "openai",
+                "models": [
+                    {
+                        "name": "muse-image",
+                        "capability": "image"
+                    },
+                    {
+                        "name": "muse-video",
+                        "capability": "video"
+                    },
+                    {
+                        "name": "muse-chat",
+                        "capability": "text"
+                    }
+                ]
+            }
+        ],
+        "model": "flow::flow-nano-banana-pro",
+        "imageModel": "flow::flow-nano-banana-pro",
+        "videoModel": "flow::flow-omni-flash",
+        "textModel": "default::gpt-5.5",
+        "audioModel": "default::gpt-4o-mini-tts",
+        "audioVoice": "alloy",
+        "audioFormat": "mp3",
+        "audioSpeed": "1",
+        "audioInstructions": "",
+        "videoSeconds": "4",
+        "vquality": "720",
+        "videoGenerateAudio": "true",
+        "videoWatermark": "false",
+        "videoMode": "frames",
+        "systemPrompt": "",
+        "reasoningEffort": "auto",
+        "models": [
+            "flow::flow-nano-banana-pro",
+            "flow::flow-omni-flash",
+            "default::gpt-5.5",
+            "default::gpt-4o-mini-tts"
+        ],
+        "quality": "auto",
+        "size": "16:9",
+        "background": "",
+        "count": "1",
+        "canvasImageCount": "1",
+        "proxyEnabled": true,
+        "proxyUrl": "http://127.0.0.1:23210",
+        "nodeRegenerateBehavior": "new-node",
+        "autoFocusOnSelect": false
+    },
+    "webdav": {
+        "url": "",
+        "username": "",
+        "password": "",
+        "directory": "infinite-canvas",
+        "lastSyncedAt": ""
+    },
+    "promptSources": {
+        "sources": [
+            {
+                "id": "banana-prompt-quicker",
+                "name": "Banana Prompt Quicker",
+                "url": "https://raw.githubusercontent.com/yukkcat/image-prompts/main/dist/sources/banana-prompt-quicker.json",
+                "homepage": "https://glidea.github.io/banana-prompt-quicker/",
+                "enabled": true,
+                "builtIn": true
+            },
+            {
+                "id": "davidwu-gpt-image2-prompts",
+                "name": "DavidWu GPT Image 2",
+                "url": "https://raw.githubusercontent.com/yukkcat/image-prompts/main/dist/sources/davidwu-gpt-image2-prompts.json",
+                "homepage": "https://github.com/davidwuw0811-boop/awesome-gpt-image2-prompts",
+                "enabled": true,
+                "builtIn": true
+            },
+            {
+                "id": "freestylefly-gpt-image-2",
+                "name": "Freestylefly GPT Image 2",
+                "url": "https://raw.githubusercontent.com/yukkcat/image-prompts/main/dist/sources/freestylefly-gpt-image-2.json",
+                "homepage": "https://github.com/freestylefly/awesome-gpt-image-2",
+                "enabled": true,
+                "builtIn": true
+            },
+            {
+                "id": "awesome-gpt-image",
+                "name": "Awesome GPT Image",
+                "url": "https://raw.githubusercontent.com/yukkcat/image-prompts/main/dist/sources/awesome-gpt-image.json",
+                "homepage": "https://github.com/ZeroLu/awesome-gpt-image",
+                "enabled": true,
+                "builtIn": true
+            },
+            {
+                "id": "awesome-gpt4o-image-prompts",
+                "name": "Awesome GPT-4o",
+                "url": "https://raw.githubusercontent.com/yukkcat/image-prompts/main/dist/sources/awesome-gpt4o-image-prompts.json",
+                "homepage": "https://github.com/ImgEdify/Awesome-GPT4o-Image-Prompts",
+                "enabled": true,
+                "builtIn": true
+            },
+            {
+                "id": "youmind-gpt-image-2",
+                "name": "YouMind GPT Image 2",
+                "url": "https://raw.githubusercontent.com/yukkcat/image-prompts/main/dist/sources/youmind-gpt-image-2.json",
+                "homepage": "https://github.com/YouMind-OpenLab/awesome-gpt-image-2",
+                "enabled": true,
+                "builtIn": true
+            },
+            {
+                "id": "youmind-nano-banana-pro",
+                "name": "YouMind Nano Banana Pro",
+                "url": "https://raw.githubusercontent.com/yukkcat/image-prompts/main/dist/sources/youmind-nano-banana-pro.json",
+                "homepage": "https://github.com/YouMind-OpenLab/awesome-nano-banana-pro-prompts",
+                "enabled": true,
+                "builtIn": true
+            }
+        ],
+        "schedule": {
+            "intervalMinutes": 30,
+            "lastFetchedAt": ""
+        }
+    }
+}

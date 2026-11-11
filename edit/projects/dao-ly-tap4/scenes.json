@@ -1,0 +1,76 @@
+{
+ "scenes": [
+  {
+   "id": "c01",
+   "clip_s": 6,
+   "voice": "Hai việc nhỏ trong bếp, giúp bạn tránh ngộ độc thực phẩm. Một: Không ăn nấm hoang.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, standing in a small Vietnamese kitchen at night, looking at a basket of wild mushrooms on the table and holding up one hand in a stop gesture. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c02",
+   "clip_s": 6,
+   "voice": "Kim bạc đổi màu, nấm sâu ăn, nấm màu sặc sỡ mới độc. Cả ba đều sai.",
+   "image_prompt": "A cluster of wild mushrooms on a wooden table, a thin silver needle lying beside them, one mushroom with a small insect hole, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c03",
+   "clip_s": 6,
+   "voice": "Năm 2025, Trung Quốc ghi nhận tám trăm hai mươi tám vụ ngộ độc nấm, hơn hai nghìn người mắc, mười ba người mất mạng.",
+   "image_prompt": "A quiet hospital corridor at night with a row of empty chairs and a single door with a soft light above it, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c04",
+   "clip_s": 8,
+   "voice": "Và phát hiện thêm ba mươi bốn loài nấm mới gây độc. Theo cơ quan kiểm soát dịch bệnh Trung Quốc, hiện chưa có cách nhận biết nấm độc vừa đơn giản, vừa đáng tin.",
+   "image_prompt": "A field guide book open on a table with sketches of many different mushrooms, a magnifying glass resting on the page, a desk lamp, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c05",
+   "clip_s": 8,
+   "voice": "Năm 2026, ở Sơn La, sáu người ăn canh nấm rừng, một người mất mạng, bốn người nguy kịch, phải chuyển lên Bạch Mai lọc máu.",
+   "image_prompt": "A bowl of soup with mushrooms on a rustic table in a Vietnamese mountain house at night, six empty bowls arranged around the table, steam rising, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c06",
+   "clip_s": 6,
+   "voice": "Nghi ăn nhầm nấm độc, đi khám ngay. Giữ lại nấm thừa và thức ăn còn lại. Cần cấp cứu thì gọi số một một năm.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, carefully putting leftover mushrooms and food into a container with a lid, a phone on the kitchen counter beside, calm and determined. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c07",
+   "clip_s": 6,
+   "voice": "Hai: Mộc nhĩ, nấm tuyết ngâm quá lâu và các món từ gạo ướt, như bánh phở, bánh cuốn, có thể sinh độc tố nếu để hỏng.",
+   "image_prompt": "A glass bowl of soaking wood ear mushrooms next to a tray of fresh rice noodle sheets on a Vietnamese kitchen counter, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c08",
+   "clip_s": 6,
+   "voice": "Độc tố này không bị phá hủy khi đun sôi, và chưa có thuốc giải đặc hiệu.",
+   "image_prompt": "A pot of boiling water on a gas stove with steam rising, a small bowl of mushrooms beside the pot, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c09",
+   "clip_s": 10,
+   "voice": "Ở Trung Quốc, giai đoạn 2010 đến 2020, khoảng ba mươi phần trăm người mắc đã mất mạng. Đó là tỷ lệ trong các ca được ghi nhận, không phải nguy cơ của một bữa ăn.",
+   "image_prompt": "A single empty dinner table with a bowl, chopsticks and a lit lamp, a window with rain outside, quiet mood, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c10",
+   "clip_s": 6,
+   "voice": "Ngâm vừa đủ dùng. Mua bánh phở, bánh cuốn vừa dùng. Bảo quản theo hướng dẫn, và bỏ ngay thực phẩm biến chất.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, dropping spoiled food from a container into a trash bin in a Vietnamese kitchen, a refrigerator door slightly open in the background. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c11",
+   "clip_s": 6,
+   "voice": "Nếu nghi ngộ độc, không tự gây nôn khi chưa có hướng dẫn của y tế.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, sitting at a kitchen table holding a phone to the ear to call for medical advice, a glass of water untouched on the table. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c12",
+   "clip_s": 6,
+   "voice": "Hai việc nhỏ, làm ngay hôm nay: không ăn nấm hoang, và bỏ thực phẩm đã biến chất.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, standing at a clean Vietnamese kitchen counter at dawn, the basket of mushrooms pushed away, light coming through the window. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  }
+ ]
+}

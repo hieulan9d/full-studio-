@@ -1,0 +1,25 @@
+# file nặng / tạo lại được
+*.mp4
+*.mov
+*.wav
+*.mp3
+*.png
+*.jpg
+*.jpeg
+*.zip
+projects/*/media/
+projects/*/tmp/
+projects/*/voice/parts/
+an-vuong/
+voice-winhair-tvc/
+repos/
+remotion-app/node_modules/
+remotion-app/out/
+hyperframes-app/node_modules/
+node_modules/
+__pycache__/
+*.pyc
+.env
+*token*
+.claude/settings.local.json
+vf/.cache/

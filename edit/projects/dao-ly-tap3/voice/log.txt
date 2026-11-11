@@ -1,0 +1,46 @@
+[1.00] Ba việc nhỏ trong nhà, tốn rất ít tiền, mà giúp trẻ nhỏ và người già tránh được tai nạn đáng tiếc.
+      nghe: Ba việc nhỏ trong nhà tốn rất ít tiền mà giúp trẻ nhỏ và người già tránh được tai nạn đáng tiếc
+[0.97] Một: Chốt giới hạn cho cửa sổ và ban công.
+      nghe: một chốt giới hạn cho cửa sổ và bàn công.
+[0.96] Lưới chống muỗi không phải biện pháp bảo vệ.
+      nghe: Lưới chống mũi không phải biện pháp bảo vệ
+[0.94] Chốt giới hạn giá rất rẻ, lắp chỉ mất khoảng mười phút.
+      nghe: Chốt giới hạn giá rất rẻ, lắp chỉ mất khoảng 10 phút
+[1.00] Ở New York, chính quyền phát chắn cửa sổ miễn phí cho hộ có nguy cơ cao.
+      nghe: Ở New York, chính quyền phát chắn cửa sổ miễn phí cho hộ có nguy cơ cao.
+[0.94] Sau ba năm, số trẻ rơi ngã ở một quận giảm một nửa.
+      nghe: Sau 3 năm số trẻ rơi ngã ở một quận già một nửa
+[0.87] Ở Hà Nội, trẻ rơi từ chung cư đã xảy ra nhiều lần, có vụ từ tầng mười một, có vụ từ tầng hai mươi bốn.
+      nghe: Ở Hà Nội, trẻ rơi từ chung cư đã xảy ra nhiều lần, có vụ từ tầng 11, có vụ từ tầng 24.
+[0.81] Một kiến trúc sư khuyến nghị: lan can cao tối thiểu một phẩy một mét, khe hở dưới mười xăng ti mét, cửa sổ chỉ mở hé khoảng mười lăm độ.
+      nghe: Một kiến trúc sư khuyến nghị, lan can cao tối thiểu 1-1m, khe hở dưới 10cm, cửa sổ chỉ mở hé khoảng 15 độ
+[0.89] Hai: Cho trẻ mặc áo phao khi ở gần nước.
+      nghe: Đụng 2 cho trẻ mặc áo phao khi ở gần nước
+[1.00] Áo phao giảm khoảng một nửa nguy cơ đuối nước khi rơi xuống nước.
+      nghe: Áo phao giảm khoảng một nửa nguy cơ đuối nước khi rơi xuống nước.
+[0.72] Năm 2021, nước ta có hơn bốn nghìn người đuối nước, bốn mươi phần trăm là trẻ dưới mười bốn tuổi.
+      nghe: Năm 2021, nước ta có hơn 4.000 người đối nước, 40% là trẻ dưới 14 tuổi
+[0.91] Đuối nước là nguyên nhân hàng đầu khiến trẻ mất mạng, nhất là từ năm đến mười bốn tuổi.
+      nghe: Đuối nước là nguyên nhân hàng đầu khiến trẻ mất mạng, nhất là từ 5 đến 14 tuổi
+[1.00] Không để trẻ một mình gần nước, dù chỉ chốc lát.
+      nghe: không để trẻ một mình gần nước dù chỉ chốc lát.
+[0.95] Dạy trẻ bơi và kỹ năng an toàn dưới nước.
+      nghe: tục dạy trẻ bơi và kỹ năng an toàn dưới nước.
+[0.91] Rào chắn khu vực nguy hiểm.
+      nghe: lụng, rào chắn khu vực nguy hiểm.
+[1.00] Và học sơ cứu.
+      nghe: Và học sơ cứu.
+[0.83] Ba: Người trên sáu mươi tuổi, tập thăng bằng.
+      nghe: 3 người trên 60 tuổi Tập thăng bằng
+[0.81] Tập thăng bằng hai đến ba lần mỗi tuần, ví dụ thái cực quyền, giảm khoảng hai mươi ba phần trăm số lần ngã.
+      nghe: Tập thăng bằng 2-3 lần mỗi tuần, ví dụ thái cực quyền giảm khoảng 23% số lần ngã.
+[1.00] Hơn một nửa số vụ ngã ở người cao tuổi xảy ra ngay trong nhà.
+      nghe: Hơn một nửa số vụ ngã ở người cao tuổi xảy ra ngay trong nhà
+[0.71] Cải tạo nhà giảm khoảng hai mươi phần trăm.
+      nghe: Cải tạo nhà giảm khoảng 20%.
+[1.00] Thảm chống trượt trong phòng tắm, tay vịn cầu thang, đèn ngủ ban đêm đều là việc dễ làm.
+      nghe: Thảm chống trượt trong phòng tắm, tay vịn cầu thang, đèn ngủ ban đêm đều là việc dễ làm.
+[0.93] Ba việc nhỏ, làm một lần, giữ an toàn cho cả nhà.
+      nghe: 3 việc nhóm làm một lần, giữ an toàn cho cả nhà
+[0.97] Hôm nay, hãy kiểm tra chốt cửa sổ nhà bạn.
+      nghe: Hôm nay hãy kiểm tra chút cửa sổ nhà bạn.

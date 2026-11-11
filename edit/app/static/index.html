@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Xưởng dựng video</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="brand"><span class="logo">▶</span> Xưởng dựng video</div>
+  <select id="proj" title="Dự án"></select>
+  <span id="pname" class="muted"></span>
+  <div class="spacer"></div>
+  <span id="proxyinfo" class="muted"></span>
+  <button id="undo" title="Hoàn tác thay đổi gần nhất (Ctrl+Z)">↶ Hoàn tác</button>
+  <button id="rh">Dựng bản ngang</button>
+  <button id="rv">Dựng bản dọc 9:16</button>
+  <button id="cc">Xuất CapCut</button>
+</header>
+<main>
+  <section id="left">
+    <div id="stagewrap">
+      <div id="stage"><video id="vA" playsinline muted></video><video id="vB" playsinline muted></video><div id="ov"></div><div id="gap"></div></div>
+    </div>
+    <div id="transport">
+      <button id="play">▶</button>
+      <span id="tc">0:00.0 / 0:00.0</span>
+      <input id="zoom" type="range" min="6" max="60" value="14" title="Phóng to timeline">
+      <span class="muted" id="errs"></span>
+    </div>
+    <div id="insp" class="muted">Chọn một cảnh trên timeline để sửa.</div>
+  </section>
+  <aside id="chat">
+    <div id="msgs"></div>
+    <div id="chips">
+      <button class="chip">Kiểm tra luật cho dự án</button>
+      <button class="chip">Chuyển phụ đề sang hiện từng chữ</button>
+      <button class="chip">Đổi cảnh 3 sang đoạn êm khác</button>
+      <button class="chip">Tìm thêm cảnh quay cho phần kiểm nghiệm</button>
+    </div>
+    <form id="form"><textarea id="inp" rows="2" placeholder="Nói điều bạn muốn, ví dụ: cắt bớt cảnh lab còn 20 giây, thêm nhạc nền nhỏ khi có giọng…"></textarea>
+      <div class="row"><button type="button" id="stop" hidden>■ Dừng</button><button type="button" id="clear" class="ghost">Xóa chat</button><button id="send">Gửi</button></div></form>
+  </aside>
+</main>
+<section id="tl">
+  <div id="tlscroll"><div id="tlin">
+    <div id="ruler"></div>
+    <div class="track" id="tr-v"><div class="tname">Video</div><div class="lane" id="lane-v"></div></div>
+    <div class="track" id="tr-t"><div class="tname">Chữ</div><div class="lane" id="lane-t"></div></div>
+    <div class="track" id="tr-a"><div class="tname">Giọng</div><div class="lane" id="lane-a"></div></div>
+    <div id="head"></div>
+  </div></div>
+</section>
+<div id="jobs"></div>
+<audio id="voice" preload="auto"></audio>
+<script src="app.js"></script>
+</body>
+</html>

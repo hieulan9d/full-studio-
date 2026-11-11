@@ -1,0 +1,24 @@
+# Tập 22 — Sáu điều cần biết về bảo hiểm
+Nguồn: sách chương 5 "Đừng lãng phí tiền", mục 39, 40, 25, 26, 41, 42, 44, 43 (chỉ bảo hiểm tổn thất không chịu nổi, bảo hiểm nhân thọ thời hạn, quyền lợi bảo đảm, mức bảo hiểm xe, 21 ngày cân nhắc, ngân hàng, người thụ hưởng, hủy hợp đồng). Chỉ lấy luật Việt Nam; không đọc số tiền nhân dân tệ.
+X0: 49000
+
+## NUM
+- một trăm năm mươi triệu đồng = 150 triệu đồng
+- một trăm triệu đồng = 100 triệu đồng
+- năm mươi triệu đồng = 50 triệu đồng
+- hai mươi mốt ngày = 21 ngày
+- một năm = 1 năm
+
+## CẢNH
+c01 || Bảo hiểm là thứ nhiều người mua mà không hiểu. Sáu điều cần biết. Một: Chỉ mua bảo hiểm cho tổn thất mình không chịu nổi. Tổn thất chịu được thì dùng quỹ dự phòng. || A big dark umbrella opened over a small house in a storm drawn in chalk strokes, a small purse beside the door, no people. || rain streaks fall and bounce off the umbrella, the house window glows steadily
+c02 || Phí bạn đóng không được bồi thường lại toàn bộ, vì một phần trả cho chi phí và lợi nhuận của công ty. Đáng mua là những rủi ro hiếm, nhưng xảy ra thì gia đình không móc ra nổi tiền. || CHAR: sitting at a kitchen table with a small calculator and an umbrella symbol drawn on a paper, thoughtful, warm lamp. || the character taps the calculator and looks up slowly, lamp light steady
+c03 || Ở Việt Nam, hãy bắt đầu từ bảo hiểm y tế, rồi mới xét bảo hiểm thương mại cho những tổn thất lớn. || A simple health insurance card shape lying on a table beside a stethoscope and a cup of tea, warm lamp light, no people. || the lamp light shifts softly across the card, steam rises from the tea
+c04 || Hai: Nếu có người sống nhờ thu nhập của bạn, hãy mua bảo hiểm nhân thọ thời hạn cho người kiếm tiền trước. Nó bảo vệ trong số năm cố định, như khi còn vay nhà, còn con nhỏ. || A small house under a protective arch of light, a kitchen table with three empty chairs inside the window, no people. || the arch of light glows steadily and the window lamp flickers softly
+c05 || Người ở nhà chăm con, chăm người già không có lương, nhưng vẫn có giá trị kinh tế. Hãy xét nhu cầu thực tế của gia đình mình. || CHAR: cooking in a small Vietnamese kitchen with a pot on the stove, steam rising, a calm caring posture, warm light. || steam rises from the pot, the character stirs slowly, light steady
+c06 || Ba: Tách quyền lợi được bảo đảm trong hợp đồng khỏi phần lãi chia và giá trị minh họa không bảo đảm. Đọc kỹ phần nào được cam kết, phần nào chỉ minh họa. || A contract with two highlighted columns, one solid line and one dotted line, a magnifying glass above it, no people. || the magnifying glass slides slowly from the solid column to the dotted one
+c07 || Bốn: Bảo hiểm xe bắt buộc chỉ là mức trần. Về sức khỏe, tính mạng, tối đa một trăm năm mươi triệu đồng một người một vụ. Về tài sản, tối đa một trăm triệu đồng với ô tô, năm mươi triệu đồng với xe máy. || A motorbike and a small car drawn side by side on a quiet street at dusk with a tall measuring line beside them, no people. || the measuring line glows steadily, dusk light fades slowly
+c08 || Thiệt hại vượt mức thì người gây tai nạn tự bồi thường, nên có thể mua thêm bảo hiểm trách nhiệm dân sự tự nguyện. || CHAR: riding a motorbike carefully along a quiet street at dusk with a helmet on, calm focus. || the motorbike light glows steadily as the character rides slowly forward
+c09 || Năm: Hối hận sau khi ký, hãy hủy trong thời gian cân nhắc. Với bảo hiểm nhân thọ, sức khỏe trên một năm, bạn có hai mươi mốt ngày kể từ ngày nhận hợp đồng. Ghi lại ngày nhận, gửi yêu cầu bằng văn bản. || A calendar with a block of days circled and a signed contract beside it, a pen and a window with dawn light, no people. || the circle around the days draws itself slowly, dawn light grows
+c10 || Sáu: Ghi người thụ hưởng cụ thể, và cho người nhà biết có hợp đồng. Không ghi, hoặc người thụ hưởng mất trước, thì tiền bảo hiểm có thể thành di sản. || A sealed envelope with a name card shape and a key lying on a desk beside a lamp, warm light, no people. || the lamp light shifts softly across the envelope, dust floats in the beam
+c11 || Khi ký tại quầy ngân hàng, hãy hỏi thẳng: tôi đang ký tiền gửi hay bảo hiểm, ai có nghĩa vụ trả, nếu dừng sau một năm thì nhận lại bao nhiêu. Muốn hủy, tự làm với công ty, đừng nhờ đại diện hủy. || CHAR: at a bank counter asking a question with one hand raised, a bank employee shape behind the counter, bright interior. || the character tilts the head while asking and the clerk nods, light steady
+c12 || Sáu điều giúp bạn mua đúng, không mua thừa. Hôm nay, hãy tìm hợp đồng bảo hiểm của bạn và đọc phần quyền lợi được bảo đảm. || CHAR: sitting at a desk reading an insurance contract with a highlighter, a cup of tea beside, morning light, focused. || the character highlights a line slowly, steam rises from the tea

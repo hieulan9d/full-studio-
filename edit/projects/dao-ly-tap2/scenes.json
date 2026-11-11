@@ -1,0 +1,88 @@
+{
+ "scenes": [
+  {
+   "id": "c01",
+   "clip_s": 8,
+   "voice": "Có năm việc trong nhà, gần như không tốn tiền, mà giảm rõ rệt nguy cơ gặp nạn khi có cháy, gas hay khí độc. Một: Lắp báo khói và báo khí C O.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, standing in a dark narrow Vietnamese apartment hallway at night, looking up at a small round smoke alarm on the ceiling with a tiny blinking light. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c02",
+   "clip_s": 8,
+   "voice": "Báo khói hoạt động giúp giảm khoảng sáu mươi phần trăm nguy cơ mất mạng khi cháy nhà. Ở Mỹ, bốn mươi mốt phần trăm vụ cháy xảy ra lúc mọi người đang ngủ.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, sleeping peacefully in a bed in a dark bedroom while a small smoke alarm on the ceiling glows above, a thin curl of smoke drifting under the door. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c03",
+   "clip_s": 8,
+   "voice": "Ngày mười hai tháng chín năm 2023, vụ cháy chung cư mini ở Khương Hạ làm năm mươi sáu người mất mạng. Nguyên nhân là chập điện ở bình ắc quy xe máy để tầng một.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, a tall narrow Vietnamese mini apartment building at night seen from the street, thin smoke rising from the ground floor where a parked motorbike stands, no people, heavy quiet mood. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c04",
+   "clip_s": 8,
+   "voice": "Không đốt than sưởi trong phòng kín, kể cả khi tắm. Khoảng bốn mươi phần trăm người bị ngạt khí C O để lại di chứng. Cháy thì gọi số một một bốn. Cấp cứu thì gọi số một một năm.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, standing at the doorway of a tiny closed bathroom where a small charcoal stove glows on the floor, a closed window, faint haze, looking worried and stepping back. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c05",
+   "clip_s": 8,
+   "voice": "Hai: Ngửi thấy mùi gas, đóng ngay van tổng hoặc van bình. Ống và bếp gas hết hạn thì thay, đừng tự sửa.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, in a small Vietnamese kitchen at night, sniffing the air and reaching toward the valve of a gas cylinder beside a gas stove, wavy lines in the air showing the smell. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c06",
+   "clip_s": 8,
+   "voice": "Mở cửa ra. Không bật quạt, không bật đèn, không dùng thiết bị điện, không đụng bật lửa. Ra ngoài rồi mới gọi.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, opening a kitchen door wide, one hand held out in a stop gesture toward a light switch and a lighter lying on the counter, walking outside into the street. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c07",
+   "clip_s": 8,
+   "voice": "Ba: Không đưa xe điện vào hành lang hay thang máy, không sạc trong nhà. Trung Quốc năm 2021 có mười tám nghìn vụ cháy xe đạp điện, sáu mươi lăm người mất mạng, gần như tất cả đều ở trong nhà.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, standing at the narrow entrance hallway of an old apartment block, a parked electric bike plugged into a wall socket beside the only staircase, worried mood. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c08",
+   "clip_s": 8,
+   "voice": "Pin lithium cháy lan chỉ trong vài chục giây và sinh ra khói rất độc. Không mua pin độ, không dùng bộ sạc không rõ thương hiệu, không sạc qua đêm khi không có người trông.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, an electric bike battery charging on the floor at night with a loose tangled charger cable, thin wavy smoke rising from the battery, the character standing back with arms crossed in an X. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c09",
+   "clip_s": 6,
+   "voice": "Hà Nội yêu cầu có khu sạc riêng, không sạc qua đêm, có người giám sát. Khu sạc tập trung thiếu giải pháp phòng cháy bị phạt từ bốn mươi đến năm mươi triệu đồng.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, a small outdoor charging shelter for electric bikes in a Vietnamese alley, a watchman sitting on a stool beside it at night under a lamp, neat and orderly. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c10",
+   "clip_s": 8,
+   "voice": "Bốn: Có sẵn bình chữa cháy, chăn chữa cháy, mặt nạ thoát hiểm và bộ sơ cứu. Mua một lần, mỗi năm kiểm tra mười phút.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, kneeling in a hallway checking a small red fire extinguisher, a folded fire blanket, an escape mask and a first aid box neatly lined up on a shelf beside. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c11",
+   "clip_s": 8,
+   "voice": "Năm 2025, Việt Nam có ba nghìn không trăm sáu mươi vụ cháy, chín mươi người mất mạng, chín mươi ba người bị thương, thiệt hại khoảng bảy trăm tám mươi sáu phẩy bảy mươi tám tỷ đồng. Hãy hỏi cơ quan phòng cháy nơi bạn ở cần trang bị gì.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, standing at the door of a small local fire station in Vietnam, a fire truck parked inside, a firefighter silhouette beyond, asking a question with one hand raised. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c12",
+   "clip_s": 8,
+   "voice": "Năm: Không tự xuống bể phốt, hố ga, hầm kín. Có người ngất cũng đừng xuống theo. Người thứ hai xuống cứu người thứ nhất, thường là người thứ hai cũng gục.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, standing at the edge of an open manhole in a dark alley, a ladder going down into blackness, a hand held up in a stop gesture, a second faint figure lying near the rim. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c13",
+   "clip_s": 10,
+   "voice": "Những nơi này có thể thiếu oxy hoặc tích khí độc. Mở nắp chờ một lúc không đủ để biết an toàn. Cần thông gió, đo khí, đồ bảo hộ và người giám sát bên ngoài. Gọi số một một bốn và một một năm.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, standing beside an open manhole with a gas detector held over it and a rope tied to a safety harness, another person standing guard outside at the edge, rescue lamp glowing. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c14",
+   "clip_s": 10,
+   "voice": "Năm việc, tốn rất ít tiền, nhưng có thể giữ cả nhà an toàn. Không cần làm hết. Chọn một việc, và làm ngay hôm nay.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, standing in front of a quiet Vietnamese house at dawn, holding a small smoke alarm in one hand and raising one finger with the other, faint light on the horizon, hopeful calm mood. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  }
+ ]
+}

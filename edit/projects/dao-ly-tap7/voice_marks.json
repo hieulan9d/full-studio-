@@ -1,0 +1,214 @@
+{
+ "total": 95.780023,
+ "marks": [
+  {
+   "scene": "c01",
+   "text": "Có những dấu hiệu nhỏ của cơ thể, và những chuyện khó nói, mà bạn không nên bỏ qua.",
+   "start": 0.0,
+   "end": 3.606,
+   "item": false
+  },
+  {
+   "scene": "c01",
+   "text": "Một: Tiểu ra máu.",
+   "start": 3.773,
+   "end": 4.714,
+   "item": true
+  },
+  {
+   "scene": "c02",
+   "text": "Một lần, không đau, hôm sau hết, vẫn phải đi khám.",
+   "start": 4.881,
+   "end": 7.007,
+   "item": false
+  },
+  {
+   "scene": "c02",
+   "text": "Số liệu ở Anh cho thấy khoảng 2,8% người trên sáu mươi tuổi có tiểu máu cuối cùng được chẩn đoán ung thư bàng quang.",
+   "start": 7.174,
+   "end": 12.562,
+   "item": false
+  },
+  {
+   "scene": "c03",
+   "text": "Ở người từ bốn mươi đến năm mươi chín tuổi là 1,2%.",
+   "start": 12.729,
+   "end": 15.614,
+   "item": false
+  },
+  {
+   "scene": "c03",
+   "text": "Tỷ lệ không cao, nhưng đủ để phải kiểm tra một lần.",
+   "start": 15.781,
+   "end": 17.792,
+   "item": false
+  },
+  {
+   "scene": "c04",
+   "text": "Hai: Rối loạn cương dương không chỉ là chuyện ấy.",
+   "start": 17.959,
+   "end": 20.04,
+   "item": true
+  },
+  {
+   "scene": "c04",
+   "text": "Người bị rối loạn cương dương có nguy cơ bệnh tim mạch cao hơn khoảng bốn mươi phần trăm, và nhồi máu cơ tim cao hơn khoảng sáu mươi phần trăm.",
+   "start": 20.207,
+   "end": 26.517,
+   "item": false
+  },
+  {
+   "scene": "c05",
+   "text": "Hãy đo huyết áp, đường huyết, mỡ máu trước.",
+   "start": 26.684,
+   "end": 28.529,
+   "item": false
+  },
+  {
+   "scene": "c05",
+   "text": "Đừng tự mua thuốc để che đi vấn đề.",
+   "start": 28.696,
+   "end": 30.272,
+   "item": false
+  },
+  {
+   "scene": "c06",
+   "text": "Ngày 2 tháng 4 năm 2025, Cục An toàn thực phẩm công bố cả bảy mẫu thực phẩm bảo vệ sức khỏe quảng cáo tăng cường sinh lý nam đều chứa hoạt chất của thuốc kê đơn.",
+   "start": 30.439,
+   "end": 38.557,
+   "item": false
+  },
+  {
+   "scene": "c07",
+   "text": "Giảm cân, bỏ thuốc lá, kiểm soát huyết áp và đường huyết cũng giúp chức năng này tốt lên.",
+   "start": 38.724,
+   "end": 42.953,
+   "item": false
+  },
+  {
+   "scene": "c08",
+   "text": "Ba: Dùng bao cao su, và không dùng chung bơm kim tiêm.",
+   "start": 43.12,
+   "end": 45.777,
+   "item": true
+  },
+  {
+   "scene": "c08",
+   "text": "Dùng lần nào cũng đủ suốt quá trình, giảm hơn bảy mươi phần trăm nguy cơ lây HIV giữa nam và nữ.",
+   "start": 45.944,
+   "end": 50.357,
+   "item": false
+  },
+  {
+   "scene": "c09",
+   "text": "Chỉ dùng phần lớn các lần thì gần như không khác gì không dùng.",
+   "start": 50.524,
+   "end": 53.184,
+   "item": false
+  },
+  {
+   "scene": "c09",
+   "text": "Bao cao su cũng không chặn hoàn toàn giang mai và mụn rộp sinh dục ở vùng không được che.",
+   "start": 53.351,
+   "end": 57.362,
+   "item": false
+  },
+  {
+   "scene": "c10",
+   "text": "Bốn: Xét nghiệm HIV nếu từng có hành vi nguy cơ.",
+   "start": 57.529,
+   "end": 59.841,
+   "item": true
+  },
+  {
+   "scene": "c10",
+   "text": "Người dùng thuốc đều đặn đến khi virus không phát hiện được thì không lây cho bạn tình.",
+   "start": 60.008,
+   "end": 63.909,
+   "item": false
+  },
+  {
+   "scene": "c11",
+   "text": "Giữa năm 2025, nước ta có hơn hai trăm sáu mươi bảy nghìn người nhiễm HIV còn sống.",
+   "start": 64.076,
+   "end": 68.447,
+   "item": false
+  },
+  {
+   "scene": "c11",
+   "text": "Luật cấm công khai tên, địa chỉ, hình ảnh người nhiễm.",
+   "start": 68.614,
+   "end": 70.831,
+   "item": false
+  },
+  {
+   "scene": "c12",
+   "text": "Từ đủ mười lăm tuổi, bạn được tự nguyện yêu cầu xét nghiệm.",
+   "start": 70.998,
+   "end": 73.887,
+   "item": false
+  },
+  {
+   "scene": "c12",
+   "text": "Năm: Thuốc dự phòng trước phơi nhiễm, chỉ dùng theo đơn, không tự mua tự uống.",
+   "start": 74.054,
+   "end": 77.896,
+   "item": true
+  },
+  {
+   "scene": "c13",
+   "text": "Dùng đều, nguy cơ nhiễm HIV thấp hơn khoảng bảy mươi phần trăm so với giả dược.",
+   "start": 78.063,
+   "end": 82.022,
+   "item": false
+  },
+  {
+   "scene": "c13",
+   "text": "Quy trình gồm xét nghiệm HIV, đánh giá thận và viêm gan, tái khám sau một tháng.",
+   "start": 82.189,
+   "end": 85.765,
+   "item": false
+  },
+  {
+   "scene": "c14",
+   "text": "Nếu đã có phơi nhiễm, cần đánh giá điều trị dự phòng sau phơi nhiễm, không tự chuyển sang dùng thuốc dự phòng trước phơi nhiễm.",
+   "start": 85.932,
+   "end": 91.842,
+   "item": false
+  },
+  {
+   "scene": "c14",
+   "text": "Năm điều nhỏ, có thể cứu bạn khỏi những chuyện lớn.",
+   "start": 92.009,
+   "end": 94.069,
+   "item": false
+  },
+  {
+   "scene": "c14",
+   "text": "Có dấu hiệu lạ, hãy đi khám, đừng ngại.",
+   "start": 94.236,
+   "end": 95.78,
+   "item": false
+  }
+ ],
+ "low": [
+  [
+   4,
+   "Ở người từ bốn mươi đến năm mươi chín tuổi là 1,2%.",
+   "ở người từ 40 đến 59 tuổi là 1,2%.",
+   0.68
+  ],
+  [
+   7,
+   "Người bị rối loạn cương dương có nguy cơ bệnh tim mạch cao hơn khoảng bốn mươi phần trăm, và nhồi máu cơ tim cao hơn khoảng sáu mươi phần trăm.",
+   "Người bị dối loạn cương dương có nguy cơ bệnh tim mạch cao hơn khoảng 40% Và nhồi máu cơ tim cao hơn khoảng 60%",
+   0.83
+  ],
+  [
+   18,
+   "Giữa năm 2025, nước ta có hơn hai trăm sáu mươi bảy nghìn người nhiễm HIV còn sống.",
+   "Giữa năm 2025, nước ta có hơn 267.000 người nhiễm HIV còn sống.",
+   0.77
+  ]
+ ]
+}

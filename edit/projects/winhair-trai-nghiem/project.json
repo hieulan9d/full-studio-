@@ -1,0 +1,581 @@
+{
+ "name": "winhair trải nghiệm",
+ "fps": 30,
+ "canvas": {
+  "w": 1080,
+  "h": 1920
+ },
+ "clips": [
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 1.MP4",
+   "in": 0.2,
+   "dur": 11.5,
+   "size": "SP",
+   "label": "cảnh 1 (1)",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 1.MP4",
+   "in": 13.5,
+   "dur": 2.0,
+   "size": "SP",
+   "label": "cảnh 1 (2)",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 1.1 cặp đôi đi về.MOV",
+   "in": 7.5,
+   "dur": 3.0,
+   "size": "SP",
+   "label": "cảnh 1.1",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 2.MP4",
+   "in": 3.1,
+   "dur": 4.2,
+   "size": "SP",
+   "label": "cảnh 2 (1)",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 2.MP4",
+   "in": 10.0,
+   "dur": 1.5,
+   "size": "SP",
+   "label": "cảnh 2 (2)",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 3.MP4",
+   "in": 2.7,
+   "dur": 3.2,
+   "size": "SP",
+   "label": "cảnh 3",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 4.MP4",
+   "in": 0.0,
+   "dur": 2.0,
+   "size": "SP",
+   "label": "cảnh 4",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 5.MP4",
+   "in": 4.8,
+   "dur": 2.4,
+   "size": "SP",
+   "label": "cảnh 5 (1)",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 5.MP4",
+   "in": 8.9,
+   "dur": 2.4,
+   "size": "SP",
+   "label": "cảnh 5 (2)",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cắt tóc (1).MP4",
+   "in": 3.5,
+   "dur": 2.2,
+   "size": "T",
+   "label": "cắt tóc 1",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cắt tóc (6).MP4",
+   "in": 1.5,
+   "dur": 2.2,
+   "size": "Tr",
+   "label": "cắt tóc 6",
+   "volume": 0.0,
+   "allow_shake": true
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cắt tóc (3).MP4",
+   "in": 0.0,
+   "dur": 2.2,
+   "size": "C",
+   "label": "cắt tóc 3",
+   "volume": 0.0,
+   "allow_shake": true
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cắt tóc (5).MP4",
+   "in": 1.5,
+   "dur": 2.2,
+   "size": "Tr",
+   "label": "cắt tóc 5",
+   "volume": 0.0,
+   "allow_shake": true
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 6 (cắt tóc xong).MP4",
+   "in": 0.5,
+   "dur": 4.7,
+   "size": "SP",
+   "label": "cảnh 6",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 7 mời lên tằng vip.MP4",
+   "in": 0.0,
+   "dur": 8.9,
+   "size": "SP",
+   "label": "cảnh 7 (1)",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 7 mời lên tằng vip.MP4",
+   "in": 10.4,
+   "dur": 3.8,
+   "size": "SP",
+   "label": "cảnh 7 (2)",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 7 mời lên tằng vip.MP4",
+   "in": 17.9,
+   "dur": 1.9,
+   "size": "SP",
+   "label": "cảnh 7 (3)",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 8 mời nước.MP4",
+   "in": 0.0,
+   "dur": 5.0,
+   "size": "SP",
+   "label": "cảnh 8",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 9 mời vào trải nghiệm dịch vụ.MP4",
+   "in": 0.2,
+   "dur": 4.6,
+   "size": "SP",
+   "label": "cảnh 9",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 9.1 ngồi xuống ghế.MOV",
+   "in": 4.5,
+   "dur": 5.688,
+   "size": "SP",
+   "label": "cảnh 9.1",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 10 bắt dầu cạo mặt, cạo râu.MP4",
+   "in": 0.4,
+   "dur": 2.844,
+   "size": "SP",
+   "label": "cảnh 10",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\tạo bọt để cạo râu.MOV",
+   "in": 0.0,
+   "dur": 2.031,
+   "size": "C",
+   "label": "tạo bọt",
+   "volume": 0.0,
+   "allow_shake": true
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\bôi kem cạo râu (3).MP4",
+   "in": 3.5,
+   "dur": 2.844,
+   "size": "T",
+   "label": "bôi kem 3",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\bôi kem cạo râu (2).MOV",
+   "in": 3.5,
+   "dur": 2.438,
+   "size": "Tr",
+   "label": "bôi kem 2",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\bôi kem cạo râu (4).MOV",
+   "in": 0.0,
+   "dur": 2.031,
+   "size": "C",
+   "label": "bôi kem 4",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\bôi kem cạo râu (5).MOV",
+   "in": 3.5,
+   "dur": 2.438,
+   "size": "Tr",
+   "label": "bôi kem 5",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cạo râu (17).MP4",
+   "in": 1.5,
+   "dur": 2.844,
+   "size": "T",
+   "label": "cạo râu 17",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cạo râu (12).MOV",
+   "in": 3.5,
+   "dur": 2.438,
+   "size": "Tr",
+   "label": "cạo râu 12",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cạo râu (8).MP4",
+   "in": 11.5,
+   "dur": 2.031,
+   "size": "C",
+   "label": "cạo râu 8",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cạo râu (10).MOV",
+   "in": 0.0,
+   "dur": 2.844,
+   "size": "T",
+   "label": "cạo râu 10",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cạo râu (9).MP4",
+   "in": 1.5,
+   "dur": 2.438,
+   "size": "Tr",
+   "label": "cạo râu 9",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\lấy mặt nạ đẻ đắp.MOV",
+   "in": 5.5,
+   "dur": 2.031,
+   "size": "C",
+   "label": "lấy mặt nạ đắp",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh đeo mặt nạ mắt.MP4",
+   "in": 0.2,
+   "dur": 3.25,
+   "size": "SP",
+   "label": "cảnh đeo mặt nạ mắt",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\đeo mặt nạ mắt.MOV",
+   "in": 3.5,
+   "dur": 2.438,
+   "size": "Tr",
+   "label": "đeo mặt nạ mắt",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\đeo mặt nạ mắt (2).MP4",
+   "in": 1.5,
+   "dur": 2.031,
+   "size": "C",
+   "label": "đeo mặt nạ mắt 2",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\đeo mặt nạ mắt (5).MOV",
+   "in": 5.5,
+   "dur": 2.438,
+   "size": "Tr",
+   "label": "đeo mặt nạ mắt 5",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\vệ sinh dụng cụ trước khi lấy ray tai.MOV",
+   "in": 1.5,
+   "dur": 2.031,
+   "size": "C",
+   "label": "vệ sinh dụng cụ",
+   "volume": 0.0,
+   "allow_shake": true
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 11 lấy ráy tai.MP4",
+   "in": 0.9,
+   "dur": 2.844,
+   "size": "SP",
+   "label": "cảnh 11 (1)",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 11 lấy ráy tai.MP4",
+   "in": 10.1,
+   "dur": 1.625,
+   "size": "SP",
+   "label": "cảnh 11 (2)",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\lấy ráy tai (3).MP4",
+   "in": 1.5,
+   "dur": 2.844,
+   "size": "T",
+   "label": "ráy tai 3",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\lấy ráy tai (13).MOV",
+   "in": 5.5,
+   "dur": 2.438,
+   "size": "Tr",
+   "label": "ráy tai 13",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\lấy ráy tai (18).MOV",
+   "in": 0.0,
+   "dur": 2.031,
+   "size": "C",
+   "label": "ráy tai 18",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\lấy ráy tai (5).MP4",
+   "in": 3.5,
+   "dur": 2.844,
+   "size": "T",
+   "label": "ráy tai 5",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\lấy ráy tai (14).MOV",
+   "in": 11.5,
+   "dur": 2.438,
+   "size": "Tr",
+   "label": "ráy tai 14",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\lấy ráy tai (19).MOV",
+   "in": 9.5,
+   "dur": 2.031,
+   "size": "C",
+   "label": "ráy tai 19",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\lấy ráy tai (16).MOV",
+   "in": 0.0,
+   "dur": 2.031,
+   "size": "T",
+   "label": "ráy tai 16",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\lấy ráy tai (15).MOV",
+   "in": 3.5,
+   "dur": 2.438,
+   "size": "Tr",
+   "label": "ráy tai 15",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\massage tai.MP4",
+   "in": 29.5,
+   "dur": 2.031,
+   "size": "C",
+   "label": "massage tai",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\massage mặt sau khi lấy ráu tai (1).MP4",
+   "in": 35.5,
+   "dur": 2.844,
+   "size": "T",
+   "label": "massage mặt 1",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\massage mặt sau khi lấy ráu tai (3).MOV",
+   "in": 3.5,
+   "dur": 2.438,
+   "size": "Tr",
+   "label": "massage mặt 3",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\massage mặt sau khi lấy ráu tai (2).MP4",
+   "in": 3.5,
+   "dur": 2.031,
+   "size": "C",
+   "label": "massage mặt 2",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\massage mặt sau khi lấy ráu tai (4).MOV",
+   "in": 3.5,
+   "dur": 2.438,
+   "size": "Tr",
+   "label": "massage mặt 4",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\massage mặt sau khi lấy ráy tai (2).MP4",
+   "in": 11.5,
+   "dur": 2.031,
+   "size": "C",
+   "label": "massage mặt ráy 2",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 12 mời nước trước khi xả tóc.MP4",
+   "in": 1.8,
+   "dur": 3.657,
+   "size": "SP",
+   "label": "cảnh 12 (1)",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 12 mời nước trước khi xả tóc.MP4",
+   "in": 10.3,
+   "dur": 1.219,
+   "size": "SP",
+   "label": "cảnh 12 (2)",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 13 nằm xả tóc.MP4",
+   "in": 5.4,
+   "dur": 4.469,
+   "size": "SP",
+   "label": "cảnh 13 (1)",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\cảnh 13 nằm xả tóc.MP4",
+   "in": 17.4,
+   "dur": 1.625,
+   "size": "SP",
+   "label": "cảnh 13 (2)",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\hỏi xả nước nóng hay ấm.MOV",
+   "in": 0.0,
+   "dur": 4.063,
+   "size": "SP",
+   "label": "hỏi xả nước nóng hay ấm",
+   "volume": 1.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\xả tóc (1).MOV",
+   "in": 0.0,
+   "dur": 2.844,
+   "size": "T",
+   "label": "xả tóc 1",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\xả tóc (8).MOV",
+   "in": 0.0,
+   "dur": 2.438,
+   "size": "Tr",
+   "label": "xả tóc 8 mov",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\xả tóc (6).MP4",
+   "in": 0.0,
+   "dur": 2.031,
+   "size": "C",
+   "label": "xả tóc 6",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\xả tóc (4).MP4",
+   "in": 0.0,
+   "dur": 2.844,
+   "size": "T",
+   "label": "xả tóc 4",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\xả tóc (6).MOV",
+   "in": 1.5,
+   "dur": 2.438,
+   "size": "Tr",
+   "label": "xả tóc 6 mov",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\xả tóc (2).MOV",
+   "in": 17.5,
+   "dur": 2.031,
+   "size": "C",
+   "label": "xả tóc 2 mov",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\xả tóc (7).MOV",
+   "in": 0.0,
+   "dur": 2.844,
+   "size": "T",
+   "label": "xả tóc 7 mov",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\xong dịch vụ (2).MOV",
+   "in": 3.5,
+   "dur": 2.031,
+   "size": "C",
+   "label": "xong dịch vụ 2 mov",
+   "volume": 0.0
+  },
+  {
+   "src": "D:\\dữ liệu công ty\\dự án ngoài\\Win hair\\video gốc  win hair CS1\\261022\\thoại\\xong dịch vụ  (1).MP4",
+   "in": 5.5,
+   "dur": 4.063,
+   "size": "T",
+   "label": "xong dịch vụ 1",
+   "volume": 0.0
+  }
+ ],
+ "sections": [],
+ "music_tracks": [
+  {
+   "file": "D:\\JOB\\winhair\\nhach\\nhạc đầu.MP3",
+   "in": 0.0,
+   "start": 0.0,
+   "dur": 70.9,
+   "gain_db": -8
+  },
+  {
+   "file": "D:\\JOB\\winhair\\nhach\\nhạc sau.MP3",
+   "in": 10.03,
+   "start": 69.9,
+   "dur": 123.102,
+   "gain_db": -8
+  }
+ ],
+ "rules": {
+  "shake_max": 0.5,
+  "alternate_sizes": true,
+  "shake_exempt": []
+ },
+ "subs": {
+  "mode": "sentence"
+ },
+ "meta": {
+  "chuyen_nhac_giay": 69.9,
+  "nhip_beat_nhac_sau": 0.4063,
+  "ghi_chu": "SP=cảnh thoại có voice (được trùng cỡ, không đo rung); nửa sau cắt theo beat"
+ }
+}

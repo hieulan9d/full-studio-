@@ -1,0 +1,260 @@
+{
+ "total": 96.104921,
+ "marks": [
+  {
+   "scene": "c01",
+   "text": "Nhiều bệnh nặng không có triệu chứng cho đến khi quá muộn.",
+   "start": 0.0,
+   "end": 2.456,
+   "item": false
+  },
+  {
+   "scene": "c01",
+   "text": "Có năm việc kiểm tra sớm, giúp bạn phát hiện từ đầu.",
+   "start": 2.623,
+   "end": 4.628,
+   "item": false
+  },
+  {
+   "scene": "c01",
+   "text": "Một: Đo huyết áp.",
+   "start": 4.795,
+   "end": 5.504,
+   "item": true
+  },
+  {
+   "scene": "c02",
+   "text": "Máy đo chỉ mất một phút, nhưng mấy ai đo?",
+   "start": 5.671,
+   "end": 7.326,
+   "item": false
+  },
+  {
+   "scene": "c02",
+   "text": "Ở Việt Nam, 28,3% người từ hai mươi lăm đến sáu mươi tư tuổi bị tăng huyết áp.",
+   "start": 7.493,
+   "end": 11.409,
+   "item": false
+  },
+  {
+   "scene": "c03",
+   "text": "Ở Trung Quốc, bốn mươi bốn phẩy bảy phần trăm người từ ba mươi lăm đến bảy mươi lăm tuổi bị tăng huyết áp, nhưng chỉ bảy phẩy hai phần trăm kiểm soát được.",
+   "start": 11.576,
+   "end": 17.562,
+   "item": false
+  },
+  {
+   "scene": "c04",
+   "text": "Mỗi lần huyết áp tâm thu giảm mười mi li mét thủy ngân, đột quỵ giảm hai mươi bảy phần trăm, suy tim giảm hai mươi tám phần trăm, và nguy cơ mất mạng giảm mười ba phần trăm.",
+   "start": 17.729,
+   "end": 25.908,
+   "item": false
+  },
+  {
+   "scene": "c05",
+   "text": "Hai: Kiểm tra đường huyết.",
+   "start": 26.075,
+   "end": 27.144,
+   "item": true
+  },
+  {
+   "scene": "c05",
+   "text": "Từ ba mươi lăm tuổi, nếu thừa cân thì xét nghiệm một lần.",
+   "start": 27.311,
+   "end": 30.1,
+   "item": false
+  },
+  {
+   "scene": "c05",
+   "text": "Bình thường thì ba năm sau kiểm tra lại.",
+   "start": 30.267,
+   "end": 31.882,
+   "item": false
+  },
+  {
+   "scene": "c06",
+   "text": "Ngưỡng cân nặng trong sách là của Mỹ và Trung Quốc, hãy hỏi bác sĩ ngưỡng phù hợp với người Việt.",
+   "start": 32.049,
+   "end": 36.254,
+   "item": false
+  },
+  {
+   "scene": "c07",
+   "text": "Ba: Sàng lọc ung thư.",
+   "start": 36.421,
+   "end": 37.755,
+   "item": true
+  },
+  {
+   "scene": "c07",
+   "text": "Phụ nữ từ bốn mươi đến bảy mươi bốn tuổi, hai năm chụp nhũ ảnh một lần theo khuyến nghị của Mỹ.",
+   "start": 37.922,
+   "end": 42.214,
+   "item": false
+  },
+  {
+   "scene": "c07",
+   "text": "Siêu âm và cộng hưởng từ làm thêm cho mô vú đặc chưa đủ bằng chứng.",
+   "start": 42.381,
+   "end": 45.139,
+   "item": false
+  },
+  {
+   "scene": "c08",
+   "text": "Từ ba mươi tuổi, ưu tiên xét nghiệm HPV, âm tính thì năm năm làm lại.",
+   "start": 45.306,
+   "end": 48.648,
+   "item": false
+  },
+  {
+   "scene": "c08",
+   "text": "Từ bốn mươi lăm đến năm mươi tuổi, xét nghiệm máu ẩn trong phân hoặc nội soi.",
+   "start": 48.815,
+   "end": 52.664,
+   "item": false
+  },
+  {
+   "scene": "c08",
+   "text": "Nội soi âm tính thì mười năm làm lại.",
+   "start": 52.831,
+   "end": 54.481,
+   "item": false
+  },
+  {
+   "scene": "c09",
+   "text": "Ở Việt Nam, ung thư vú có nhiều ca mới nhất, hơn hai mươi lăm nghìn ca mỗi năm.",
+   "start": 54.648,
+   "end": 58.065,
+   "item": false
+  },
+  {
+   "scene": "c09",
+   "text": "Ung thư phổi khiến nhiều người mất mạng nhất.",
+   "start": 58.232,
+   "end": 59.931,
+   "item": false
+  },
+  {
+   "scene": "c10",
+   "text": "Bốn: Tiệt trừ vi khuẩn HP trong dạ dày.",
+   "start": 60.098,
+   "end": 62.005,
+   "item": true
+  },
+  {
+   "scene": "c10",
+   "text": "Theo dõi hai mươi hai năm ở Sơn Đông, tiệt trừ HP giảm khoảng một nửa nguy cơ ung thư dạ dày.",
+   "start": 62.172,
+   "end": 66.777,
+   "item": false
+  },
+  {
+   "scene": "c11",
+   "text": "Ở Việt Nam, một nghiên cứu cho thấy ở nhóm điều trị thất bại ít nhất hai lần, 96,5% chủng HP kháng thuốc clarithromycin.",
+   "start": 66.944,
+   "end": 73.555,
+   "item": false
+  },
+  {
+   "scene": "c11",
+   "text": "Vì vậy hãy uống đủ liều, đủ ngày theo chỉ định của bác sĩ.",
+   "start": 73.722,
+   "end": 76.252,
+   "item": false
+  },
+  {
+   "scene": "c12",
+   "text": "Năm: Phát hiện rung nhĩ.",
+   "start": 76.419,
+   "end": 77.59,
+   "item": true
+  },
+  {
+   "scene": "c12",
+   "text": "Thuốc chống đông giảm khoảng sáu mươi phần trăm nguy cơ đột quỵ ở người được đánh giá phù hợp.",
+   "start": 77.757,
+   "end": 81.645,
+   "item": false
+  },
+  {
+   "scene": "c12",
+   "text": "Aspirin không thay thế được.",
+   "start": 81.812,
+   "end": 82.862,
+   "item": false
+  },
+  {
+   "scene": "c13",
+   "text": "Ở Trung Quốc, chỉ sáu phần trăm người rung nhĩ nguy cơ cao đang dùng thuốc chống đông.",
+   "start": 83.029,
+   "end": 86.573,
+   "item": false
+  },
+  {
+   "scene": "c13",
+   "text": "Không tự ngừng thuốc vì hết hồi hộp.",
+   "start": 86.74,
+   "end": 88.242,
+   "item": false
+  },
+  {
+   "scene": "c14",
+   "text": "Méo miệng, yếu một bên tay chân, hoặc nói khó, hãy gọi số một một năm ngay.",
+   "start": 88.409,
+   "end": 91.773,
+   "item": false
+  },
+  {
+   "scene": "c15",
+   "text": "Năm việc kiểm tra sớm, mất rất ít thời gian.",
+   "start": 91.94,
+   "end": 93.881,
+   "item": false
+  },
+  {
+   "scene": "c15",
+   "text": "Hôm nay, hãy bắt đầu bằng việc đo huyết áp.",
+   "start": 94.048,
+   "end": 96.105,
+   "item": false
+  }
+ ],
+ "low": [
+  [
+   4,
+   "Ở Việt Nam, 28,3% người từ hai mươi lăm đến sáu mươi tư tuổi bị tăng huyết áp.",
+   "Ở Việt Nam, 28,3% người từ 25 đến 64 tuổi bị tăng huyết áp.",
+   0.79
+  ],
+  [
+   5,
+   "Ở Trung Quốc, bốn mươi bốn phẩy bảy phần trăm người từ ba mươi lăm đến bảy mươi lăm tuổi bị tăng huyết áp, nhưng chỉ bảy phẩy hai phần trăm kiểm soát được.",
+   "Ở Trung Quốc, 47% người từ 35 đến 75 tuổi bị tăng huyết áp, nhưng chỉ 72% kiểm soát được.",
+   0.64
+  ],
+  [
+   6,
+   "Mỗi lần huyết áp tâm thu giảm mười mi li mét thủy ngân, đột quỵ giảm hai mươi bảy phần trăm, suy tim giảm hai mươi tám phần trăm, và nguy cơ mất mạng giảm mười ba phần trăm.",
+   "Mỗi lần, huyết áp tâm thu giảm 10mm thủy ngân, đột quỵ giảm 27%, suy tim giảm 28% và nguy cơ mất mạng giảm 13%.",
+   0.7
+  ],
+  [
+   12,
+   "Phụ nữ từ bốn mươi đến bảy mươi bốn tuổi, hai năm chụp nhũ ảnh một lần theo khuyến nghị của Mỹ.",
+   "Phụ nữ từ 40 đến 74 tuổi, hai nam chụp nhũ ảnh một lần theo khuyến nghị của Mỹ.",
+   0.85
+  ],
+  [
+   15,
+   "Từ bốn mươi lăm đến năm mươi tuổi, xét nghiệm máu ẩn trong phân hoặc nội soi.",
+   "Từ 45 đến 50 tuổi, xét nghiệm máu ẩn trong phân hoặc nội soi",
+   0.82
+  ],
+  [
+   17,
+   "Ở Việt Nam, ung thư vú có nhiều ca mới nhất, hơn hai mươi lăm nghìn ca mỗi năm.",
+   "Ở Việt Nam, ung thư vú có nhiều ca mới nhất, hơn 25.000 ca mỗi năm.",
+   0.83
+  ]
+ ]
+}

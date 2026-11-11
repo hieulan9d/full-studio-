@@ -1,0 +1,88 @@
+{
+ "scenes": [
+  {
+   "id": "c01",
+   "clip_s": 6,
+   "voice": "Có những lúc mọi thứ nặng nề đến mức không thấy lối ra. Bốn điều dưới đây có thể giúp bạn, hoặc người bạn thương. Một: Nói ngay với người bên cạnh.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, sitting on a doorstep of a Vietnamese house at dusk with a small lantern glowing beside, a quiet empty street ahead, thoughtful and tired. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the lantern flame flickers softly and the character slowly lifts the head toward the glow, dusk light fades"
+  },
+  {
+   "id": "c02",
+   "clip_s": 10,
+   "voice": "Khi ý nghĩ làm hại bản thân vừa xuất hiện, hãy nói ngay với một người bạn tin. Trong một nghiên cứu phỏng vấn, gần một nửa số người từng trải qua cho biết, từ lúc ý nghĩ xuất hiện đến lúc hành động không quá mười phút.",
+   "image_prompt": "Two simple characters with round blank egg-shaped white heads sitting side by side on a wooden bench at night under a warm street lamp, one turned toward the other, calm. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the street lamp glows steadily, moths flutter around it, the two characters lean slightly closer"
+  },
+  {
+   "id": "c03",
+   "clip_s": 8,
+   "voice": "Vì vậy, chỉ cần vượt qua vài chục phút đó, và không ở một mình. Phần lớn người từng phải nhập viện vì tự làm hại bản thân, về sau không mất mạng vì chuyện đó.",
+   "image_prompt": "A round wall clock beside a window where the first light of dawn is rising over rooftops, a warm lamp on the sill, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the clock minute hand moves slowly and the dawn light grows brighter across the window"
+  },
+  {
+   "id": "c04",
+   "clip_s": 6,
+   "voice": "Hai: Hỏi thẳng, bạn có đang nghĩ đến chuyện làm hại mình không? Nghiên cứu chưa thấy việc hỏi làm tăng ý nghĩ đó, kể cả ở học sinh trung học.",
+   "image_prompt": "Two simple characters with round blank egg-shaped white heads sitting facing each other at a small tea table, steam rising from two cups, one leaning forward gently as if asking, calm warm lamp light. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "steam rises from the cups, the listening character nods slowly, lamp light steady"
+  },
+  {
+   "id": "c05",
+   "clip_s": 6,
+   "voice": "Theo hướng dẫn của Tổ chức Y tế Thế giới: chọn lúc và chỗ phù hợp, hỏi trực tiếp, và không phán xét.",
+   "image_prompt": "Two simple characters with round blank egg-shaped white heads sitting on a sofa in a quiet living room, one holding a cup, the other listening attentively with an open posture, soft lamp light. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the listening character tilts the head gently, lamp light flickers softly, steam drifts from the cup"
+  },
+  {
+   "id": "c06",
+   "clip_s": 6,
+   "voice": "Khuyến khích người đó gặp nhân viên y tế và đề nghị đi cùng. Nếu thấy nguy cơ ngay trước mắt, đừng để họ ở một mình.",
+   "image_prompt": "Two simple characters with round blank egg-shaped white heads walking side by side along a quiet street toward a clinic door glowing with warm light, one gently touching the other's shoulder. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the two characters walk slowly toward the glowing door, warm light spreads over the street"
+  },
+  {
+   "id": "c07",
+   "clip_s": 6,
+   "voice": "Ba: Cất những vật nguy hiểm ra khỏi tầm tay. Một số nghiên cứu cho thấy hạn chế vật nguy hiểm trong tầm tay làm số ca giảm rõ rệt.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, placing a closed box on a high shelf inside a wooden cabinet and closing the cabinet door, calm and careful, soft evening light in a Vietnamese home. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the character closes the cabinet door gently and exhales, soft light steady in the room"
+  },
+  {
+   "id": "c08",
+   "clip_s": 6,
+   "voice": "Khi nguy hiểm đang ở ngay trước mắt, hãy gọi số một một năm, hoặc đến khoa cấp cứu gần nhất.",
+   "image_prompt": "A glowing phone on a table with a red cross symbol on the screen, an ambulance light flashing softly through the window, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the phone screen pulses and the ambulance light flashes softly across the wall"
+  },
+  {
+   "id": "c09",
+   "clip_s": 6,
+   "voice": "Đường dây Ngày Mai: không chín sáu, ba không sáu, một bốn một bốn. Mở từ mười ba giờ đến hai mươi giờ ba mươi, từ thứ Tư đến Chủ nhật.",
+   "image_prompt": "An old-fashioned telephone on a small wooden table beside a warm lamp and a wall clock showing evening, a quiet room at night, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the lamp glows steadily, the clock hands move slowly, a soft shadow shifts across the wall"
+  },
+  {
+   "id": "c10",
+   "clip_s": 6,
+   "voice": "Bốn: Cờ bạc đến mức phải vay tiền vẫn chơi, là một căn bệnh, không phải yếu đuối. Bệnh viện Bạch Mai xác định nghiện cờ bạc là một rối loạn tâm thần.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, sitting at a table with scattered playing cards and a few coins under a dim hanging lamp, head resting on one hand, tired and quiet. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the hanging lamp sways slightly, a card edge flutters, the character slowly looks up"
+  },
+  {
+   "id": "c11",
+   "clip_s": 8,
+   "voice": "Nghiên cứu ở Thụy Điển cho thấy người rối loạn cờ bạc có nguy cơ làm hại bản thân cao hơn nhiều lần. Bước đầu: tìm hỗ trợ tâm lý, và nhờ gia đình quản lý tiền giúp.",
+   "image_prompt": "Two simple characters with round blank egg-shaped white heads at a kitchen table, one handing a small wallet to the other, a notebook and a calculator on the table, warm caring mood. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the wallet slides across the table and a hand takes it, warm lamp light steady"
+  },
+  {
+   "id": "c12",
+   "clip_s": 6,
+   "voice": "Bạn không phải đi một mình. Hãy nói với một người, ngay hôm nay.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, stepping through an open door into soft dawn light, a lit lantern left behind on the doorstep, calm and hopeful. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the character steps forward into the growing dawn light, the lantern flame steadies behind"
+  }
+ ]
+}

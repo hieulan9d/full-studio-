@@ -1,0 +1,244 @@
+{
+ "total": 103.277619,
+ "marks": [
+  {
+   "scene": "c01",
+   "text": "Có năm việc trong nhà, gần như không tốn tiền, mà giảm rõ rệt nguy cơ gặp nạn khi có cháy, gas hay khí độc.",
+   "start": 0.0,
+   "end": 4.836,
+   "item": false
+  },
+  {
+   "scene": "c01",
+   "text": "Một: Lắp báo khói và báo khí C O.",
+   "start": 5.003,
+   "end": 6.862,
+   "item": true
+  },
+  {
+   "scene": "c02",
+   "text": "Báo khói hoạt động giúp giảm khoảng sáu mươi phần trăm nguy cơ mất mạng khi cháy nhà.",
+   "start": 7.029,
+   "end": 10.764,
+   "item": false
+  },
+  {
+   "scene": "c02",
+   "text": "Ở Mỹ, bốn mươi mốt phần trăm vụ cháy xảy ra lúc mọi người đang ngủ.",
+   "start": 10.931,
+   "end": 13.975,
+   "item": false
+  },
+  {
+   "scene": "c03",
+   "text": "Ngày mười hai tháng chín năm 2023, vụ cháy chung cư mini ở Khương Hạ làm năm mươi sáu người mất mạng.",
+   "start": 14.142,
+   "end": 19.198,
+   "item": false
+  },
+  {
+   "scene": "c03",
+   "text": "Nguyên nhân là chập điện ở bình ắc quy xe máy để tầng một.",
+   "start": 19.365,
+   "end": 21.718,
+   "item": false
+  },
+  {
+   "scene": "c04",
+   "text": "Không đốt than sưởi trong phòng kín, kể cả khi tắm.",
+   "start": 21.885,
+   "end": 23.977,
+   "item": false
+  },
+  {
+   "scene": "c04",
+   "text": "Khoảng bốn mươi phần trăm người bị ngạt khí C O để lại di chứng.",
+   "start": 24.144,
+   "end": 26.907,
+   "item": false
+  },
+  {
+   "scene": "c04",
+   "text": "Cháy thì gọi số một một bốn. Cấp cứu thì gọi số một một năm.",
+   "start": 27.074,
+   "end": 29.957,
+   "item": false
+  },
+  {
+   "scene": "c05",
+   "text": "Hai: Ngửi thấy mùi gas, đóng ngay van tổng hoặc van bình.",
+   "start": 30.124,
+   "end": 32.404,
+   "item": true
+  },
+  {
+   "scene": "c05",
+   "text": "Ống và bếp gas hết hạn thì thay, đừng tự sửa.",
+   "start": 32.571,
+   "end": 34.625,
+   "item": false
+  },
+  {
+   "scene": "c06",
+   "text": "Mở cửa ra.",
+   "start": 34.792,
+   "end": 35.477,
+   "item": false
+  },
+  {
+   "scene": "c06",
+   "text": "Không bật quạt, không bật đèn, không dùng thiết bị điện, không đụng bật lửa.",
+   "start": 35.644,
+   "end": 38.974,
+   "item": false
+  },
+  {
+   "scene": "c06",
+   "text": "Ra ngoài rồi mới gọi.",
+   "start": 39.141,
+   "end": 40.163,
+   "item": false
+  },
+  {
+   "scene": "c07",
+   "text": "Ba: Không đưa xe điện vào hành lang hay thang máy, không sạc trong nhà.",
+   "start": 40.33,
+   "end": 43.182,
+   "item": true
+  },
+  {
+   "scene": "c07",
+   "text": "Trung Quốc năm 2021 có mười tám nghìn vụ cháy xe đạp điện, sáu mươi lăm người mất mạng, gần như tất cả đều ở trong nhà.",
+   "start": 43.349,
+   "end": 49.467,
+   "item": false
+  },
+  {
+   "scene": "c08",
+   "text": "Pin lithium cháy lan chỉ trong vài chục giây và sinh ra khói rất độc.",
+   "start": 49.634,
+   "end": 52.516,
+   "item": false
+  },
+  {
+   "scene": "c08",
+   "text": "Không mua pin độ, không dùng bộ sạc không rõ thương hiệu, không sạc qua đêm khi không có người trông.",
+   "start": 52.683,
+   "end": 57.377,
+   "item": false
+  },
+  {
+   "scene": "c09",
+   "text": "Hà Nội yêu cầu có khu sạc riêng, không sạc qua đêm, có người giám sát.",
+   "start": 57.544,
+   "end": 60.467,
+   "item": false
+  },
+  {
+   "scene": "c09",
+   "text": "Khu sạc tập trung thiếu giải pháp phòng cháy bị phạt từ bốn mươi đến năm mươi triệu đồng.",
+   "start": 60.634,
+   "end": 64.512,
+   "item": false
+  },
+  {
+   "scene": "c10",
+   "text": "Bốn: Có sẵn bình chữa cháy, chăn chữa cháy, mặt nạ thoát hiểm và bộ sơ cứu.",
+   "start": 64.679,
+   "end": 67.923,
+   "item": true
+  },
+  {
+   "scene": "c10",
+   "text": "Mua một lần, mỗi năm kiểm tra mười phút.",
+   "start": 68.09,
+   "end": 69.58,
+   "item": false
+  },
+  {
+   "scene": "c11",
+   "text": "Năm 2025, Việt Nam có ba nghìn không trăm sáu mươi vụ cháy, chín mươi người mất mạng, chín mươi ba người bị thương, thiệt hại khoảng bảy trăm tám mươi sáu phẩy bảy mươi tám tỷ đồng.",
+   "start": 69.747,
+   "end": 79.047,
+   "item": false
+  },
+  {
+   "scene": "c11",
+   "text": "Hãy hỏi cơ quan phòng cháy nơi bạn ở cần trang bị gì.",
+   "start": 79.214,
+   "end": 81.527,
+   "item": false
+  },
+  {
+   "scene": "c12",
+   "text": "Năm: Không tự xuống bể phốt, hố ga, hầm kín.",
+   "start": 81.694,
+   "end": 83.786,
+   "item": true
+  },
+  {
+   "scene": "c12",
+   "text": "Có người ngất cũng đừng xuống theo.",
+   "start": 83.953,
+   "end": 85.245,
+   "item": false
+  },
+  {
+   "scene": "c12",
+   "text": "Người thứ hai xuống cứu người thứ nhất, thường là người thứ hai cũng gục.",
+   "start": 85.412,
+   "end": 88.527,
+   "item": false
+  },
+  {
+   "scene": "c13",
+   "text": "Những nơi này có thể thiếu oxy hoặc tích khí độc.",
+   "start": 88.694,
+   "end": 90.653,
+   "item": false
+  },
+  {
+   "scene": "c13",
+   "text": "Mở nắp chờ một lúc không đủ để biết an toàn.",
+   "start": 90.82,
+   "end": 92.796,
+   "item": false
+  },
+  {
+   "scene": "c13",
+   "text": "Cần thông gió, đo khí, đồ bảo hộ và người giám sát bên ngoài.",
+   "start": 92.963,
+   "end": 95.416,
+   "item": false
+  },
+  {
+   "scene": "c13",
+   "text": "Gọi số một một bốn và một một năm.",
+   "start": 95.583,
+   "end": 97.418,
+   "item": false
+  },
+  {
+   "scene": "c14",
+   "text": "Năm việc, tốn rất ít tiền, nhưng có thể giữ cả nhà an toàn.",
+   "start": 97.585,
+   "end": 100.378,
+   "item": false
+  },
+  {
+   "scene": "c14",
+   "text": "Không cần làm hết.",
+   "start": 100.545,
+   "end": 101.321,
+   "item": false
+  },
+  {
+   "scene": "c14",
+   "text": "Chọn một việc, và làm ngay hôm nay.",
+   "start": 101.488,
+   "end": 103.277,
+   "item": false
+  }
+ ],
+ "low": []
+}

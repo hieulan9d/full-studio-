@@ -1,0 +1,45 @@
+{
+  "name": "infinite-canvas-flow",
+  "version": "0.1.0",
+  "description": "Infinite Canvas + Google Flow (UI automation) desktop app",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:web": "npm --prefix ../app/web run build",
+    "dist": "npm run build:web && electron-builder --dir"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "local.infinite-canvas.flow",
+    "productName": "Infinite Canvas Flow",
+    "files": [
+      "main.js",
+      "preload.js",
+      "flow-driver.js",
+      "flow-page-driver.js"
+    ],
+    "extraResources": [
+      {
+        "from": "../app/web/dist",
+        "to": "web"
+      },
+      {
+        "from": "../app/canvas-proxy",
+        "to": "canvas-proxy",
+        "filter": [
+          "index.js",
+          "package.json"
+        ]
+      }
+    ],
+    "win": {
+      "target": "dir"
+    }
+  },
+  "dependencies": {
+    "puppeteer-core": "^25.16.0"
+  }
+}

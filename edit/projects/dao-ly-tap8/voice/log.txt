@@ -1,0 +1,46 @@
+[1.00] Có những lúc mọi thứ nặng nề đến mức không thấy lối ra.
+      nghe: Có những lúc mọi thứ nặng nề đến mức không thấy lối ra
+[0.96] Bốn điều dưới đây có thể giúp bạn, hoặc người bạn thương.
+      nghe: 4 điều dưới đây có thể giúp bạn hoặc người bạn thương
+[1.00] Một: Nói ngay với người bên cạnh.
+      nghe: Một nói ngay với người bên cạnh
+[1.00] Khi ý nghĩ làm hại bản thân vừa xuất hiện, hãy nói ngay với một người bạn tin.
+      nghe: Khi ý nghĩ làm hại bản thân vừa xuất hiện, hãy nói ngay với một người bạn tin.
+[0.98] Trong một nghiên cứu phỏng vấn, gần một nửa số người từng trải qua cho biết, từ lúc ý nghĩ xuất hiện đến lúc hành động không quá mười phút.
+      nghe: Trong một nghiên cứu phỏng vấn, gần một nửa số người từng trải qua cho biết, từ lúc ý nghĩ xuất hiện đến lúc hành động không quá 10 phút.
+[1.00] Vì vậy, chỉ cần vượt qua vài chục phút đó, và không ở một mình.
+      nghe: Vì vậy chỉ cần vượt qua vài chục phút đó và không ở một mình.
+[1.00] Phần lớn người từng phải nhập viện vì tự làm hại bản thân, về sau không mất mạng vì chuyện đó.
+      nghe: Phần lớn người từng phải nhập viện vì tự làm hại bản thân, về sau không mất mạng vì chuyện đó.
+[1.00] Hai: Hỏi thẳng, bạn có đang nghĩ đến chuyện làm hại mình không?
+      nghe: Hai hỏi thẳng, bạn có đang nghĩ đến chuyện làm hại mình không?
+[1.00] Nghiên cứu chưa thấy việc hỏi làm tăng ý nghĩ đó, kể cả ở học sinh trung học.
+      nghe: nghiên cứu chưa thấy việc hỏi làm tăng ý nghĩ đó kể cả ở học sinh trung học.
+[1.00] Theo hướng dẫn của Tổ chức Y tế Thế giới: chọn lúc và chỗ phù hợp, hỏi trực tiếp, và không phán xét.
+      nghe: Theo hướng dẫn của Tổ chức Y tế Thế giới, chọn lúc và chỗ phù hợp, hỏi trực tiếp và không phán xét.
+[1.00] Khuyến khích người đó gặp nhân viên y tế và đề nghị đi cùng.
+      nghe: khuyến khích người đó gặp nhân viên y tế và đề nghị đi cùng.
+[1.00] Nếu thấy nguy cơ ngay trước mắt, đừng để họ ở một mình.
+      nghe: Nếu thấy nguy cơ ngay trước mắt, đừng để họ ở một mình.
+[0.96] Ba: Cất những vật nguy hiểm ra khỏi tầm tay.
+      nghe: 3. Cất những vật nguy hiểm ra khỏi tầm tay
+[1.00] Một số nghiên cứu cho thấy hạn chế vật nguy hiểm trong tầm tay làm số ca giảm rõ rệt.
+      nghe: Một số nghiên cứu cho thấy hạn chế vật nguy hiểm trong tầm tay làm số ca giảm rõ rệt.
+[0.92] Khi nguy hiểm đang ở ngay trước mắt, hãy gọi số một một năm, hoặc đến khoa cấp cứu gần nhất.
+      nghe: Khi nguy hiểm đang ở ngay trước mắt, hãy gọi số 115 hoặc đến khoa cấp cứu gần nhất.
+[0.42] Đường dây Ngày Mai: không chín sáu, ba không sáu, một bốn một bốn.
+      nghe: Đường dây ngày mai 0963061414
+[0.65] Mở từ mười ba giờ đến hai mươi giờ ba mươi, từ thứ Tư đến Chủ nhật.
+      nghe: Mở từ 13h đến 20h30, từ thứ Tư đến Chủ Nhật
+[0.97] Bốn: Cờ bạc đến mức phải vay tiền vẫn chơi, là một căn bệnh, không phải yếu đuối.
+      nghe: 4. Cờ bạc đến mức phải vay tiền vẫn chơi là một căn bệnh, không phải yếu đuối.
+[0.98] Bệnh viện Bạch Mai xác định nghiện cờ bạc là một rối loạn tâm thần.
+      nghe: Bệnh viện Bạch Mai xác định nghiện cờ bạc là một dối loạn tâm thần.
+[0.99] Nghiên cứu ở Thụy Điển cho thấy người rối loạn cờ bạc có nguy cơ làm hại bản thân cao hơn nhiều lần.
+      nghe: Nghiên cứu ở Thụy Điển cho thấy người dối loạn cờ bạc có nguy cơ làm hại bản thân cao hơn nhiều lần.
+[0.92] Bước đầu: tìm hỗ trợ tâm lý, và nhờ gia đình quản lý tiền giúp.
+      nghe: Tìm hỗ trợ tâm lý và nhờ gia đình quản lý tiền giúp.
+[1.00] Bạn không phải đi một mình.
+      nghe: Bạn không phải đi một mình.
+[1.00] Hãy nói với một người, ngay hôm nay.
+      nghe: Hãy nói với một người ngay hôm nay.

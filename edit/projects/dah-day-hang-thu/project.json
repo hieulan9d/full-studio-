@@ -1,0 +1,298 @@
+{
+ "name": "Dạ Dày Hằng Thu - USP",
+ "fps": 30,
+ "canvas": {
+  "w": 1080,
+  "h": 1920
+ },
+ "clips": [
+  {
+   "src": "media/c01.mp4",
+   "in": 0,
+   "size": "T",
+   "label": "c01",
+   "zoom": [
+    1.0,
+    1.06
+   ],
+   "dur": 2.6
+  },
+  {
+   "src": "media/c02.mp4",
+   "in": 0.3,
+   "size": "Tr",
+   "label": "c02",
+   "zoom": [
+    1.0,
+    1.06
+   ],
+   "speed": 0.9518,
+   "dur": 5.73
+  },
+  {
+   "src": "media/c03.mp4",
+   "in": 0,
+   "size": "C",
+   "label": "c03",
+   "zoom": [
+    1.0,
+    1.06
+   ],
+   "dur": 3.48
+  },
+  {
+   "src": "media/c04.mp4",
+   "in": 0,
+   "size": "T",
+   "label": "c04",
+   "zoom": [
+    1.0,
+    1.06
+   ],
+   "dur": 3.16
+  },
+  {
+   "src": "media/c05.mp4",
+   "in": 0,
+   "size": "Tr",
+   "label": "c05",
+   "zoom": [
+    1.0,
+    1.06
+   ],
+   "speed": 0.9215,
+   "dur": 7.04
+  },
+  {
+   "src": "media/c06.mp4",
+   "in": 0.3,
+   "size": "C",
+   "label": "c06",
+   "zoom": [
+    1.0,
+    1.06
+   ],
+   "dur": 4.66
+  },
+  {
+   "src": "media/c07.mp4",
+   "in": 0.3,
+   "size": "T",
+   "label": "c07",
+   "zoom": [
+    1.0,
+    1.06
+   ],
+   "dur": 4.82
+  },
+  {
+   "src": "media/c08.mp4",
+   "in": 0.3,
+   "size": "Tr",
+   "label": "c08",
+   "zoom": [
+    1.0,
+    1.06
+   ],
+   "speed": 0.9895,
+   "dur": 4.73
+  }
+ ],
+ "sections": [
+  {
+   "id": "c01",
+   "title": "c01",
+   "start": 0.0,
+   "end": 2.6,
+   "script": "",
+   "onscreen": [
+    {
+     "start": 0.0,
+     "end": 2.38,
+     "text": "Đau thượng vị: chỉ kiêng cay đã đủ chưa?",
+     "style": "Sub"
+    }
+   ]
+  },
+  {
+   "id": "c02",
+   "title": "c02",
+   "start": 2.6,
+   "end": 8.62,
+   "script": "",
+   "onscreen": [
+    {
+     "start": 2.6,
+     "end": 3.54,
+     "text": "Đã bỏ món cay,",
+     "style": "Sub"
+    },
+    {
+     "start": 3.54,
+     "end": 6.0,
+     "text": "ăn mềm hơn mà bụng trên vẫn âm ỉ.",
+     "style": "Sub"
+    },
+    {
+     "start": 6.7,
+     "end": 8.62,
+     "text": "Càng kiêng càng thấy bữa ăn nặng nề.",
+     "style": "Sub"
+    }
+   ]
+  },
+  {
+   "id": "c03",
+   "title": "c03",
+   "start": 8.62,
+   "end": 12.1,
+   "script": "",
+   "onscreen": [
+    {
+     "start": 8.62,
+     "end": 9.84,
+     "text": "Với loét tá tràng,",
+     "style": "Sub"
+    },
+    {
+     "start": 9.84,
+     "end": 12.1,
+     "text": "điều cần hiểu nằm ở nguyên nhân tổn thương.",
+     "style": "Sub"
+    }
+   ]
+  },
+  {
+   "id": "c04",
+   "title": "c04",
+   "start": 12.1,
+   "end": 15.26,
+   "script": "",
+   "onscreen": [
+    {
+     "start": 12.1,
+     "end": 13.9,
+     "text": "Tá tràng là đoạn đầu ruột non,",
+     "style": "Sub"
+    },
+    {
+     "start": 13.9,
+     "end": 15.26,
+     "text": "tiếp sau dạ dày.",
+     "style": "Sub"
+    }
+   ]
+  },
+  {
+   "id": "c05",
+   "title": "c05",
+   "start": 15.26,
+   "end": 22.9,
+   "script": "",
+   "onscreen": [
+    {
+     "start": 15.26,
+     "end": 19.98,
+     "text": "Nhiễm HP và thuốc giảm đau nhóm NSAID là hai nguyên nhân thường gặp gây loét.",
+     "style": "Sub"
+    },
+    {
+     "start": 19.98,
+     "end": 22.9,
+     "text": "Cách xử trí phụ thuộc từng nguyên nhân.",
+     "style": "Sub"
+    }
+   ]
+  },
+  {
+   "id": "c06",
+   "title": "c06",
+   "start": 22.9,
+   "end": 27.56,
+   "script": "",
+   "onscreen": [
+    {
+     "start": 22.9,
+     "end": 24.9,
+     "text": "Ở phần hỗ trợ chăm sóc,",
+     "style": "Sub"
+    },
+    {
+     "start": 24.9,
+     "end": 27.56,
+     "text": "Dạ Dày Hằng Thu hỗ trợ giảm acid dịch vị,",
+     "style": "Sub"
+    }
+   ]
+  },
+  {
+   "id": "c07",
+   "title": "c07",
+   "start": 27.56,
+   "end": 32.38,
+   "script": "",
+   "onscreen": [
+    {
+     "start": 27.56,
+     "end": 31.6,
+     "text": "giúp bảo vệ niêm mạc dạ dày và hỗ trợ giảm viêm loét dạ dày,",
+     "style": "Sub"
+    },
+    {
+     "start": 31.6,
+     "end": 32.38,
+     "text": "tá tràng.",
+     "style": "Sub"
+    }
+   ]
+  },
+  {
+   "id": "c08",
+   "title": "c08",
+   "start": 32.38,
+   "end": 37.16,
+   "script": "",
+   "onscreen": [
+    {
+     "start": 32.38,
+     "end": 36.76,
+     "text": "Inbox cho mình nếu bạn đang gặp vấn đề về dạ dày cần được hỗ trợ nhé!",
+     "style": "Sub"
+    }
+   ]
+  }
+ ],
+ "voice": {
+  "profile": "d00dc307",
+  "pron": [
+   {
+    "from": "HP",
+    "to": "hép pê"
+   },
+   {
+    "from": "NSAID",
+    "to": "en sét"
+   }
+  ]
+ },
+ "voiceover": [
+  {
+   "section": "all",
+   "file": "voice/voice_all.wav",
+   "start": 0,
+   "dur": 36.76,
+   "speedup": 1.0
+  }
+ ],
+ "music": null,
+ "subs": {
+  "mode": "sentence"
+ },
+ "rules": {
+  "shake_max": 9,
+  "alternate_sizes": true,
+  "shake_exempt": [
+   "media/"
+  ]
+ }
+}

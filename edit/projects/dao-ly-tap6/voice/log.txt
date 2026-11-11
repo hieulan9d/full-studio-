@@ -1,0 +1,62 @@
+[1.00] Nhiều bệnh nặng không có triệu chứng cho đến khi quá muộn.
+      nghe: Nhiều bệnh nặng không có triệu chứng cho đến khi quá muộn.
+[0.96] Có năm việc kiểm tra sớm, giúp bạn phát hiện từ đầu.
+      nghe: Có 5 việc kiểm tra sớm giúp bạn phát hiện từ đầu.
+[0.93] Một: Đo huyết áp.
+      nghe: Một đỏ huyết áp
+[0.95] Máy đo chỉ mất một phút, nhưng mấy ai đo?
+      nghe: Máy đo chỉ mất 1 phút nhưng mấy ai đo
+[0.79] Ở Việt Nam, 28,3% người từ hai mươi lăm đến sáu mươi tư tuổi bị tăng huyết áp.
+      nghe: Ở Việt Nam, 28,3% người từ 25 đến 64 tuổi bị tăng huyết áp.
+[0.64] Ở Trung Quốc, bốn mươi bốn phẩy bảy phần trăm người từ ba mươi lăm đến bảy mươi lăm tuổi bị tăng huyết áp, nhưng chỉ bảy phẩy hai phần trăm kiểm soát được.
+      nghe: Ở Trung Quốc, 47% người từ 35 đến 75 tuổi bị tăng huyết áp, nhưng chỉ 72% kiểm soát được.
+[0.70] Mỗi lần huyết áp tâm thu giảm mười mi li mét thủy ngân, đột quỵ giảm hai mươi bảy phần trăm, suy tim giảm hai mươi tám phần trăm, và nguy cơ mất mạng giảm mười ba phần trăm.
+      nghe: Mỗi lần, huyết áp tâm thu giảm 10mm thủy ngân, đột quỵ giảm 27%, suy tim giảm 28% và nguy cơ mất mạng giảm 13%.
+[0.91] Hai: Kiểm tra đường huyết.
+      nghe: 2. Kiểm tra đường huyết
+[0.87] Từ ba mươi lăm tuổi, nếu thừa cân thì xét nghiệm một lần.
+      nghe: Từ 35 tuổi, nếu thừa cân thì xét nghiệm một lần
+[0.96] Bình thường thì ba năm sau kiểm tra lại.
+      nghe: Bình thường thì 3 năm sau kiểm tra lại
+[1.00] Ngưỡng cân nặng trong sách là của Mỹ và Trung Quốc, hãy hỏi bác sĩ ngưỡng phù hợp với người Việt.
+      nghe: Ngưỡng cân nặng trong sách là của Mỹ và Trung Quốc. Hãy hỏi bác sĩ ngưỡng phù hợp với người Việt.
+[0.92] Ba: Sàng lọc ung thư.
+      nghe: 3. Sàng lọc ung thư
+[0.85] Phụ nữ từ bốn mươi đến bảy mươi bốn tuổi, hai năm chụp nhũ ảnh một lần theo khuyến nghị của Mỹ.
+      nghe: Phụ nữ từ 40 đến 74 tuổi, hai nam chụp nhũ ảnh một lần theo khuyến nghị của Mỹ.
+[0.98] Siêu âm và cộng hưởng từ làm thêm cho mô vú đặc chưa đủ bằng chứng.
+      nghe: Siêu âm và cộng hưởng từ làm thêm cho mô vũ đặc chưa đủ bằng chứng.
+[0.90] Từ ba mươi tuổi, ưu tiên xét nghiệm HPV, âm tính thì năm năm làm lại.
+      nghe: Từ 30 tuổi, ưu tiên xét nghiệm HPV âm tính thì 5 năm làm lại.
+[0.82] Từ bốn mươi lăm đến năm mươi tuổi, xét nghiệm máu ẩn trong phân hoặc nội soi.
+      nghe: Từ 45 đến 50 tuổi, xét nghiệm máu ẩn trong phân hoặc nội soi
+[0.91] Nội soi âm tính thì mười năm làm lại.
+      nghe: nội soi âm tính thì 10 năm làm lại
+[0.83] Ở Việt Nam, ung thư vú có nhiều ca mới nhất, hơn hai mươi lăm nghìn ca mỗi năm.
+      nghe: Ở Việt Nam, ung thư vú có nhiều ca mới nhất, hơn 25.000 ca mỗi năm.
+[1.00] Ung thư phổi khiến nhiều người mất mạng nhất.
+      nghe: Ung thư phổi khiến nhiều người mất mạng nhất.
+[0.94] Bốn: Tiệt trừ vi khuẩn HP trong dạ dày.
+      nghe: tiệt trừ vi khuẩn HP trong dạ dày.
+[0.92] Theo dõi hai mươi hai năm ở Sơn Đông, tiệt trừ HP giảm khoảng một nửa nguy cơ ung thư dạ dày.
+      nghe: Theo dõi 22 năm ở Sơn Đông, tiệt trừ HP giảm khoảng một nửa nguy cơ ung thư dạ dày.
+[0.96] Ở Việt Nam, một nghiên cứu cho thấy ở nhóm điều trị thất bại ít nhất hai lần, 96,5% chủng HP kháng thuốc clarithromycin.
+      nghe: Ở Việt Nam, một nghiên cứu cho thấy ở nhóm điều trị thất bại ít nhất 2 lần, 96,5% trụng HP kháng thuốc clarithromycin.
+[1.00] Vì vậy hãy uống đủ liều, đủ ngày theo chỉ định của bác sĩ.
+      nghe: Vì vậy hãy uống đủ liều, đủ ngày theo chỉ định của bác sĩ.
+[0.95] Năm: Phát hiện rung nhĩ.
+      nghe: Năm phát hiện dung nhĩ
+[0.88] Thuốc chống đông giảm khoảng sáu mươi phần trăm nguy cơ đột quỵ ở người được đánh giá phù hợp.
+      nghe: Thuốc chống đông giảm khoảng 60% nguy cơ đột quỵ ở người được đánh giá phù hợp
+[0.92] Aspirin không thay thế được.
+      nghe: Động aspirin không thay thế được
+[0.90] Ở Trung Quốc, chỉ sáu phần trăm người rung nhĩ nguy cơ cao đang dùng thuốc chống đông.
+      nghe: Ở Trung Quốc, chỉ 6% người dung nhĩ nguy cơ cao đang dùng thuốc chống đông
+[1.00] Không tự ngừng thuốc vì hết hồi hộp.
+      nghe: Không tự ngừng thuốc vì hết hồi hộp
+[0.96] Méo miệng, yếu một bên tay chân, hoặc nói khó, hãy gọi số một một năm ngay.
+      nghe: Méo miệng yếu một bên tay chân hoặc nói khó Hãy gọi số 1 một năm ngày
+[0.92] Năm việc kiểm tra sớm, mất rất ít thời gian.
+      nghe: cũng nằm việc kiểm tra sớm mất rất ít thời gian.
+[1.00] Hôm nay, hãy bắt đầu bằng việc đo huyết áp.
+      nghe: Hôm nay, hãy bắt đầu bằng việc đo huyết áp.

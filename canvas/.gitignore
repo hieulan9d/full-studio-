@@ -1,0 +1,46 @@
+# dependencies / builds
+node_modules/
+dist/
+build/
+release/
+.next/
+out/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# local data & secrets (never commit)
+.env
+.env.*
+!.env.example
+.flow-project-id
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+flow_session_project.json
+flow_generation_hold.json
+*.log
+
+# installers / binaries
+*.exe
+desktop/dist/
+desktop/out/
+
+# editors / OS
+.idea/
+.vscode/
+.DS_Store
+*.tsbuildinfo
+
+
+# muse2api is vendored; never commit its account cookies / local config
+muse2api/data/
+muse2api/.env
+
+# local settings exports (may contain API keys)
+*.local.json
+
+# files exported from the canvas (media)
+exports/

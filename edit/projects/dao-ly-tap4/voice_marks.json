@@ -1,0 +1,166 @@
+{
+ "total": 59.293016,
+ "marks": [
+  {
+   "scene": "c01",
+   "text": "Hai việc nhỏ trong bếp, giúp bạn tránh ngộ độc thực phẩm.",
+   "start": 0.0,
+   "end": 2.316,
+   "item": false
+  },
+  {
+   "scene": "c01",
+   "text": "Một: Không ăn nấm hoang.",
+   "start": 2.483,
+   "end": 4.067,
+   "item": true
+  },
+  {
+   "scene": "c02",
+   "text": "Kim bạc đổi màu.",
+   "start": 4.234,
+   "end": 5.033,
+   "item": false
+  },
+  {
+   "scene": "c02",
+   "text": "Nấm sâu ăn, nấm màu sặc sỡ mới độc.",
+   "start": 5.2,
+   "end": 6.836,
+   "item": false
+  },
+  {
+   "scene": "c02",
+   "text": "Cả ba đều sai.",
+   "start": 7.003,
+   "end": 7.809,
+   "item": false
+  },
+  {
+   "scene": "c03",
+   "text": "Năm 2025, Trung Quốc ghi nhận tám trăm hai mươi tám vụ ngộ độc nấm, hơn hai nghìn người mắc, mười ba người mất mạng.",
+   "start": 7.976,
+   "end": 13.679,
+   "item": false
+  },
+  {
+   "scene": "c04",
+   "text": "Và phát hiện thêm ba mươi bốn loài nấm mới gây độc.",
+   "start": 13.846,
+   "end": 15.814,
+   "item": false
+  },
+  {
+   "scene": "c04",
+   "text": "Theo cơ quan kiểm soát dịch bệnh Trung Quốc, hiện chưa có cách nhận biết nấm độc vừa đơn giản, vừa đáng tin.",
+   "start": 15.981,
+   "end": 21.04,
+   "item": false
+  },
+  {
+   "scene": "c05",
+   "text": "Năm 2026, ở Sơn La, sáu người ăn canh nấm rừng, một người mất mạng, bốn người nguy kịch, phải chuyển lên Bạch Mai lọc máu.",
+   "start": 21.207,
+   "end": 27.007,
+   "item": false
+  },
+  {
+   "scene": "c06",
+   "text": "Nghi ăn nhầm nấm độc, đi khám ngay.",
+   "start": 27.174,
+   "end": 28.577,
+   "item": false
+  },
+  {
+   "scene": "c06",
+   "text": "Giữ lại nấm thừa và thức ăn còn lại.",
+   "start": 28.744,
+   "end": 30.241,
+   "item": false
+  },
+  {
+   "scene": "c06",
+   "text": "Cần cấp cứu thì gọi số một một năm.",
+   "start": 30.408,
+   "end": 31.919,
+   "item": false
+  },
+  {
+   "scene": "c07",
+   "text": "Hai: Mộc nhĩ, nấm tuyết ngâm quá lâu và các bánh phở, bánh cuốn có thể sinh độc tố nếu để hỏng.",
+   "start": 32.086,
+   "end": 35.942,
+   "item": true
+  },
+  {
+   "scene": "c08",
+   "text": "Độc tố này không bị phá hủy khi đun sôi, và chưa có thuốc giải đặc hiệu.",
+   "start": 36.109,
+   "end": 39.371,
+   "item": false
+  },
+  {
+   "scene": "c09",
+   "text": "Ở Trung Quốc, giai đoạn 2010 đến 2020, khoảng ba mươi phần trăm người mắc đã mất mạng.",
+   "start": 39.538,
+   "end": 44.498,
+   "item": false
+  },
+  {
+   "scene": "c09",
+   "text": "Đó là tỷ lệ trong các ca được ghi nhận, không phải nguy cơ của một bữa ăn.",
+   "start": 44.665,
+   "end": 47.966,
+   "item": false
+  },
+  {
+   "scene": "c10",
+   "text": "Ngâm vừa đủ dùng.",
+   "start": 48.133,
+   "end": 49.003,
+   "item": false
+  },
+  {
+   "scene": "c10",
+   "text": "Mua bánh phở, bánh cuốn vừa dùng.",
+   "start": 49.17,
+   "end": 50.417,
+   "item": false
+  },
+  {
+   "scene": "c10",
+   "text": "Bảo quản theo hướng dẫn, và bỏ ngay thực phẩm biến chất.",
+   "start": 50.584,
+   "end": 52.874,
+   "item": false
+  },
+  {
+   "scene": "c11",
+   "text": "Nếu nghi ngộ độc, không tự gây nôn khi chưa có hướng dẫn của y tế.",
+   "start": 53.041,
+   "end": 55.738,
+   "item": false
+  },
+  {
+   "scene": "c12",
+   "text": "Hai việc nhỏ, làm ngay hôm nay: không ăn nấm hoang, và bỏ thực phẩm đã biến chất.",
+   "start": 55.905,
+   "end": 59.293,
+   "item": false
+  }
+ ],
+ "low": [
+  [
+   4,
+   "Năm 2025, Trung Quốc ghi nhận tám trăm hai mươi tám vụ ngộ độc nấm, hơn hai nghìn người mắc, mười ba người mất mạng.",
+   "Năm 2025, Trung Quốc ghi nhận 828 vụ ngộ độc nấm, hơn 2.000 người mắc, 13 người mất mạng",
+   0.77
+  ],
+  [
+   10,
+   "Cần cấp cứu thì gọi số một một năm.",
+   "Cần cấp cứu thì gọi số 115",
+   0.77
+  ]
+ ]
+}

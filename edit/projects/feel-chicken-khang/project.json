@@ -1,0 +1,339 @@
+{
+ "name": "Feel Chicken - Anh Khang 3 chương trình",
+ "fps": 30,
+ "canvas": {
+  "w": 1920,
+  "h": 1080
+ },
+ "clips": [
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/260810 ngọc hữu quay/260807 (15).MP4",
+   "in": 5.3,
+   "dur": 2.1,
+   "size": "Tr",
+   "label": "Mở đầu: Khang trước quán"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/260702/260702 (112).MP4",
+   "in": 5.18,
+   "dur": 2.12,
+   "size": "C",
+   "label": "Mở đầu: gà rán"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/20260603/C9616.MP4",
+   "in": 15.17,
+   "dur": 1.88,
+   "size": "T",
+   "label": "Thử thách"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/260810 ngọc hữu quay/ĐT/260807  DT (13).MOV",
+   "in": 1.25,
+   "dur": 2.14,
+   "size": "Tr",
+   "label": "Thử thách: Khang"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/260702/260702 (105).MP4",
+   "in": 1.25,
+   "dur": 1.96,
+   "size": "C",
+   "label": "5 đùi gà"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/260702/IMG_1318.MOV",
+   "in": 0.5,
+   "dur": 2.28,
+   "size": "T",
+   "label": "Bàn / mì tương đen"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/260810 ngọc hữu quay/260807 (20).MP4",
+   "in": 3.25,
+   "dur": 2.28,
+   "size": "Tr",
+   "label": "Khang cầm tiền thưởng"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/260702/260702 (112).MP4",
+   "in": 3.25,
+   "dur": 1.84,
+   "size": "C",
+   "label": "Mì tương đen cận"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/20260603/C9641.MP4",
+   "in": 4.17,
+   "dur": 2.1,
+   "size": "T",
+   "label": "Bàn ăn"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/260810 ngọc hữu quay/260807 (24).MP4",
+   "in": 3.25,
+   "dur": 2.08,
+   "size": "Tr",
+   "label": "Khang mời đăng ký"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/261015/C3493.MP4",
+   "in": 45.15,
+   "dur": 1.72,
+   "size": "C",
+   "label": "Hóa đơn / gà"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/13-5-2026/máy ảnh/C8571.MP4",
+   "in": 45.5,
+   "dur": 1.8,
+   "size": "T",
+   "label": "Bia phi tiêu",
+   "zoom": [
+    1.0,
+    1.12
+   ]
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/13-5-2026/máy ảnh/C8586.MP4",
+   "in": 0,
+   "dur": 2.0,
+   "size": "Tr",
+   "label": "Người chơi"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/20260603/C9623.MP4",
+   "in": 1.25,
+   "dur": 1.58,
+   "size": "C",
+   "label": "Gà cận"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/260810 ngọc hữu quay/ĐT/260807  DT (83).MOV",
+   "in": 5.25,
+   "dur": 1.42,
+   "size": "Tr",
+   "label": "Khang cầm tiền 500K"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/13-5-2026/máy ảnh/C8571.MP4",
+   "in": 43.5,
+   "dur": 1.9,
+   "size": "T",
+   "label": "Bia phi tiêu 9 điểm",
+   "zoom": [
+    1.0,
+    1.12
+   ]
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/13-5-2026/máy ảnh/C8550.MP4",
+   "in": 1.27,
+   "dur": 1.42,
+   "size": "C",
+   "label": "Gà phi lê"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/20260603/C9640.MP4",
+   "in": 3.25,
+   "dur": 1.78,
+   "size": "T",
+   "label": "Cả nhóm ăn"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/20260603/C9604.MP4",
+   "in": 5.25,
+   "dur": 1.76,
+   "size": "Tr",
+   "label": "Nhận quà"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/260702/260702 (112).MP4",
+   "in": 5.18,
+   "dur": 2.1,
+   "size": "C",
+   "label": "Combo ngũ vị cận"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/20260603/C9639.MP4",
+   "in": 7.2,
+   "dur": 1.74,
+   "size": "T",
+   "label": "Bàn combo"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/260702/IMG_1317.MOV",
+   "in": 0,
+   "dur": 1.9,
+   "size": "Tr",
+   "label": "Đĩa gà"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/260702/260702 (105).MP4",
+   "in": 1.25,
+   "dur": 1.6,
+   "size": "C",
+   "label": "Gà cận"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/260702/IMG_1318.MOV",
+   "in": 0.75,
+   "dur": 1.74,
+   "size": "T",
+   "label": "Bàn combo"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/260810 ngọc hữu quay/ĐT/260807  DT (40).MOV",
+   "in": 35.25,
+   "dur": 1.74,
+   "size": "Tr",
+   "label": "Combo 199K"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/23-3-2026/C6431.MP4",
+   "in": 5.13,
+   "dur": 1.72,
+   "size": "C",
+   "label": "Mì cận"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/20260603/C9636.MP4",
+   "in": 5.0,
+   "dur": 1.8,
+   "size": "T",
+   "label": "Quán"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/260810 ngọc hữu quay/260807 (31).MP4",
+   "in": 3.25,
+   "dur": 2.06,
+   "size": "Tr",
+   "label": "Khang"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/260810 ngọc hữu quay/ĐT/260807  DT (66).MOV",
+   "in": 1.25,
+   "dur": 1.54,
+   "size": "C",
+   "label": "Gà cận"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/20260603/C9641.MP4",
+   "in": 2.25,
+   "dur": 1.7,
+   "size": "T",
+   "label": "Cả nhóm ăn"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/260810 ngọc hữu quay/260807 (37).MP4",
+   "in": 2.06,
+   "dur": 1.8,
+   "size": "Tr",
+   "label": "Khang cười"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/23-3-2026/C6414.MP4",
+   "in": 9.18,
+   "dur": 1.7,
+   "size": "C",
+   "label": "Mì cận"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/20260603/C9640.MP4",
+   "in": 1.5,
+   "dur": 1.7,
+   "size": "T",
+   "label": "Bàn ăn"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/260810 ngọc hữu quay/260807 (15).MP4",
+   "in": 1.55,
+   "dur": 1.3,
+   "size": "Tr",
+   "label": "Khang chào"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/23-3-2026/C6431.MP4",
+   "in": 1.45,
+   "dur": 1.3,
+   "size": "C",
+   "label": "Gà cận"
+  },
+  {
+   "src": "D:/dữ liệu công ty/dự án ngoài/feel chicken/FILE GỐC/23-3-2026/C6487.MP4",
+   "in": 3.42,
+   "dur": 1.33,
+   "size": "T",
+   "label": "Mặt tiền quán",
+   "speed": 1.0,
+   "zoom": [
+    1.0,
+    1.12
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "id": "s1",
+   "title": "Mở đầu",
+   "start": 0,
+   "end": 4.22,
+   "script": "Tính độ gà rán ở Nha Trang mà bỏ qua điều này thì hơi bị tiếc đó nha",
+   "onscreen": []
+  },
+  {
+   "id": "s2",
+   "title": "Thử thách ăn gà",
+   "start": 4.22,
+   "end": 20.78,
+   "script": "Đầu tiên là thử thách dành cho các chiến thần ăn uống Chỉ cần ăn hết 5 đùi gà và 1 phần mì tương đen trong vòng 5 phút Anh em có cơ hội nhận ngay 1 triệu 500 nghìn đồng tiền mặt Ai tự tin vào sức ăn của mình thì đăng ký tham gia ngay nhé",
+   "onscreen": []
+  },
+  {
+   "id": "s3",
+   "title": "Phóng phi tiêu",
+   "start": 20.78,
+   "end": 36.16,
+   "script": "Chưa hết đâu nha Hóa đơn từ 100 nghìn đồng Anh em sẽ có 1 lượt phóng phi tiêu Trúng hồng tâm nhận ngay 500 nghìn đồng Còn đạt 9 điểm thì được tặng 1 phần gà phi lê Đi ăn gà mà còn có cơ hội nhận quà Hóa hời luôn",
+   "onscreen": []
+  },
+  {
+   "id": "s4",
+   "title": "Flash sale combo",
+   "start": 36.16,
+   "end": 52.56,
+   "script": "Còn hội mê gà ngũ vị thì nhớ ngay khung giờ này Từ thứ 2 đến thứ 6 Từ 10 giờ sáng đến 4 giờ chiều Combo gà ngũ vị giảm từ 259 nghìn xuống Chỉ còn 199 nghìn đồng Nhớ tranh thủ ghé Fuel Chicken để săn điêu nha",
+   "onscreen": []
+  },
+  {
+   "id": "s5",
+   "title": "Kết",
+   "start": 52.56,
+   "end": 64.93,
+   "script": "Rồi 3 chương trình hấp dẫn tại Fuel Chicken đã lên sóng Anh em muốn thử thách bản thân Săn thưởng hay ăn gà giá hời thì ghé quán ngay nha Hẹn gặp mọi người tại Fuel Chicken",
+   "onscreen": []
+  }
+ ],
+ "voice": {
+  "profile": "ngoài (voice AI do người dùng tạo)",
+  "pron": []
+ },
+ "voiceover": [
+  {
+   "section": "all",
+   "file": "voice/voice.wav",
+   "start": 0,
+   "dur": 64.93,
+   "speedup": 1.0
+  }
+ ],
+ "music": null,
+ "subs": {
+  "mode": "sentence"
+ },
+ "rules": {
+  "shake_max": 0.5,
+  "alternate_sizes": true,
+  "shake_exempt": []
+ }
+}

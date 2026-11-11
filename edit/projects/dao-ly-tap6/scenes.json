@@ -1,0 +1,109 @@
+{
+ "scenes": [
+  {
+   "id": "c01",
+   "clip_s": 6,
+   "voice": "Nhiều bệnh nặng không có triệu chứng cho đến khi quá muộn. Có năm việc kiểm tra sớm, giúp bạn phát hiện từ đầu. Một: Đo huyết áp.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, sitting at a Vietnamese kitchen table with an arm cuff of a blood pressure monitor wrapped on the arm, a cup of tea beside, quiet morning. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the monitor cuff inflates slightly and the character stays still, steam rises from the tea"
+  },
+  {
+   "id": "c02",
+   "clip_s": 6,
+   "voice": "Máy đo chỉ mất một phút, nhưng mấy ai đo? Ở Việt Nam, 28,3% người từ hai mươi lăm đến sáu mươi tư tuổi bị tăng huyết áp.",
+   "image_prompt": "A digital blood pressure monitor on a wooden table beside a cup of tea and a small lamp, soft evening light, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the monitor display glows softly, tea steam drifts, lamp flickers faintly"
+  },
+  {
+   "id": "c03",
+   "clip_s": 6,
+   "voice": "Ở Trung Quốc, bốn mươi bốn phẩy bảy phần trăm người từ ba mươi lăm đến bảy mươi lăm tuổi bị tăng huyết áp, nhưng chỉ bảy phẩy hai phần trăm kiểm soát được.",
+   "image_prompt": "A blood pressure gauge dial with a needle high in the red zone, glowing in a dark room, dust in the light, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the gauge needle trembles slightly in the red zone, a faint glow pulses"
+  },
+  {
+   "id": "c04",
+   "clip_s": 8,
+   "voice": "Mỗi lần huyết áp tâm thu giảm mười mi li mét thủy ngân, đột quỵ giảm hai mươi bảy phần trăm, suy tim giảm hai mươi tám phần trăm, và nguy cơ mất mạng giảm mười ba phần trăm.",
+   "image_prompt": "A hand-drawn heart outline with a round shield in front of it and a gauge needle sinking from red toward green, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the gauge needle slowly sinks toward the green zone, the heart glows steadily"
+  },
+  {
+   "id": "c05",
+   "clip_s": 6,
+   "voice": "Hai: Kiểm tra đường huyết. Từ ba mươi lăm tuổi, nếu thừa cân thì xét nghiệm một lần. Bình thường thì ba năm sau kiểm tra lại.",
+   "image_prompt": "A small blood glucose meter on a table beside a bowl of rice and an apple, warm lamp light, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the lamp light shifts softly across the table, a thin wisp of steam rises from the rice"
+  },
+  {
+   "id": "c06",
+   "clip_s": 6,
+   "voice": "Ngưỡng cân nặng trong sách là của Mỹ và Trung Quốc, hãy hỏi bác sĩ ngưỡng phù hợp với người Việt.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, standing in a doctor's office beside a standing weighing scale, one hand raised as if asking a question, calm light. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the character tilts the head and raises a finger, the scale needle swings gently"
+  },
+  {
+   "id": "c07",
+   "clip_s": 8,
+   "voice": "Ba: Sàng lọc ung thư. Phụ nữ từ bốn mươi đến bảy mươi bốn tuổi, hai năm chụp nhũ ảnh một lần theo khuyến nghị của Mỹ. Siêu âm và cộng hưởng từ làm thêm cho mô vú đặc chưa đủ bằng chứng.",
+   "image_prompt": "A quiet empty medical imaging room with a large x-ray machine and a soft light, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the soft light slowly sweeps across the machine, faint dust drifts in the beam"
+  },
+  {
+   "id": "c08",
+   "clip_s": 8,
+   "voice": "Từ ba mươi tuổi, ưu tiên xét nghiệm HPV, âm tính thì năm năm làm lại. Từ bốn mươi lăm đến năm mươi tuổi, xét nghiệm máu ẩn trong phân hoặc nội soi. Nội soi âm tính thì mười năm làm lại.",
+   "image_prompt": "A rack of test tubes on a clinic counter beside a clipboard and a desk lamp, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the test tubes catch light one after another, the lamp flickers gently"
+  },
+  {
+   "id": "c09",
+   "clip_s": 6,
+   "voice": "Ở Việt Nam, ung thư vú có nhiều ca mới nhất, hơn hai mươi lăm nghìn ca mỗi năm. Ung thư phổi khiến nhiều người mất mạng nhất.",
+   "image_prompt": "A chalkboard with five hand-drawn vertical bars of different heights, a dusty classroom light, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the bars grow slowly one by one, chalk dust drifts down"
+  },
+  {
+   "id": "c10",
+   "clip_s": 6,
+   "voice": "Bốn: Tiệt trừ vi khuẩn HP trong dạ dày. Theo dõi hai mươi hai năm ở Sơn Đông, tiệt trừ HP giảm khoảng một nửa nguy cơ ung thư dạ dày.",
+   "image_prompt": "A hand-drawn outline of a stomach with tiny spiral bacteria inside, a single pill glowing beside it, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the tiny bacteria fade away one by one as the pill glows, soft light pulses"
+  },
+  {
+   "id": "c11",
+   "clip_s": 8,
+   "voice": "Ở Việt Nam, một nghiên cứu cho thấy ở nhóm điều trị thất bại ít nhất hai lần, 96,5% chủng HP kháng thuốc clarithromycin. Vì vậy hãy uống đủ liều, đủ ngày theo chỉ định của bác sĩ.",
+   "image_prompt": "A weekly pill organizer box next to a glass of water on a Vietnamese kitchen table, morning light, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the morning light moves across the pill organizer, ripples settle in the water glass"
+  },
+  {
+   "id": "c12",
+   "clip_s": 6,
+   "voice": "Năm: Phát hiện rung nhĩ. Thuốc chống đông giảm khoảng sáu mươi phần trăm nguy cơ đột quỵ ở người được đánh giá phù hợp. Aspirin không thay thế được.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, sitting on a bed edge checking the pulse on the wrist with two fingers, a heart outline with an irregular pulse line glowing above. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the pulse line above the heart flickers irregularly then steadies, the character breathes slowly"
+  },
+  {
+   "id": "c13",
+   "clip_s": 6,
+   "voice": "Ở Trung Quốc, chỉ sáu phần trăm người rung nhĩ nguy cơ cao đang dùng thuốc chống đông. Không tự ngừng thuốc vì hết hồi hộp.",
+   "image_prompt": "A single blister pack and a glass of water on a bedside table beside an old alarm clock, soft lamp light, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the clock hands move slowly, the lamp glows steadily, a soft shadow shifts"
+  },
+  {
+   "id": "c14",
+   "clip_s": 6,
+   "voice": "Méo miệng, yếu một bên tay chân, hoặc nói khó, hãy gọi số một một năm ngay.",
+   "image_prompt": "A glowing phone on a table with a red cross symbol on the screen, an ambulance light flashing softly through the window, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the phone screen pulses and the ambulance light flashes softly across the wall"
+  },
+  {
+   "id": "c15",
+   "clip_s": 6,
+   "voice": "Năm việc kiểm tra sớm, mất rất ít thời gian. Hôm nay, hãy bắt đầu bằng việc đo huyết áp.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, wrapping a blood pressure cuff on the arm at a kitchen table at dawn, warm first light through the window, calm and determined. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "first light grows through the window, the character tightens the cuff and breathes out"
+  }
+ ]
+}

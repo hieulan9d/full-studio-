@@ -1,0 +1,122 @@
+{
+ "voice_total": 103.104,
+ "scenes": [
+  {
+   "id": "c01",
+   "t0": 0.0,
+   "t1": 8.2,
+   "voice_dur": 8.2,
+   "clip_s": 8,
+   "voice": "Có bốn việc trên đường, gần như không tốn tiền, mà giảm rõ rệt nguy cơ tử vong. Một. Thắt dây an toàn, cả ghế trước lẫn ghế sau. Mất đúng hai giây mỗi lần lên xe.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, seated in a car at night, pulling the seat belt across the body toward the buckle, dashboard and road visible through the windshield. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c02",
+   "t0": 8.2,
+   "t1": 14.6,
+   "voice_dur": 6.4,
+   "clip_s": 8,
+   "voice": "Ngồi ghế trước ô tô con, thắt dây giúp giảm khoảng bốn mươi lăm phần trăm nguy cơ chấn thương gây tử vong. Ghế sau cũng vậy.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, seated in the back seat of a car at night, clicking the rear seat belt into the buckle, an empty front seat ahead, street lights outside the window. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c03",
+   "t0": 14.6,
+   "t1": 23.8,
+   "voice_dur": 9.2,
+   "clip_s": 8,
+   "voice": "Thống kê của Mỹ năm 2022 cho thấy trong số người chết ở hàng ghế sau mà xác định được, sáu mươi phần trăm không thắt dây. Ở Việt Nam, luật yêu cầu thắt dây ở mọi chỗ ngồi có dây.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, seated in the back seat of a car at night, looking at a loose unfastened seat belt hanging beside the seat, quiet and worried mood. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c04",
+   "t0": 23.8,
+   "t1": 31.2,
+   "voice_dur": 7.5,
+   "clip_s": 8,
+   "voice": "Người lái không thắt dây bị phạt từ tám trăm nghìn đến một triệu đồng. Hai. Đội mũ bảo hiểm và cài quai. Treo mũ trên tay lái không tính là đội mũ.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, standing beside a motorbike at night, a plain helmet hanging from the handlebar, a faceless police officer silhouette far behind with a ticket book. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c05",
+   "t0": 31.2,
+   "t1": 38.6,
+   "voice_dur": 7.3,
+   "clip_s": 8,
+   "voice": "Tổng hợp của Cochrane cho thấy người đi xe máy đội mũ giảm bốn mươi hai phần trăm nguy cơ tử vong, và sáu mươi chín phần trăm chấn thương đầu.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, sitting on a motorbike at night, wearing a plain helmet with the chin strap fastened under the chin, empty street lit by lamp posts. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c06",
+   "t0": 38.6,
+   "t1": 46.7,
+   "voice_dur": 8.1,
+   "clip_s": 6,
+   "voice": "Ở Việt Nam, sau khi bắt buộc đội mũ từ năm hai nghìn không trăm linh bảy, ba tháng đầu nguy cơ tử vong đã giảm mười tám phần trăm. Chọn mũ có dấu hợp quy C R.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, standing under a street lamp holding a helmet, inspecting a small label inside the helmet, no readable text. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c07",
+   "t0": 46.7,
+   "t1": 55.4,
+   "voice_dur": 8.7,
+   "clip_s": 8,
+   "voice": "Không đội, hoặc không cài quai, bị phạt từ bốn trăm đến sáu trăm nghìn đồng. Ba. Không chạy quá tốc độ, không uống rượu bia, không dùng điện thoại, buồn ngủ thì dừng lại.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, riding a motorbike fast at night, road markings streaking past, lamp posts blurred, tense mood. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c08",
+   "t0": 55.4,
+   "t1": 63.2,
+   "voice_dur": 7.8,
+   "clip_s": 8,
+   "voice": "Tốc độ trung bình tăng một phần trăm, nguy cơ tai nạn chết người tăng khoảng bốn phần trăm. Cầm điện thoại khi lái, nguy cơ tai nạn gấp ba phẩy sáu lần.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, sitting on a stopped motorbike staring at a glowing phone screen in one hand, the dark road ahead blurred. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c09",
+   "t0": 63.2,
+   "t1": 69.4,
+   "voice_dur": 6.2,
+   "clip_s": 6,
+   "voice": "Bấm số, gấp mười hai phẩy hai lần. Rượu bia không có ngưỡng uống chút không sao. Ở Việt Nam, đã có nồng độ cồn là bị phạt.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, seated at a small plastic table with a glass of beer and a set of car keys, hesitating, night street cafe. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c10",
+   "t0": 69.4,
+   "t1": 75.5,
+   "voice_dur": 6.1,
+   "clip_s": 6,
+   "voice": "Đi đường dài, cứ bốn tiếng hãy dừng nghỉ ít nhất hai mươi phút. Bốn. Trẻ nhỏ phải ngồi ghế an toàn, đừng bế trong lòng.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, resting on a low plastic stool at a roadside tea stall late at night, a glass of tea, a car parked behind. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c11",
+   "t0": 75.5,
+   "t1": 83.4,
+   "voice_dur": 7.9,
+   "clip_s": 8,
+   "voice": "Với trẻ dưới một tuổi, ghế an toàn giảm khoảng bảy mươi phần trăm nguy cơ chấn thương tử vong trong tai nạn. Trẻ từ một đến bốn tuổi, giảm khoảng một nửa.",
+   "image_prompt": "A rear car seat at night with a safety seat fastened by the seat belt, a small plush teddy bear buckled into the harness, soft light from the car interior, the character's hand resting on the seat edge. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c12",
+   "t0": 83.4,
+   "t1": 94.1,
+   "voice_dur": 10.7,
+   "clip_s": 10,
+   "voice": "Từ ngày một tháng bảy năm hai nghìn không trăm hai mươi sáu, luật Việt Nam yêu cầu trẻ dưới mười tuổi và cao dưới một mét ba mươi lăm dùng thiết bị an toàn phù hợp, và không ngồi cùng hàng ghế với người lái.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, leaning into the back seat of a car at night, tightening the harness straps of a safety seat that holds a plush teddy bear, warm interior light. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  },
+  {
+   "id": "c13",
+   "t0": 94.1,
+   "t1": 103.1,
+   "voice_dur": 9.0,
+   "clip_s": 10,
+   "voice": "Bốn việc, tốn rất ít tiền, nhưng có thể thay đổi một chuyến đi. Không cần làm hết. Chọn một việc, và bắt đầu từ chuyến đi tiếp theo. Nguồn và ngày đối chiếu có trong phần mô tả.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, standing at the start of a long road at dawn, raising one finger, faint light on the horizon, hopeful calm mood. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces."
+  }
+ ]
+}

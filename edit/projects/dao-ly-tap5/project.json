@@ -1,0 +1,539 @@
+{
+ "name": "Đạo lý - Tập 5",
+ "fps": 30,
+ "canvas": {
+  "w": 1080,
+  "h": 1920
+ },
+ "clips": [
+  {
+   "src": "media/v01.mp4",
+   "in": 0,
+   "dur": 6.037,
+   "speed": 1.0355,
+   "size": "SP",
+   "label": "c01"
+  },
+  {
+   "src": "media/v02.mp4",
+   "in": 0,
+   "dur": 6.037,
+   "speed": 0.8723,
+   "size": "SP",
+   "label": "c02"
+  },
+  {
+   "src": "media/v03.mp4",
+   "in": 0,
+   "dur": 4.45,
+   "speed": 1.25,
+   "size": "SP",
+   "label": "c03"
+  },
+  {
+   "src": "media/v04.mp4",
+   "in": 0,
+   "dur": 6.037,
+   "speed": 1.0141,
+   "size": "SP",
+   "label": "c04"
+  },
+  {
+   "src": "media/v05.mp4",
+   "in": 0,
+   "dur": 8.043,
+   "speed": 1.0758,
+   "size": "SP",
+   "label": "c05"
+  },
+  {
+   "src": "media/v06.mp4",
+   "in": 0,
+   "dur": 6.037,
+   "speed": 0.9997,
+   "size": "SP",
+   "label": "c06"
+  },
+  {
+   "src": "media/v07.mp4",
+   "in": 0,
+   "dur": 8.043,
+   "speed": 1.0107,
+   "size": "SP",
+   "label": "c07"
+  },
+  {
+   "src": "media/v08.mp4",
+   "in": 0,
+   "dur": 5.767,
+   "speed": 1.25,
+   "size": "SP",
+   "label": "c08"
+  },
+  {
+   "src": "media/v09.mp4",
+   "in": 0,
+   "dur": 6.024,
+   "speed": 1.25,
+   "size": "SP",
+   "label": "c09"
+  },
+  {
+   "src": "media/v10.mp4",
+   "in": 0,
+   "dur": 6.037,
+   "speed": 0.9106,
+   "size": "SP",
+   "label": "c10"
+  },
+  {
+   "src": "media/v11.mp4",
+   "in": 0,
+   "dur": 8.043,
+   "speed": 0.8991,
+   "size": "SP",
+   "label": "c11"
+  },
+  {
+   "src": "media/v12.mp4",
+   "in": 0,
+   "dur": 6.037,
+   "speed": 0.8637,
+   "size": "SP",
+   "label": "c12"
+  },
+  {
+   "src": "media/v13.mp4",
+   "in": 0,
+   "dur": 5.448,
+   "speed": 1.25,
+   "size": "SP",
+   "label": "c13"
+  }
+ ],
+ "sections": [
+  {
+   "id": "c01",
+   "title": "c01",
+   "start": 0.0,
+   "end": 5.83,
+   "script": "",
+   "onscreen": [
+    {
+     "start": 0.0,
+     "end": 0.46,
+     "text": "Một cái đinh.",
+     "style": "Sub"
+    },
+    {
+     "start": 0.48,
+     "end": 1.72,
+     "text": "Một tuần sau cứng hàm.",
+     "style": "Sub"
+    },
+    {
+     "start": 1.74,
+     "end": 3.22,
+     "text": "Có sáu loại vắc-xin đáng cân nhắc,",
+     "style": "Sub"
+    },
+    {
+     "start": 3.24,
+     "end": 4.68,
+     "text": "để tránh những chuyện như vậy.",
+     "style": "Sub"
+    },
+    {
+     "start": 4.7,
+     "end": 5.58,
+     "text": "Một – Uốn ván.",
+     "style": "Sub"
+    },
+    {
+     "start": 5.6,
+     "end": 7.38,
+     "text": "Ở Long An, một thanh niên đạp phải đinh,",
+     "style": "Sub"
+    },
+    {
+     "start": 7.4,
+     "end": 9.06,
+     "text": "tự rút ra, một tuần sau cứng hàm.",
+     "style": "Sub"
+    },
+    {
+     "start": 9.76,
+     "end": 11.38,
+     "text": "Khoảng 20% ca uốn ván",
+     "style": "Sub"
+    },
+    {
+     "start": 11.4,
+     "end": 12.52,
+     "text": "không xác định được vết thương.",
+     "style": "Sub"
+    },
+    {
+     "start": 12.54,
+     "end": 13.7,
+     "text": "Vết thương bẩn, dính đất,",
+     "style": "Sub"
+    },
+    {
+     "start": 13.72,
+     "end": 15.5,
+     "text": "mà đã đủ 5 năm kể từ mũi trước,",
+     "style": "Sub"
+    },
+    {
+     "start": 15.52,
+     "end": 16.06,
+     "text": "thì tiêm nhắc.",
+     "style": "Sub"
+    },
+    {
+     "start": 16.08,
+     "end": 17.6,
+     "text": "Hai – Viêm gan B.",
+     "style": "Sub"
+    },
+    {
+     "start": 17.62,
+     "end": 19.82,
+     "text": "Việt Nam có khoảng 6,5 triệu người mắc.",
+     "style": "Sub"
+    },
+    {
+     "start": 19.86,
+     "end": 22.04,
+     "text": "Mũi đầu nên tiêm trong 24 giờ sau sinh.",
+     "style": "Sub"
+    },
+    {
+     "start": 22.06,
+     "end": 23.04,
+     "text": "Tiêm ngay sau sinh,",
+     "style": "Sub"
+    },
+    {
+     "start": 23.18,
+     "end": 25.54,
+     "text": "giảm 84% nguy cơ ung thư gan sau này.",
+     "style": "Sub"
+    },
+    {
+     "start": 25.56,
+     "end": 26.88,
+     "text": "Người lớn chưa rõ miễn dịch",
+     "style": "Sub"
+    },
+    {
+     "start": 26.9,
+     "end": 27.94,
+     "text": "thì xét nghiệm 5 chỉ số,",
+     "style": "Sub"
+    },
+    {
+     "start": 27.96,
+     "end": 29.44,
+     "text": "rồi mang kết quả đến phòng tiêm.",
+     "style": "Sub"
+    },
+    {
+     "start": 29.46,
+     "end": 31.34,
+     "text": "Ba – HPV, càng sớm càng tốt.",
+     "style": "Sub"
+    },
+    {
+     "start": 31.36,
+     "end": 33.04,
+     "text": "Ở Thụy Điển, tiêm trước 17 tuổi,",
+     "style": "Sub"
+    },
+    {
+     "start": 33.06,
+     "end": 34.14,
+     "text": "nguy cơ ung thư cổ tử",
+     "style": "Sub"
+    },
+    {
+     "start": 34.16,
+     "end": 36.0,
+     "text": "cung chỉ còn khoảng 1/8.",
+     "style": "Sub"
+    },
+    {
+     "start": 36.02,
+     "end": 37.54,
+     "text": "Tiêm lúc 17 đến 30 tuổi,",
+     "style": "Sub"
+    },
+    {
+     "start": 37.56,
+     "end": 39.2,
+     "text": "nguy cơ vẫn giảm khoảng một nửa.",
+     "style": "Sub"
+    },
+    {
+     "start": 39.22,
+     "end": 42.14,
+     "text": "Từ ngày 1/7/2026, HPV đã vào danh",
+     "style": "Sub"
+    },
+    {
+     "start": 42.16,
+     "end": 43.42,
+     "text": "mục tiêm chủng bắt buộc ở Việt Nam.",
+     "style": "Sub"
+    },
+    {
+     "start": 43.44,
+     "end": 44.18,
+     "text": "Bốn – Cúm.",
+     "style": "Sub"
+    },
+    {
+     "start": 44.2,
+     "end": 45.06,
+     "text": "Người bệnh tim mạch",
+     "style": "Sub"
+    },
+    {
+     "start": 45.08,
+     "end": 46.26,
+     "text": "và người cao tuổi nên tiêm.",
+     "style": "Sub"
+    },
+    {
+     "start": 46.34,
+     "end": 48.08,
+     "text": "Bộ Y tế khuyến cáo tiêm cúm mùa.",
+     "style": "Sub"
+    },
+    {
+     "start": 48.1,
+     "end": 50.06,
+     "text": "Sau nhồi máu cơ tim, nguy cơ mất mạng",
+     "style": "Sub"
+    },
+    {
+     "start": 50.08,
+     "end": 53.3,
+     "text": "trong một năm giảm từ 4,9% xuống 2,9%.",
+     "style": "Sub"
+    },
+    {
+     "start": 53.32,
+     "end": 54.7,
+     "text": "Năm – Zona, từ 50 tuổi.",
+     "style": "Sub"
+    },
+    {
+     "start": 54.72,
+     "end": 57.18,
+     "text": "Vắc-xin chặn được 97% ca zona.",
+     "style": "Sub"
+    },
+    {
+     "start": 57.2,
+     "end": 58.02,
+     "text": "Tiêm 2 mũi,",
+     "style": "Sub"
+    },
+    {
+     "start": 58.04,
+     "end": 59.52,
+     "text": "cách nhau 2 tháng, tự chi trả.",
+     "style": "Sub"
+    },
+    {
+     "start": 59.54,
+     "end": 61.34,
+     "text": "Sáu – Phế cầu, từ 65 tuổi.",
+     "style": "Sub"
+    },
+    {
+     "start": 61.96,
+     "end": 64.36,
+     "text": "Loại 13 giá chặn khoảng 46% viêm",
+     "style": "Sub"
+    },
+    {
+     "start": 64.38,
+     "end": 66.34,
+     "text": "phổi do các chủng có trong vắc-xin,",
+     "style": "Sub"
+    },
+    {
+     "start": 66.36,
+     "end": 68.5,
+     "text": "và 75% nhiễm trùng xâm lấn.",
+     "style": "Sub"
+    },
+    {
+     "start": 68.52,
+     "end": 70.3,
+     "text": "Người lớn tự chọn vắc-xin phế cầu,",
+     "style": "Sub"
+    },
+    {
+     "start": 70.32,
+     "end": 71.62,
+     "text": "vì chương trình tiêm chủng mở",
+     "style": "Sub"
+    },
+    {
+     "start": 71.64,
+     "end": 73.38,
+     "text": "rộng chỉ dành cho trẻ dưới 1 tuổi.",
+     "style": "Sub"
+    },
+    {
+     "start": 73.4,
+     "end": 75.46,
+     "text": "Số liệu này chỉ áp dụng cho loại 13 giá.",
+     "style": "Sub"
+    },
+    {
+     "start": 75.48,
+     "end": 77.16,
+     "text": "Sáu mũi tiêm, mỗi mũi một lá chắn.",
+     "style": "Sub"
+    },
+    {
+     "start": 77.18,
+     "end": 79.06,
+     "text": "Hãy hỏi bác sĩ xem bạn nên tiêm mũi nào,",
+     "style": "Sub"
+    },
+    {
+     "start": 79.08,
+     "end": 80.06,
+     "text": "và làm ngay hôm nay.",
+     "style": "Sub"
+    }
+   ]
+  },
+  {
+   "id": "c02",
+   "title": "c02",
+   "start": 5.83,
+   "end": 12.75,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c03",
+   "title": "c03",
+   "start": 12.75,
+   "end": 16.31,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c04",
+   "title": "c04",
+   "start": 16.31,
+   "end": 22.26,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c05",
+   "title": "c05",
+   "start": 22.26,
+   "end": 29.74,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c06",
+   "title": "c06",
+   "start": 29.74,
+   "end": 35.78,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c07",
+   "title": "c07",
+   "start": 35.78,
+   "end": 43.74,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c08",
+   "title": "c08",
+   "start": 43.74,
+   "end": 48.35,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c09",
+   "title": "c09",
+   "start": 48.35,
+   "end": 53.17,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c10",
+   "title": "c10",
+   "start": 53.17,
+   "end": 59.8,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c11",
+   "title": "c11",
+   "start": 59.8,
+   "end": 68.75,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c12",
+   "title": "c12",
+   "start": 68.75,
+   "end": 75.74,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c13",
+   "title": "c13",
+   "start": 75.74,
+   "end": 80.09,
+   "script": "",
+   "onscreen": []
+  }
+ ],
+ "voice": {
+  "profile": "70afd348",
+  "pron": []
+ },
+ "voiceover": [
+  {
+   "section": "all",
+   "file": "voice/voice_all.wav",
+   "start": 0,
+   "dur": 80.094762,
+   "speedup": 1.0
+  }
+ ],
+ "music": null,
+ "subs": {
+  "mode": "sentence"
+ },
+ "rules": {
+  "shake_max": 9,
+  "alternate_sizes": false,
+  "shake_exempt": [
+   "media/"
+  ]
+ }
+}

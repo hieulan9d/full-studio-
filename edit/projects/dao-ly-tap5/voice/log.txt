@@ -1,0 +1,58 @@
+[1.00] Một cái đinh.
+      nghe: Một cái đinh
+[1.00] Một tuần sau cứng hàm.
+      nghe: Một tuần sau cứng hàm.
+[0.93] Có sáu loại vắc-xin đáng cân nhắc, để tránh những chuyện như vậy.
+      nghe: Có 6 loại vaccine đáng cân nhắc để tránh những chuyện như vậy.
+[1.00] Một: Uốn ván.
+      nghe: Một uốn ván
+[1.00] Ở Long An, một thanh niên đạp phải đinh, tự rút ra, một tuần sau cứng hàm.
+      nghe: Ở Long An, một thanh niên đạp phải đinh tự rút ra một tuần sau cứng hàm.
+[0.83] Khoảng hai mươi phần trăm ca uốn ván không xác định được vết thương.
+      nghe: Khoảng 20% ca uốn ván không xác định được vết thương.
+[0.94] Vết thương bẩn, dính đất, mà đã đủ năm năm kể từ mũi trước, thì tiêm nhắc.
+      nghe: động vết thương bẩn dính đất mà đã đủ 5 năm kể từ mũi trước thì tiêm nhắc.
+[0.81] Hai: Viêm gan B.
+      nghe: 2. Viêm gan bề
+[0.83] Việt Nam có khoảng sáu phẩy năm triệu người mắc.
+      nghe: Việt Nam có khoảng 6-5 triệu người mắc.
+[0.84] Mũi đầu nên tiêm trong hai mươi bốn giờ sau sinh.
+      nghe: Mũi đầu nên tiêm trong 24 giờ sau sinh
+[0.81] Tiêm ngay sau sinh, giảm tám mươi bốn phần trăm nguy cơ ung thư gan sau này.
+      nghe: tiêm ngay sau sinh, giảm 84% nguy cơ ung thư gan sau này.
+[0.98] Người lớn chưa rõ miễn dịch thì xét nghiệm năm chỉ số, rồi mang kết quả đến phòng tiêm.
+      nghe: Người lớn chưa rõ miễn dịch thì xét nghiệm 5 chỉ số rồi mang kết quả đến phòng tiêm.
+[0.94] Ba: HPV, càng sớm càng tốt.
+      nghe: 3 HPV càng sớm càng tốt
+[0.90] Ở Thụy Điển, tiêm trước mười bảy tuổi, nguy cơ ung thư cổ tử cung chỉ còn khoảng một phần tám.
+      nghe: Ở Thụy Điển, tiêm trước 17 tuổi, nguy cơ ung thư cổ tử cung chỉ còn khoảng 1 phần 8
+[0.84] Tiêm lúc mười bảy đến ba mươi tuổi, nguy cơ vẫn giảm khoảng một nửa.
+      nghe: Tiêm lúc 17 đến 30 tuổi, nguy cơ vẫn giảm khoảng một nửa.
+[0.95] Từ ngày một tháng bảy năm 2026, HPV đã vào danh mục tiêm chủng bắt buộc ở Việt Nam.
+      nghe: Từ ngày 1 tháng 7 năm 2026, HPV đã vào danh mục tiêm chủng bắt buộc ở Việt Nam.
+[1.00] Bốn: Cúm.
+      nghe: Bốn cúm
+[1.00] Người bệnh tim mạch và người cao tuổi nên tiêm.
+      nghe: Người bệnh tim mạch và người cao tuổi nên tiêm
+[0.95] Bộ Y tế khuyến cáo tiêm cúm mùa.
+      nghe: Bộ Y tế khuyến cáo tiêm cúng mùa.
+[0.77] Sau nhồi máu cơ tim, nguy cơ mất mạng trong một năm giảm từ bốn phẩy chín xuống hai phẩy chín phần trăm.
+      nghe: Sau nhồi máu cơ tim, nguy cơ mất mạng trong một năm giảm từ 49 xuống 2,9%.
+[0.71] Năm: Zona, từ năm mươi tuổi.
+      nghe: Năm Jonah từ 50 tuổi
+[0.61] Vắc-xin chặn được chín mươi bảy phần trăm ca zona.
+      nghe: Vắc xin chặn được 97% casona.
+[1.00] Tiêm hai mũi, cách nhau hai tháng, tự chi trả.
+      nghe: Tiêm hai mũi, cách nhau hai tháng tự chi trả
+[0.65] Sáu: Phế cầu, từ sáu mươi lăm tuổi.
+      nghe: 6 phế cầu từ 65 tuổi
+[0.69] Loại mười ba giá chặn khoảng bốn mươi sáu phần trăm viêm phổi do các chủng có trong vắc-xin, và bảy mươi lăm phần trăm nhiễm trùng xâm lấn.
+      nghe: Loại 13 giả chặn khoảng 46% viêm phổi do các chủng có trong vaccine và 75% nhiễm chủng xâm lấn.
+[0.95] Người lớn tự chọn vắc-xin phế cầu, vì chương trình tiêm chủng mở rộng chỉ dành cho trẻ dưới một tuổi.
+      nghe: Người lớn tự chọn vaccine phế cầu vì chương trình tiêm chủng mở rộng chỉ dành cho trẻ dưới 1 tuổi.
+[0.89] Số liệu này chỉ áp dụng cho loại mười ba giá.
+      nghe: Số liệu này chỉ áp dụng cho loại 13 giá.
+[0.87] Sáu mũi tiêm, mỗi mũi một lá chắn.
+      nghe: 6 mũi tiêm mỗi mũi 1 lá chắn
+[1.00] Hãy hỏi bác sĩ xem bạn nên tiêm mũi nào, và làm ngay hôm nay.
+      nghe: Hãy hỏi bác sĩ xem bạn nên tiêm mũi nào và làm ngay hôm nay.

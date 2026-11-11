@@ -1,0 +1,553 @@
+{
+ "name": "Đạo lý - Tập 8",
+ "fps": 30,
+ "canvas": {
+  "w": 1080,
+  "h": 1920
+ },
+ "clips": [
+  {
+   "src": "media/v01.mp4",
+   "in": 0,
+   "dur": 6.037,
+   "speed": 0.9778,
+   "size": "SP",
+   "label": "c01"
+  },
+  {
+   "src": "media/v02.mp4",
+   "in": 0,
+   "dur": 10.027,
+   "speed": 0.987,
+   "size": "SP",
+   "label": "c02"
+  },
+  {
+   "src": "media/v03.mp4",
+   "in": 0,
+   "dur": 8.043,
+   "speed": 1.114,
+   "size": "SP",
+   "label": "c03"
+  },
+  {
+   "src": "media/v04.mp4",
+   "in": 0,
+   "dur": 6.037,
+   "speed": 0.9491,
+   "size": "SP",
+   "label": "c04"
+  },
+  {
+   "src": "media/v05.mp4",
+   "in": 0,
+   "dur": 5.705,
+   "speed": 1.25,
+   "size": "SP",
+   "label": "c05"
+  },
+  {
+   "src": "media/v06.mp4",
+   "in": 0,
+   "dur": 6.037,
+   "speed": 1.2154,
+   "size": "SP",
+   "label": "c06"
+  },
+  {
+   "src": "media/v07.mp4",
+   "in": 0,
+   "dur": 6.037,
+   "speed": 0.9926,
+   "size": "SP",
+   "label": "c07"
+  },
+  {
+   "src": "media/v08.mp4",
+   "in": 0,
+   "dur": 5.261,
+   "speed": 1.25,
+   "size": "SP",
+   "label": "c08"
+  },
+  {
+   "src": "media/v09.mp4",
+   "in": 0,
+   "dur": 6.037,
+   "speed": 0.9148,
+   "size": "SP",
+   "label": "c09"
+  },
+  {
+   "src": "media/v10.mp4",
+   "in": 0,
+   "dur": 6.037,
+   "speed": 0.8777,
+   "size": "SP",
+   "label": "c10"
+  },
+  {
+   "src": "media/v11.mp4",
+   "in": 0,
+   "dur": 8.043,
+   "speed": 1.1103,
+   "size": "SP",
+   "label": "c11"
+  },
+  {
+   "src": "media/v12.mp4",
+   "in": 0,
+   "dur": 3.431,
+   "speed": 1.25,
+   "size": "SP",
+   "label": "c12"
+  }
+ ],
+ "sections": [
+  {
+   "id": "c01",
+   "title": "c01",
+   "start": 0.0,
+   "end": 6.17,
+   "script": "",
+   "onscreen": [
+    {
+     "start": 0.0,
+     "end": 1.02,
+     "text": "Có những lúc mọi thứ nặng nề",
+     "style": "Sub"
+    },
+    {
+     "start": 1.04,
+     "end": 2.1,
+     "text": "đến mức không thấy lối ra.",
+     "style": "Sub"
+    },
+    {
+     "start": 2.24,
+     "end": 3.56,
+     "text": "Bốn điều dưới đây có thể giúp bạn,",
+     "style": "Sub"
+    },
+    {
+     "start": 3.58,
+     "end": 4.58,
+     "text": "hoặc người bạn thương.",
+     "style": "Sub"
+    },
+    {
+     "start": 4.6,
+     "end": 5.98,
+     "text": "Một – Nói ngay với người bên cạnh.",
+     "style": "Sub"
+    },
+    {
+     "start": 6.0,
+     "end": 7.14,
+     "text": "Khi ý nghĩ làm hại bản",
+     "style": "Sub"
+    },
+    {
+     "start": 7.16,
+     "end": 7.98,
+     "text": "thân vừa xuất hiện,",
+     "style": "Sub"
+    },
+    {
+     "start": 8.0,
+     "end": 9.48,
+     "text": "hãy nói ngay với một người bạn tin.",
+     "style": "Sub"
+    },
+    {
+     "start": 9.52,
+     "end": 10.92,
+     "text": "Trong một nghiên cứu phỏng vấn,",
+     "style": "Sub"
+    },
+    {
+     "start": 10.94,
+     "end": 12.08,
+     "text": "gần một nửa số người",
+     "style": "Sub"
+    },
+    {
+     "start": 12.1,
+     "end": 13.04,
+     "text": "từng trải qua cho biết,",
+     "style": "Sub"
+    },
+    {
+     "start": 13.1,
+     "end": 14.82,
+     "text": "từ lúc ý nghĩ xuất hiện đến lúc",
+     "style": "Sub"
+    },
+    {
+     "start": 14.84,
+     "end": 16.14,
+     "text": "hành động không quá 10 phút.",
+     "style": "Sub"
+    },
+    {
+     "start": 16.16,
+     "end": 16.58,
+     "text": "Vì vậy,",
+     "style": "Sub"
+    },
+    {
+     "start": 16.6,
+     "end": 17.96,
+     "text": "chỉ cần vượt qua vài chục phút đó,",
+     "style": "Sub"
+    },
+    {
+     "start": 17.98,
+     "end": 18.98,
+     "text": "và không ở một mình.",
+     "style": "Sub"
+    },
+    {
+     "start": 19.0,
+     "end": 20.36,
+     "text": "Phần lớn người từng phải nhập viện",
+     "style": "Sub"
+    },
+    {
+     "start": 20.38,
+     "end": 21.54,
+     "text": "vì tự làm hại bản thân,",
+     "style": "Sub"
+    },
+    {
+     "start": 21.56,
+     "end": 23.2,
+     "text": "về sau không mất mạng vì chuyện đó.",
+     "style": "Sub"
+    },
+    {
+     "start": 23.22,
+     "end": 25.1,
+     "text": "Hai – Hỏi thẳng, bạn có đang nghĩ",
+     "style": "Sub"
+    },
+    {
+     "start": 25.12,
+     "end": 26.18,
+     "text": "đến chuyện làm hại mình không?",
+     "style": "Sub"
+    },
+    {
+     "start": 26.24,
+     "end": 27.46,
+     "text": "Nghiên cứu chưa thấy việc",
+     "style": "Sub"
+    },
+    {
+     "start": 27.48,
+     "end": 28.42,
+     "text": "hỏi làm tăng ý nghĩ đó,",
+     "style": "Sub"
+    },
+    {
+     "start": 28.44,
+     "end": 29.74,
+     "text": "kể cả ở học sinh trung học.",
+     "style": "Sub"
+    },
+    {
+     "start": 29.76,
+     "end": 31.0,
+     "text": "Theo hướng dẫn của Tổ chức Y tế",
+     "style": "Sub"
+    },
+    {
+     "start": 31.02,
+     "end": 32.88,
+     "text": "Thế giới: chọn lúc và chỗ phù hợp,",
+     "style": "Sub"
+    },
+    {
+     "start": 32.9,
+     "end": 34.3,
+     "text": "hỏi trực tiếp, và không phán xét.",
+     "style": "Sub"
+    },
+    {
+     "start": 34.32,
+     "end": 35.98,
+     "text": "Khuyến khích người đó gặp nhân viên y tế",
+     "style": "Sub"
+    },
+    {
+     "start": 36.0,
+     "end": 36.9,
+     "text": "và đề nghị đi cùng.",
+     "style": "Sub"
+    },
+    {
+     "start": 36.94,
+     "end": 38.16,
+     "text": "Nếu thấy nguy cơ ngay trước mắt,",
+     "style": "Sub"
+    },
+    {
+     "start": 38.18,
+     "end": 39.24,
+     "text": "đừng để họ ở một mình.",
+     "style": "Sub"
+    },
+    {
+     "start": 39.3,
+     "end": 40.3,
+     "text": "Ba – Cất những vật",
+     "style": "Sub"
+    },
+    {
+     "start": 40.32,
+     "end": 41.42,
+     "text": "nguy hiểm ra khỏi tầm tay.",
+     "style": "Sub"
+    },
+    {
+     "start": 41.44,
+     "end": 42.56,
+     "text": "Một số nghiên cứu cho thấy",
+     "style": "Sub"
+    },
+    {
+     "start": 42.58,
+     "end": 43.62,
+     "text": "hạn chế vật nguy hiểm",
+     "style": "Sub"
+    },
+    {
+     "start": 43.64,
+     "end": 45.28,
+     "text": "trong tầm tay làm số ca giảm rõ rệt.",
+     "style": "Sub"
+    },
+    {
+     "start": 45.3,
+     "end": 46.88,
+     "text": "Khi nguy hiểm đang ở ngay trước mắt,",
+     "style": "Sub"
+    },
+    {
+     "start": 46.9,
+     "end": 47.72,
+     "text": "hãy gọi số 115,",
+     "style": "Sub"
+    },
+    {
+     "start": 47.74,
+     "end": 49.56,
+     "text": "hoặc đến khoa cấp cứu gần nhất.",
+     "style": "Sub"
+    },
+    {
+     "start": 49.58,
+     "end": 53.42,
+     "text": "Đường dây Ngày Mai: 096, 306, 1414.",
+     "style": "Sub"
+    },
+    {
+     "start": 53.44,
+     "end": 55.0,
+     "text": "Mở từ 13:00 đến 20:30,",
+     "style": "Sub"
+    },
+    {
+     "start": 55.02,
+     "end": 56.16,
+     "text": "từ thứ Tư đến Chủ nhật.",
+     "style": "Sub"
+    },
+    {
+     "start": 56.18,
+     "end": 58.16,
+     "text": "Bốn – Cờ bạc đến mức phải vay tiền",
+     "style": "Sub"
+    },
+    {
+     "start": 58.18,
+     "end": 59.34,
+     "text": "vẫn chơi, là một căn bệnh,",
+     "style": "Sub"
+    },
+    {
+     "start": 59.36,
+     "end": 60.2,
+     "text": "không phải yếu đuối.",
+     "style": "Sub"
+    },
+    {
+     "start": 60.22,
+     "end": 61.44,
+     "text": "Bệnh viện Bạch Mai xác định nghiện",
+     "style": "Sub"
+    },
+    {
+     "start": 61.46,
+     "end": 63.0,
+     "text": "cờ bạc là một rối loạn tâm thần.",
+     "style": "Sub"
+    },
+    {
+     "start": 63.02,
+     "end": 64.26,
+     "text": "Nghiên cứu ở Thụy Điển cho thấy",
+     "style": "Sub"
+    },
+    {
+     "start": 64.28,
+     "end": 65.8,
+     "text": "người rối loạn cờ bạc có nguy cơ",
+     "style": "Sub"
+    },
+    {
+     "start": 65.82,
+     "end": 67.46,
+     "text": "làm hại bản thân cao hơn nhiều lần.",
+     "style": "Sub"
+    },
+    {
+     "start": 67.48,
+     "end": 68.8,
+     "text": "Bước đầu: tìm hỗ trợ tâm lý,",
+     "style": "Sub"
+    },
+    {
+     "start": 68.82,
+     "end": 70.32,
+     "text": "và nhờ gia đình quản lý tiền giúp.",
+     "style": "Sub"
+    },
+    {
+     "start": 70.5,
+     "end": 71.6,
+     "text": "Bạn không phải đi một mình.",
+     "style": "Sub"
+    },
+    {
+     "start": 71.62,
+     "end": 73.12,
+     "text": "Hãy nói với một người, ngay hôm nay.",
+     "style": "Sub"
+    }
+   ]
+  },
+  {
+   "id": "c02",
+   "title": "c02",
+   "start": 6.17,
+   "end": 16.33,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c03",
+   "title": "c03",
+   "start": 16.33,
+   "end": 23.55,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c04",
+   "title": "c04",
+   "start": 23.55,
+   "end": 29.91,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c05",
+   "title": "c05",
+   "start": 29.91,
+   "end": 34.48,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c06",
+   "title": "c06",
+   "start": 34.48,
+   "end": 39.45,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c07",
+   "title": "c07",
+   "start": 39.45,
+   "end": 45.53,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c08",
+   "title": "c08",
+   "start": 45.53,
+   "end": 49.74,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c09",
+   "title": "c09",
+   "start": 49.74,
+   "end": 56.34,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c10",
+   "title": "c10",
+   "start": 56.34,
+   "end": 63.21,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c11",
+   "title": "c11",
+   "start": 63.21,
+   "end": 70.46,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c12",
+   "title": "c12",
+   "start": 70.46,
+   "end": 73.2,
+   "script": "",
+   "onscreen": []
+  }
+ ],
+ "voice": {
+  "profile": "70afd348",
+  "pron": []
+ },
+ "voiceover": [
+  {
+   "section": "all",
+   "file": "voice/voice_all.wav",
+   "start": 0,
+   "dur": 73.201406,
+   "speedup": 1.0
+  }
+ ],
+ "music": null,
+ "subs": {
+  "mode": "sentence"
+ },
+ "rules": {
+  "shake_max": 9,
+  "alternate_sizes": false,
+  "shake_exempt": [
+   "media/"
+  ]
+ }
+}

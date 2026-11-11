@@ -1,0 +1,180 @@
+{
+ "total": 73.201406,
+ "marks": [
+  {
+   "scene": "c01",
+   "text": "Có những lúc mọi thứ nặng nề đến mức không thấy lối ra.",
+   "start": 0.0,
+   "end": 2.215,
+   "item": false
+  },
+  {
+   "scene": "c01",
+   "text": "Bốn điều dưới đây có thể giúp bạn, hoặc người bạn thương.",
+   "start": 2.382,
+   "end": 4.582,
+   "item": false
+  },
+  {
+   "scene": "c01",
+   "text": "Một: Nói ngay với người bên cạnh.",
+   "start": 4.749,
+   "end": 6.007,
+   "item": true
+  },
+  {
+   "scene": "c02",
+   "text": "Khi ý nghĩ làm hại bản thân vừa xuất hiện, hãy nói ngay với một người bạn tin.",
+   "start": 6.174,
+   "end": 9.557,
+   "item": false
+  },
+  {
+   "scene": "c02",
+   "text": "Trong một nghiên cứu phỏng vấn, gần một nửa số người từng trải qua cho biết, từ lúc ý nghĩ xuất hiện đến lúc hành động không quá mười phút.",
+   "start": 9.724,
+   "end": 16.166,
+   "item": false
+  },
+  {
+   "scene": "c03",
+   "text": "Vì vậy, chỉ cần vượt qua vài chục phút đó, và không ở một mình.",
+   "start": 16.333,
+   "end": 19.001,
+   "item": false
+  },
+  {
+   "scene": "c03",
+   "text": "Phần lớn người từng phải nhập viện vì tự làm hại bản thân, về sau không mất mạng vì chuyện đó.",
+   "start": 19.168,
+   "end": 23.386,
+   "item": false
+  },
+  {
+   "scene": "c04",
+   "text": "Hai: Hỏi thẳng, bạn có đang nghĩ đến chuyện làm hại mình không?",
+   "start": 23.553,
+   "end": 26.228,
+   "item": true
+  },
+  {
+   "scene": "c04",
+   "text": "Nghiên cứu chưa thấy việc hỏi làm tăng ý nghĩ đó, kể cả ở học sinh trung học.",
+   "start": 26.395,
+   "end": 29.747,
+   "item": false
+  },
+  {
+   "scene": "c05",
+   "text": "Theo hướng dẫn của Tổ chức Y tế Thế giới: chọn lúc và chỗ phù hợp, hỏi trực tiếp, và không phán xét.",
+   "start": 29.914,
+   "end": 34.311,
+   "item": false
+  },
+  {
+   "scene": "c06",
+   "text": "Khuyến khích người đó gặp nhân viên y tế và đề nghị đi cùng.",
+   "start": 34.478,
+   "end": 36.937,
+   "item": false
+  },
+  {
+   "scene": "c06",
+   "text": "Nếu thấy nguy cơ ngay trước mắt, đừng để họ ở một mình.",
+   "start": 37.104,
+   "end": 39.278,
+   "item": false
+  },
+  {
+   "scene": "c07",
+   "text": "Ba: Cất những vật nguy hiểm ra khỏi tầm tay.",
+   "start": 39.445,
+   "end": 41.473,
+   "item": true
+  },
+  {
+   "scene": "c07",
+   "text": "Một số nghiên cứu cho thấy hạn chế vật nguy hiểm trong tầm tay làm số ca giảm rõ rệt.",
+   "start": 41.64,
+   "end": 45.36,
+   "item": false
+  },
+  {
+   "scene": "c08",
+   "text": "Khi nguy hiểm đang ở ngay trước mắt, hãy gọi số một một năm, hoặc đến khoa cấp cứu gần nhất.",
+   "start": 45.527,
+   "end": 49.569,
+   "item": false
+  },
+  {
+   "scene": "c09",
+   "text": "Đường dây Ngày Mai: không chín sáu, ba không sáu, một bốn một bốn.",
+   "start": 49.736,
+   "end": 52.701,
+   "item": false
+  },
+  {
+   "scene": "c09",
+   "text": "Mở từ mười ba giờ đến hai mươi giờ ba mươi, từ thứ Tư đến Chủ nhật.",
+   "start": 52.868,
+   "end": 56.168,
+   "item": false
+  },
+  {
+   "scene": "c10",
+   "text": "Bốn: Cờ bạc đến mức phải vay tiền vẫn chơi, là một căn bệnh, không phải yếu đuối.",
+   "start": 56.335,
+   "end": 60.274,
+   "item": true
+  },
+  {
+   "scene": "c10",
+   "text": "Bệnh viện Bạch Mai xác định nghiện cờ bạc là một rối loạn tâm thần.",
+   "start": 60.441,
+   "end": 63.046,
+   "item": false
+  },
+  {
+   "scene": "c11",
+   "text": "Nghiên cứu ở Thụy Điển cho thấy người rối loạn cờ bạc có nguy cơ làm hại bản thân cao hơn nhiều lần.",
+   "start": 63.213,
+   "end": 67.478,
+   "item": false
+  },
+  {
+   "scene": "c11",
+   "text": "Bước đầu: tìm hỗ trợ tâm lý, và nhờ gia đình quản lý tiền giúp.",
+   "start": 67.645,
+   "end": 70.29,
+   "item": false
+  },
+  {
+   "scene": "c12",
+   "text": "Bạn không phải đi một mình.",
+   "start": 70.457,
+   "end": 71.669,
+   "item": false
+  },
+  {
+   "scene": "c12",
+   "text": "Hãy nói với một người, ngay hôm nay.",
+   "start": 71.836,
+   "end": 73.201,
+   "item": false
+  }
+ ],
+ "low": [
+  [
+   15,
+   "Đường dây Ngày Mai: không chín sáu, ba không sáu, một bốn một bốn.",
+   "Đường dây ngày mai 0963061414",
+   0.42
+  ],
+  [
+   16,
+   "Mở từ mười ba giờ đến hai mươi giờ ba mươi, từ thứ Tư đến Chủ nhật.",
+   "Mở từ 13h đến 20h30, từ thứ Tư đến Chủ Nhật",
+   0.65
+  ]
+ ]
+}

@@ -1,0 +1,683 @@
+{
+ "name": "Đạo lý - Tập 1",
+ "fps": 30,
+ "canvas": {
+  "w": 1080,
+  "h": 1920
+ },
+ "clips": [
+  {
+   "src": "media/v01.mp4",
+   "in": 0,
+   "dur": 8.043,
+   "speed": 0.916,
+   "size": "SP",
+   "label": "c01"
+  },
+  {
+   "src": "media/v02.mp4",
+   "in": 0,
+   "dur": 8.043,
+   "speed": 1.1933,
+   "size": "SP",
+   "label": "c02"
+  },
+  {
+   "src": "media/v03.mp4",
+   "in": 0,
+   "dur": 8.043,
+   "speed": 0.8466,
+   "size": "SP",
+   "label": "c03"
+  },
+  {
+   "src": "media/v04.mp4",
+   "in": 0,
+   "dur": 8.043,
+   "speed": 1.0003,
+   "size": "SP",
+   "label": "c04"
+  },
+  {
+   "src": "media/v05.mp4",
+   "in": 0,
+   "dur": 8.043,
+   "speed": 1.0957,
+   "size": "SP",
+   "label": "c05"
+  },
+  {
+   "src": "media/v06.mp4",
+   "in": 0,
+   "dur": 6.037,
+   "speed": 0.7566,
+   "size": "SP",
+   "label": "c06"
+  },
+  {
+   "src": "media/v07.mp4",
+   "in": 0,
+   "dur": 8.043,
+   "speed": 0.9037,
+   "size": "SP",
+   "label": "c07"
+  },
+  {
+   "src": "media/v08.mp4",
+   "in": 0,
+   "dur": 8.043,
+   "speed": 1.136,
+   "size": "SP",
+   "label": "c08"
+  },
+  {
+   "src": "media/v09.mp4",
+   "in": 0,
+   "dur": 6.037,
+   "speed": 0.9175,
+   "size": "SP",
+   "label": "c09"
+  },
+  {
+   "src": "media/v10.mp4",
+   "in": 0,
+   "dur": 6.037,
+   "speed": 0.912,
+   "size": "SP",
+   "label": "c10"
+  },
+  {
+   "src": "media/v11.mp4",
+   "in": 0,
+   "dur": 8.043,
+   "speed": 1.0391,
+   "size": "SP",
+   "label": "c11"
+  },
+  {
+   "src": "media/v12.mp4",
+   "in": 0,
+   "dur": 10.027,
+   "speed": 1.2409,
+   "size": "SP",
+   "label": "c12"
+  },
+  {
+   "src": "media/v13.mp4",
+   "in": 0,
+   "dur": 10.027,
+   "speed": 1.0311,
+   "size": "SP",
+   "label": "c13"
+  }
+ ],
+ "sections": [
+  {
+   "id": "c01",
+   "title": "c01",
+   "start": 0.0,
+   "end": 8.78,
+   "script": "",
+   "onscreen": [
+    {
+     "start": 0.5,
+     "end": 1.64,
+     "text": "Có bốn việc trên đường,",
+     "style": "Sub"
+    },
+    {
+     "start": 1.66,
+     "end": 2.92,
+     "text": "gần như không tốn tiền,",
+     "style": "Sub"
+    },
+    {
+     "start": 2.94,
+     "end": 4.62,
+     "text": "mà giảm rõ rệt nguy cơ tử vong.",
+     "style": "Sub"
+    },
+    {
+     "start": 4.64,
+     "end": 5.52,
+     "text": "Một – Thắt dây an toàn,",
+     "style": "Sub"
+    },
+    {
+     "start": 5.54,
+     "end": 6.68,
+     "text": "cả ghế trước lẫn ghế sau.",
+     "style": "Sub"
+    },
+    {
+     "start": 6.96,
+     "end": 8.76,
+     "text": "Mất đúng hai giây mỗi lần lên xe.",
+     "style": "Sub"
+    },
+    {
+     "start": 8.78,
+     "end": 10.12,
+     "text": "Ngồi ghế trước ô tô con,",
+     "style": "Sub"
+    },
+    {
+     "start": 10.44,
+     "end": 11.6,
+     "text": "thắt dây giúp giảm khoảng",
+     "style": "Sub"
+    },
+    {
+     "start": 11.62,
+     "end": 12.76,
+     "text": "bốn mươi lăm phần trăm nguy cơ",
+     "style": "Sub"
+    },
+    {
+     "start": 12.78,
+     "end": 13.74,
+     "text": "chấn thương gây tử vong.",
+     "style": "Sub"
+    },
+    {
+     "start": 13.76,
+     "end": 14.74,
+     "text": "Ghế sau cũng vậy.",
+     "style": "Sub"
+    },
+    {
+     "start": 15.52,
+     "end": 17.66,
+     "text": "Thống kê của Mỹ năm 2022 cho thấy",
+     "style": "Sub"
+    },
+    {
+     "start": 17.68,
+     "end": 18.62,
+     "text": "trong số người chết",
+     "style": "Sub"
+    },
+    {
+     "start": 18.64,
+     "end": 20.12,
+     "text": "ở hàng ghế sau mà xác định được,",
+     "style": "Sub"
+    },
+    {
+     "start": 20.14,
+     "end": 21.74,
+     "text": "sáu mươi phần trăm không thắt dây.",
+     "style": "Sub"
+    },
+    {
+     "start": 21.98,
+     "end": 23.92,
+     "text": "Ở Việt Nam, luật yêu cầu thắt dây",
+     "style": "Sub"
+    },
+    {
+     "start": 23.94,
+     "end": 25.0,
+     "text": "ở mọi chỗ ngồi có dây.",
+     "style": "Sub"
+    },
+    {
+     "start": 25.02,
+     "end": 26.34,
+     "text": "Người lái không thắt dây",
+     "style": "Sub"
+    },
+    {
+     "start": 26.36,
+     "end": 27.76,
+     "text": "bị phạt từ tám trăm nghìn đến",
+     "style": "Sub"
+    },
+    {
+     "start": 27.78,
+     "end": 28.24,
+     "text": "một triệu đồng.",
+     "style": "Sub"
+    },
+    {
+     "start": 28.26,
+     "end": 30.66,
+     "text": "Hai – Đội mũ bảo hiểm và cài quai.",
+     "style": "Sub"
+    },
+    {
+     "start": 30.68,
+     "end": 31.72,
+     "text": "Treo mũ trên tay lái",
+     "style": "Sub"
+    },
+    {
+     "start": 31.74,
+     "end": 32.78,
+     "text": "không tính là đội mũ.",
+     "style": "Sub"
+    },
+    {
+     "start": 33.06,
+     "end": 34.56,
+     "text": "Tổng hợp của Cochrane cho thấy",
+     "style": "Sub"
+    },
+    {
+     "start": 34.58,
+     "end": 35.86,
+     "text": "người đi xe máy đội mũ",
+     "style": "Sub"
+    },
+    {
+     "start": 35.88,
+     "end": 37.54,
+     "text": "giảm bốn mươi hai phần trăm nguy cơ",
+     "style": "Sub"
+    },
+    {
+     "start": 37.56,
+     "end": 39.84,
+     "text": "tử vong, và sáu mươi chín phần trăm chấn",
+     "style": "Sub"
+    },
+    {
+     "start": 39.86,
+     "end": 40.2,
+     "text": "thương đầu.",
+     "style": "Sub"
+    },
+    {
+     "start": 40.4,
+     "end": 42.36,
+     "text": "Ở Việt Nam, sau khi bắt buộc đội mũ",
+     "style": "Sub"
+    },
+    {
+     "start": 42.38,
+     "end": 44.14,
+     "text": "từ năm hai nghìn không trăm linh bảy,",
+     "style": "Sub"
+    },
+    {
+     "start": 44.16,
+     "end": 45.44,
+     "text": "ba tháng đầu nguy cơ tử vong",
+     "style": "Sub"
+    },
+    {
+     "start": 45.46,
+     "end": 46.9,
+     "text": "đã giảm mười tám phần trăm.",
+     "style": "Sub"
+    },
+    {
+     "start": 46.92,
+     "end": 48.36,
+     "text": "Chọn mũ có dấu hợp quy C R.",
+     "style": "Sub"
+    },
+    {
+     "start": 48.38,
+     "end": 49.92,
+     "text": "Không đội, hoặc không cài quai,",
+     "style": "Sub"
+    },
+    {
+     "start": 49.94,
+     "end": 51.32,
+     "text": "bị phạt từ bốn trăm đến",
+     "style": "Sub"
+    },
+    {
+     "start": 51.34,
+     "end": 52.1,
+     "text": "sáu trăm nghìn đồng.",
+     "style": "Sub"
+    },
+    {
+     "start": 52.12,
+     "end": 53.7,
+     "text": "Ba – Không chạy quá tốc độ,",
+     "style": "Sub"
+    },
+    {
+     "start": 53.72,
+     "end": 54.56,
+     "text": "không uống rượu bia,",
+     "style": "Sub"
+    },
+    {
+     "start": 54.58,
+     "end": 55.62,
+     "text": "không dùng điện thoại,",
+     "style": "Sub"
+    },
+    {
+     "start": 55.64,
+     "end": 56.74,
+     "text": "buồn ngủ thì dừng lại.",
+     "style": "Sub"
+    },
+    {
+     "start": 57.28,
+     "end": 58.62,
+     "text": "Tốc độ trung bình tăng một phần trăm,",
+     "style": "Sub"
+    },
+    {
+     "start": 58.64,
+     "end": 60.12,
+     "text": "nguy cơ tai nạn chết người",
+     "style": "Sub"
+    },
+    {
+     "start": 60.14,
+     "end": 61.5,
+     "text": "tăng khoảng bốn phần trăm.",
+     "style": "Sub"
+    },
+    {
+     "start": 61.52,
+     "end": 62.62,
+     "text": "Cầm điện thoại khi lái,",
+     "style": "Sub"
+    },
+    {
+     "start": 62.64,
+     "end": 64.34,
+     "text": "nguy cơ tai nạn gấp ba phẩy sáu lần.",
+     "style": "Sub"
+    },
+    {
+     "start": 64.36,
+     "end": 66.24,
+     "text": "Bấm số, gấp mười hai phẩy hai lần.",
+     "style": "Sub"
+    },
+    {
+     "start": 66.54,
+     "end": 67.8,
+     "text": "Rượu bia không có ngưỡng",
+     "style": "Sub"
+    },
+    {
+     "start": 67.82,
+     "end": 68.52,
+     "text": "uống chút không sao.",
+     "style": "Sub"
+    },
+    {
+     "start": 68.6,
+     "end": 69.42,
+     "text": "Ở Việt Nam,",
+     "style": "Sub"
+    },
+    {
+     "start": 69.44,
+     "end": 70.92,
+     "text": "đã có nồng độ cồn là bị phạt.",
+     "style": "Sub"
+    },
+    {
+     "start": 70.94,
+     "end": 73.42,
+     "text": "Đi đường dài, cứ bốn tiếng hãy dừng",
+     "style": "Sub"
+    },
+    {
+     "start": 73.44,
+     "end": 74.4,
+     "text": "nghỉ ít nhất hai mươi phút.",
+     "style": "Sub"
+    },
+    {
+     "start": 74.42,
+     "end": 76.74,
+     "text": "Bốn – Trẻ nhỏ phải ngồi ghế an toàn,",
+     "style": "Sub"
+    },
+    {
+     "start": 76.76,
+     "end": 77.54,
+     "text": "đừng bế trong lòng.",
+     "style": "Sub"
+    },
+    {
+     "start": 77.56,
+     "end": 79.68,
+     "text": "Với trẻ dưới một tuổi, ghế an toàn",
+     "style": "Sub"
+    },
+    {
+     "start": 79.7,
+     "end": 81.16,
+     "text": "giảm khoảng bảy mươi phần trăm nguy cơ",
+     "style": "Sub"
+    },
+    {
+     "start": 81.18,
+     "end": 82.64,
+     "text": "chấn thương tử vong trong tai nạn.",
+     "style": "Sub"
+    },
+    {
+     "start": 82.7,
+     "end": 84.18,
+     "text": "Trẻ từ một đến bốn tuổi,",
+     "style": "Sub"
+    },
+    {
+     "start": 84.2,
+     "end": 85.28,
+     "text": "giảm khoảng một nửa.",
+     "style": "Sub"
+    },
+    {
+     "start": 85.3,
+     "end": 85.72,
+     "text": "Từ ngày một tháng bảy năm",
+     "style": "Sub"
+    },
+    {
+     "start": 85.74,
+     "end": 86.24,
+     "text": "hai nghìn không trăm hai mươi sáu,",
+     "style": "Sub"
+    },
+    {
+     "start": 86.26,
+     "end": 88.38,
+     "text": "luật Việt Nam yêu cầu trẻ dưới mười tuổi",
+     "style": "Sub"
+    },
+    {
+     "start": 88.4,
+     "end": 90.36,
+     "text": "và cao dưới một mét ba mươi lăm dùng",
+     "style": "Sub"
+    },
+    {
+     "start": 90.38,
+     "end": 91.42,
+     "text": "thiết bị an toàn phù hợp,",
+     "style": "Sub"
+    },
+    {
+     "start": 91.44,
+     "end": 92.82,
+     "text": "và không ngồi cùng hàng ghế",
+     "style": "Sub"
+    },
+    {
+     "start": 92.84,
+     "end": 93.36,
+     "text": "với người lái.",
+     "style": "Sub"
+    },
+    {
+     "start": 93.38,
+     "end": 95.28,
+     "text": "Bốn việc, tốn rất ít tiền,",
+     "style": "Sub"
+    },
+    {
+     "start": 95.3,
+     "end": 97.06,
+     "text": "nhưng có thể thay đổi một chuyến đi.",
+     "style": "Sub"
+    },
+    {
+     "start": 97.38,
+     "end": 98.46,
+     "text": "Không cần làm hết.",
+     "style": "Sub"
+    },
+    {
+     "start": 98.48,
+     "end": 99.2,
+     "text": "Chọn một việc,",
+     "style": "Sub"
+    },
+    {
+     "start": 99.22,
+     "end": 100.64,
+     "text": "và bắt đầu từ chuyến đi tiếp theo.",
+     "style": "Sub"
+    },
+    {
+     "start": 100.98,
+     "end": 101.94,
+     "text": "Nguồn và ngày đối chiếu",
+     "style": "Sub"
+    },
+    {
+     "start": 101.96,
+     "end": 102.9,
+     "text": "có trong phần mô tả.",
+     "style": "Sub"
+    }
+   ]
+  },
+  {
+   "id": "c02",
+   "title": "c02",
+   "start": 8.78,
+   "end": 15.52,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c03",
+   "title": "c03",
+   "start": 15.52,
+   "end": 25.02,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c04",
+   "title": "c04",
+   "start": 25.02,
+   "end": 33.06,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c05",
+   "title": "c05",
+   "start": 33.06,
+   "end": 40.4,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c06",
+   "title": "c06",
+   "start": 40.4,
+   "end": 48.38,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c07",
+   "title": "c07",
+   "start": 48.38,
+   "end": 57.28,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c08",
+   "title": "c08",
+   "start": 57.28,
+   "end": 64.36,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c09",
+   "title": "c09",
+   "start": 64.36,
+   "end": 70.94,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c10",
+   "title": "c10",
+   "start": 70.94,
+   "end": 77.56,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c11",
+   "title": "c11",
+   "start": 77.56,
+   "end": 85.3,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c12",
+   "title": "c12",
+   "start": 85.3,
+   "end": 93.38,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c13",
+   "title": "c13",
+   "start": 93.38,
+   "end": 103.1,
+   "script": "",
+   "onscreen": []
+  }
+ ],
+ "voice": {
+  "profile": "70afd348",
+  "pron": []
+ },
+ "voiceover": [
+  {
+   "section": "all",
+   "file": "voice/voice_all.wav",
+   "start": 0,
+   "dur": 103.104,
+   "speedup": 1.0
+  }
+ ],
+ "music": null,
+ "subs": {
+  "mode": "sentence"
+ },
+ "rules": {
+  "shake_max": 9,
+  "alternate_sizes": false,
+  "shake_exempt": [
+   "media/"
+  ]
+ }
+}

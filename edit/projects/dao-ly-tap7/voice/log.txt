@@ -1,0 +1,54 @@
+[1.00] Có những dấu hiệu nhỏ của cơ thể, và những chuyện khó nói, mà bạn không nên bỏ qua.
+      nghe: Có những dấu hiệu nhỏ của cơ thể và những chuyện khó nói mà bạn không nên bỏ qua.
+[0.93] Một: Tiểu ra máu.
+      nghe: Một tiểu da máu
+[1.00] Một lần, không đau, hôm sau hết, vẫn phải đi khám.
+      nghe: Một lần không đau hôm sau hết vẫn phải đi khám
+[0.95] Số liệu ở Anh cho thấy khoảng 2,8% người trên sáu mươi tuổi có tiểu máu cuối cùng được chẩn đoán ung thư bàng quang.
+      nghe: Số liệu ở Anh cho thấy khoảng 2,8% người trên 60 tuổi có tiểu máu cuối cùng được chẩn đoán ung thư bằng quang.
+[0.68] Ở người từ bốn mươi đến năm mươi chín tuổi là 1,2%.
+      nghe: ở người từ 40 đến 59 tuổi là 1,2%.
+[1.00] Tỷ lệ không cao, nhưng đủ để phải kiểm tra một lần.
+      nghe: Tỷ lệ không cao nhưng đủ để phải kiểm tra một lần.
+[0.98] Hai: Rối loạn cương dương không chỉ là chuyện ấy.
+      nghe: Hai dối loạn cương dương không chỉ là chuyện ấy.
+[0.83] Người bị rối loạn cương dương có nguy cơ bệnh tim mạch cao hơn khoảng bốn mươi phần trăm, và nhồi máu cơ tim cao hơn khoảng sáu mươi phần trăm.
+      nghe: Người bị dối loạn cương dương có nguy cơ bệnh tim mạch cao hơn khoảng 40% Và nhồi máu cơ tim cao hơn khoảng 60%
+[1.00] Hãy đo huyết áp, đường huyết, mỡ máu trước.
+      nghe: Hãy đo huyết áp đường huyết mỡ máu trước.
+[1.00] Đừng tự mua thuốc để che đi vấn đề.
+      nghe: Đừng tự mua thuốc để che đi vấn đề
+[0.99] Ngày 2 tháng 4 năm 2025, Cục An toàn thực phẩm công bố cả bảy mẫu thực phẩm bảo vệ sức khỏe quảng cáo tăng cường sinh lý nam đều chứa hoạt chất của thuốc kê đơn.
+      nghe: Ngày 2 tháng 4 năm 2025, Cục An toàn Thực phẩm công bố cả 7 mẫu thực phẩm bảo vệ sức khỏe quảng cáo tăng cường sinh lý nam đều chứa hoạt chất của thuốc kê đơn.
+[1.00] Giảm cân, bỏ thuốc lá, kiểm soát huyết áp và đường huyết cũng giúp chức năng này tốt lên.
+      nghe: Giảm cân bỏ thuốc lá, kiểm soát huyết áp và đường huyết cũng giúp chức năng này tốt lên.
+[0.95] Ba: Dùng bao cao su, và không dùng chung bơm kim tiêm.
+      nghe: 3. Dùng bao cao su và không dùng chung bơm kim tiềm
+[0.88] Dùng lần nào cũng đủ suốt quá trình, giảm hơn bảy mươi phần trăm nguy cơ lây HIV giữa nam và nữ.
+      nghe: Dùng lần nào cũng đủ suốt quá trình, giảm hơn 70% nguy cơ lây HIV giữa nam và nữ.
+[1.00] Chỉ dùng phần lớn các lần thì gần như không khác gì không dùng.
+      nghe: Chỉ dùng phần lớn các lần thì gần như không khác gì không dùng.
+[1.00] Bao cao su cũng không chặn hoàn toàn giang mai và mụn rộp sinh dục ở vùng không được che.
+      nghe: Bao cao su cũng không chặn hoàn toàn giang mai và mụn rộp sinh dục ở vùng không được che.
+[0.90] Bốn: Xét nghiệm HIV nếu từng có hành vi nguy cơ.
+      nghe: Xét nghiệm nếu từng có hành vi nguy cơ.
+[1.00] Người dùng thuốc đều đặn đến khi virus không phát hiện được thì không lây cho bạn tình.
+      nghe: Người dùng thuốc đều đặn, đến khi virus không phát hiện được thì không lây cho bạn tình.
+[0.77] Giữa năm 2025, nước ta có hơn hai trăm sáu mươi bảy nghìn người nhiễm HIV còn sống.
+      nghe: Giữa năm 2025, nước ta có hơn 267.000 người nhiễm HIV còn sống.
+[1.00] Luật cấm công khai tên, địa chỉ, hình ảnh người nhiễm.
+      nghe: Luật cấm công khai tên, địa chỉ hình ảnh người nhiễm.
+[0.91] Từ đủ mười lăm tuổi, bạn được tự nguyện yêu cầu xét nghiệm.
+      nghe: Từ đủ 15 tuổi, bạn được tự nguyện yêu cầu xét nghiệm.
+[0.88] Năm: P r E P, thuốc kê đơn, không tự mua tự uống.
+      nghe: nằm thuốc kê đơn, không tự mua tự uống.
+[0.86] Dùng đều, nguy cơ nhiễm HIV thấp hơn khoảng bảy mươi phần trăm so với giả dược.
+      nghe: Dùng đều nguy cơ nhiễm HIV thấp hơn khoảng 70% so với giả dược
+[0.98] Quy trình gồm xét nghiệm HIV, đánh giá thận và viêm gan, tái khám sau một tháng.
+      nghe: Quy trình gồm xét nghiệm hai vơ đánh giá thận và viêm gan tái khám sau một tháng
+[0.98] Nếu đã có phơi nhiễm, cần đánh giá điều trị dự phòng sau phơi nhiễm, không tự chuyển sang P r E P.
+      nghe: Nếu đã có phơi nhiễm, cần đánh giá điều trị dự phòng sau phơi nhiễm, không tự chuyển sang PREP.
+[0.96] Năm điều nhỏ, có thể cứu bạn khỏi những chuyện lớn.
+      nghe: 5 điều nhỏ có thể cứu bạn khỏi những chuyện lớn
+[0.94] Có dấu hiệu lạ, hãy đi khám, đừng ngại.
+      nghe: dụng có dấu hiệu lạ hãy đi khám đừng ngại.
