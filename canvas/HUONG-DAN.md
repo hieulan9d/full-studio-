@@ -43,7 +43,7 @@ Chỉ chạy **một** trong hai cách một lúc (cùng dùng cổng 8100).
 
 Chưa có: **Veo 3.1 Quality** (FlowKit chưa biết tên model; cần bắt lại yêu cầu mạng, xem `flowkit/docs/CAPTURE.md`).
 
-> Nhập cài đặt **ghi đè** toàn bộ cài đặt hiện có. Nếu đã điền API key khác, nhập lại sau.
+> Nhập cài đặt **gộp** vào cài đặt hiện có: nhà cung cấp mới được thêm; nhà cung cấp trùng (cùng id hoặc cùng địa chỉ) được cập nhật model và giữ API key đang có nếu file nhập để trống; nhà cung cấp và cài đặt khác đang có không bị xóa. (Trước đây là ghi đè toàn bộ.)
 
 ### Giới hạn cần nhớ
 - **Thời lượng video Flow:** 4, 6, 8, 10 giây (thanh trượt tự giới hạn tối đa 10s). Không có 2s. Veo do Flow tự quyết định độ dài.
