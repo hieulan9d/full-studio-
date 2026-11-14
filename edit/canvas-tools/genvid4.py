@@ -17,6 +17,6 @@ for k,s in enumerate(sc,1):
     if k==1: continue
     c=[n for n in N.values() if n['type']=='config' and n['title']==f"T4-{s['id']} ảnh"][0]
     img=[x['toNodeId'] for x in r['connections'] if x['fromNodeId']==c['id'] and N[x['toNodeId']]['type']=='image'][0]
-    p="Hand-drawn black and white ink sketch animation on pure black background, white chalk line art with crosshatch shading, same style as the reference image. "+MOT[k-1]+". Subtle slow camera push-in, chalk lines flicker slightly. No text, no letters, no logos."
+    p="Hand-drawn black and white ink sketch animation on pure black background, white chalk line art with crosshatch shading, same style as the reference image. "+MOT[k-1]+". Camera almost static: at most a very slight, barely noticeable slow push-in (under 3 percent), no fast zoom, no big camera movement; only small gentle subject motion and a faint chalk flicker. No text, no letters, no logos."
     res=call('canvas_generate_video',{"prompt":p,"referenceNodeIds":[img],"model":"flow::flow-omni-flash","size":"9:16","seconds":str(s['clip_s']),"title":f"T4-V-c{k:02d} video {s['clip_s']}s"})
     print('video',k,res.get('ok'),flush=True);time.sleep(5)

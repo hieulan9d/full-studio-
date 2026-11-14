@@ -12,7 +12,7 @@ Nguồn nội dung: sách "KIM CHỈ NAM SỐNG 'CHẤT'" (Lụa Nguyễn chuy�
 - Nhân vật chính: người tối giản đầu hình quả trứng trắng trơn, áo thun trắng, không có mặt. Cảnh không cần nhân vật thì chỉ vẽ đồ vật/nhà cửa (không có người).
 - **Mẫu prompt ảnh** (tiếng Anh): `[A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, <hành động + bối cảnh Việt Nam>.]` + hậu tố cố định: `Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.`
 - Model ảnh: `flow::flow-nano-banana-pro`, size `9:16`. Model video: `flow::flow-omni-flash`, `seconds` là chuỗi "6"/"8"/"10", ảnh tham chiếu là node ảnh của cảnh đó.
-- **Mẫu prompt video:** `Hand-drawn black and white ink sketch animation on pure black background, white chalk line art with crosshatch shading, same style as the reference image. <một hành động chậm, nhỏ>. Subtle slow camera push-in, chalk lines flicker slightly. No text, no letters, no logos.` Chuyển động nhẹ (hơi thở, khói, nước gợn, đèn nhấp nháy), không hành động mạnh.
+- **Mẫu prompt video:** `Hand-drawn black and white ink sketch animation on pure black background, white chalk line art with crosshatch shading, same style as the reference image. <một hành động chậm, nhỏ>. Camera almost static: at most a very slight, barely noticeable slow push-in (under 3 percent), no fast zoom, no big camera movement; only small gentle subject motion and a faint chalk flicker. No text, no letters, no logos.` Chuyển động nhẹ (hơi thở, khói, nước gợn, đèn nhấp nháy), không hành động mạnh.
 - Mỗi cảnh ứng với một đến hai câu lời thoại; 12–14 cảnh một tập.
 
 ### Bẫy Flow (đã gặp)
@@ -53,6 +53,7 @@ Nguồn nội dung: sách "KIM CHỈ NAM SỐNG 'CHẤT'" (Lụa Nguyễn chuy�
 5. Kiểm: nghe lại (đặc biệt chỗ có số), xem phụ đề trên cảnh sáng, tốc độ cảnh (>1,25× không dùng).
 
 ## 7. Điều người dùng dặn (tổng hợp)
+- **Zoom chỉ nhẹ** (dặn 2026-11-14, sau tập 9): video tạo ra từ Muse/Flow zoom quá nhiều. Prompt video phải ghi camera gần như tĩnh, đẩy vào rất nhẹ; trong vf không thêm `zoom` mạnh cho clip Đạo lý.
 - Cắt giọng sát câu, bỏ hơi thở/lặng thừa; nghỉ ~5 khung hình giữa câu.
 - Đổi cảnh đúng đầu câu; ưu tiên làm chậm hoặc cắt đôi clip; được bỏ cảnh khi thiếu chỗ.
 - Chữ giữ kiểu cũ; số viết bằng chữ số; dòng ngắn.
