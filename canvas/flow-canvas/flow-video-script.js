@@ -26,7 +26,9 @@ async function flowVideo({ prompt, images, videos, audios, params, model, signal
   // tên ảnh trên Flow = tên node: canvas gắn nhãn "Ảnh N (tên node)" vào prompt (tên <= 24 ký tự)
   const refNames = [];
   for (const nm of String(prompt).matchAll(/Ảnh (\d+) \(([^)\n]{1,24})\)/g)) if (!refNames[nm[1] - 1]) refNames[nm[1] - 1] = nm[2].trim();
-  const fileNameOf = (i) => { const n = refNames[i] || `Ảnh ${i + 1}`; return /\.(png|jpe?g|webp)$/i.test(n) ? n : n + ".png"; };
+  // ưu tiên tên do canvas gửi kèm (params.imageNames = tiêu đề node + .png); nhãn trong prompt chỉ là dự phòng
+  const given = Array.isArray(p.imageNames) ? p.imageNames : [];
+  const fileNameOf = (i) => { const n = String(given[i] || "").trim() || refNames[i] || `Ảnh ${i + 1}`; return /\.(png|jpe?g|webp)$/i.test(n) ? n : n + ".png"; };
   const text = String(prompt)
     .replace(/^Nhãn ảnh tham chiếu:[^\n]*\n+/, "")
     .replace(/【[^】\n]*】\s*/g, "") // nhãn node văn bản do canvas thêm

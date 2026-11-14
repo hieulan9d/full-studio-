@@ -40,7 +40,9 @@ export type NodeGenerationInput = NodeGenerationResourceInput | NodeGenerationGr
 export function buildNodeGenerationContext(nodeId: string, nodes: CanvasNodeData[], connections: CanvasConnection[], prompt: string): NodeGenerationContext {
     const inputs = buildNodeGenerationInputs(nodeId, nodes, connections);
     const sourceNode = nodes.find((node) => node.id === nodeId);
-    if (sourceNode?.type === CanvasNodeType.Config && Boolean(sourceNode.metadata?.composerContent?.trim())) {
+    // Node video tự tạo (không qua node cấu hình): chỉ dùng chế độ composer khi prompt có thẻ @[node:...] tới ảnh tham chiếu.
+    const videoComposer = sourceNode?.type === CanvasNodeType.Video && /@\[node:[^\]]+\]/.test(sourceNode.metadata?.composerContent || "");
+    if ((sourceNode?.type === CanvasNodeType.Config || videoComposer) && Boolean(sourceNode?.metadata?.composerContent?.trim())) {
         return buildComposerGenerationContext(inputs, prompt);
     }
 

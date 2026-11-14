@@ -113,6 +113,8 @@ async function createPluginVideoTask(config: AiConfig, model: string, script: st
                 generateAudio: boolConfig(config.videoGenerateAudio, true),
                 watermark: boolConfig(config.videoWatermark, false),
                 mode: resolveVideoMode(config.videoMode, refs.length),
+                // Tên ảnh = tiêu đề node (không phụ thuộc nhãn trong prompt), để Flow đặt đúng tên file/chip.
+                imageNames: references.map((image) => image.name),
             },
             signal: options?.signal,
         }),
