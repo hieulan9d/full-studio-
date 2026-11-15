@@ -183,6 +183,7 @@ export function AppConfigPanel({ showDoneButton = false, initialTab = "channels"
                     <input ref={configInputRef} type="file" accept="application/json,.json" className="hidden" onChange={(event) => event.target.files?.[0] && void loadConfigFile(event.target.files[0])} />
                 </div>
             </div>
+            <MuseKeys />
             <Tabs
                 activeKey={activeTab}
                 onChange={(key) => setActiveTab(key as ConfigTabKey)}
@@ -393,6 +394,35 @@ export function AppConfigModal() {
         >
             <AppConfigPanel showDoneButton initialTab={configTab} />
         </Modal>
+    );
+}
+
+function MuseKeys() {
+    const { message } = App.useApp();
+    const [keys, setKeys] = useState<{ api_key: string; admin_key: string } | null>(null);
+    useEffect(() => {
+        fetch("http://127.0.0.1:18610/local/keys")
+            .then((res) => (res.ok ? res.json() : null))
+            .then((data) => data && setKeys(data))
+            .catch(() => undefined);
+    }, []);
+    if (!keys) return null;
+    const copy = (value: string) => {
+        void navigator.clipboard.writeText(value).then(() => message.success("Đã sao chép"));
+    };
+    const row = (label: string, value: string) => (
+        <div className="flex items-center gap-2 text-xs">
+            <span className="w-24 shrink-0 text-stone-500">{label}</span>
+            <code className="min-w-0 flex-1 select-all break-all rounded bg-stone-100 px-2 py-1 dark:bg-stone-800">{value}</code>
+            <Button size="small" onClick={() => copy(value)}>Sao chép</Button>
+        </div>
+    );
+    return (
+        <div className="my-3 space-y-1 rounded-lg border border-stone-200 px-3 py-2 dark:border-stone-800">
+            <div className="text-xs font-semibold">Muse (muse2api): khóa nội bộ</div>
+            {row("Admin key", keys.admin_key)}
+            {row("API key", keys.api_key)}
+        </div>
     );
 }
 

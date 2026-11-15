@@ -101,7 +101,7 @@ def create_app(settings: Settings | None = None, driver: MuseDriver | None = Non
     # The cookie-import extension calls /admin/accounts from chrome-extension://.
     app.add_middleware(
         CORSMiddleware,
-        allow_origin_regex=r"chrome-extension://.*",
+        allow_origin_regex=r"(chrome-extension://.*|http://(127\.0\.0\.1|localhost)(:\d+)?)",  # Infinity Studio: canvas web UI
         allow_methods=["*"],
         allow_headers=["*"],
     )

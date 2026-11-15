@@ -9,8 +9,10 @@ from __future__ import annotations
 from functools import lru_cache
 from pathlib import Path
 
-from fastapi import APIRouter
+from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import HTMLResponse
+
+from ..deps import get_services
 
 router = APIRouter(tags=["dashboard"])
 
@@ -27,3 +29,13 @@ async def dashboard() -> HTMLResponse:
     return HTMLResponse(_html(), headers={"Cache-Control": "no-cache",
                                           "X-Frame-Options": "DENY",
                                           "Referrer-Policy": "no-referrer"})
+
+
+# Infinity Studio: internal use only. Lets the canvas show the keys; loopback clients only.
+@router.get("/local/keys", include_in_schema=False)
+async def local_keys(request: Request) -> dict:
+    host = request.client.host if request.client else ""
+    if host not in ("127.0.0.1", "::1", "localhost"):
+        raise HTTPException(status_code=403, detail="loopback only")
+    st = get_services(request).settings
+    return {"api_key": st.api_key, "admin_key": st.effective_admin_key}

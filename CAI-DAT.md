@@ -201,7 +201,7 @@ MUSE2API_CDP_PORT=19210
 ```
 - **Đường dẫn có chữ có dấu** (ví dụ `dự án`): `pip install -e .` có thể không tạo file `.pth` nên `python -m muse2api` báo `No module named muse2api`. Cách sửa: tạo file `muse2api_src.pth` trong `site-packages` của Python, nội dung là đường dẫn tuyệt đối tới `canvas\muse2api\src` (lưu UTF-8). Kiểm tra: `python -c "import muse2api"`.
 - Chạy: `app.bat` tự bật muse2api khi mở app (nếu có `pyproject.toml`), hoặc chạy tay `python -m muse2api` trong `canvas\muse2api`. Mở `http://127.0.0.1:18610/dashboard` (nút **Dashboard Muse** ở Cài đặt, hoặc menu `muse2api`) để **thêm cookie tài khoản muse.ai của chính bạn**.
-- **API key** tự tạo ở `canvas\muse2api\data\api_key` (lần chạy đầu). Dán vào nhà cung cấp **Muse (muse2api)** trong Cài đặt (`http://127.0.0.1:18610/v1`). Máy mới thì key mới: phải dán lại.
+- **API key** tự tạo ở `canvas\muse2api\data\api_key` (lần chạy đầu). Dán vào nhà cung cấp **Muse (muse2api)** trong Cài đặt (`http://127.0.0.1:18610/v1`). Máy mới thì key mới: phải dán lại. **Admin key** là khóa vào `/dashboard` (mặc định bằng API key). Cả hai khóa hiện ngay ở đầu hộp Cài đặt của canvas, kèm nút Sao chép (do bản sửa `GET /local/keys`, chỉ nhận từ máy local).
 - Kiểm tra: `curl http://127.0.0.1:18610/v1/models -H "Authorization: Bearer <key>"` trả danh sách `muse-chat`, `muse-image`, `muse-video`.
 
 ---
