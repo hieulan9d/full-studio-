@@ -295,6 +295,7 @@
     H.anim(H.scl(sc), [0.6, tEnd - 0.4, tEnd - 0.1], [[100, 100], [97, 97], [52, 52]], 'soft');
     H.ease(H.scl(sc), 2, 33, 90);
     H.anim(H.pos(sc), [tEnd - 0.4, tEnd - 0.1], [[960, 540], [960, 380]], 'accel');
+    H.cue(c, 0, 'whoosh'); H.cue(c, 0.15, 'shimmer'); for (var cq = 0; cq < chips.length && cq < 3; cq++) H.cue(c, 0.4 + cq * 0.15, 'pop'); if (o.card) H.cue(c, 0.8, 'pop'); H.cue(c, tEnd - 0.4, 'whoosh_fast');
     return c;
   };
 
@@ -315,6 +316,7 @@
     H.anim(H.opa(ui), [0, 0.12], [0, 100], 'linear');
     big.moveToBeginning(); dof.moveToBeginning(); gl.moveToBeginning(); ui.moveToBeginning();
     H.exitBlur(c, c.duration - 0.3, 0.25);
+    H.cue(c, 0, 'whoosh'); H.cue(c, 0.25, 'shimmer'); if (o.tSwap !== undefined && o.tSwap !== null) H.cue(c, o.tSwap - (o.uiOffset || 0) + 0.15, 'glitch'); H.cue(c, c.duration - 0.3, 'whoosh_fast');
     return c;
   };
 

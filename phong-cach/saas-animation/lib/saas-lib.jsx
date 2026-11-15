@@ -4,8 +4,30 @@
 // Quy ước toạ độ: comp 1920×1080, 30 fps, điểm (0,0) ở góc trên trái.
 (function () {
   var H = {};
-  H.VERSION = '1.0';
+  H.VERSION = '1.3.0';
+  // H.W/H.Hh = KHÔNG GIAN THIẾT KẾ của cảnh (luôn 1920×1080 — mọi hàm cảnh vẽ theo toạ độ này).
+  // H.FRAME = khung ra thật của MAIN/ENV: 16:9 1920×1080 hoặc 9:16 1080×1920 (H.setFormat).
   H.W = 1920; H.Hh = 1080; H.FPS = 30;
+  H.FRAME = { w: 1920, h: 1080, vertical: false };
+  H.setFormat = function (f) {
+    // KHÔNG dùng ternary lồng (a ? x : b ? y : z) — ExtendScript tính sai, từng biến '9:16' thành khung vuông.
+    if (f === '9:16') H.FRAME = { w: 1080, h: 1920, vertical: true };
+    else if (f === '1:1') H.FRAME = { w: 1080, h: 1080, vertical: false, square: true };
+    else H.FRAME = { w: 1920, h: 1080, vertical: false };
+    return H.FRAME;
+  };
+  // Comp có kích thước khung ra (MAIN, ENV)
+  H.frameComp = function (name, dur, folder) { return H.comp(name, dur, folder, H.FRAME.w, H.FRAME.h); };
+  // Đặt layer cảnh (thiết kế 1920×1080) vào khung ra: phóng s (mặc định 1), dời dy px theo chiều dọc khung.
+  // 9:16 ở s=1 thấy dải giữa rộng 1080 của cảnh; phần ngoài bị cắt. Xem knowledge/11-khung-doc.md.
+  // Khung dọc: bật collapse transformations để nội dung vượt vùng thiết kế 1080 px cao (cửa sổ dashboard,
+  // panel nền) không bị cắt thành đường ngang cứng. dx dời ngang (cụm chat lệch phải trong thiết kế → dx âm).
+  H.frame = function (layer, s, dy, dx) {
+    var F = H.FRAME; H.pos(layer).setValue([F.w / 2 + (dx || 0), F.h / 2 + (dy || 0)]);
+    H.scl(layer).setValue([s || 100, s || 100]);
+    if (F.vertical) layer.collapseTransformation = true;
+    return layer;
+  };
 
   // =====================================================================
   // 1. CƠ BẢN: màu, project, comp
@@ -178,7 +200,7 @@
     d.resetCharStyle(); d.resetParagraphStyle();
     d.fontSize = o.size || 40; d.font = o.font || H.FONT.regular;
     d.fillColor = H.rgb(o.color || '#ffffff'); d.applyFill = true; d.applyStroke = false;
-    d.justification = (o.just === 'l') ? ParagraphJustification.LEFT_JUSTIFY : (o.just === 'r') ? ParagraphJustification.RIGHT_JUSTIFY : ParagraphJustification.CENTER_JUSTIFY;
+    d.justification = (o.just === 'l') ? ParagraphJustification.LEFT_JUSTIFY : ((o.just === 'r') ? ParagraphJustification.RIGHT_JUSTIFY : ParagraphJustification.CENTER_JUSTIFY);
     d.tracking = o.track || 0;
     sp.setValue(d);
     H.anchorText(l, o.just);
@@ -373,18 +395,18 @@
 
   // ENV_Space: nền gradient, sao, quầng mờ, cột sáng rọi từ trên (thở nhẹ). dur = độ dài video.
   H.buildEnvSpace = function (dur) {
-    var P = H.P, env = H.comp('ENV_Space', dur, '01_ENV');
+    var P = H.P, env = H.frameComp('ENV_Space', dur, '01_ENV'), W = env.width, Ht = env.height, cx = W / 2, k = Ht / 1080;
     var bg = H.solid(env, 'BG_Gradient', '#000000'); bg.label = 8;
-    H.ramp(bg, [960, 0], P.bgTop, [960, 1080], P.bgBottom);
+    H.ramp(bg, [cx, 0], P.bgTop, [cx, Ht], P.bgBottom);
     var st = H.solid(env, 'ENV_Stars', '#000000'); st.label = 8;
     H.fx(st, 'ADBE Fractal Noise', { 'ADBE Fractal Noise-0004': 600, 'ADBE Fractal Noise-0005': -290, 'ADBE Fractal Noise-0010': 3.5, 'ADBE Fractal Noise-0015': 1 });
     H.efx(st, 'ADBE Fractal Noise').property('ADBE Fractal Noise-0023').expression = 'time*12';
     st.blendingMode = BlendingMode.SCREEN; H.opa(st).setValue(18);
-    var hz = H.shape(env, { name: 'ENV_Haze', kind: 'ellipse', w: 1900, h: 1400, fill: P.haze, pos: [960, 380] });
+    var hz = H.shape(env, { name: 'ENV_Haze', kind: 'ellipse', w: 1900, h: 1400 * k, fill: P.haze, pos: [cx, 380 * k] });
     H.blur(hz, 300); hz.blendingMode = BlendingMode.ADD; H.opa(hz).setValue(22);
-    var bw = H.shape(env, { name: 'ENV_Beam_Wide', w: 520, h: 1500, fill: P.beamWide, pos: [960, 150] });
+    var bw = H.shape(env, { name: 'ENV_Beam_Wide', w: 520, h: 1500 * k, fill: P.beamWide, pos: [cx, 150 * k] });
     H.blur(bw, 170); bw.blendingMode = BlendingMode.ADD; H.opa(bw).setValue(32);
-    var bc = H.shape(env, { name: 'ENV_Beam_Core', w: 150, h: 1150, fill: P.beam, pos: [960, 60] });
+    var bc = H.shape(env, { name: 'ENV_Beam_Core', w: 150, h: 1150 * k, fill: P.beam, pos: [cx, 60 * k] });
     H.blur(bc, 65); bc.blendingMode = BlendingMode.ADD;
     var ts = [], vs = []; for (var t = 0; t <= dur; t += 2) { ts.push(t); vs.push((t / 2) % 2 ? 40 : 50); }
     H.anim(H.opa(bc), ts, vs, 'soft');
@@ -392,16 +414,17 @@
   };
   // ENV_Planet: "hành tinh" có vòng chân trời phát sáng ở đáy khung (đỉnh vòng ở y=950)
   H.buildEnvPlanet = function (dur) {
-    var P = H.P, pl = H.comp('ENV_Planet', dur, '01_ENV'), R = 2800, cy = 950 + R / 2;
-    var atm = H.shape(pl, { name: 'Planet_Atmosphere', kind: 'ellipse', w: R + 140, fill: P.atm, pos: [960, cy] });
+    // đỉnh vòng ở 88% chiều cao khung; ở khung dọc dùng bán kính nhỏ hơn cho cong rõ hơn
+    var P = H.P, pl = H.frameComp('ENV_Planet', dur, '01_ENV'), cx = pl.width / 2, top = pl.height * 0.88, R = pl.width < pl.height ? 2000 : 2800, cy = top + R / 2;
+    var atm = H.shape(pl, { name: 'Planet_Atmosphere', kind: 'ellipse', w: R + 140, fill: P.atm, pos: [cx, cy] });
     H.blur(atm, 140); atm.blendingMode = BlendingMode.ADD; H.opa(atm).setValue(40);
-    var halo = H.shape(pl, { name: 'Planet_Halo', kind: 'ellipse', w: R, stroke: P.halo, sw: 60, pos: [960, cy] });
+    var halo = H.shape(pl, { name: 'Planet_Halo', kind: 'ellipse', w: R, stroke: P.halo, sw: 60, pos: [cx, cy] });
     H.blur(halo, 70); halo.blendingMode = BlendingMode.ADD;
-    var hot = H.shape(pl, { name: 'Planet_Hotspot', kind: 'ellipse', w: 1300, h: 160, fill: '#5fa0ff', pos: [960, 955] });
+    var hot = H.shape(pl, { name: 'Planet_Hotspot', kind: 'ellipse', w: 1300, h: 160, fill: '#5fa0ff', pos: [cx, top + 5] });
     H.blur(hot, 120); hot.blendingMode = BlendingMode.ADD; H.opa(hot).setValue(35);
-    var body = H.shape(pl, { name: 'Planet_Body', kind: 'ellipse', w: R, fill: '#02050f', fillOp: 75, pos: [960, cy] });
-    H.ramp(body, [960, 950], '#163a8c', [960, 1400], '#030a20');
-    var rim = H.shape(pl, { name: 'Planet_Rim', kind: 'ellipse', w: R, stroke: P.rim, sw: 5, pos: [960, cy] });
+    var body = H.shape(pl, { name: 'Planet_Body', kind: 'ellipse', w: R, fill: '#02050f', fillOp: 75, pos: [cx, cy] });
+    H.ramp(body, [cx, top], '#163a8c', [cx, top + 450], '#030a20');
+    var rim = H.shape(pl, { name: 'Planet_Rim', kind: 'ellipse', w: R, stroke: P.rim, sw: 5, pos: [cx, cy] });
     H.glow(rim, 30, 40, 1.5);
     return pl;
   };
@@ -414,8 +437,8 @@
     bc.property('ADBE Brightness & Contrast 2-0001').setValue(-12); bc.property('ADBE Brightness & Contrast 2-0002').setValue(22);
     var vg = H.solid(main, 'VIG_Vignette', '#000000'); vg.label = 5;
     var m = vg.property('ADBE Mask Parade').addProperty('ADBE Mask Atom'), sh = new Shape();
-    var rx = 1200, ry = 675, kx = 0.5523 * rx, ky = 0.5523 * ry;
-    sh.vertices = [[960, 540 - ry], [960 + rx, 540], [960, 540 + ry], [960 - rx, 540]];
+    var mx = main.width / 2, my = main.height / 2, rx = main.width * 0.625, ry = main.height * 0.625, kx = 0.5523 * rx, ky = 0.5523 * ry;
+    sh.vertices = [[mx, my - ry], [mx + rx, my], [mx, my + ry], [mx - rx, my]];
     sh.inTangents = [[-kx, 0], [0, -ky], [kx, 0], [0, ky]]; sh.outTangents = [[kx, 0], [0, ky], [-kx, 0], [0, -ky]]; sh.closed = true;
     m.property('ADBE Mask Shape').setValue(sh); m.inverted = true; m.property('ADBE Mask Feather').setValue([500, 500]);
     H.opa(vg).setValue(55);
@@ -449,6 +472,7 @@
       H.anim(H.pos(g), [o.outAt, o.outAt + 0.45], [[960, 540], [960, 760]], 'accel');
       H.fadeOut(ico, o.outAt + 0.03, 0.24); H.fadeOut(txt, o.outAt + 0.03, 0.24);
     }
+    H.cue(c, 0.02, 'sparkle'); if (o.outAt !== undefined) H.cue(c, o.outAt, 'whoosh_fast');
     return c;
   };
 
@@ -514,6 +538,7 @@
     H.anim(H.pos(nl), [T0 + 0.2, T0 + 1.8], [[960, 560, R], [960, 570, R + 60]], 'soft');
     var pu = H.shape(c, { name: 'FX_Purple', kind: 'ellipse', w: 1200, h: 700, fill: '#7a3dff', pos: [1500, 1050], label: 11 });
     H.blur(pu, 220); pu.blendingMode = BlendingMode.ADD; H.anim(H.opa(pu), [T0, c.duration - 1.0, c.duration - 0.7], [0, 70, 90], 'soft');
+    H.cue(c, 0, 'whoosh'); H.cue(c, 0.3, 'pop'); H.cue(c, T0, 'whoosh'); H.cue(c, T1, 'shimmer');
     return c;
   };
 
@@ -542,6 +567,7 @@
     H.anim(H.efx(fill, 'Tint_White').property('ADBE Tint-0003'), [0.45, 0.8], [0, 100], 'snap');
     H.anim(H.efx(fill, 'Soft').property('ADBE Gaussian Blur 2-0001'), [0.4, 0.9], [45, 0], 'snap');
     H.anim(H.opa(fill), [0, 0.08], [0, 100], 'linear');
+    H.cue(c, 0, 'riser'); H.cue(c, 0, 'impact'); H.cue(c, 0.75, 'sparkle');
     return c;
   };
 
@@ -589,6 +615,7 @@
     orbN.parent = sc; for (var m = 0; m < L.length; m++) L[m].parent = sc;
     H.anim(H.scl(sc), [0.3, c.duration - 0.15], [[123, 123], [111, 111]], 'soft');
     H.exitBlur(c, c.duration - 0.3, 0.25);
+    H.cue(c, 0, 'impact'); H.cue(c, 0.2, 'pop'); H.cue(c, 0.34, 'pop'); H.cue(c, 0.48, 'pop'); H.cue(c, 0.15, 'shimmer'); H.cue(c, c.duration - 0.3, 'whoosh_fast');
     return c;
   };
 
@@ -644,6 +671,7 @@
     H.anim(H.pos(sc), [1.1, c.duration - 0.1], [[1190, 580], [1170, 565]], 'soft');
     H.anim(H.scl(sc), [1.1, c.duration - 0.1], [[s, s], [s * 1.04, s * 1.04]], 'soft');
     H.exitBlur(c, c.duration - 0.25, 0.22);
+    H.cue(c, 0, 'typing', 0.68); H.cue(c, 0.72, 'swoosh_up'); H.cue(c, 0.85, 'pop'); H.cue(c, 1.05, 'tick'); H.cue(c, 1.29, 'tick'); H.cue(c, 1.53, 'tick'); H.cue(c, 1.9, 'whoosh_fast'); H.cue(c, c.duration - 0.25, 'whoosh_fast');
     return c;
   };
 
@@ -671,6 +699,7 @@
     // vị trí icon trên màn hình lúc vào (để ngôi sao morph bay về đúng chỗ): H.lastEndIcon
     H.lastEndScale = s;
     H.lastEndIcon = [960 + (x0 + 46 - 960) * s / 100, 540 + (510 - 540) * s / 100];
+    H.cue(c, 0, 'impact'); H.cue(c, 0.3, 'shimmer'); H.cue(c, 0.05, 'sparkle');
     return c;
   };
   // Cỡ logo (%) để cụm sao + chữ rộng ~1000 px; tên ngắn được phóng to hơn (120–220%)
@@ -689,6 +718,67 @@
     var ex = H.adj(c, 'ADJ_Exit'); H.gblur(ex, 0);
     H.anim(H.efx(ex, 'ADBE Gaussian Blur 2').property('ADBE Gaussian Blur 2-0001'), [t, t + dur], [0, 40], 'accel');
     ex.moveToBeginning(); return ex;
+  };
+
+  // =====================================================================
+  // 7b. ÂM THANH — mốc SFX lưu trong comment của comp cảnh (không mất khi AE khởi động lại)
+  // =====================================================================
+  // H.cue(comp, t, loại, độ dài?) — loại = tên file SFX bỏ đuôi biến thể (whoosh, pop, typing, riser...).
+  // riser: t = mốc KẾT THÚC (file được đặt sao cho đuôi trùng t). Còn lại: t = mốc bắt đầu.
+  H.cue = function (comp, t, type, dur) {
+    comp.comment = (comp.comment ? comp.comment + ';' : 'cues:') + t.toFixed(3) + '|' + type + (dur ? '|' + dur : '');
+  };
+  H.cues = function (comp) {
+    var m = /cues:([^\n]*)/.exec(comp.comment || ''); if (!m) return [];
+    var a = m[1].split(';'), out = [];
+    for (var i = 0; i < a.length; i++) { var p = a[i].split('|'); if (p.length >= 2) out.push({ t: parseFloat(p[0]), type: p[1], dur: p[2] ? parseFloat(p[2]) : 0 }); }
+    return out;
+  };
+  // Mức (dB) mặc định theo loại; nhạc nền đặt riêng
+  H.SFX_DB = { whoosh: -9, whoosh_fast: -11, swoosh_up: -11, pop: -13, click: -15, tick: -19, typing: -15, riser: -10, impact: -6, sparkle: -12, glitch: -13, shimmer: -15 };
+  H.importAudio = function (path) {
+    var f = new File(path), nm = f.name;
+    var it = H.find(decodeURI(nm)) || H.find(nm); if (it) return it;
+    it = app.project.importFile(new ImportOptions(f)); it.parentFolder = H.folder(/music/i.test(path) ? '05_MUSIC' : '04_SFX');
+    return it;
+  };
+  H.setDb = function (l, db) { l.property('ADBE Audio Group').property('ADBE Audio Levels').setValue([db, db]); };
+  // Rải SFX + nhạc vào main theo mốc của mọi comp cảnh đang đặt trong main.
+  // o = {sfxDir:'<KIT>/audio/sfx', music:'<đường dẫn mp3/wav>'|null, musicStart: giây bắt đầu trong bài, musicDb:-6, sfxDb:0, minGap:0.12}
+  // Chạy lại được: xoá layer SFX_/MUSIC_ cũ trước.
+  H.buildAudio = function (main, o) {
+    for (var i = main.numLayers; i >= 1; i--) if (/^(SFX_|MUSIC_)/.test(main.layer(i).name)) main.layer(i).remove();
+    var dir = new Folder(o.sfxDir), files = dir.getFiles('*.wav'), byType = {}, k;
+    for (k = 0; k < files.length; k++) { var n = decodeURI(files[k].name).replace(/\.wav$/, ''), ty = n.replace(/_[a-z]$/, ''); (byType[ty] = byType[ty] || []).push(files[k].fsName); }
+    var placed = [], rot = {}, count = 0;
+    for (i = 1; i <= main.numLayers; i++) {
+      var L = main.layer(i); if (!(L.source instanceof CompItem)) continue;
+      var cs = H.cues(L.source);
+      for (var j = 0; j < cs.length; j++) {
+        var cu = cs[j], tw = L.startTime + cu.t;
+        if (tw < L.inPoint - 0.01 || tw > L.outPoint + 0.01 || tw < 0 || tw > main.duration) continue;
+        if (!byType[cu.type]) continue;
+        var dup = false; for (var q = 0; q < placed.length; q++) if (placed[q].type === cu.type && Math.abs(placed[q].t - tw) < (o.minGap || 0.12)) dup = true;
+        if (dup) continue;
+        rot[cu.type] = ((rot[cu.type] || 0) + 1) % byType[cu.type].length;
+        var item = H.importAudio(byType[cu.type][rot[cu.type]]);
+        var a = main.layers.add(item); a.name = 'SFX_' + cu.type + '_' + L.name; a.label = 14;
+        a.startTime = cu.type === 'riser' ? tw - item.duration : tw;
+        if (cu.dur) a.outPoint = Math.min(a.startTime + item.duration, tw + cu.dur);
+        H.setDb(a, (H.SFX_DB[cu.type] || -12) + (o.sfxDb || 0));
+        a.moveToEnd(); placed.push({ t: tw, type: cu.type }); count++;
+      }
+    }
+    if (o.music) {
+      var mi = H.importAudio(o.music), ml = main.layers.add(mi); ml.name = 'MUSIC_' + mi.name; ml.label = 14;
+      // musicStart: giây trong bài bắt đầu phát (lấy cut15/20/30 trong audio/music/index.json) → đặt layer lùi lại
+      ml.startTime = -(o.musicStart || 0); ml.inPoint = 0; ml.outPoint = main.duration; ml.moveToEnd();
+      var lv = ml.property('ADBE Audio Group').property('ADBE Audio Levels'), db = o.musicDb === undefined ? -6 : o.musicDb;
+      // vào nhẹ 0,3 s (cắt giữa bài không bị "bụp"), ra fade 1,5 s
+      lv.setValueAtTime(0, [o.musicStart ? -30 : db, o.musicStart ? -30 : db]); lv.setValueAtTime(0.3, [db, db]);
+      lv.setValueAtTime(Math.max(0.4, main.duration - 1.5), [db, db]); lv.setValueAtTime(main.duration, [-48, -48]);
+    }
+    return count;
   };
 
   // =====================================================================

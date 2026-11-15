@@ -1,6 +1,7 @@
 # SaaS AE Kit
 
-Bộ kiến thức + thư viện để **AI tự dựng video SaaS animation trong After Effects** chỉ từ một brief.
+Bộ kiến thức + thư viện để **AI tự dựng video SaaS animation trong After Effects** chỉ từ một brief —
+ra cả **16:9 và 9:16, có nhạc nền và SFX**, chuẩn độ to −14 LUFS.
 Kiểu video: quảng cáo/giới thiệu phần mềm 15–30 giây — nền tối có cột sáng và vòng chân trời,
 giao diện kính, chữ hiện bằng blur, số đếm, chat AI, thẻ 3D xoay, logo kết.
 
@@ -48,11 +49,18 @@ saas-ae-kit/
 │  ├─ 06-du-an-ae.md           cấu trúc project, đặt tên, label
 │  ├─ 07-mcp-va-bay-loi.md     điều khiển AE qua MCP + mọi bẫy đã gặp
 │  ├─ 08-qc.md                 checklist kiểm tra, mức độ lỗi
-│  └─ 09-vi-du-neuraflow.md    ví dụ đầy đủ: phân tích mẫu + bản dựng
+│  ├─ 09-vi-du-neuraflow.md    ví dụ đầy đủ: phân tích mẫu + bản dựng
+│  ├─ 10-viet-noi-dung.md      phát triển brief, viết chữ, nhãn UI theo ngành
+│  ├─ 11-khung-doc.md          làm bản 9:16
+│  └─ 12-am-thanh.md           SFX, nhạc nền, độ to
 ├─ lib/
 │  ├─ saas-lib.jsx         thư viện ExtendScript (H.*): ease, layer, kính, môi trường, cảnh dựng sẵn
 │  └─ ui-dashboard.jsx     dựng dashboard chi tiết + panel nền
-├─ tools/                  sheet.sh, compare.sh, analyze-ref.sh, beats.py, wait-files.sh
+├─ audio/sfx/              27 SFX tự tổng hợp (whoosh, pop, typing, riser, impact…)
+├─ audio/music/            8 bài nhạc thật Mixkit + giấy phép + INDEX.md (BPM, điểm cắt, tâm trạng)
+├─ tools/                  sfx_gen.py, music_gen.py, finalize.sh, qc_auto.py, beats.py, analyze-ref.sh,
+│                          compare.sh, sheet.sh, wait-files.sh
+├─ CHANGELOG.md            kit sửa gì sau mỗi video (AI tự cập nhật)
 ├─ templates/              storyboard.md, report.md
 ├─ projects/               mỗi video một thư mục: _example-neuraflow (brief), orbiq (brief + storyboard + build.jsx đã chạy)
 └─ output/                 project AE, khung kiểm tra, video render (không đưa vào git)
@@ -62,8 +70,9 @@ saas-ae-kit/
 
 - Giao diện được **vẽ bằng shape**. Muốn giống sản phẩm thật 100%, bỏ ảnh chụp màn hình vào
   `assets/screens/` — AI sẽ cắt ảnh thành từng mảnh (cách của video hướng dẫn 2) thay vì vẽ.
-- Chưa có thư viện SFX đi kèm: bỏ file vào `assets/sfx/` (whoosh, click, pop, typing, impact, riser)
-  thì AI đặt theo mốc; không có thì video chỉ có nhạc.
+- Nhạc: 8 bài thật (Mixkit — dùng được cho mạng xã hội/quảng cáo online/YouTube, **không** dùng cho TV). SFX tự tổng hợp.
+  Muốn thêm nhạc: đưa file vào `assets/`, hoặc bảo AI tìm — AI hỏi bạn từng file trước khi tải.
+- Chỉ có một phong cách (tối, cột sáng, kính). Phong cách khác hẳn = thêm gói mới (đề xuất: `styles/<tên>/`).
 - `lib/` đã chạy trên AE 2026 / Windows: video thử **Orbiq** (20 s, tông tím) dựng hoàn toàn bằng kit qua
   `projects/orbiq/build.jsx` → `output/orbiq/orbiq_v1.mp4`. Lần thử đó sửa 7 lỗi của kit (xem `projects/orbiq/log.md`).
 - Đổi tông màu cả video bằng một số: `H.HUE` (xem `knowledge/01-phong-cach.md`).

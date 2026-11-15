@@ -1,0 +1,8 @@
+# Python 3.10+ (đã chạy với 3.13). ffmpeg/ffprobe phải có trong PATH.
+faster-whisper>=1.2
+numpy
+# GPU NVIDIA (khuyên dùng). Không có GPU: bỏ 3 dòng dưới, cài "onnxruntime" thường (chậm hơn ~4–10 lần).
+onnxruntime-gpu[cuda,cudnn]==1.23.*   # 1.24+ cần CUDA 13 — đừng nâng
+nvidia-cublas-cu12
+nvidia-cudnn-cu12>=9,<10
+fonttools   # chỉ cho tools/fonts_vi.py

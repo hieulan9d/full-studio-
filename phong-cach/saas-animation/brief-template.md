@@ -1,7 +1,7 @@
 # Brief: <tên video>
 
 > Chép file này vào `projects/<ten-video>/brief.md` và điền. Dòng có (*) là bắt buộc,
-> còn lại để trống thì AI tự quyết theo phong cách chuẩn của kit.
+> còn lại để trống thì AI tự phát triển (ghi vào `brief-dev.md`, đánh dấu `(AI)`; bản này của bạn giữ nguyên).
 
 ## Sản phẩm
 - Tên sản phẩm (*):
@@ -19,9 +19,9 @@
 
 ## Định dạng
 - Thời lượng (*): 15 | 20 | 30 giây
-- Khung: 16:9 (1920×1080) | 9:16 (1080×1920) | 1:1
+- Khung: cả hai (mặc định) | chỉ 16:9 (1920×1080) | chỉ 9:16 (1080×1920)
 - Ngôn ngữ chữ trên màn hình: Anh | Việt
-- Phong cách: tối xanh (mặc định) | tối tím | sáng pastel | theo video tham chiếu
+- Tông màu: xanh dương (mặc định) | tím | teal | hồng-tím (phong cách hiện chỉ có "tối, cột sáng, kính"; sáng pastel chưa có)
 
 ## Thương hiệu
 - Màu chính (hex):
@@ -29,9 +29,9 @@
 - Font (nếu có, tên chính xác):
 
 ## Âm thanh
-- Nhạc: `assets/music.mp3` | không có
+- Nhạc: `assets/music.mp3` | không có (AI tự tạo nhạc nền đúng nhịp)
 - BPM (nếu biết):
-- SFX: `assets/sfx/` | không có
+- SFX: `assets/sfx/` | không có (dùng bộ SFX của kit)
 
 ## Nội dung giao diện (nếu có cảnh dashboard/app)
 - Ảnh chụp giao diện thật: `assets/screens/` | không có (AI vẽ giao diện mẫu)

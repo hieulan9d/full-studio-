@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Claude Bridge</title>
+<style>
+  :root { --bg:#232323; --fg:#d6d6d6; --dim:#8a8a8a; --line:#3a3a3a; --btn:#3a3a3a; --btn-h:#4a4a4a;
+          --ok:#5fbf6a; --err:#e06060; --busy:#e0b050; }
+  * { box-sizing: border-box; }
+  body { margin:0; padding:8px; background:var(--bg); color:var(--fg);
+         font:12px/1.4 "Segoe UI", Arial, sans-serif; }
+  header { display:flex; align-items:center; gap:6px; margin-bottom:8px; }
+  #dot { width:9px; height:9px; border-radius:50%; background:var(--err); flex:none; }
+  #dot.ok { background:var(--ok); } #dot.busy { background:var(--busy); }
+  #status { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .row { display:flex; gap:6px; margin-bottom:8px; }
+  button { flex:1; padding:5px 0; background:var(--btn); color:var(--fg); border:1px solid var(--line);
+           border-radius:3px; font:inherit; cursor:pointer; }
+  button:hover { background:var(--btn-h); }
+  #shot { display:none; width:100%; border:1px solid var(--line); margin-bottom:8px; background:#000; }
+  #msg { white-space:pre-wrap; color:var(--dim); margin-bottom:8px; min-height:1em; }
+  h2 { font-size:11px; font-weight:600; color:var(--dim); text-transform:uppercase; margin:0 0 4px; }
+  #log { list-style:none; margin:0; padding:0; border-top:1px solid var(--line); }
+  #log li { display:flex; gap:6px; padding:3px 0; border-bottom:1px solid var(--line); }
+  #log .t { color:var(--dim); flex:none; }
+  #log .n { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  #log .ok { color:var(--ok); } #log .err { color:var(--err); } #log .busy { color:var(--busy); }
+</style>
+</head>
+<body>
+  <header><span id="dot"></span><span id="status">Đang khởi động…</span></header>
+  <div class="row">
+    <button id="btnShot" title="Chụp khung hình hiện tại của comp đang mở">Chụp</button>
+    <button id="btnTest" title="Kiểm tra cài đặt và tên hiệu ứng">Self test</button>
+    <button id="btnDir" title="Mở thư mục tạm của cầu nối">Thư mục</button>
+  </div>
+  <img id="shot" alt="">
+  <div id="msg"></div>
+  <h2>Lệnh gần đây</h2>
+  <ul id="log"></ul>
+  <script src="main.js"></script>
+</body>
+</html>

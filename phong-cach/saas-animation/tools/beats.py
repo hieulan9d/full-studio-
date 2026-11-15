@@ -26,8 +26,14 @@ flux = np.maximum(0, np.diff(S, axis=0)).sum(1)
 f = flux - flux.mean()
 ac = np.correlate(f, f, 'full')[len(f) - 1:]
 lags = np.arange(len(ac)) * h / sr
-m = (lags > 0.3) & (lags < 1.0)
-beat = lags[m][np.argmax(ac[m])]
+m = (lags > 0.343) & (lags < 0.857)   # 70–175 BPM: dải nhạc quảng cáo; rộng hơn dễ bắt nhầm nốt 1/8
+i0 = np.where(m)[0][np.argmax(ac[m])]
+# nội suy parabol quanh đỉnh: bước đo 23 ms quá thô (120 BPM từng bị đọc thành 117.5)
+if 0 < i0 < len(ac) - 1:
+    y0, y1, y2 = ac[i0 - 1], ac[i0], ac[i0 + 1]
+    den = y0 - 2 * y1 + y2
+    i0 = i0 + (0.5 * (y0 - y2) / den if den != 0 else 0)
+beat = i0 * h / sr
 bpm = 60 / beat
 
 def peaks(sig, k):

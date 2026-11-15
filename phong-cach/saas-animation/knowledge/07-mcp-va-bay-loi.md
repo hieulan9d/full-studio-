@@ -15,6 +15,8 @@ Mọi mục trong file này là lỗi **đã xảy ra thật** khi dựng NeuraF
 | `ae_render` | render qua Render Queue; AE bị khoá tới khi xong (20 s video ≈ 2–4 phút) |
 
 ExtendScript là **ES3**: không `let/const`, arrow function, `JSON`, template string. Chuỗi tiếng Việt OK.
+**Ternary lồng tính từ trái sang**: `a ? x : b ? y : z` thành `(a ? x : b) ? y : z` — khi `a` đúng, kết quả lại là `y`.
+Đã gây: `'9:16'` thành khung vuông, chữ căn trái thành căn phải. Luôn bọc ngoặc nhánh sau `a ? x : (b ? y : z)` hoặc dùng if/else.
 `var` được hoist lên đầu hàm: một `var L = …` trong hàm sẽ che hàm ngoài tên `L` ngay từ dòng đầu
 ("Function L is undefined"). Đặt tên hàm tiện ích khác hẳn tên biến cục bộ.
 
