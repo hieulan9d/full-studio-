@@ -1,0 +1,68 @@
+{
+  "_ghi_chu": "Mẫu file trạng thái của MỘT video. Chép thành output/<slug>/job.json. Các subagent chỉ đọc/ghi qua file này. Xoá các khoá bắt đầu bằng _ khi dùng.",
+  "slug": "ten-video-khong-dau",
+  "brief": {
+    "chu_de": "",
+    "san_pham_hoac_noi_dung": "",
+    "thong_diep_chinh": "",
+    "doi_tuong": "",
+    "nen_tang": "tiktok | reels | shorts | youtube | web",
+    "thoi_luong_giay": 30,
+    "ty_le": "9:16",
+    "ngon_ngu": "vi",
+    "ghi_chu_nguoi_dung": ""
+  },
+  "the_loai": "saas | talking-head | giai-thich-vf",
+  "kit": "phong-cach/saas-animation | phong-cach/talking-head | edit",
+  "trang_thai": "moi",
+  "_cac_trang_thai": [
+    "moi",
+    "cho-duyet-kich-ban",
+    "da-duyet-kich-ban",
+    "da-tao-asset",
+    "dang-dung",
+    "cho-nguoi-dung-xem",
+    "sua-loi",
+    "xong"
+  ],
+  "giong": {
+    "co_loi_doc": true,
+    "ma_giong": "",
+    "ghi_chu": "Mã giọng do người dùng chỉ định, khác nhau theo máy. Không đổi khi chưa hỏi.",
+    "file": "",
+    "da_nghe_bang_tai": false
+  },
+  "nhac": { "bai": "", "nguon": "kho cua kit", "ghi_chu": "" },
+  "kich_ban": {
+    "hook": "",
+    "loi_doc_day_du": "",
+    "cta": "",
+    "cau_khang_dinh_suc_khoe": [],
+    "dong_phap_ly": ""
+  },
+  "scenes": [
+    {
+      "id": "c01",
+      "bat_dau_giay": 0.0,
+      "ket_thuc_giay": 3.0,
+      "noi_dung": "",
+      "loi_doc": "",
+      "chu_tren_man_hinh": "",
+      "nguon_asset": "quay-that | flow | muse | do-hoa",
+      "prompt_ai": "",
+      "model": "",
+      "anh_tham_chieu": [],
+      "thoi_luong_clip_giay": 4,
+      "asset": { "file": "", "do_dai_giay": null, "kiem": "chua | ok | loi", "ghi_chu": "" },
+      "so_lan_tao": 0
+    }
+  ],
+  "credit": { "so_clip_ai_duoc_duyet": 0, "so_clip_ai_da_tao": 0, "so_lan_tao_lai": 0 },
+  "loi": [
+    { "canh": "c03", "moc_giay": 0.0, "mo_ta": "", "loai": "content | asset | dung | am-thanh", "trang_thai": "mo | da-sua" }
+  ],
+  "dau_ra": { "video": "", "bao_cao": "output/<slug>/report.md" },
+  "nhat_ky": [
+    { "luc": "", "agent": "", "viec": "" }
+  ]
+}
