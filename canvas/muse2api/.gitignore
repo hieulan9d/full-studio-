@@ -18,5 +18,3 @@ data/
 .vscode/
 .DS_Store
 
-# third-party gateway clone (runs locally, holds account cookies in data/)
-muse2api/

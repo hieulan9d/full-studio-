@@ -185,6 +185,25 @@ Qua đủ các bước là toàn bộ hệ thống chạy.
 - **Series Đạo lý:** `edit\kien-thuc\dao-ly\PHONG-CACH-DAO-LY.md`; `python -X utf8 canvas-tools/new_ep.py N` tạo dự án từ kịch bản có sẵn.
 - Giao việc cho Claude bằng tiếng Việt trong Claude Code; Claude sẽ sửa `project.json` và chạy `vf`.
 
+### 4.6 Muse (muse2api, cổng 18610): bắt buộc nếu dùng nhà cung cấp "Muse"
+`canvas\muse2api\` là bản vendored của https://github.com/www222fff/muse2api (MIT) kèm **một sửa riêng cho Infinity Studio**: `src/muse2api/api/routes/videos.py` nhận request **multipart** (canvas gửi kiểu này) và trả `url` / `video_url` ở cấp trên cùng. Chi tiết: `canvas\muse2api\INFINITY-STUDIO.md`. Mã nguồn `src/` **có trong repo** (đừng xoá). Không có trong repo: `.env` và `data/` (cookie tài khoản, API key); phải tạo trên mỗi máy.
+```powershell
+cd canvas\muse2api
+pip install -e .
+Copy-Item .env.example .env
+```
+Sửa `.env` (đường dẫn tuyệt đối, dùng dấu `/`):
+```
+MUSE2API_DRIVER=browser
+MUSE2API_CHROMIUM_PATH=C:/Program Files/Google/Chrome/Application/chrome.exe
+MUSE2API_BROWSER_PROFILE_DIR=D:/.../canvas/muse2api/data/browser-profile
+MUSE2API_CDP_PORT=19210
+```
+- **Đường dẫn có chữ có dấu** (ví dụ `dự án`): `pip install -e .` có thể không tạo file `.pth` nên `python -m muse2api` báo `No module named muse2api`. Cách sửa: tạo file `muse2api_src.pth` trong `site-packages` của Python, nội dung là đường dẫn tuyệt đối tới `canvas\muse2api\src` (lưu UTF-8). Kiểm tra: `python -c "import muse2api"`.
+- Chạy: `app.bat` tự bật muse2api khi mở app (nếu có `pyproject.toml`), hoặc chạy tay `python -m muse2api` trong `canvas\muse2api`. Mở `http://127.0.0.1:18610/dashboard` (nút **Dashboard Muse** ở Cài đặt, hoặc menu `muse2api`) để **thêm cookie tài khoản muse.ai của chính bạn**.
+- **API key** tự tạo ở `canvas\muse2api\data\api_key` (lần chạy đầu). Dán vào nhà cung cấp **Muse (muse2api)** trong Cài đặt (`http://127.0.0.1:18610/v1`). Máy mới thì key mới: phải dán lại.
+- Kiểm tra: `curl http://127.0.0.1:18610/v1/models -H "Authorization: Bearer <key>"` trả danh sách `muse-chat`, `muse-image`, `muse-video`.
+
 ---
 
 ## 9. Lỗi thường gặp
@@ -203,11 +222,14 @@ Qua đủ các bước là toàn bộ hệ thống chạy.
 | `vf capcut` lỗi hoặc không tìm thấy mẫu | Chưa đặt đúng `DRAFTS`/`TEMPLATE` (mục 6) |
 | Sửa bản nháp CapCut bị mất | CapCut đang mở sẽ ghi đè: đóng CapCut hoặc sửa trên bản sao |
 | Xuất file không ra | Node "Xuất file" chưa có/không trong khung nhìn; `exportRequest` trùng lần trước (phải đổi giá trị mỗi lần) |
+| Nút "Dashboard Muse" không thấy / giao diện cũ | `canvas\app\web\dist` là bản build cũ (git không giữ `dist`). Chạy `npm --prefix app/web run build` rồi mở lại app, Ctrl+Shift+R |
+| `127.0.0.1:18610` báo `ERR_CONNECTION_REFUSED` | muse2api chưa chạy: mở bằng `app.bat` hoặc `python -m muse2api` trong `canvas\muse2api`. Báo `No module named muse2api`: xem mục 4.6 (pip + file `.pth`) |
+| Muse báo 401 / không tạo được | API key trong Cài đặt phải khớp `canvas\muse2api\data\api_key`; cookie muse.ai chưa nhập ở `/dashboard` hoặc đã hết hạn |
 
 ---
 
 ## 10. Cập nhật, sao lưu, bảo mật
-- Cập nhật: `cd E:\antigravyti\full-studio; git pull`, rồi chạy lại `npm install` ở `canvas/app/web` và `canvas/desktop` nếu `package.json` đổi.
+- Cập nhật: `cd E:\antigravyti\full-studio; git pull`, rồi chạy lại `npm install` ở `canvas/app/web` và `canvas/desktop` nếu `package.json` đổi. **Sau mỗi lần `git pull` có đổi mã `canvas/app/web`, build lại giao diện:** `npm --prefix app/web run build` (thư mục `dist` không nằm trong git). Nếu `canvas/muse2api/pyproject.toml` đổi thì chạy lại `pip install -e .`.
 - **Không commit** token agent, file `*.local.json`, khóa API, `.flow-project-id`, hay cơ sở dữ liệu canvas. Dữ liệu canvas nằm ở `%APPDATA%\infinite-canvas-flow` (đổi: Cài đặt → Lưu trữ cục bộ). Sao lưu bằng "Xuất canvas / Xuất tài sản / Xuất cài đặt".
 - Video, ảnh, giọng đã tạo **không** nằm trong repo; sao lưu riêng.
 - Giấy phép: giữ nguyên LICENSE từng phần; `voice-studio/` là **AGPL-3.0**, mô hình giọng có giấy phép riêng.
