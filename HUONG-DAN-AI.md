@@ -98,7 +98,7 @@ fullstudio/
 
 **Lưu ý đường dẫn.** Nhiều tài liệu và script gốc ghi cứng `E:\antigravyti\...` (canvas ở `E:\antigravyti\infinite-canvas`, v.v.). Máy hiện tại đặt repo ở `D:\dự án antigravity\full studio\fullstudio`. Khi một đường dẫn trong tài liệu không tồn tại, **đừng đoán**: kiểm tra thực tế hoặc hỏi người dùng. `CAI-DAT.md` mục 6 nói cách đổi cấu hình theo máy.
 
-Thư mục cha `D:\dự án antigravity\full studio\` có `CLAUDE.md` riêng và một bản `phong-cach/` **có thêm tài nguyên không nằm trong git** (nhạc `audio/music`, `assets` của ví dụ Foodtage, `orbiq_v1.mp4`, và thư mục `PHAN-TICH-VIDEO-MAU/` với công cụ `tools/refkit.py`). Nếu cần nhạc hoặc ví dụ, kiểm tra bản ở thư mục cha. `fullstudio/phong-cach/` là bản trong git đã bỏ các file đó.
+Thư mục cha `D:\dự án antigravity\full studio\` có `CLAUDE.md` riêng và một bản `phong-cach/` **có thêm tài nguyên không nằm trong git** (nhạc `audio/music`, `assets` của ví dụ Foodtage, `orbiq_v1.mp4`). Nếu cần nhạc hoặc ví dụ, kiểm tra bản ở thư mục cha. `fullstudio/phong-cach/` là bản trong git đã bỏ các file đó.
 
 ---
 
@@ -114,7 +114,7 @@ Thư mục cha `D:\dự án antigravity\full studio\` có `CLAUDE.md` riêng và
 ### 4.1 Tạo thể loại video mới từ video mẫu (việc riêng, không nằm trong luồng làm video)
 Phân tích video mẫu là **một việc riêng để tạo ra một thể loại video mới**: kết quả là một kit kiến thức mới (như `saas-animation`, `talking-head`) để hệ thống về sau edit theo thể loại đó. Nó **không** chạy trong mỗi lần làm video thường. Khi đã có kit, các lần làm video sau chỉ đọc kit, không phân tích lại.
 Kích hoạt khi người dùng nói họ muốn **thêm thể loại mới / học phong cách từ video mẫu / "video này làm thế nào"**. Khi đó đọc `phong-cach/PHAN-TICH-VIDEO-MAU/PHAN-TICH-VIDEO-MAU.md`. Đầu ra gồm `ref-notes.md` (phiếu phân tích), rồi biến nó thành kit trong `phong-cach/<tên-thể-loại>/` theo cấu trúc của hai kit hiện có, và thêm một dòng vào bảng chọn kit ở trên cùng `CLAUDE.md` thư mục cha. Chỉ tạo kit khi người dùng yêu cầu; đừng tự dựng thể loại mới.
-Thư mục phân tích nằm ở **thư mục cha** (`D:\dự án antigravity\full studio\phong-cach\`), chưa có trong `fullstudio/phong-cach/` (chưa vào git).
+Thư mục phân tích: `phong-cach/PHAN-TICH-VIDEO-MAU/` (hướng dẫn `PHAN-TICH-VIDEO-MAU.md` + công cụ `tools/refkit.py`). Có một bản ở `fullstudio/phong-cach/` (trong git) và một bản ở thư mục cha; nếu sửa một bản thì chép sang bản kia.
 Quy trình ngắn: chọn **mức giống 1–4** (mặc định 3, hỏi người dùng nếu chưa rõ) → `python -I tools/refkit.py analyze ref.mp4 out/ref` (đo tự động, xác định xương sống thời gian: nhạc, lời hay hình) → xem 4 lượt (tổng quan, 5 khung/giây, từng khung quanh chỗ cắt, ảnh gốc) → đo chi tiết (`pick`, `track`) → viết `projects/<slug>/ref-notes.md` theo mẫu mục 11 của file → dựng → `refkit.py compare` so lặp với mẫu theo thứ tự sửa và ngưỡng dừng ở mục 7.
 Nguyên tắc: mọi kết luận về màu, cỡ, nhịp, ease phải đến từ **số đo**, không đến từ ấn tượng. Bạn chỉ "xem" video qua ảnh khung có mốc giờ, số đo và lời nói theo từng từ.
 Bản quyền: học **kỹ thuật** của mẫu, **không** dùng lại logo, nhân vật, footage, nhạc, giọng, chữ của mẫu; mức 4 chỉ khi người dùng có quyền với mẫu. Công cụ `refkit.py` cần whisper cho lời nói; **chưa kiểm** trên máy này, chạy `refkit.py` không tham số để xem hướng dẫn, và dùng `--no-words` nếu thiếu whisper.
