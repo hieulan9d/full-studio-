@@ -16,12 +16,23 @@
 
 **CTA:** <…>
 
+## Hook (chỉ talking head, knowledge/12-hook.md)
+Chọn **một** phương án; chưa chọn thì chưa tạo hình hook.
+
+| Phương án | Lời hứa | Bằng chứng (thật và kiểm được, hoặc "không có") | Từ khoá → chữ nhỏ / chữ to → hình minh hoạ → nguồn |
+|---|---|---|---|
+| A | <…> | <…> | <…> |
+| B | <…> | <…> | <…> |
+
+Nội dung y tế: hình là sơ đồ/minh hoạ, không ảnh cơ thể thật. Nhắc người thật khác: đã có phép chưa? <…>
+
 ## Danh sách cảnh
 | # | Giây | Nội dung | Lời đọc | Chữ trên màn hình | Nguồn asset | Prompt / ghi chú |
 |---|---|---|---|---|---|---|
 | c01 | 0–3 | | | | quay-that / flow / muse / do-hoa | |
 
 ## Chi phí
+- Số ảnh AI cho hook (phương án đã chọn): **<M>** (qua canvas, rẻ hơn clip).
 - Số clip AI sẽ tạo: **<N>** (Flow: <a>, Muse: <b>). Muse tạo tuần tự, mỗi clip ~1–2 phút.
 - Thời gian ước tính để tạo asset: <…>
 - Tài khoản/điểm cần dùng: <…>
@@ -33,7 +44,7 @@
 - <thông tin brief còn thiếu, hoặc "không có">
 
 ## Bạn trả lời
-- [ ] **Duyệt**, tạo asset và dựng.
+- [ ] **Duyệt**, tạo asset và dựng. Phương án hook chọn: <A/B/…> (talking head)
 - [ ] **Duyệt sau khi sửa**: ghi chỗ cần sửa bên dưới.
 - [ ] **Không duyệt**: ghi lý do.
 

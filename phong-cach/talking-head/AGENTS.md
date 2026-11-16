@@ -22,6 +22,8 @@ Trả lời người dùng bằng **tiếng Việt**. Ảnh kiểm tra là để
    - `08-qc.md`: kiểm tra chất lượng.
    - `09-vi-du-foodtage.md`: phân tích từng giây của ví dụ.
    - `10-tieng-viet-va-nganh-nhay-cam.md`: font tiếng Việt, nội dung y tế và phụ khoa.
+   - `12-hook.md`: **luật làm hook** (chữ kèm hình trong 3–5 s đầu, công thức lời, cách đo). Plan phải có mục Hook.
+   - `11-vi-du-hook-mo-dau-viet.md`: **ví dụ tiếng Việt thứ hai** (chuyên gia, tối-xanh, không phụ đề từng từ, chia đôi màn hình, nháy trắng, B-roll thẻ dọc). Bảng cảnh + luật + chỗ chưa đo.
 
 ## Cấu trúc
 
@@ -53,7 +55,7 @@ examples/foodtage/      ví dụ đầy đủ (assets, media, ref/video-mau.mp4,
 1. **Môi trường**: `ae_status` phải có `bridge`. Kiểm tra font có dấu Việt: `python tools/fonts_vi.py <thư mục font>`.
 2. **Chuẩn bị clip**: `bash tools/prep.sh assets/raw.mp4 output/<slug>/aroll --lang vi`, cho ra transcript từng từ, clip đã cắt lặng và matte người.
 3. **Phân tích mẫu** (nếu có `ref.mp4`): `tools/sheet.sh`, transcript, `tools/sfx_match.py`. Viết `ref-notes.md` (bảng từng giây).
-4. **Kế hoạch** `plan.md` theo `templates/plan.md`: mỗi câu là một dòng, ghi khối hiệu ứng, mốc vào/ra, chữ hiện. **Gửi người dùng duyệt một lần.**
+4. **Kế hoạch** `plan.md` theo `templates/plan.md`: mỗi câu là một dòng, ghi khối hiệu ứng, mốc vào/ra, chữ hiện. **Có mục Hook (knowledge/12): 2–3 phương án, mỗi từ khoá kèm hình minh hoạ và nguồn hình.** **Gửi người dùng duyệt một lần.**
 5. **Dựng**: chép `examples/foodtage/build.jsx` vào `projects/<slug>/build.jsx`, thay khối `DATA`, chạy từng giai đoạn
    (mỗi giai đoạn một `ae_run_script`). Sau mỗi giai đoạn: `H.saveFrames` rồi `tools/compare.sh`, xem và sửa ngay.
 6. **Render** `ae_render`. **Không gửi lệnh nào vào AE trong lúc render.** Sau đó chuẩn hoá −14 LUFS bằng 2 lượt `loudnorm` (knowledge/05).

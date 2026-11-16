@@ -21,6 +21,10 @@ Mở `output/<slug>/job.json`. Nếu `trang_thai` **không** phải `da-duyet-ki
 2. **Clip/ảnh AI** theo `scenes[]` có nguồn `flow` hoặc `muse`:
    - **Flow**: dùng model trong `HUONG-DAN-AI.md` mục 6.1; theo đợt nhỏ (3 rồi 5–6 clip). **Muse**: tạo **từng clip một**, tuần tự.
    - Dùng đúng prompt đã duyệt trong `job.json`; chỉ sửa prompt khi bị chặn (và ghi lại thay đổi).
+2b. **Hình hook** (talking head): chỉ làm với `kich_ban.hook_da_chon`. Nếu rỗng thì **dừng và báo** người dùng chưa chọn phương án hook.
+   Tạo từng hình trong phương án đã chọn bằng `canvas_generate_image` (ảnh rẻ hơn clip), 9:16 hoặc tỉ lệ ghi trong `job.json`; chép vào `output/<slug>/media/hook_NN.png`
+   và ghi `kich_ban.hook_phuong_an[].hinh[].asset`. Prompt hình: không chữ nêu tuổi/giới tính người, không trẻ em; nội dung y tế dùng sơ đồ/minh hoạ, **không ảnh cơ thể thật**,
+   không có chữ trong ảnh (chữ do agent `edit` đặt). Số ảnh tính vào `credit.so_anh_ai_da_tao`. Hình `icon` hoặc `quay-that` thì chỉ kiểm file có mặt.
 3. **Xuất file** bằng node "Xuất file" (`exportRequest` giá trị mới mỗi lần), đọc `manifest.json`, map `nodeId` → cảnh. Chép vào `output/<slug>/media/cNN.mp4`.
    Cắt ~0,3 s đầu nếu clip có khung trắng. Nhận diện bằng `nodeId`, không bằng tên file.
 4. **Kiểm từng asset**: dùng `vf look`/`ffprobe` để xem khung và đo độ dài; ghi vào `scenes[].asset` (đường dẫn, độ dài, `kiem`: ok | loi + lý do).
@@ -29,7 +33,7 @@ Mở `output/<slug>/job.json`. Nếu `trang_thai` **không** phải `da-duyet-ki
 6. Đặt `trang_thai = "da-tao-asset"`, ghi `credit_da_dung` (số clip đã tạo, số lần tạo lại), rồi báo.
 
 ## Luật
-- Không tạo nhiều hơn số clip đã được duyệt. Cần thêm: dừng và hỏi.
+- Không tạo nhiều hơn số clip và ảnh đã được duyệt. Cần thêm: dừng và hỏi.
 - Nội dung nhạy cảm, nhân bản giọng: chỉ khi người dùng đã xác nhận có sự đồng ý của chủ giọng.
 - Bạn không nghe được âm thanh: ghi rõ trong `job.json` "giọng chưa được nghe bằng tai", chỉ kiểm bằng whisper.
 - Không dựng video. Việc đó của agent `edit`.

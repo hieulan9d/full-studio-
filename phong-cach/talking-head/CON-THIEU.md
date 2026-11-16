@@ -12,8 +12,10 @@ Người dùng sẽ cập nhật file này dần. Mục nào đã xong thì đá
 
 | # | Thiếu | Cách tạm |
 |---|---|---|
-| [ ] A1 | **Chưa có AI nào khác dùng thử kit.** Tài liệu do chính AI dựng ví dụ viết, có thể còn chỗ hiểu ngầm | Trước khi làm video thật, dựng lại Foodtage theo `examples/foodtage/README.md` để thử môi trường. Chỗ nào tài liệu khó hiểu thì báo người dùng |
+| [~] A1 (2026-11-16) | **Đã có một lần chạy thử bởi AI không phải tác giả** (`fullstudio/output/foodtage-thu/`, **không đưa lên git**: chứa clip gốc 4K và tài nguyên khoá học; chuẩn bị clip, plan có Hook, dựng 5 giai đoạn, render, QC; kết quả và lỗi ở `report.md`, bẫy mới ở knowledge/07 mục 23–27). Chưa phải "máy sạch": máy đã cài sẵn AE, font, GPU. Người dùng đã xem bản v2 (có SFX theo bảng knowledge/05) và nói "ổn" (2026-11-16); chưa có nhận xét chi tiết. | |
+| [ ] A1b | **Chưa có AI nào khác dùng thử kit.** Tài liệu do chính AI dựng ví dụ viết, có thể còn chỗ hiểu ngầm | Trước khi làm video thật, dựng lại Foodtage theo `examples/foodtage/README.md` để thử môi trường. Chỗ nào tài liệu khó hiểu thì báo người dùng |
 | [ ] A2 | **Chưa làm video tiếng Việt nào.** Độ chính xác phiên âm tiếng Việt (large-v3-turbo) chưa đo | Luôn dùng `--prompt` cho thuật ngữ; đọc lại `.txt` và sửa JSON trước khi lập plan |
+| [ ] A2b | Đã có **một video mẫu tiếng Việt** để học (knowledge/11) nhưng chưa dựng lại; whisper của refkit sai tên riêng/từ mượn, chưa đo bản large-v3-turbo của kit | Sửa transcript tay trước khi lập plan; thử dựng một khối (chữ hai cấp, chia đôi màn hình) trước khi dựng cả video |
 | [ ] A3 | **Bước cắt khoảng lặng chưa chạy trên clip thật** (Foodtage không cần cắt; mới thử trên clip tự chèn im lặng) | Chạy `cut_silence.py --dry` trước, xem danh sách đoạn cắt, rồi nghe thử `aroll.mp4` |
 | [ ] A4 | Phong cách Callaway và minimal premium (knowledge/03 B, C) **mới có công thức trên giấy** | Dựng từng khối riêng và so khung trước khi đưa vào video |
 | [ ] A5 | Mới chạy trên **Windows + AE 2026 + GPU NVIDIA** | macOS: `install-panel.ps1`, `_cuda.py` và đường dẫn font phải viết lại. Không có GPU: chạy được nhưng chậm 4–10 lần |
@@ -25,6 +27,7 @@ Người dùng sẽ cập nhật file này dần. Mục nào đã xong thì đá
 | [ ] B1 | **Chưa có bộ font tiếng Việt đã kiểm tra.** Font Foodtage (TR Impact, Pensum, Tactic Sans, Athelas) thiếu dấu | Chọn theo bảng gợi ý ở knowledge/10, kiểm bằng `tools/fonts_vi.py`, hỏi người dùng có font thương hiệu không |
 | [ ] B2 | **Chưa có bộ phong cách y tế** (màu pastel, grade da sáng, glow nhẹ, nhịp vừa) đã dựng thử | Đổi `T.init({colors})` và grade theo knowledge/10; gửi khung thử cho người dùng duyệt sớm |
 | [ ] B3 | **Thiếu khối:** thẻ tên + chức danh dược sĩ, thẻ sản phẩm (packshot), khung kết có CTA + câu khuyến cáo, danh sách triệu chứng/gạch đầu dòng | Dựng bằng `T.txt` + `H.shape` + `T.punchIn`; sau đó thêm vào `lib/th-lib.jsx` và knowledge/03 |
+| [ ] B3b | **Thiếu khối từ video HD-VN (knowledge/11, chưa có hàm `T.*`)**: chữ hai cấp ở ngực, thẻ tên người được nhắc, nháy trắng + chữ đen nghiêng, chia đôi màn hình (đồ hoạ 46% trên / người dưới), thẻ điện thoại bay vào + số lượt xem, khung nét đứt sáng + bong bóng emoji, B-roll thẻ dọc tối nền, zoom giật có nhoè | Dựng bằng `T.txt` + `H.shape` + `T.punchIn`; hỏi người dùng trước khi thêm vào `th-lib.jsx` |
 | [ ] B4 | **Thiếu icon y khoa** (giọt nước, khiên, lá, viên thuốc, lịch…) | Hỏi người dùng; hoặc dùng icon nét có giấy phép rõ ràng. `T.tile` nhận cả PNG |
 | [ ] B5 | Nội dung y tế và quảng cáo: kit chỉ có **lưu ý chung** (knowledge/10), chưa có danh sách từ cấm hay câu khuyến cáo chuẩn của thương hiệu | Hỏi người dùng hoặc pháp chế. Liệt kê mọi câu khẳng định sức khoẻ trong `report.md` để duyệt |
 

@@ -33,5 +33,10 @@ chữ sau lưng người, B-roll, After Effects), **phải đọc folder `phong-
 
 Dùng `lib/` (`saas-lib.jsx` + `th-lib.jsx`), `tools/` và mẫu `examples/foodtage/build.jsx` trong folder đó. Đây là kit khác với SaaS:
 đừng nhầm hai phong cách. Tài nguyên Foodtage (`assets`, `media`) không có trong repo công khai.
+Làm hook: đọc thêm `knowledge/11` (ví dụ tiếng Việt) và `knowledge/12` (luật hook); `plan.md` phải có mục Hook.
+
+## Video UGC AI một cú máy (thời trang/sản phẩm, thể loại thử)
+Khi người dùng muốn video người mẫu AI nói + khoe sản phẩm, một cú máy, camera cố định, không chữ (clip Omni + giọng AI):
+đọc `phong-cach/ugc-ai-thoi-trang/PHONG-CACH.md` rồi `ref-notes.md`. Kit rút từ **một** video mẫu, đã chạy thật 1 lần (bài học ở mục 6b của `PHONG-CACH.md`).
 
 Trả lời bằng tiếng Việt.

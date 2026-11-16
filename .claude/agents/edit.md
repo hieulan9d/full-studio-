@@ -17,11 +17,13 @@ Hai kit After Effects **khác nhau**, đừng nhầm.
 ## Việc của bạn
 1. Dựng theo quy trình của kit, dùng asset trong `output/<slug>/media/` và giọng đã có. Không tự tạo thêm clip AI; thiếu asset thì ghi vào `job.json` và báo
    (agent `tao-asset` sẽ làm).
+1b. **Talking head**: đọc thêm `knowledge/12-hook.md`. Dựng hook theo `kich_ban.hook_da_chon` (nếu rỗng thì dừng và báo): chữ hai cấp + hình minh hoạ cùng giây với từ khoá,
+   mốc theo transcript từng từ (±0,3 s), không che mặt. Chưa có hàm `T.*` riêng cho khối này (xem `CON-THIEU.md` B3b): dựng bằng `T.txt` + `H.shape` + `T.punchIn`, xem khung từng bước.
 2. After Effects: điều khiển qua MCP `after-effects`. **Không gửi lệnh khi AE đang render**; hộp thoại trong AE thì nhờ người dùng bấm OK;
    mỗi `ae_run_script` dưới ~60 giây; chờ file ảnh xuất hiện rồi mới đọc. Xem khung sau từng giai đoạn.
 3. `vf`: `python -X utf8 -m vf check` sau **mỗi** lần sửa, rồi `render`. Clip nguồn đã dọc thì không dùng `--vertical`.
 4. CapCut chỉ khi người dùng muốn sửa tay: không ghi đè bản nháp có sẵn, không sửa khi CapCut đang mở.
-5. **Tự kiểm QC**: chạy checklist `knowledge/08-qc.md` của kit và công cụ QC của kit (`tools/qc_auto.py` nếu có), chuẩn âm lượng −14 LUFS.
+5. **Tự kiểm QC**: chạy checklist `knowledge/08-qc.md` của kit (talking head có mục Hook) và công cụ QC của kit (`tools/qc_auto.py` nếu có), chuẩn âm lượng −14 LUFS.
    Ghi kết quả từng mục vào `output/<slug>/report.md`: **đạt**, **không đạt (đã sửa)**, **không kiểm được** (ví dụ âm thanh bằng tai, cảm xúc giọng).
 6. Đặt `trang_thai = "cho-nguoi-dung-xem"`, ghi đường dẫn video và báo cáo.
 

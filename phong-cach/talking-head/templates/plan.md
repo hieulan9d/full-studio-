@@ -9,6 +9,18 @@ Luật rút từ mẫu (5–8 dòng): <…>
 | 2 | 2,58–3,75 | Number one | A4 số neon | "Number" + "1" | sau lưng | 120 | impact+saber |
 | … | | | | | | | |
 
+## Hook (bắt buộc, knowledge/12)
+Plan thiếu mục này thì chưa gửi duyệt.
+- Lời hứa (1 ý, cụ thể): <…>
+- Bằng chứng (1 câu, thật và kiểm được; nếu không có thì ghi "không có"): <…>
+- Phương án hook (2–3, người dùng chọn một): A <…> · B <…> · C <…>
+
+| Từ khoá trong hook | Giây (mốc từ) | Chữ hai cấp (nhãn nhỏ / từ khoá to) | Hình minh hoạ cùng giây | Nguồn hình (Flow / Muse / icon / quay thật) | Có che mặt không |
+|---|---|---|---|---|---|
+| <…> | 0,2 | <…> / <…> | <…> | <…> | không |
+
+Nội dung y tế: hình là sơ đồ/minh hoạ, không ảnh cơ thể thật. Có nhắc người thật khác: đã có phép chưa? <…>
+
 ## Phụ đề
 Đoạn bỏ qua (`--skip`): <…>. Từ nhấn {k}: <…>. Từ đổi màu {c}: <…>. Stroke Up {su}: <…>.
 

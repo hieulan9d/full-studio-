@@ -21,6 +21,7 @@ Hiện có **hai loại video** (mỗi loại một kit kiến thức riêng, sa
 |---|---|---|
 | **SaaS** | Quảng cáo phần mềm, giao diện kính, nền tối, motion graphics, 16:9 và 9:16 | `phong-cach/saas-animation/` |
 | **Talking head dọc** | Người nói trước camera, 1080×1920 (TikTok/Reels/Shorts), phụ đề từng từ, chữ sau lưng người, B-roll | `phong-cach/talking-head/` |
+| **UGC AI một cú máy** (thời trang/sản phẩm, người mẫu AI nói, camera cố định, không chữ) — **thể loại thử, đã chạy thật 1 lần (2026-11-15)**; bẫy Flow chặn chữ tuổi/giới tính ở mục 6b của kit | `phong-cach/ugc-ai-thoi-trang/` (`PHONG-CACH.md`, `ref-notes.md`) |
 
 Hai kit **khác nhau, đừng nhầm**. Chúng dùng chung thư viện `saas-lib.jsx` nhưng luật, hiệu ứng và quy trình khác nhau.
 
@@ -55,7 +56,7 @@ Quyết định của người dùng (đã chốt):
 - **Subagent Content đưa kịch bản cho người dùng duyệt. Chỉ khi người dùng duyệt mới tạo video.** Không tự tốn credit Flow/Muse trước khi được duyệt.
 - Phát hiện lỗi sau khi giao: sửa **đúng cảnh lỗi**, không dựng lại cả video.
 
-Bản kịch bản gửi duyệt phải có: hook, lời đọc, danh sách cảnh (mốc thời gian, nội dung, **nguồn asset của từng cảnh**: quay thật / Flow / Muse / đồ hoạ), và **số clip AI sẽ tạo**.
+Bản kịch bản gửi duyệt phải có: hook, lời đọc, danh sách cảnh (mốc thời gian, nội dung, **nguồn asset của từng cảnh**: quay thật / Flow / Muse / đồ hoạ), và **số clip AI sẽ tạo**. Talking head thêm: **2–3 phương án hook** (chữ + hình minh hoạ, `phong-cach/talking-head/knowledge/12-hook.md`) và **số ảnh AI cho hook**; người dùng chọn một phương án khi duyệt, phiên chính ghi `kich_ban.hook_da_chon` trong `job.json` cùng lúc chuyển `da-duyet-kich-ban`.
 
 **Đã có (viết ngày 2026-11-15, chưa chạy thử trên video thật):**
 - Ba subagent: `.claude/agents/content.md`, `tao-asset.md`, `edit.md` (mỗi cái tự kiểm trạng thái trong `job.json` trước khi chạy).

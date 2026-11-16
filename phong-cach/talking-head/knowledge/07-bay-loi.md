@@ -44,6 +44,14 @@ Mỗi mục dưới đây từng làm mất 10–60 phút. Định dạng: **tri
 21. **onnxruntime-gpu mới cần CUDA 13**, faster-whisper thiếu cublas: xem knowledge/04.
 22. **Tiếng Việt trong Python trên Windows**: `sys.stdout.reconfigure(encoding="utf-8")` hoặc `PYTHONIOENCODING=utf-8`, nếu không sẽ gặp UnicodeEncodeError.
 
+## Từ lần chạy thử foodtage-thu (2026-11-16)
+
+23. **Từ khoá hai dòng cỡ ≥ 250 sau đầu: dòng dưới bị đầu người che, hoặc chữ tràn khung** (KEYBOARD / SHORTCUTS, SOUND / DESIGN). → Dùng **một dòng**, cỡ 170–240, y 215–255; cụm 12 ký tự cỡ ≤ 175.
+24. **`T.ringsBg` đặt layer `RINGS` trên các từ khoá "sau lưng"** nên từ khoá trong đoạn nền vòng biến mất. → Sau `T.ringsBg`, `c.layer('RINGS').moveAfter(c.layer('<từ khoá cuối>'))`.
+25. **`H.saveFrames` trả đường dẫn trước khi file ghi xong**; ghép contact sheet ngay thì ffmpeg báo `chunk too big` / không đọc được. → Chờ file > 100 KB (mỗi khung 1,5–2 MB) rồi hãy ghép.
+26. **Ghép contact sheet bằng `ffmpeg -pattern_type glob` không chạy trên bản ffmpeg Windows này.** → Dùng `-framerate 1 -start_number 0 -i g_%02d.png`.
+27. **Đường dẫn có dấu tiếng Việt** (`D:/dự án antigravity/...`) dùng được trong `File()` của ExtendScript và trong `args` của `ae_run_script`.
+
 ## Thói quen chống lỗi
 
 - Dựng từng giai đoạn, **xuất khung so với mẫu sau mỗi giai đoạn**. Bản Foodtage cần 8 vòng so mới đạt.

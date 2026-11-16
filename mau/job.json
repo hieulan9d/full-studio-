@@ -38,7 +38,28 @@
     "loi_doc_day_du": "",
     "cta": "",
     "cau_khang_dinh_suc_khoe": [],
-    "dong_phap_ly": ""
+    "dong_phap_ly": "",
+    "_hook_ghi_chu": "Chỉ cho talking head (knowledge/12-hook.md). content điền hook_phuong_an; người dùng chọn một khi duyệt, phiên chính ghi hook_da_chon (A/B/C). Chưa chọn thì tao-asset và edit không chạy phần hook.",
+    "hook_phuong_an": [
+      {
+        "ma": "A",
+        "loi_hua": "",
+        "bang_chung": "không có",
+        "hinh": [
+          {
+            "tu_khoa": "",
+            "moc_giay": 0.2,
+            "chu_nho": "",
+            "chu_to": "",
+            "hinh_minh_hoa": "",
+            "nguon": "flow-anh | muse | icon | quay-that",
+            "prompt_ai": "",
+            "asset": { "file": "", "kiem": "chua | ok | loi", "ghi_chu": "" }
+          }
+        ]
+      }
+    ],
+    "hook_da_chon": ""
   },
   "scenes": [
     {
@@ -57,7 +78,7 @@
       "so_lan_tao": 0
     }
   ],
-  "credit": { "so_clip_ai_duoc_duyet": 0, "so_clip_ai_da_tao": 0, "so_lan_tao_lai": 0 },
+  "credit": { "so_clip_ai_duoc_duyet": 0, "so_clip_ai_da_tao": 0, "so_anh_ai_duoc_duyet": 0, "so_anh_ai_da_tao": 0, "so_lan_tao_lai": 0 },
   "loi": [
     { "canh": "c03", "moc_giay": 0.0, "mo_ta": "", "loai": "content | asset | dung | am-thanh", "trang_thai": "mo | da-sua" }
   ],

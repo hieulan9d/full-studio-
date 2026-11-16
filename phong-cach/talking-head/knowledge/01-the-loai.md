@@ -8,6 +8,8 @@
 | **HD2** | "hướng dẫn 2" (25 phút, AE, kênh TomsProject) | 3 animation kiểu Callaway: tiêu đề + đường dẫn + viên thuốc chữ, danh sách gạch đầu dòng, thẻ kính HUD sau lưng người |
 | **HD-CL** | "hướng dẫn làm với claude" (21 phút) | Phong cách minimal premium (podcast Arthur Brooks), cách dạy AI một phong cách, quy trình plan → dựng → sửa |
 
+| **HD-VN** | "Cách mở đầu video thu hút hơn…" (40 s, **tiếng Việt**, phân tích 2026-11-16) | Phong cách chuyên gia tối-xanh, chỉ chữ từ khoá hai cấp, không phụ đề từng từ, chia đôi màn hình, nháy trắng, B-roll thẻ dọc. Phân tích ở `knowledge/11` (chưa dựng lại) |
+
 ## Talking head khác video đồ hoạ thuần ở đâu
 
 | | Video đồ hoạ (SaaS…) | Talking head |
@@ -48,3 +50,4 @@ Hệ quả: mọi keyframe đặt theo giây của từ trong transcript.
 1. **Neon dày (HD1/Foodtage)**: nền phòng tối có đèn đỏ/xanh. Chữ TR Impact tím-trắng sau đầu, phụ đề serif nghiêng xanh ngọc phát sáng, tile icon neon. Công thức AE đã chạy thật (knowledge/03, examples/foodtage).
 2. **Callaway (HD2)**: nền tối có blob màu mờ. Font Montserrat, đường dẫn và viên thuốc chữ, danh sách, thẻ kính sau lưng. Mới có công thức, chưa dựng thử (knowledge/03 mục B).
 3. **Minimal premium (HD-CL)**: trắng giấy, đen than, một màu nhấn xanh cobalt. Inter kết hợp Playfair Italic, đường kẻ, tranh cổ, biểu đồ. Mới có công thức, chưa dựng thử (knowledge/03 mục C).
+4. **Chuyên gia tối-xanh, ít chữ (HD-VN)**: phòng tối rèm xanh cobalt, người áo đen, chỉ từ khoá hai cấp (nhãn nhỏ + từ khoá to đậm nghiêng) ở ngực/đỉnh đầu, **không phụ đề từng từ**, cắt cảnh TB 2,7 s, chia đôi màn hình, nháy trắng, B-roll thẻ dọc tối nền. **Có dấu tiếng Việt.** Phân tích đầy đủ ở knowledge/11; chưa dựng thử. Nhịp thuộc loại "vừa", hợp dạy nghề / chuyên gia (kể cả y tế nếu bỏ phần người thật khác).
