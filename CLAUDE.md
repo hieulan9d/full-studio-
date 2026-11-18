@@ -2,6 +2,10 @@
 
 **Việc đầu tiên, với mọi yêu cầu: đọc `HUONG-DAN-AI.md`** (mục tiêu dự án, luồng subagent, chọn kit, dịch vụ và cổng, việc phải hỏi người dùng). Sau đó mới đọc kit theo loại video bên dưới.
 
+## Memory của từng phong cách (đọc trước, ghi sau)
+Mỗi phong cách có folder `memory/` (cạnh `PHONG-CACH.md`/`AGENTS.md`): `README.md`, `y-nguoi-dung.md`, `loi-da-gap.md`, `cach-lam-tot.md`, `nhat-ky-video.md`.
+**Đọc `memory/README.md` rồi các file trong đó TRƯỚC khi làm video thuộc phong cách đó; ghi lại bài học SAU khi làm xong** (một dòng nhật ký, bẫy mới, lời khen/chê của người dùng). Phong cách mới tạo từ video mẫu cũng phải có `memory/` (sao từ một phong cách có sẵn).
+
 ## Làm một video (luồng điều phối bằng subagent)
 Khi người dùng đưa chủ đề / brief và muốn ra video: theo **mục 2 của `HUONG-DAN-AI.md`**. Gọi lần lượt subagent
 `content` (viết kịch bản, **dừng chờ người dùng duyệt**), `tao-asset` (giọng + clip AI, chỉ sau khi duyệt), `edit` (dựng bằng kit
@@ -38,5 +42,11 @@ Làm hook: đọc thêm `knowledge/11` (ví dụ tiếng Việt) và `knowledge/
 ## Video UGC AI một cú máy (thời trang/sản phẩm, thể loại thử)
 Khi người dùng muốn video người mẫu AI nói + khoe sản phẩm, một cú máy, camera cố định, không chữ (clip Omni + giọng AI):
 đọc `phong-cach/ugc-ai-thoi-trang/PHONG-CACH.md` rồi `ref-notes.md`. Kit rút từ **một** video mẫu, đã chạy thật 1 lần (bài học ở mục 6b của `PHONG-CACH.md`).
+
+## Tool Edit (phần mềm dựng video của dự án)
+Tool Edit là phần mềm dựng kiểu CapCut chạy bằng GPU, có MCP `tool-edit` cho AI (đã có mã, bản chạy ở `tool-edit/release/ToolEdit/ToolEdit.exe`).
+- **Dùng Tool Edit để EDIT video** (người dùng bảo dựng/sửa video bằng Tool Edit): **đọc `tool-edit/HUONG-DAN-SU-DUNG-AI.md` trước** (chuẩn bị, AI tự áp dụng không cần duyệt, quy trình, danh sách tool, luật dựng, hạn chế).
+- **Sửa/xây thêm chức năng cho phần mềm**: đọc `tool-edit/HUONG-DAN-AI.md`, rồi `KE-HOACH.md`, `CHUC-NANG.md`, `NHAT-KY.md`.
+- **Làm xong chức năng nào phải cập nhật CẢ BA**: `CHUC-NANG.md`, `NHAT-KY.md` và `tool-edit/HUONG-DAN-SU-DUNG-AI.md` (mục tool/luật/hạn chế + dòng "Cập nhật gần nhất"). Đừng nhầm với việc dựng video bằng After Effects.
 
 Trả lời bằng tiếng Việt.

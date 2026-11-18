@@ -52,11 +52,41 @@ server.registerTool(
 
 server.registerTool(
   'project_get',
-  { description: 'Doc du an hien tai: fps, kich thuoc, media (kem cache.status), tracks, clips, 5 muc lich su gan nhat. Doc truoc khi de xuat thay doi. Truong warnings canh bao font thieu dau tieng Viet / khong co trong may.', inputSchema: {} },
-  wrap(async () => {
+  {
+    description: 'Doc du an hien tai: fps, kich thuoc, media (kem cache.status), tracks, clips, 5 muc lich su gan nhat. Doc truoc khi sua. Du an lon (hang tram clip): dung summary=true (gon: tong quan, so clip moi track, media, canh bao) hoac track_id / from / to de chi lay clip trong mot track hoac mot khoang thoi gian (giay). Truong warnings canh bao font thieu dau tieng Viet va clip tran khung.',
+    inputSchema: {
+      summary: z.boolean().describe('true = tra ban tom tat gon (khong liet ke tung clip)').default(false),
+      track_id: z.string().describe('Chi lay clip cua track nay').optional(),
+      from: z.number().describe('Chi lay clip giao voi khoang thoi gian bat dau tu day (giay)').optional(),
+      to: z.number().describe('... den day (giay)').optional(),
+    },
+  },
+  wrap(async ({ summary, track_id, from, to }) => {
     const p = (await http('GET', '/project')).json;
     const { history, ...rest } = p;
     const warnings = (await http('GET', '/warnings')).json ?? [];
+    type C = { id: string; track: string; start: number; duration: number; src?: { type?: string; mediaId?: string }; tag?: string; disabled?: boolean };
+    const clips: C[] = rest.clips ?? [];
+    if (summary) {
+      const end = clips.reduce((m, c) => Math.max(m, c.start + c.duration), 0);
+      return text({
+        fps: rest.fps, width: rest.width, height: rest.height, duration_s: Math.round(end * 100) / 100,
+        tracks: (rest.tracks ?? []).map((t: { id: string; kind: string; name: string }) => {
+          const cs = clips.filter((c) => c.track === t.id);
+          return { id: t.id, kind: t.kind, name: t.name, clips: cs.length, from: cs.length ? Math.min(...cs.map((c) => c.start)) : null, to: cs.length ? Math.max(...cs.map((c) => c.start + c.duration)) : null };
+        }),
+        media: (rest.media ?? []).map((m: { id: string; name?: string; path?: string; kind?: string; duration?: number; cache?: { status?: string } }) => ({ id: m.id, name: m.name ?? String(m.path ?? '').split(/[\/]/).pop(), kind: m.kind, duration: m.duration, cache: m.cache?.status })),
+        clips_by_kind: clips.reduce((a: Record<string, number>, c) => { const k = c.tag?.split(':')[0] ?? c.src?.type ?? 'clip'; a[k] = (a[k] ?? 0) + 1; return a; }, {}),
+        disabled_clips: clips.filter((c) => c.disabled).length,
+        history_total: history.length, history_last: history.slice(-3), warnings,
+        hint: 'Muon xem tung clip: project_get voi track_id hoac from/to.',
+      });
+    }
+    if (track_id || from !== undefined || to !== undefined) {
+      const lo = from ?? -Infinity, hi = to ?? Infinity;
+      rest.clips = clips.filter((c) => (!track_id || c.track === track_id) && c.start + c.duration > lo && c.start < hi);
+      return text({ ...rest, filtered: { track_id, from, to, shown: rest.clips.length, of: clips.length }, history_total: history.length, warnings });
+    }
     return text({ ...rest, history_total: history.length, history_last: history.slice(-5), warnings });
   }),
 );

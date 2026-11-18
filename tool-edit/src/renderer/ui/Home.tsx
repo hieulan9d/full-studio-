@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { api } from '../bridge';
 import { createProject, duplicateProjectFile, forgetProjectFile, goEditor, loadProjects, openProjectFile, openProjectAction, renameProjectFile, restoreAutosave, trashProjectFile, type ProjectCard } from '../actions';
 import { store, useStore } from '../store';
+import { viText } from '../vi-runtime';
 
 const fmtDur = (s: number) => (s >= 60 ? `${Math.floor(s / 60)} phút ${Math.round(s % 60)} giây` : `${s.toFixed(1)} giây`);
 const fmtSize = (b: number) => (b > 1e6 ? `${(b / 1e6).toFixed(1)} MB` : `${Math.max(1, Math.round(b / 1e3))} KB`);
@@ -14,6 +15,7 @@ export function Home() {
   const [name, setName] = useState('');
   const [aspect, setAspect] = useState<'9:16' | '16:9'>('9:16');
   const [loading, setLoading] = useState(true);
+  const [deps, setDeps] = useState<Array<{ id: string; ok: boolean; label: string; fix: string }>>([]);
   const autosave = useStore((s) => s.autosave);
   const cur = useStore((s) => s.project);
   const meta = useStore((s) => s.meta);
@@ -25,6 +27,7 @@ export function Home() {
   };
   useEffect(() => {
     void refresh();
+    void api('GET', '/deps').then((r) => setDeps((r.json?.items ?? []).filter((x: { ok: boolean }) => !x.ok)));
     void api('GET', '/project/autosave').then((r) => store.set({ autosave: r.json?.exists ? r.json : null }));
   }, []);
   const shown = useMemo(() => list.filter((p) => !q || p.name.toLowerCase().includes(q.toLowerCase())), [list, q]);
@@ -32,6 +35,16 @@ export function Home() {
   return (
     <div className="home" data-testid="home">
       <div className="home-in">
+        {deps.length > 0 && (
+          <div className="warn" data-testid="deps-warn" style={{ margin: '8px 0' }}>
+            <b>Máy còn thiếu thứ cần cho một số chức năng:</b>
+            <ul style={{ margin: '6px 0 0 18px' }}>
+              {deps.map((d) => (
+                <li key={d.id}>{viText(d.label)}: {viText(d.fix)}</li>
+              ))}
+            </ul>
+          </div>
+        )}
         <header>
           <h1>Tool Edit</h1>
           <span className="kbd">Phần mềm dựng video cho người và AI · Trang chủ</span>

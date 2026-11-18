@@ -55,6 +55,8 @@ Cả hai cùng sửa **một file dự án JSON**. Thay đổi hiện trực ti�
 
 ## 4. Luật làm việc (bắt buộc)
 
+- **Thêm/đổi chức năng, tool MCP hay hành vi AI thấy được thì cập nhật `HUONG-DAN-SU-DUNG-AI.md` (file AI đọc để edit video) trong cùng lần làm**, cùng với `CHUC-NANG.md` và `NHAT-KY.md`.
+
 1. **Làm xong bất cứ chức năng nào thì cập nhật `CHUC-NANG.md`** (trạng thái, cách dùng, file mã, tool MCP, giới hạn, bẫy, cách kiểm, cách nâng cấp) **và `NHAT-KY.md`**. Chưa cập nhật = chưa xong.
 2. Không ghi điều chưa chạy như thể đã chạy được. Đổi nhãn `[thiết kế]` → `[có]` chỉ sau khi đã chạy kiểm thật.
 3. **Không có hộp thoại chặn** trong bất cứ tác vụ nào AI gọi. Mọi tác vụ dài trả `job_id` và hỏi trạng thái.

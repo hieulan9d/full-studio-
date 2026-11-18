@@ -77,6 +77,11 @@ Mã `F-xx` dùng để tham chiếu trong `NHAT-KY.md`. Khi một chức năng b
 | F-95 | Tương tác trực tiếp trên khung xem: chọn clip, khung chọn có tay nắm, kéo dời / đổi cỡ / xoay, snap + vùng an toàn, keyframe | UX | chạy (đã kiểm hộp chọn khớp điểm ảnh thật) |
 | F-96 | Ô thông số đổi ngay khi gõ/kéo, gộp một bước hoàn tác (`coalesce`) | UX | chạy (đã kiểm) |
 | F-97 | Xuất timeline sang Premiere / DaVinci Resolve / CapCut / After Effects / EDL + tool MCP `export_timeline` | Hệ thống | chạy (đã kiểm file; **chưa mở thử trong phần mềm đích**) |
+| F-98 | Nút bật/tắt AI tự áp dụng + thông báo kèm Hoàn tác | UX/AI | chạy (chưa kiểm bằng giao diện thật) |
+| F-99 | Kiểm phụ thuộc khi mở app (`GET /deps`, khung cảnh báo ở Trang chủ) | UX | chạy (chưa kiểm bằng giao diện thật) |
+| F-100 | Hỏi trạng thái nền theo nhịp thích ứng, dừng khi cửa sổ ẩn | Hiệu năng | chạy (chưa đo) |
+| F-101 | Trần RAM cho cache giải mã (LRU) | Hiệu năng | chạy (chưa đo) |
+| F-102 | `project_get`: `summary`, `track_id`, `from`, `to` | AI | chạy (chưa kiểm bằng client MCP) |
 | F-92 | Chỉnh màu "sống" (kéo là hình đổi ngay) + cửa sổ Scope riêng nổi (Ctrl+L) | Màu | chạy (xem mục) |
 | F-93 | Đóng gói thành ToolEdit.exe chạy được (npm run package) | Hệ thống | chạy (xem mục) |
 | F-90 | Scope màu chính xác hơn: vùng đo, mức hợp lệ 16/235, đọc giá trị khi rê chuột, RGB chồng | Màu | chạy (xem mục) |

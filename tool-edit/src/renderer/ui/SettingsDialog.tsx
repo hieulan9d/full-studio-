@@ -1,12 +1,13 @@
 // Cài đặt: phím tắt (bấm vào ô rồi nhấn tổ hợp phím mới), báo trùng, đặt lại; thông tin chuột.
 import { useEffect, useState } from 'react';
 import { ACTIONS, RESERVED, actionFor, comboOf, conflicts, defaultKeymap, prettyCombo } from '../keymap';
-import { exportKeymap, importKeymap, resetKeys, setKey } from '../actions';
+import { exportKeymap, importKeymap, resetKeys, setAutoApplyAi, setKey } from '../actions';
 import { store, useStore } from '../store';
 
 export function SettingsDialog() {
   const open = useStore((s) => s.settingsOpen);
   const km = useStore((s) => s.keymap);
+  const autoAi = useStore((s) => s.autoApplyAi);
   const [rec, setRec] = useState<string | null>(null);
   const [msg, setMsg] = useState('');
   const [q, setQ] = useState('');
@@ -47,6 +48,11 @@ export function SettingsDialog() {
           <button className="plain" data-testid="settings-close" onClick={() => store.set({ settingsOpen: false })}>✕</button>
         </div>
         <div className="mbody">
+          <h4>AI</h4>
+          <label className="kbd" style={{ display: 'flex', gap: 8, alignItems: 'center', marginBottom: 10 }}>
+            <input type="checkbox" data-testid="auto-apply-ai" checked={autoAi} onChange={(e) => setAutoApplyAi(e.target.checked)} />
+            <span>AI tự áp dụng thay đổi, không cần duyệt (hoàn tác bằng Ctrl+Z hoặc nút "Hoàn tác" trên thông báo). Tắt để AI chỉ gửi đề xuất chờ bạn bấm Chấp nhận.</span>
+          </label>
           <h4>Phím tắt</h4>
           <div className="kbd" style={{ marginBottom: 6 }}>Bấm vào ô phím rồi nhấn tổ hợp mới (Esc để hủy). Phím không có tác dụng khi đang gõ trong ô nhập.</div>
           <div style={{ display: 'flex', gap: 6, margin: '6px 0' }}>

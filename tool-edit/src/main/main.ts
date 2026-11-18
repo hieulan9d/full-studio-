@@ -1,6 +1,7 @@
 // Electron main: ep RTX, giu Session, job nen, HTTP 127.0.0.1 + IPC cho giao dien. Xem CHUC-NANG.md F-01..F-14, F-71.
 import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron';
 import * as http from 'node:http';
+import { execFile } from 'node:child_process';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import * as nodeCrypto from 'node:crypto';
@@ -15,6 +16,7 @@ import { capcutDraftsDir, findCapcutTemplate, installCapcutDraft, writeCapcutDra
 import { FontIndex } from './fonts';
 import { projectWarnings } from '../core/vn';
 import { PRESETS } from '../core/presets';
+import { PYTHON } from './analysis';
 import { detectBeats, matteVideo, detectSilences, measureLoudness, transcribeFile, type WhisperOpts } from './analysis';
 import { Library } from './library';
 import { planSfx, sfxOps, type SfxRule } from '../core/sfx';
@@ -201,6 +203,29 @@ function writeSettings(patch: Record<string, unknown>) {
   fs.mkdirSync(path.dirname(settingsFile()), { recursive: true });
   fs.writeFileSync(settingsFile(), JSON.stringify(cur, null, 1));
   return cur;
+}
+
+
+// Kiem tra phu thuoc khi mo app (ffmpeg, ffprobe, python + goi, mo hinh tach nen). Ket qua nho 60 giay.
+let depsCache: { at: number; items: Array<{ id: string; ok: boolean; label: string; fix: string }> } | null = null;
+const runOk = (cmd: string, args: string[]) => new Promise<boolean>((resolve) => execFile(cmd, args, { timeout: 15000, windowsHide: true }, (e) => resolve(!e)));
+async function checkDeps() {
+  if (depsCache && Date.now() - depsCache.at < 60_000) return depsCache.items;
+  const model = path.join(app.getAppPath(), 'models', 'rvm_mobilenetv3_fp32.onnx');
+  const [ffmpegOk, ffprobeOk, pyOk, pyPkgs] = await Promise.all([
+    runOk('ffmpeg', ['-version']),
+    runOk('ffprobe', ['-version']),
+    runOk(PYTHON, ['--version']),
+    runOk(PYTHON, ['-c', 'import numpy, onnxruntime, faster_whisper']),
+  ]);
+  const items = [
+    { id: 'ffmpeg', ok: ffmpegOk && ffprobeOk, label: 'FFmpeg (nhap media, xuat video)', fix: 'Cai FFmpeg va them vao PATH, roi mo lai app. Kiem tra: ffmpeg -version' },
+    { id: 'python', ok: pyOk, label: 'Python (tach nen, nhan dien loi thoai, nhip nhac)', fix: 'Cai Python 3 (them vao PATH) hoac dat bien TOOL_EDIT_PYTHON tro toi python.exe' },
+    { id: 'pypkgs', ok: pyOk && pyPkgs, label: 'Goi Python: numpy, onnxruntime, faster-whisper', fix: 'Chay: pip install numpy onnxruntime-gpu faster-whisper' },
+    { id: 'model', ok: fs.existsSync(model), label: 'Mo hinh tach nen RVM (models/rvm_mobilenetv3_fp32.onnx)', fix: 'Dat file rvm_mobilenetv3_fp32.onnx (khoang 15 MB) vao thu muc models cua app. Xem CAI-DAT.md' },
+  ];
+  depsCache = { at: Date.now(), items };
+  return items;
 }
 
 // Tu ap dung de xuat cua AI (mac dinh BAT theo yeu cau nguoi dung: AI cu lam, khong can duyet). Tat: settings.json {"autoApplyAi": false}
@@ -776,6 +801,10 @@ async function route(r: Req): Promise<Res> {
   let mm: RegExpExecArray | null;
   const b = r.body ?? {};
 
+  if (key === 'GET /deps') {
+    const items = await checkDeps();
+    return ok({ ok: items.every((x) => x.ok), items });
+  }
   if (key === 'GET /status') {
     return ok({ ok: true, rendererReady, gpu: gpuInfo, clips: session.project.clips.length, media: session.project.media.length, seq: session.project.history.length, jobsRunning: jobs.list().filter((j) => j.state === 'running').length, proposalsPending: proposals.filter((x) => x.status === 'pending').length, projectPath, dirty });
   }

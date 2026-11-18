@@ -426,6 +426,7 @@ export async function toggleDraft(id: string) {
 // ---- poll job / de xuat ----
 let lastJobs = '';
 let lastProps = '';
+let proposalsLoaded = false;
 const announced = new Set<string>();
 export async function refreshProposals() {
   const r = await api('GET', '/proposals');
@@ -434,7 +435,13 @@ export async function refreshProposals() {
   if (sig === lastProps) return;
   lastProps = sig;
   store.set({ proposals: list });
+  const firstLoad = !proposalsLoaded;
+  proposalsLoaded = true;
   for (const p of list) {
+    if (p.status === 'accepted' && p.source.startsWith('ai:') && !announced.has(p.id)) {
+      announced.add(p.id);
+      if (!firstLoad) toast(`AI vừa áp dụng${p.note ? ': ' + p.note : ' ' + p.ops.length + ' thay đổi'}`, 'ok', { label: 'Hoàn tác', run: () => void undo() });
+    }
     if (p.status === 'pending' && !announced.has(p.id)) {
       announced.add(p.id);
       toast(`${p.source} gửi đề xuất ${p.id}${p.note ? ': ' + p.note : ''}`, 'info', { label: 'Xem', run: () => store.set({ rightTab: 'proposals' }) });
@@ -888,7 +895,7 @@ Bạn có thể khôi phục từ Thùng rác của Windows.`)) return false;
 export async function loadSettings() {
   const r = await api('GET', '/settings');
   const j = r.json ?? {};
-  store.set({ keymap: mergeKeymap(j.keymap), layout: { ...DEFAULT_LAYOUT, ...(j.layout ?? {}), maxed: 'none' } });
+  store.set({ autoApplyAi: j.autoApplyAi !== false, keymap: mergeKeymap(j.keymap), layout: { ...DEFAULT_LAYOUT, ...(j.layout ?? {}), maxed: 'none' } });
 }
 
 let settingsTimer: ReturnType<typeof setTimeout> | null = null;
@@ -902,6 +909,12 @@ export function saveSettingsSoon() {
     for (const [id, k] of Object.entries(s.keymap)) if (def[id] !== k) km[id] = k; // chỉ lưu phần khác mặc định
     void api('POST', '/settings', { keymap: km, layout: { ...s.layout, maxed: 'none' } });
   }, 400);
+}
+
+/** Bật/tắt chế độ AI tự áp dụng (tắt = thay đổi của AI vào hàng đề xuất chờ duyệt). */
+export function setAutoApplyAi(v: boolean) {
+  store.set({ autoApplyAi: v });
+  void api('POST', '/settings', { autoApplyAi: v });
 }
 
 export function setLayout(patch: Partial<Layout>, persist = true) {

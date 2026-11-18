@@ -36,8 +36,16 @@ async function main() {
   const as = await api('GET', '/project/autosave');
   if (as.json?.exists && first.json.clips.length === 0 && first.json.media.length === 0) store.set({ autosave: as.json });
 
-  setInterval(() => void refreshJobs(), 600);
-  setInterval(() => void refreshProposals(), 700);
+  // Hoi trang thai nen theo nhip thich ung: nhanh khi co viec dang chay / cho duyet, cham khi ranh; dung han khi cua so bi an (giam tai, do lag)
+  const tick = (fn: () => Promise<void>, fast: () => boolean, fastMs: number, slowMs: number) => {
+    const run = async () => {
+      if (!document.hidden) await fn();
+      setTimeout(() => void run(), fast() ? fastMs : slowMs);
+    };
+    setTimeout(() => void run(), fastMs);
+  };
+  tick(refreshJobs, () => store.get().jobs.some((j) => j.state === 'running'), 600, 2000);
+  tick(refreshProposals, () => store.get().proposals.some((p) => p.status === 'pending'), 700, 1500);
   void refreshJobs();
   void refreshProposals();
 

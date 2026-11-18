@@ -12,6 +12,9 @@ import type { ExportReq, RenderReq } from './bridge';
 
 export const r = new Renderer();
 const videos = new Map<string, CachedVideo>();
+const videoUsed = new Map<string, number>(); // lan dung cuoi (ms) de giai phong media ngoai khung nhin khi RAM day
+/** Tran RAM cho luong giai ma nap san (byte). May 16 GB: 1,5 GB cho cache; vuot thi bo media lau khong dung. */
+export const videoRamCap = { bytes: 1.5 * 1024 ** 3 };
 const imageFrames = new Map<string, VideoFrame>();
 const cancelledJobs = new Set<string>();
 
@@ -34,6 +37,11 @@ async function getVideo(p: Project, mediaId: string): Promise<CachedVideo> {
   if (m.cache?.status !== 'ready') throw new Error(`media ${mediaId} chua san sang (cache: ${m.cache?.status ?? 'chua co'}${m.cache?.error ? ' - ' + m.cache.error : ''})`);
   const key = `${mediaId}:${m.cache.frames}`;
   let v = videos.get(key);
+  videoUsed.set(key, Date.now());
+  if (v) {
+    videos.delete(key); // dua len cuoi Map = moi dung gan day nhat
+    videos.set(key, v);
+  }
   if (!v) {
     for (const [k, old] of videos) {
       if (k.startsWith(mediaId + ':')) {
@@ -44,6 +52,16 @@ async function getVideo(p: Project, mediaId: string): Promise<CachedVideo> {
     const bytes = await window.toolEdit.readCache(mediaId);
     v = new CachedVideo(bytes, m.cache.width!, m.cache.height!);
     videos.set(key, v);
+    let total = 0;
+    for (const x of videos.values()) total += x.byteSize;
+    for (const [k, old] of videos) {
+      if (total <= videoRamCap.bytes || videos.size <= 1) break;
+      if (k === key || Date.now() - (videoUsed.get(k) ?? 0) < 3000) continue; // khong bo media vua dung (dang trong khung hinh)
+      total -= old.byteSize;
+      old.dispose();
+      videos.delete(k);
+      videoUsed.delete(k);
+    }
   }
   return v;
 }

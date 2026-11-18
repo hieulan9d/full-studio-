@@ -35,6 +35,7 @@ export const DEFAULT_LAYOUT: Layout = { left: 290, right: 340, tl: 310, trackH: 
 export interface State {
   view: 'home' | 'editor';
   keymap: Keymap;
+  autoApplyAi: boolean;
   layout: Layout;
   settingsOpen: boolean;
   exportOpen: boolean; // hop thoai "Xuat sang..."
@@ -82,6 +83,7 @@ export interface PreviewView {
 const initial: State = {
   view: 'editor',
   keymap: defaultKeymap(),
+  autoApplyAi: true,
   layout: { ...DEFAULT_LAYOUT },
   settingsOpen: false,
   exportOpen: false,

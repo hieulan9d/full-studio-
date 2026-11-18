@@ -68,6 +68,11 @@ export class CachedVideo {
     this.frameCount = this.idx.aus.length;
   }
 
+  /** Dung luong (byte) cua luong da nap trong RAM. */
+  get byteSize() {
+    return this.bytes.byteLength;
+  }
+
   private chunk(i: number): EncodedVideoChunk {
     const au = this.idx.aus[i];
     return new EncodedVideoChunk({ type: au.key ? 'key' : 'delta', timestamp: i, data: this.bytes.subarray(au.start, au.end) });
