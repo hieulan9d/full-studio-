@@ -1,5 +1,6 @@
 // Bo render WebGPU: lop -> RGBA16F tuyen tinh -> Output Transform -> 8-bit. Xem CHUC-NANG.md F-02, F-08.
 import type { OutputTransform } from '../core/color';
+import type { StageA } from '../core/grade';
 import type { GenKind, MatteOpts, Transform } from '../core/schema';
 import { hexToRgb01 } from './color-util';
 import type { BlendMode, Fx } from '../core/fx';
@@ -120,7 +121,7 @@ fn luma(c: vec3f) -> f32 { return 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b; }
 // Bien the: matte (alpha tu video xam, co muc den/trang va lam mem 9 mau) va LUT 3D (chinh mau: ma hoa video -> ma hoa sRGB da chinh).
 function layerWgsl(matte: boolean, lut: boolean): string {
   return /* wgsl */ `
-struct L { center: vec2f, size: vec2f, canvas: vec2f, cs: vec2f, opacity: f32, lo: f32, hi: f32, feather: f32, texel: vec2f, lutk: vec2f, ex: vec4f, ex2: vec4f };
+struct L { center: vec2f, size: vec2f, canvas: vec2f, cs: vec2f, opacity: f32, lo: f32, hi: f32, feather: f32, texel: vec2f, lutk: vec2f, ex: vec4f, ex2: vec4f, win0: vec4f, win1: vec4f, win2: vec4f, sa: vec4f, mr: vec4f, m0: vec4f, m1: vec4f, m2: vec4f };
 @group(0) @binding(0) var<uniform> l: L;
 @group(0) @binding(1) var vtex: texture_external;
 @group(0) @binding(2) var samp: sampler;
@@ -143,11 +144,63 @@ struct VO { @builtin(position) pos: vec4f, @location(0) uv: vec2f };
 }
 
 fn srgb_eotf(c: f32) -> f32 { return select(pow((c + 0.055) / 1.055, 2.4), c / 12.92, c <= 0.04045); }
+${lut ? `fn dec(id: u32, x: f32) -> f32 {
+  var r = 0.0;
+  if (id == 0u) { r = srgb_eotf(x); }
+  else if (id == 1u) { r = select(((x * 1023.0 - 95.0) * 0.01125) / (171.2102946929 - 95.0), pow(10.0, (x * 1023.0 - 420.0) / 261.5) * 0.19 - 0.01, x >= 171.2102946929 / 1023.0); }
+  else if (id == 2u) { r = select(pow(10.0, (x - 0.598206) / 0.241514) - 0.00873, (x - 0.125) / 5.6, x < 0.181); }
+  else if (id == 3u) { r = select((x - 0.092809) / 5.367655, (pow(10.0, (x - 0.385537) / 0.24719) - 0.052272) / 5.555556, x > 0.010591 * 5.367655 + 0.092809); }
+  else if (id == 4u) { r = select(x / 10.44426855, pow(2.0, x / 0.07329248 - 7.0) - 0.0075, x > 0.02740668); }
+  else if (id == 5u) { r = select(pow(2.0, x * 17.52 - 9.72), (x - 0.0729055341958355) / 10.5402377416545, x <= 0.155251141552511); }
+  else if (id == 6u) { r = select(x / 15.1927 - 0.01, (pow(10.0, x / 0.224282) - 1.0) / 155.975327 - 0.01, x >= 0.0); }
+  else { r = select(sqrt(max(x, 0.0) / 47.28711236) - 0.05641088, pow(2.0, (x - 0.69336945) / 0.08550479) - 0.00964052, x >= 47.28711236 * pow(0.01 + 0.05641088, 2.0)); }
+  return r;
+}
+fn aces(c: vec3f) -> vec3f {
+  let a = vec3f(dot(vec3f(0.59719, 0.35458, 0.04823), c), dot(vec3f(0.076, 0.90834, 0.01566), c), dot(vec3f(0.0284, 0.13383, 0.83777), c));
+  let t = (a * (a + vec3f(0.0245786)) - vec3f(0.000090537)) / (a * (0.983729 * a + vec3f(0.432951)) + vec3f(0.238081));
+  let o = vec3f(dot(vec3f(1.60475, -0.53108, -0.07367), t), dot(vec3f(-0.10208, 1.10813, -0.00605), t), dot(vec3f(-0.00327, -0.07276, 1.07602), t));
+  return clamp(o, vec3f(0.0), vec3f(1.0));
+}
+// BUOC A cua chinh mau (giai tich, khong qua LUT): giai ma log + doi gam mau (nen gam am) + phoi sang/nhiet do + tone-map -> ma hoa sRGB
+fn stage_a(c: vec3f) -> vec3f {
+  let id = u32(l.sa.x + 0.5);
+  var lin = vec3f(dec(id, c.r), dec(id, c.g), dec(id, c.b));
+  lin = vec3f(dot(l.m0.xyz, lin), dot(l.m1.xyz, lin), dot(l.m2.xyz, lin));
+  let mn = min(lin.r, min(lin.g, lin.b));
+  if (l.sa.z > 1.5 && mn < 0.0) {
+    let y = dot(vec3f(0.2126, 0.7152, 0.0722), lin);
+    let k = select(0.0, y / (y - mn), y > 0.0);
+    lin = vec3f(y * (1.0 - k)) + lin * k;
+    if (y <= 0.0) { lin = vec3f(0.0); }
+  }
+  lin = lin * l.mr.xyz;
+  if (l.sa.y > 0.5) { lin = aces(lin); }
+  lin = max(lin, vec3f(0.0));
+  return select(1.055 * pow(lin, vec3f(1.0 / 2.4)) - vec3f(0.055), lin * 12.92, lin <= vec3f(0.0031308));
+}
+
+` : ''}
 ${matte ? 'fn m(uv: vec2f) -> f32 { return textureSampleBaseClampToEdge(mtex, samp, uv).r; }' : ''}
 
 @fragment fn fs_layer(in: VO) -> @location(0) vec4f {
   var c = textureSampleBaseClampToEdge(vtex, samp, in.uv).rgb;
-  ${lut ? 'c = max(textureSampleLevel(glut, gsamp, clamp(c, vec3f(0.0), vec3f(1.0)) * l.lutk.x + vec3f(l.lutk.y), 0.0).rgb, vec3f(0.0));' : ''}
+  ${lut ? `let csrc = c;
+  var ca = c;
+  if (l.sa.z > 0.5) { ca = stage_a(c); }
+  let cin = clamp(ca, vec3f(0.0), vec3f(1.0));
+  c = max(textureSampleLevel(glut, gsamp, cin * l.lutk.x + vec3f(l.lutk.y), 0.0).rgb, vec3f(0.0)) + (ca - cin);
+  c = csrc + (c - csrc) * l.sa.w;
+  if (l.win2.x > 0.5) {
+    // cua so (power window): chi ap chinh mau trong hinh (elip/chu nhat xoay), mep mem; ngoai hinh giu mau goc
+    let pp = (in.uv - l.win0.xy) * l.size;
+    let pr = vec2f(pp.x * l.win1.x + pp.y * l.win1.y, -pp.x * l.win1.y + pp.y * l.win1.x);
+    let q = pr / (0.5 * vec2f(l.win0.z * l.size.x, l.win0.w * l.size.y));
+    let dd = select(length(q), max(abs(q.x), abs(q.y)), l.win1.w > 0.5);
+    var wm = 1.0 - smoothstep(1.0 - max(l.win1.z, 0.002), 1.0, dd);
+    if (l.win2.y > 0.5) { wm = 1.0 - wm; }
+    c = mix(csrc, c, wm);
+  }` : ''}
   var a = 1.0;
   ${matte ? `a = m(in.uv);
   if (l.feather > 0.01) {
@@ -190,16 +243,16 @@ fn q(v: f32) -> u32 { return u32(clamp(v, 0.0, 1.0) * 255.0 + 0.5); }
   if (id.x >= p.w || id.y >= p.h) { return; }
   let c = textureLoad(src, vec2i(i32(id.x + p.ox), i32(id.y + p.oy)), 0).rgb;
   let y = 0.2126 * c.r + 0.7152 * c.g + 0.0722 * c.b;
-  var lv = array<u32, 4>(q(c.r), q(c.g), q(c.b), q(y));
+  let cb0 = (c.b - y) / 1.8556;
+  let cr0 = (c.r - y) / 1.5748;
+  var lv = array<u32, 6>(q(c.r), q(c.g), q(c.b), q(y), q(cb0 + 0.5), q(cr0 + 0.5)); // 4 = Cb, 5 = Cr (BT.709, day du 0..1)
   let col = id.x * p.cols / p.w;
-  for (var ch = 0u; ch < 4u; ch = ch + 1u) {
+  for (var ch = 0u; ch < 6u; ch = ch + 1u) {
     atomicAdd(&hist[ch * 256u + lv[ch]], 1u);
     atomicAdd(&wave[(ch * p.cols + col) * 256u + lv[ch]], 1u);
   }
-  let cb = (c.b - y) / 1.8556;
-  let cr = (c.r - y) / 1.5748;
-  let vx = u32(clamp((cb + 0.5) * 255.0 + 0.5, 0.0, 255.0));
-  let vy = 255u - u32(clamp((cr + 0.5) * 255.0 + 0.5, 0.0, 255.0));
+  let vx = u32(clamp((cb0 + 0.5) * 255.0 + 0.5, 0.0, 255.0));
+  let vy = 255u - u32(clamp((cr0 + 0.5) * 255.0 + 0.5, 0.0, 255.0));
   atomicAdd(&vect[vy * 256u + vx], 1u);
 }
 `;
@@ -208,8 +261,8 @@ export interface ScopeData {
   w: number;
   h: number;
   cols: number;
-  hist: Uint32Array; // 4*256: R, G, B, luma
-  wave: Uint32Array; // 4*cols*256: kenh, cot, muc
+  hist: Uint32Array; // 6*256: R, G, B, luma, Cb, Cr
+  wave: Uint32Array; // 6*cols*256: kenh, cot, muc
   vect: Uint32Array; // 256*256 (hang tren = Cr cao, phai = Cb cao)
 }
 
@@ -345,6 +398,9 @@ export interface GradeLutData {
   key: string;
   size: number;
   data: Uint16Array;
+  a?: StageA; // buoc A (giai tich trong shader)
+  mix?: number; // muc ap dung chung
+  win?: { enabled: boolean; shape: 'ellipse' | 'rect'; cx: number; cy: number; w: number; h: number; rot: number; feather: number; invert: boolean }; // cua so (khong nam trong khoa LUT)
 }
 
 export interface LayerFx {
@@ -691,10 +747,13 @@ export class Renderer {
         const r = Renderer.layerRect(o.width, o.height, layer.width, layer.height, layer.transform);
         const mo = layer.matteOpts ?? { lo: 0, hi: 1, feather: 0 };
         const g = layer.grade;
-        const ub = this.device.createBuffer({ size: 96, usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST });
+        const ub = this.device.createBuffer({ size: 224, usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST });
         this.temps.push(ub);
+        const ga = g?.a;
+        const wn = g?.win && g.win.enabled ? g.win : null;
+        const wr = wn ? (wn.rot * Math.PI) / 180 : 0;
         const k = g ? (g.size - 1) / g.size : 1;
-        this.device.queue.writeBuffer(ub, 0, new Float32Array([r.cx, r.cy, r.sw, r.sh, o.width, o.height, r.cos, r.sin, layer.transform.opacity, mo.lo, mo.hi, mo.feather, 1 / (layer.matteW ?? 1080), 1 / (layer.matteH ?? 1920), k, g ? 0.5 / g.size : 0, layer.fx?.round?.radius ?? 0, layer.fx?.crop?.left ?? 0, layer.fx?.crop?.top ?? 0, layer.fx?.crop?.right ?? 0, layer.fx?.crop?.bottom ?? 0, 0, 0, 0]));
+        this.device.queue.writeBuffer(ub, 0, new Float32Array([r.cx, r.cy, r.sw, r.sh, o.width, o.height, r.cos, r.sin, layer.transform.opacity, mo.lo, mo.hi, mo.feather, 1 / (layer.matteW ?? 1080), 1 / (layer.matteH ?? 1920), k, g ? 0.5 / g.size : 0, layer.fx?.round?.radius ?? 0, layer.fx?.crop?.left ?? 0, layer.fx?.crop?.top ?? 0, layer.fx?.crop?.right ?? 0, layer.fx?.crop?.bottom ?? 0, 0, 0, 0, wn?.cx ?? 0.5, wn?.cy ?? 0.5, wn?.w ?? 1, wn?.h ?? 1, Math.cos(wr), Math.sin(wr), wn?.feather ?? 0, wn?.shape === 'rect' ? 1 : 0, wn ? 1 : 0, wn?.invert ? 1 : 0, 0, 0, ga ? ga.curve : 0, ga ? ga.tonemap : 0, ga && ga.on ? (ga.gamut ? 2 : 1) : 0, g?.mix ?? 1, ga ? ga.mul[0] : 1, ga ? ga.mul[1] : 1, ga ? ga.mul[2] : 1, 0, ga ? ga.m[0] : 1, ga ? ga.m[1] : 0, ga ? ga.m[2] : 0, 0, ga ? ga.m[3] : 0, ga ? ga.m[4] : 1, ga ? ga.m[5] : 0, 0, ga ? ga.m[6] : 0, ga ? ga.m[7] : 0, ga ? ga.m[8] : 1, 0]));
         const ext = this.device.importExternalTexture({ source: layer.frame, colorSpace: 'srgb' });
         const pipe = this.getLayerPipe(!!layer.matte, !!g);
         const entries: GPUBindGroupEntry[] = [
@@ -776,8 +835,8 @@ export class Renderer {
     this.encodeOutput(enc, t.hdr, t.ldr.createView(), 'rgba8unorm', { ...o, view: 'none', dither: false, out: o.out ?? 'srgb' });
     const mk = (size: number, usage: number) => this.device.createBuffer({ size, usage });
     const ST = GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_SRC;
-    const hist = mk(4 * 256 * 4, ST),
-      wave = mk(4 * cols * 256 * 4, ST),
+    const hist = mk(6 * 256 * 4, ST),
+      wave = mk(6 * cols * 256 * 4, ST),
       vect = mk(256 * 256 * 4, ST);
     const pb = mk(32, GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST);
     this.device.queue.writeBuffer(pb, 0, new Uint32Array([w, h, cols, 0, rx, ry, 0, 0]));

@@ -230,6 +230,7 @@ async function checkDeps() {
 
 // Tu ap dung de xuat cua AI (mac dinh BAT theo yeu cau nguoi dung: AI cu lam, khong can duyet). Tat: settings.json {"autoApplyAi": false}
 function autoApplyEnabled(): boolean {
+  if (process.env.TOOL_EDIT_AUTO_APPLY === '0') return false; // kiem thu: gia lap che do duyet (cac bai kiem cu doi de xuat o trang thai cho duyet)
   return readSettings().autoApplyAi !== false;
 }
 function maybeAutoApply(pr: Proposal): { applied: boolean; seq?: number; errors?: unknown } {
@@ -1190,7 +1191,7 @@ async function route(r: Req): Promise<Res> {
     }
     const isScope = key === 'GET /scope_image';
     const kind = r.query.get('kind') ?? 'waveform';
-    if (isScope && !['waveform', 'parade', 'vectorscope', 'histogram', 'rgbwave'].includes(kind)) return err(400, 'kind phai la waveform|parade|vectorscope|histogram|rgbwave');
+    if (isScope && !['waveform', 'parade', 'ycbcr', 'vectorscope', 'histogram', 'rgbwave'].includes(kind)) return err(400, 'kind phai la waveform|parade|ycbcr|vectorscope|histogram|rgbwave');
     const roiQ = r.query.get('roi');
     let roi: { x0: number; y0: number; x1: number; y1: number } | undefined;
     if (roiQ && roiQ !== 'full') {

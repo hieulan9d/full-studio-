@@ -191,10 +191,12 @@ await ops([{ op: 'remove_clip', id: 'bars' }, { op: 'add_clip', clip: { id: 'c',
 const g1 = (await call('GET', '/analyze_frame?t=1&clip_id=c&graded=1')).data;
 const g0 = (await call('GET', '/analyze_frame?t=1&clip_id=c&graded=0')).data;
 ok(g1.channels.luma.mean > g0.channels.luma.mean + 0.04 && g0.graded === false, 'analyze_frame clip graded=1 sang hon graded=0 (mau goc)', `${g1.channels.luma.mean} vs ${g0.channels.luma.mean}`);
+await call('POST', '/settings', { autoApplyAi: false }); // kiem 'de xuat chua duyet': tat tu ap dung (mac dinh BAT tu 2026-11-18)
 const pr = (await call('POST', '/propose', { ops: [{ op: 'set_grade', id: 'c', grade: { exposure: -1, saturation: 0 } }], note: 'tt', source: 'ai:test' })).data;
 const gp = (await call('GET', `/analyze_frame?t=1&clip_id=c&proposal=${pr.proposal_id}`)).data;
 ok(gp.channels.luma.mean < g0.channels.luma.mean && gp.saturation_mean < 0.005, 'analyze_frame voi proposal: do duoc ket qua cua de xuat CHUA duyet (toi hon, het mau)', `${gp.channels.luma.mean}, sat ${gp.saturation_mean}`);
-ok((await project()).clips[0].grade.exposure === 1, 'De xuat khong doi du an');
+ok((await project()).clips[0].grade.exposure === 1, 'De xuat khong doi du an (khi tat tu ap dung)');
+await call('POST', '/settings', { autoApplyAi: true });
 const bad = await call('GET', '/scope_image?t=1&kind=khong-co');
 ok(bad.status === 400, 'scope_image voi kind sai bi tu choi');
 

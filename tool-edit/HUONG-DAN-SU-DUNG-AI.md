@@ -50,7 +50,7 @@ Chi tiết tham số nằm trong mô tả của từng tool; đọc mô tả khi
 | Phụ đề/lời | `transcribe`, `get_transcript`, `fix_transcript`, `generate_captions`, `cut_words`, `cut_silences` | Whisper từng từ, sửa lời, phụ đề từng từ, dựng theo lời, cắt khoảng lặng |
 | Âm thanh | `list_library`, `suggest_sfx`, `duck_music`, `detect_beats`, `beat_markers` | Kho SFX/nhạc, SFX theo sự kiện, hạ nhạc khi có lời, nhịp nhạc |
 | Tách nền/tốc độ | `remove_background`, `apply_matte`, `text_behind_person`, `set_speed` | Tách người (RVM), chữ sau lưng người, tốc độ và speed ramp |
-| Màu | `grade_get`, `grade_set`, `apply_lut`, `match_color` | Chỉnh màu, LUT, khớp màu giữa clip |
+| Màu | `grade_get`, `grade_set`, `apply_lut`, `match_color` | Chỉnh màu (không gian màu log, tone-map ACES, qualifier HSL, log wheels, cửa sổ), LUT, khớp màu giữa clip |
 | Hiệu ứng/hình | `set_fx`, `set_blend`, `add_shape` | Blur, glow, bóng, bo góc, vignette, wipe; chế độ trộn; hình vector |
 | An toàn/xuất | `snapshot_create`, `snapshots_list`, `qc_check`, `render_start`, `export_timeline` | Điểm quay lại, kiểm chất lượng, xuất video, xuất sang phần mềm khác |
 
@@ -63,6 +63,7 @@ Chi tiết tham số nằm trong mô tả của từng tool; đọc mô tả khi
 - **Xoá giữa track**: dùng `ripple_delete` để các clip sau tự kéo lùi liền.
 - **Tách nền**: nếu `remove_background` báo `MODEL_MISSING`, dừng và báo người dùng (cần file `models/rvm_mobilenetv3_fp32.onnx`, khoảng 15 MB). Không tự tải về.
 - **SFX và nhạc**: dùng kho của app (`list_library`). Nhạc/SFX trong ví dụ khoá học chỉ để học, không đưa vào video thương mại. Chuẩn cuối **−14 LUFS** (app đo khi xuất).
+- **Màu (footage log):** đặt `input` đúng với camera (ví dụ `logc3_awg3`, `slog3_sgamut3cine`, `acescct`), thường kèm `tonemap: 'aces'` để nén vùng sáng; đo trước bằng `analyze_frame` và `scope_image` (`waveform`, `parade`, `ycbcr`, `vectorscope`), rồi chỉnh, rồi đo lại. Chỉnh một vùng màu (chỉ da, chỉ bầu trời) dùng `qual` (xem mặt nạ bằng `qual.show`), chỉnh một vùng không gian dùng `win`, gỡ bằng `remove`. Ma trận gam màu trừ ARRI chưa đối chiếu hãng: nói rõ với người dùng nếu họ cần màu chuẩn hãng (khi đó nên dùng LUT của hãng qua `apply_lut`).
 - **Hiệu năng**: đừng gọi `preview_frame` dồn dập trong lúc app đang xuất hoặc người dùng đang phát. Giải mã chạy tuần tự nên gọi chồng làm giật. Nhập media lớn thì để job cache xong rồi mới thao tác.
 - **Máy 16 GB RAM, GPU 6 GB**: app giữ trần RAM cho cache giải mã (1,5 GB) nên mở dự án lớn vẫn ổn, nhưng đừng nhập hàng chục video 4K cùng lúc.
 - **Dự án nhiều clip** (vd. dựng lại Foodtage, 177 clip): dùng `project_get` có `summary`/`track_id`/`from`/`to`, không đọc hết.
@@ -91,9 +92,9 @@ Tool Edit được xây để thay dần After Effects. Khi người dùng muố
 - Whisper **tiếng Việt thật** chưa đo độ chính xác: đọc lại `get_transcript` và `fix_transcript` trước khi tạo phụ đề.
 - AI **không nghe được**: SFX, nhịp, duck nhạc chưa được kiểm bằng tai. Nhờ người dùng nghe.
 - Bản xuất sang Premiere, DaVinci, After Effects, CapCut **chưa mở thử trong phần mềm thật**.
-- Chưa có: qualifier HSL, power window, nội suy khung RIFE (chỉ trộn khung), dựng lại video SaaS (F-61).
+- Chưa có: keyframe chỉnh màu, cửa sổ bám chuyển động, Canon Log, HLG/PQ, nội suy khung RIFE (chỉ trộn khung), dựng lại video SaaS (F-61). Mặt nạ `qual` mềm ở mép (LUT 65³). Scope đếm 256 mức trên ảnh sau Output Transform sRGB.
 - MCP mới thử bằng client SDK và Claude; Gemini/GPT chưa kiểm.
 - Chưa có proxy chỉnh sửa (dùng thẳng cache đã chuẩn hoá).
 
 ---
-Cập nhật gần nhất: 2026-11-18 (AI tự áp dụng + nút bật/tắt; `project_get` có `summary`; kiểm phụ thuộc khi mở app; trần RAM cache giải mã; hỏi trạng thái nền theo nhịp thích ứng).
+Cập nhật gần nhất: 2026-11-18 (chỉnh màu chuẩn: không gian màu log, ACES, qualifier, log wheels, cửa sổ, YCbCr parade; AI tự áp dụng + nút bật/tắt; `project_get` có `summary`; kiểm phụ thuộc khi mở app; trần RAM cache giải mã; hỏi trạng thái nền theo nhịp thích ứng).

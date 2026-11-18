@@ -15,6 +15,7 @@ import { srcToTimeline } from '../core/transcript';
 import { personCutoutPlan } from '../core/behind';
 import { BLEND_MODES, FX_NAMES, SHAPE_KINDS, defaultShape } from '../core/fx';
 import { defaultGrade, mergeGrade, parseCube, type DeepPartialGrade } from '../core/grade';
+import { INPUT_SPACES, INPUT_SPACE_IDS } from '../core/colorspace';
 import { SPEED_PRESETS, speedPresetKeys } from '../core/speed';
 
 const BASE = `http://127.0.0.1:${process.env.TOOL_EDIT_PORT ?? 17480}`;
@@ -583,6 +584,23 @@ server.registerTool(
 
 
 const WHEEL = z.object({ r: z.number().optional(), g: z.number().optional(), b: z.number().optional(), m: z.number().optional() }).describe('r,g,b = lech mau theo kenh; m = chung. lift -0.5..0.5, gamma -1..2, gain -1..2 (0 = giu), offset -0.5..0.5');
+const RNG = (lo: string, hi: string, soft: string) => z.object({ [lo]: z.number().min(0).max(1).optional(), [hi]: z.number().min(0).max(1).optional(), [soft]: z.number().min(0).max(1).optional() });
+const LOGW = z.object({ shadows: WHEEL.optional(), mids: WHEEL.optional(), highlights: WHEEL.optional(), shadowRange: z.number().min(0.05).max(0.6).optional(), highlightRange: z.number().min(0.4).max(0.95).optional() }).describe('3 banh mau theo vung: shadows (cong, chi vung toi), mids (mu), highlights (nhan, chi vung sang). Gia tri -1..1');
+const QUAL = z.object({
+  enabled: z.boolean().optional(),
+  hue: z.object({ center: z.number().min(0).max(360).optional(), width: z.number().min(0).max(180).optional(), soft: z.number().min(0).max(90).optional() }).optional().describe('do: tam 0..360 (0 do, 120 luc, 240 xanh duong), nua rong 0..180 (180 = moi sac do), do mem 0..90'),
+  sat: RNG('lo', 'hi', 'soft').optional(),
+  lum: RNG('lo', 'hi', 'soft').optional(),
+  invert: z.boolean().optional(),
+  adjust: z.object({ hue: z.number().min(-180).max(180).optional(), sat: z.number().min(0).max(3).optional(), lum: z.number().min(-1).max(1).optional() }).optional().describe('hieu chinh chi ap len vung duoc chon: xoay sac do (do), nhan bao hoa (1 = giu), cong do sang'),
+  show: z.boolean().optional().describe('true = xem mat na trang/den thay vi anh'),
+}).describe('Bo loc mau HSL (hieu chinh cap hai). Vi du chi doi mau da: hue center 20 width 25 soft 20, adjust.sat 1.2. Go bang remove=["qual"]');
+const WIN = z.object({
+  enabled: z.boolean().optional(),
+  shape: z.enum(['ellipse', 'rect']).optional(),
+  cx: z.number().optional(), cy: z.number().optional(), w: z.number().min(0.02).max(2).optional(), h: z.number().min(0.02).max(2).optional(),
+  rot: z.number().optional(), feather: z.number().min(0).max(1).optional(), invert: z.boolean().optional(),
+}).describe('Cua so (power window): chi ap chinh mau trong hinh. Toa do theo ty le clip 0..1 (cx,cy = tam; w,h = ty le ngang/doc clip). Go bang remove=["win"]');
 const PTS = z.array(z.array(z.number()).length(2)).min(2).max(16).describe('cac diem [x,y] 0..1, x tang dan, bat dau [0,0] ket thuc [1,1] la duong thang');
 
 server.registerTool(
@@ -603,7 +621,15 @@ server.registerTool(
     inputSchema: {
       clip_id: z.string(),
       reset: z.boolean().default(false),
-      input: z.enum(['none', 'slog3', 'vlog']).optional().describe('footage log: chi bien doi duong cong, khong doi gam mau'),
+      input: z.enum(INPUT_SPACE_IDS as [string, ...string[]]).optional().describe('khong gian mau cua footage (duong cong + gam mau). none = Rec.709/sRGB. ' + INPUT_SPACE_IDS.map((k) => `${k}: ${INPUT_SPACES[k].label}`).join('; ')),
+      tonemap: z.enum(['none', 'aces']).optional().describe('aces = tone-map ACES cho footage log (nen vung sang, khong cat cung); none = khong'),
+      vibrance: z.number().min(-1).max(1).optional(),
+      black: z.number().min(0).max(0.9).optional(),
+      white: z.number().min(0.1).max(1).optional(),
+      logw: LOGW.optional(),
+      qual: QUAL.optional(),
+      win: WIN.optional(),
+      remove: z.array(z.enum(['logw', 'qual', 'win', 'lut'])).optional().describe('go han mot nhom chinh: logw (banh mau theo vung), qual (bo loc mau), win (cua so), lut (.cube)'),
       exposure: z.number().min(-6).max(6).optional(),
       temperature: z.number().min(-100).max(100).optional().describe('am = lanh/xanh, duong = am/cam (gan dung, khong phai Kelvin)'),
       tint: z.number().min(-100).max(100).optional(),
@@ -620,14 +646,15 @@ server.registerTool(
     },
   },
   wrap(async (a) => {
-    const { clip_id, reset, note, ...rest } = a;
+    const { clip_id, reset, note, remove, ...rest } = a;
     const patch: DeepPartialGrade = {};
     for (const [k, v] of Object.entries(rest)) if (v !== undefined) (patch as Record<string, unknown>)[k] = v;
+    for (const k of remove ?? []) (patch as Record<string, unknown>)[k] = null;
     if (!reset && !Object.keys(patch).length) return fail('khong co truong chinh mau nao de doi (hoac dat reset=true)');
     const ops: Op[] = reset ? [{ op: 'set_grade', id: clip_id, grade: null }, ...(Object.keys(patch).length ? [{ op: 'set_grade' as const, id: clip_id, grade: patch }] : [])] : [{ op: 'set_grade', id: clip_id, grade: patch }];
     const r = await http('POST', '/propose', { ops, note: note || (reset ? `Dat lai chinh mau ${clip_id}` : `Chinh mau ${clip_id}: ${Object.keys(patch).join(', ')}`), source: SOURCE });
     if (r.status !== 200) return fail(`De xuat khong hop le, chua tao: ${JSON.stringify(r.json?.errors ?? r.json)}`);
-    return text({ ...r.json, next: 'Nguoi dung can bam Chap nhan trong app. Xem thu: preview_frame voi proposal_id.' });
+    return text({ ...r.json, next: r.json?.applied ? 'Da ap dung. Kiem tra bang analyze_frame / scope_image / preview_frame.' : 'Nguoi dung can bam Chap nhan trong app. Xem thu: preview_frame voi proposal_id.' });
   }),
 );
 
@@ -665,8 +692,8 @@ server.registerTool(
 server.registerTool(
   'scope_image',
   {
-    description: 'Xem scope cua mot khung duoi dang ANH: waveform (do sang theo cot), rgbwave (R,G,B chong len nhau), parade (R,G,B tach rieng), vectorscope (mau; co duong da cam, o muc tieu 75%), histogram. Doc de thay clip, mau lech, do tuong phan. Tham so nhu analyze_frame.',
-    inputSchema: { t: z.number().min(0), kind: z.enum(['waveform', 'rgbwave', 'parade', 'vectorscope', 'histogram']).default('waveform'), clip_id: z.string().optional(), graded: z.boolean().default(true), proposal_id: z.string().optional(), roi: z.string().optional() },
+    description: 'Xem scope cua mot khung duoi dang ANH: waveform (do sang theo cot), rgbwave (R,G,B chong len nhau), parade (R,G,B tach rieng), ycbcr (Y, Cb, Cr tach rieng), vectorscope (mau; co duong da cam, o muc tieu 75%), histogram. Doc de thay clip, mau lech, do tuong phan. Tham so nhu analyze_frame.',
+    inputSchema: { t: z.number().min(0), kind: z.enum(['waveform', 'rgbwave', 'parade', 'ycbcr', 'vectorscope', 'histogram']).default('waveform'), clip_id: z.string().optional(), graded: z.boolean().default(true), proposal_id: z.string().optional(), roi: z.string().optional() },
   },
   wrap(async ({ t, kind, clip_id, graded, proposal_id, roi }) => {
     const q = `${roi ? 'roi=' + encodeURIComponent(roi) + '&' : ''}t=${t}&kind=${kind}${clip_id ? '&clip_id=' + encodeURIComponent(clip_id) : ''}&graded=${graded === false ? 0 : 1}${proposal_id ? '&proposal=' + encodeURIComponent(proposal_id) : ''}`;

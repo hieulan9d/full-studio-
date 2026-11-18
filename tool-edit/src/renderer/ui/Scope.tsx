@@ -16,6 +16,19 @@ const ROIS: { k: RoiKey; label: string; v?: { x0: number; y0: number; x1: number
   { k: 'lower', label: 'Nửa dưới', v: { x0: 0, y0: 0.5, x1: 1, y1: 1 } },
 ];
 
+export type ScopeUnit = 'pct' | '8' | '10' | 'ire';
+export const UNIT_LABEL: Record<ScopeUnit, string> = { pct: '%', '8': '8-bit', '10': '10-bit', ire: 'IRE' };
+let SCOPE_UNIT: ScopeUnit = 'pct'; // đơn vị trục và số đọc (đặt từ component)
+/** Mức p (0..1 toàn dải mã hóa) -> nhãn theo đơn vị. IRE: 16 = 0 IRE, 235 = 100 IRE (dải video hợp lệ). */
+function unitText(p: number, digits = 0): string {
+  switch (SCOPE_UNIT) {
+    case '8': return String(Math.round(p * 255));
+    case '10': return String(Math.round(p * 1023));
+    case 'ire': return (((p * 255 - 16) / 219) * 100).toFixed(digits);
+    default: return (p * 100).toFixed(digits);
+  }
+}
+
 interface Layout {
   kind: ScopeKind;
   px: number;
@@ -208,7 +221,7 @@ function paintScope(cv: HTMLCanvasElement, d: ScopeCounts, kind: ScopeKind, cssW
       ctx.lineTo(gl + pw, y + 0.5);
       ctx.stroke();
       ctx.fillStyle = 'rgba(255,255,255,.6)';
-      ctx.fillText(String(Math.round(p * 100)), gl - f(5), Math.min(H - f(7), Math.max(f(7), y)));
+      ctx.fillText(unitText(p), gl - f(5), Math.min(H - f(7), Math.max(f(7), y)));
     }
     // mức hợp lệ: 16 (đen) và 235 (trắng)
     ctx.strokeStyle = 'rgba(245,166,35,.75)';
@@ -225,7 +238,7 @@ function paintScope(cv: HTMLCanvasElement, d: ScopeCounts, kind: ScopeKind, cssW
     ctx.textAlign = 'left';
     ctx.fillText('235', gl + pw - f(22), gt + (1 - LEGAL_HI) * ph - f(6));
     ctx.fillText('16', gl + pw - f(14), gt + (1 - LEGAL_LO) * ph + f(7));
-    if (kind === 'parade') {
+    if (kind === 'parade' || kind === 'ycbcr') {
       ctx.strokeStyle = 'rgba(255,255,255,.35)';
       for (const i of [1, 2]) {
         const x = gl + (pw * i) / 3;
@@ -235,8 +248,8 @@ function paintScope(cv: HTMLCanvasElement, d: ScopeCounts, kind: ScopeKind, cssW
         ctx.stroke();
       }
       ctx.textAlign = 'center';
-      ['R', 'G', 'B'].forEach((n, i) => {
-        ctx.fillStyle = ['#ff6b6b', '#69db7c', '#74a7ff'][i];
+      (kind === 'ycbcr' ? ['Y', 'Cb', 'Cr'] : ['R', 'G', 'B']).forEach((n, i) => {
+        ctx.fillStyle = kind === 'ycbcr' ? ['#e9ecef', '#74a7ff', '#ff6b6b'][i] : ['#ff6b6b', '#69db7c', '#74a7ff'][i];
         ctx.fillText(n, gl + (pw * (i + 0.5)) / 3, gt + f(9));
       });
       ctx.textAlign = 'left';
@@ -275,7 +288,7 @@ function probe(L: Layout, d: ScopeCounts, mx: number, my: number): string {
   }
   const v = Math.min(255, Math.max(0, Math.round(lv)));
   const legal = v < 16 ? ' · DƯỚI mức đen hợp lệ (16)' : v > 235 ? ' · TRÊN mức trắng hợp lệ (235)' : '';
-  return `Mức ${((v / 255) * 100).toFixed(1)}% · mã ${v}/255${legal}`;
+  return `Mức ${unitText(v / 255, 1)} ${UNIT_LABEL[SCOPE_UNIT]} · mã 8-bit ${v}/255 · 10-bit ${Math.round((v / 255) * 1023)}${legal}`;
 }
 
 export function Scope() {
@@ -289,6 +302,8 @@ export function Scope() {
   const [kind, setKind] = useState<ScopeKind>('waveform');
   const [roi, setRoi] = useState<RoiKey>('full');
   const [vzoom, setVzoom] = useState(1);
+  const [unit, setUnit] = useState<ScopeUnit>('pct');
+  SCOPE_UNIT = unit;
   const [st, setSt] = useState<FrameStats | null>(null);
   const [meta, setMeta] = useState('');
   const [err, setErr] = useState<string | null>(null);
@@ -332,7 +347,7 @@ export function Scope() {
   };
   useEffect(() => {
     void run();
-  }, [project, t, aspect, kind, roi, vzoom]);
+  }, [project, t, aspect, kind, roi, vzoom, unit]);
   useEffect(() => {
     const el = wrap.current;
     if (!el || typeof ResizeObserver === 'undefined') return;
@@ -373,6 +388,13 @@ export function Scope() {
             {ROIS.map((r) => <button key={r.k} className={roi === r.k ? 'on' : ''} data-testid={`scope-roi-${r.k}`} onClick={() => setRoi(r.k)}>{r.label}</button>)}
           </span>
         </Row>
+        {kind !== 'vectorscope' && kind !== 'histogram' && (
+          <Row label="Đơn vị trục">
+            <span className="seg">
+              {(Object.keys(UNIT_LABEL) as ScopeUnit[]).map((u) => <button key={u} className={unit === u ? 'on' : ''} data-testid={`scope-unit-${u}`} onClick={() => setUnit(u)} title={u === 'ire' ? '0 IRE = mã 16, 100 IRE = mã 235 (dải video hợp lệ)' : undefined}>{UNIT_LABEL[u]}</button>)}
+            </span>
+          </Row>
+        )}
         {kind === 'vectorscope' && (
           <Row label="Phóng vector">
             <span className="seg">

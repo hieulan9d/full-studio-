@@ -5,7 +5,7 @@ import { rasterizeText } from '../render/text-raster';
 import { rasterizeShape } from '../render/shape-raster';
 import { resolveClip } from '../core/anim';
 import { speedAt, srcTimeAt } from '../core/speed';
-import { bakeLut, gradeKey, isIdentity, parseCube, toF16, type CubeLut, type Grade } from '../core/grade';
+import { bakeLut, bakeSizeFor, gradeKey, isIdentity, parseCube, stageAParams, toF16, type CubeLut, type Grade } from '../core/grade';
 import type { Clip, Project } from '../core/schema';
 import { drawScope, statsOf, type ScopeKind } from '../core/scopes';
 import type { ExportReq, RenderReq } from './bridge';
@@ -82,12 +82,12 @@ async function gradeLayer(g: Grade | undefined) {
         cubes.set(g.lut.path, cube);
       }
     }
-    const size = 33;
+    const size = bakeSizeFor(g);
     b = { key, size, data: toF16(bakeLut(g, cube, size)) };
     bakes.set(key, b);
     if (bakes.size > 24) bakes.delete(bakes.keys().next().value as string);
   }
-  return b;
+  return { ...b, a: stageAParams(g), mix: g.mix, win: g.win }; // buoc A, muc ap dung va cua so la uniform (khong nam trong khoa LUT)
 }
 /** Quen LUT .cube da nap (sau khi nguoi dung sua file). */
 export const forgetCubes = () => cubes.clear();

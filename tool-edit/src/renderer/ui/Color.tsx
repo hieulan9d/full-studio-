@@ -1,12 +1,13 @@
 // Tab "Màu": chinh mau co ban kieu DaVinci (input log, phoi sang, nhiet do/tint, tuong phan + pivot, bao hoa, lift/gamma/gain/offset, duong cong, LUT .cube).
 import { useEffect, useRef, useState } from 'react';
-import { defaultGrade, isIdentity, LOG_INPUTS, LOG_LABEL, ZERO_WHEEL, type DeepPartialGrade, type Grade, type Pt, type Wheel } from '../../core/grade';
+import { defaultGrade, defaultLogWheels, defaultQualifier, defaultWindow, isIdentity, LOG_INPUTS, LOG_LABEL, ZERO_WHEEL, type DeepPartialGrade, type Grade, type Pt, type Wheel } from '../../core/grade';
 import type { Clip } from '../../core/schema';
 import { exportCube, pickLut, setGrade } from '../actions';
 import { toggleScopeWin } from './ScopeWindow';
 import { clearLive, setLive, settleLive } from '../live';
 import { useStore } from '../store';
-import { NumField, Row, Section } from './fields';
+import { INPUT_SPACES } from '../../core/colorspace';
+import { Check, NumField, Row, Section } from './fields';
 
 /** Thanh truot: keo thi cap nhat cuc bo, tha chuot moi ghi (mot buoc hoan tac). */
 function Slider({ value, min, max, step, onCommit, onLive, testid }: { value: number; min: number; max: number; step: number; onCommit: (n: number) => void; onLive?: (n: number) => void; testid?: string }) {
@@ -177,10 +178,78 @@ export function Color() {
         <Param id="pivot" label="Pivot" value={g.pivot} min={0.05} max={0.95} step={0.01} onCommit={(n) => P({ pivot: n })} onLive={(n) => L({ pivot: n })} />
         <Param id="saturation" label="Bão hòa" value={g.saturation} min={0} max={2} step={0.01} onCommit={(n) => P({ saturation: n })} onLive={(n) => L({ saturation: n })} />
         <Param id="mix" label="Mức áp dụng" value={g.mix} min={0} max={1} step={0.01} onCommit={(n) => P({ mix: n })} onLive={(n) => L({ mix: n })} />
-        {m.kind === 'video' && g.input !== 'none' && <div className="kbd" style={{ padding: '0 12px 4px' }}>Chỉ biến đổi đường cong log → tuyến tính (không đổi gam màu, không tone-map); dùng thêm LUT của hãng để có hình dung.</div>}
+        {m.kind === 'video' && g.input !== 'none' && (
+          <>
+            <Row label="Tone-map">
+              <select value={g.tonemap ?? 'none'} data-testid="g-tonemap" onChange={(e) => P({ tonemap: e.target.value as never })}>
+                <option value="none">Không (cắt cứng ở trắng)</option>
+                <option value="aces">ACES (nén vùng sáng, nên dùng với log)</option>
+              </select>
+            </Row>
+            <div className="kbd" style={{ padding: '0 12px 4px' }}>{INPUT_SPACES[g.input].checked}. Gam màu được đổi sang Rec.709 trước khi chỉnh.</div>
+          </>
+        )}
       </Section>
       <Section title="Bánh màu (lift / gamma / gain / offset)">
         {WHEELS.map((w) => <WheelEditor key={w.key} clip={clip} g={g} k={w.key} label={w.label} lo={w.lo} hi={w.hi} step={w.step} />)}
+      </Section>
+      <Section title="Bộ lọc màu (qualifier HSL)" right={<button className="plain" data-testid="q-toggle" onClick={() => P({ qual: g.qual ? ({ enabled: !g.qual.enabled } as never) : ({ enabled: true } as never) })}>{g.qual?.enabled ? 'Tắt' : 'Bật'}</button>}>
+        {g.qual?.enabled ? (
+          <>
+            <div className="kbd" style={{ padding: '0 12px 4px' }}>Chọn màu theo sắc độ / bão hòa / độ sáng, chỉ chỉnh vùng được chọn. Bật "Xem mặt nạ" để thấy vùng chọn (trắng).</div>
+            <Param id="q-hue-c" label="Sắc độ (tâm, °)" value={g.qual.hue.center} min={0} max={360} step={1} onCommit={(n) => P({ qual: { hue: { center: n } } })} onLive={(n) => L({ qual: { hue: { center: n } } })} />
+            <Param id="q-hue-w" label="Sắc độ (rộng, °)" value={g.qual.hue.width} min={0} max={180} step={1} onCommit={(n) => P({ qual: { hue: { width: n } } })} onLive={(n) => L({ qual: { hue: { width: n } } })} />
+            <Param id="q-hue-s" label="Sắc độ (mềm, °)" value={g.qual.hue.soft} min={0} max={90} step={1} onCommit={(n) => P({ qual: { hue: { soft: n } } })} onLive={(n) => L({ qual: { hue: { soft: n } } })} />
+            <Param id="q-sat-lo" label="Bão hòa từ" value={g.qual.sat.lo} min={0} max={1} step={0.01} onCommit={(n) => P({ qual: { sat: { lo: n } } })} onLive={(n) => L({ qual: { sat: { lo: n } } })} />
+            <Param id="q-sat-hi" label="Bão hòa đến" value={g.qual.sat.hi} min={0} max={1} step={0.01} onCommit={(n) => P({ qual: { sat: { hi: n } } })} onLive={(n) => L({ qual: { sat: { hi: n } } })} />
+            <Param id="q-lum-lo" label="Độ sáng từ" value={g.qual.lum.lo} min={0} max={1} step={0.01} onCommit={(n) => P({ qual: { lum: { lo: n } } })} onLive={(n) => L({ qual: { lum: { lo: n } } })} />
+            <Param id="q-lum-hi" label="Độ sáng đến" value={g.qual.lum.hi} min={0} max={1} step={0.01} onCommit={(n) => P({ qual: { lum: { hi: n } } })} onLive={(n) => L({ qual: { lum: { hi: n } } })} />
+            <Param id="q-soft" label="Mép mềm (bão hòa/sáng)" value={g.qual.sat.soft} min={0} max={1} step={0.01} onCommit={(n) => P({ qual: { sat: { soft: n }, lum: { soft: n } } })} onLive={(n) => L({ qual: { sat: { soft: n }, lum: { soft: n } } })} />
+            <Param id="q-adj-hue" label="Xoay sắc độ (°)" value={g.qual.adjust.hue} min={-180} max={180} step={1} onCommit={(n) => P({ qual: { adjust: { hue: n } } })} onLive={(n) => L({ qual: { adjust: { hue: n } } })} />
+            <Param id="q-adj-sat" label="Bão hòa (vùng chọn)" value={g.qual.adjust.sat} min={0} max={2} step={0.01} onCommit={(n) => P({ qual: { adjust: { sat: n } } })} onLive={(n) => L({ qual: { adjust: { sat: n } } })} />
+            <Param id="q-adj-lum" label="Độ sáng (vùng chọn)" value={g.qual.adjust.lum} min={-0.5} max={0.5} step={0.01} onCommit={(n) => P({ qual: { adjust: { lum: n } } })} onLive={(n) => L({ qual: { adjust: { lum: n } } })} />
+            <div style={{ padding: '2px 12px', display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+              <Check testid="q-invert" label="Đảo vùng chọn" value={g.qual.invert} onCommit={(b) => P({ qual: { invert: b } })} />
+              <Check testid="q-show" label="Xem mặt nạ" value={g.qual.show} onCommit={(b) => P({ qual: { show: b } })} />
+              <button data-testid="q-clear" onClick={() => P({ qual: null })}>Bỏ bộ lọc</button>
+            </div>
+          </>
+        ) : (
+          <div className="kbd" style={{ padding: '2px 12px' }}>Chưa bật. Bấm "Bật" rồi chọn màu cần chỉnh (ví dụ chỉ da hoặc chỉ bầu trời).</div>
+        )}
+      </Section>
+      <Section title="Bánh màu theo vùng (shadows / mids / highlights)">
+        {(['shadows', 'mids', 'highlights'] as const).map((k) => {
+          const w = (g.logw ?? defaultLogWheels())[k];
+          const lab = k === 'shadows' ? 'Vùng tối' : k === 'mids' ? 'Vùng giữa' : 'Vùng sáng';
+          return (['m', 'r', 'g', 'b'] as const).map((c) => (
+            <Param key={k + c} id={`lw-${k}-${c}`} label={`${lab} · ${c === 'm' ? 'chung' : c.toUpperCase()}`} value={w[c]} min={-0.5} max={0.5} step={0.005} onCommit={(n) => P({ logw: { [k]: { [c]: n } } } as never)} onLive={(n) => L({ logw: { [k]: { [c]: n } } } as never)} />
+          ));
+        })}
+        <Param id="lw-sr" label="Ranh giới vùng tối" value={(g.logw ?? defaultLogWheels()).shadowRange} min={0.05} max={0.6} step={0.01} onCommit={(n) => P({ logw: { shadowRange: n } })} onLive={(n) => L({ logw: { shadowRange: n } })} />
+        <Param id="lw-hr" label="Ranh giới vùng sáng" value={(g.logw ?? defaultLogWheels()).highlightRange} min={0.4} max={0.95} step={0.01} onCommit={(n) => P({ logw: { highlightRange: n } })} onLive={(n) => L({ logw: { highlightRange: n } })} />
+        <div style={{ padding: '2px 12px' }}><button data-testid="lw-clear" disabled={!g.logw} onClick={() => P({ logw: null })}>Đặt lại</button></div>
+      </Section>
+      <Section title="Cửa sổ (chỉ chỉnh trong một vùng)" right={<button className="plain" data-testid="win-toggle" onClick={() => P({ win: g.win ? ({ enabled: !g.win.enabled } as never) : ({ enabled: true } as never) })}>{g.win?.enabled ? 'Tắt' : 'Bật'}</button>}>
+        {g.win?.enabled ? (
+          <>
+            <Row label="Hình">
+              <select value={g.win.shape} data-testid="win-shape" onChange={(e) => P({ win: { shape: e.target.value as never } })}><option value="ellipse">Elip</option><option value="rect">Chữ nhật</option></select>
+            </Row>
+            <Param id="win-cx" label="Tâm X" value={g.win.cx} min={0} max={1} step={0.005} onCommit={(n) => P({ win: { cx: n } })} onLive={(n) => L({ win: { cx: n } })} />
+            <Param id="win-cy" label="Tâm Y" value={g.win.cy} min={0} max={1} step={0.005} onCommit={(n) => P({ win: { cy: n } })} onLive={(n) => L({ win: { cy: n } })} />
+            <Param id="win-w" label="Rộng" value={g.win.w} min={0.02} max={2} step={0.01} onCommit={(n) => P({ win: { w: n } })} onLive={(n) => L({ win: { w: n } })} />
+            <Param id="win-h" label="Cao" value={g.win.h} min={0.02} max={2} step={0.01} onCommit={(n) => P({ win: { h: n } })} onLive={(n) => L({ win: { h: n } })} />
+            <Param id="win-rot" label="Xoay (°)" value={g.win.rot} min={-180} max={180} step={1} onCommit={(n) => P({ win: { rot: n } })} onLive={(n) => L({ win: { rot: n } })} />
+            <Param id="win-f" label="Mép mềm" value={g.win.feather} min={0} max={1} step={0.01} onCommit={(n) => P({ win: { feather: n } })} onLive={(n) => L({ win: { feather: n } })} />
+            <div style={{ padding: '2px 12px', display: 'flex', gap: 12 }}>
+              <Check testid="win-invert" label="Đảo (chỉnh bên ngoài)" value={g.win.invert} onCommit={(b) => P({ win: { invert: b } })} />
+              <button data-testid="win-clear" onClick={() => P({ win: null })}>Bỏ cửa sổ</button>
+            </div>
+          </>
+        ) : (
+          <div className="kbd" style={{ padding: '2px 12px' }}>Chưa bật. Cửa sổ giới hạn chỉnh màu trong một hình elip hoặc chữ nhật (ví dụ chỉ làm sáng mặt người).</div>
+        )}
       </Section>
       <Section title="Đường cong">
         <CurveEditor clip={clip} g={g} />
@@ -200,7 +269,7 @@ export function Color() {
           <div className="kbd" style={{ marginTop: 4 }}>LUT .cube nhận vào là mã hóa hiển thị (Rec.709/sRGB), chạy theo thứ tự: nguồn → chỉnh màu → LUT. Chỉ hỗ trợ LUT 3D.</div>
         </div>
       </Section>
-      <div className="kbd" style={{ padding: '4px 12px' }}>{isIdentity(clip.grade) ? 'Chưa chỉnh gì (không tốn chi phí render).' : 'Đã chỉnh: nướng thành LUT 3D 33³ (GPU), không làm chậm phát.'}</div>
+      <div className="kbd" style={{ padding: '4px 12px' }}>{isIdentity(clip.grade) ? 'Chưa chỉnh gì (không tốn chi phí render).' : 'Đã chỉnh: nướng thành LUT 3D (33³ đến 65³ tùy chỉnh, GPU), không làm chậm phát.'}</div>
     </div>
   );
 }

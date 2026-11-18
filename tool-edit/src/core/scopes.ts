@@ -3,14 +3,14 @@ export interface ScopeCounts {
   w: number;
   h: number;
   cols: number;
-  hist: Uint32Array; // 4*256: R, G, B, luma
-  wave: Uint32Array; // 4*cols*256
+  hist: Uint32Array; // 6*256: R, G, B, luma, Cb, Cr (4, 5 chi co o ban moi)
+  wave: Uint32Array; // 6*cols*256
   vect: Uint32Array; // 256*256, hang 0 = Cr cao nhat
 }
 
-export type ScopeKind = 'waveform' | 'rgbwave' | 'parade' | 'vectorscope' | 'histogram';
-export const SCOPE_KINDS: ScopeKind[] = ['waveform', 'rgbwave', 'parade', 'vectorscope', 'histogram'];
-export const SCOPE_LABEL: Record<ScopeKind, string> = { waveform: 'Waveform', rgbwave: 'RGB chồng', parade: 'RGB Parade', vectorscope: 'Vectorscope', histogram: 'Histogram' };
+export type ScopeKind = 'waveform' | 'rgbwave' | 'parade' | 'ycbcr' | 'vectorscope' | 'histogram';
+export const SCOPE_KINDS: ScopeKind[] = ['waveform', 'rgbwave', 'parade', 'ycbcr', 'vectorscope', 'histogram'];
+export const SCOPE_LABEL: Record<ScopeKind, string> = { waveform: 'Waveform', rgbwave: 'RGB chồng', parade: 'RGB Parade', ycbcr: 'YCbCr Parade', vectorscope: 'Vectorscope', histogram: 'Histogram' };
 
 export interface FrameStats {
   pixels: number;
@@ -176,8 +176,8 @@ function graticule(im: Img, ox: number, ow: number) {
 /** Ve mot scope thanh anh RGBA. */
 export function drawScope(d: ScopeCounts, kind: ScopeKind, opts: { grid?: boolean } = {}): Img {
   const grid = opts.grid !== false; // grid=false: chi ve du lieu (UI tu ve luoi, nhan, vach muc hop le)
-  if (kind === 'waveform' || kind === 'parade' || kind === 'rgbwave') {
-    const ow = kind === 'parade' ? d.cols * 3 : d.cols * 2;
+  if (kind === 'waveform' || kind === 'parade' || kind === 'rgbwave' || kind === 'ycbcr') {
+    const ow = kind === 'parade' || kind === 'ycbcr' ? d.cols * 3 : d.cols * 2;
     const im = newImg(ow, N);
     const per = d.cols * 2;
     let maxc = 1;
@@ -197,9 +197,11 @@ export function drawScope(d: ScopeCounts, kind: ScopeKind, opts: { grid?: boolea
     } else {
       if (grid) graticule(im, 0, ow);
       const pw = d.cols;
-      drawWave(d, im, 0, pw, 0, [255, 70, 70], maxc);
-      drawWave(d, im, pw, pw, 1, [70, 255, 70], maxc);
-      drawWave(d, im, 2 * pw, pw, 2, [90, 130, 255], maxc);
+      const chs = kind === 'ycbcr' ? [3, 4, 5] : [0, 1, 2];
+      const cols3: [number, number, number][] = kind === 'ycbcr' ? [[235, 235, 235], [90, 130, 255], [255, 70, 70]] : [[255, 70, 70], [70, 255, 70], [90, 130, 255]];
+      drawWave(d, im, 0, pw, chs[0], cols3[0], maxc);
+      drawWave(d, im, pw, pw, chs[1], cols3[1], maxc);
+      drawWave(d, im, 2 * pw, pw, chs[2], cols3[2], maxc);
       if (grid) for (let y = 0; y < N; y++) {
         px(im, pw, y, 255, 255, 255, 0.3);
         px(im, 2 * pw, y, 255, 255, 255, 0.3);
