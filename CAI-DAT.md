@@ -110,7 +110,8 @@ Biến môi trường tùy chọn: `FLOW_BROWSER` (đường dẫn trình duyệ
 
 ### 4.3 Thêm node "Xuất file" (bắt buộc, làm một lần)
 Để lấy ảnh/video/giọng thành file thật trên đĩa:
-1. **Node plugin → Cục bộ → bật "Xuất file ra thư mục"**.
+0. **Máy mới clone từ GitHub chưa có plugin này**: chỉ có mã nguồn (`app/plugins/canvas/export`), bản build bị `.gitignore` loại. `app.bat` tự build nó khi thiếu (gọi `build-plugins.bat`, cần có mạng để `npm install` thư viện của plugin, lần đầu mất vài phút). Chạy tay: `canvas\build-plugins.bat`, rồi `npm --prefix app/web run build` nếu `app/web/dist` đã có sẵn. Muốn build lại: xóa `canvas\app\web\public\plugins\export.js` rồi chạy lại.
+1. **Node plugin → Cục bộ → bật "Xuất file ra thư mục"** (mặc định tắt).
 2. Thêm node **"Xuất file"** vào canvas. Phải do bạn thêm tay, agent không tạo được node plugin.
 3. File xuất nằm ở `E:\antigravyti\infinite-canvas\exports\` kèm `manifest.json` (tạo thư mục khi xuất lần đầu). Đổi nơi xuất bằng biến `CANVAS_EXPORT_DIR` khi chạy proxy.
 
