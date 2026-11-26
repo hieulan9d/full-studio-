@@ -23,6 +23,8 @@ Hiện có **hai loại video** (mỗi loại một kit kiến thức riêng, sa
 | **Talking head dọc** | Người nói trước camera, 1080×1920 (TikTok/Reels/Shorts), phụ đề từng từ, chữ sau lưng người, B-roll | `phong-cach/talking-head/` |
 | **UGC AI một cú máy** (thời trang/sản phẩm, người mẫu AI nói, camera cố định, không chữ) — **thể loại thử, đã chạy thật 1 lần (2026-11-15)**; bẫy Flow chặn chữ tuổi/giới tính ở mục 6b của kit | `phong-cach/ugc-ai-thoi-trang/` (`PHONG-CACH.md`, `ref-notes.md`) |
 
+
+
 Hai kit **khác nhau, đừng nhầm**. Chúng dùng chung thư viện `saas-lib.jsx` nhưng luật, hiệu ứng và quy trình khác nhau.
 
 Ngoài hai kit còn một dòng cũ chạy bằng ffmpeg, không cần After Effects: **video giải thích nhiều cảnh + giọng đọc, nhiều tập** (series "Đạo lý", video USP sản phẩm). Dòng này do `edit/` (lệnh `vf`) làm.
@@ -41,7 +43,7 @@ Phiên chính (quản lý): đọc brief, chọn loại video, chọn kit, gọi
 Subagent CONTENT → kịch bản + danh sách cảnh ──► NGƯỜI DÙNG DUYỆT (cổng 1)
                                                       │ duyệt rồi mới đi tiếp
                                                       ▼
-Subagent TẠO ASSET → giọng AI, ảnh/video AI (Flow, Muse), làm sạch logo nếu cần
+Subagent TẠO ASSET → giọng AI; ảnh/video Flow (AI tự thao tác trên Brave); ảnh/video Muse (canvas, API); làm sạch logo nếu cần
    │
    ▼
 Subagent EDIT → dựng bằng After Effects (MCP) hoặc bản nháp CapCut / `vf`
@@ -149,9 +151,30 @@ Trước khi gọi bất cứ dịch vụ nào, **kiểm tra nó đang chạy** 
 ### 6.1 Video và ảnh
 | Nguồn | Model | Ghi chú |
 |---|---|---|
-| **Google Flow** (qua canvas) | ảnh `flow::flow-nano-banana-pro` (hoặc `…-2-lite`, `…-2-1`); video `flow::flow-omni-1.2-flash` (tối đa 15 s), `flow::flow-omni-1.1-flash` (tối đa 10 s) | 3–15 giây, 360p/720p. Điều khiển Chrome/Brave thật bằng puppeteer. Có điểm tín dụng, có thể nhiều tài khoản. Hay đòi captcha |
+| **Google Flow** (**trực tiếp trên Brave**, mục 6.1b; không qua canvas) | ảnh `Nano Banana Pro` (hoặc `… 2 Lite`, `… 2.1`); video `Omni 1.2 Flash` (tối đa 15 s), `Omni 1.1 Flash` (tối đa 10 s) | 3–15 giây, 360p/720p. Mỗi profile Brave là 1 tài khoản. Có điểm tín dụng. Hay đòi captcha |
 | **Muse** (qua muse2api) | `muse-image`, `muse-video` | Video 1–10 giây, tỉ lệ đặt bằng `aspect_ratio`. **Tạo từng video một, tuần tự.** Bẫy: có tài khoản bị chặn video "không khả dụng ở khu vực này" (đổi tài khoản là được); chạy ngầm liên tục từ lúc mở canvas |
 | **ChatGPT image** | | **[thiết kế]** chưa có, sẽ thêm sau |
+
+### 6.1b Quy trình Flow: AI agent tạo ngay trên web [chạy thật một phần, 2026-11-26]
+Mỗi **profile Brave là một tài khoản Flow** (đăng nhập riêng, project riêng; danh sách ở `D:\infiniti canvas\flow-driver.json`). Agent chạy từ thư mục gốc dự án:
+
+```
+node canvas/desktop/flow-cli.js --status
+node canvas/desktop/flow-cli.js --prompt-file canh.txt --image nhan-vat.png --aspect 9:16 --seconds 6 --out output/<slug>/media --name c01
+node canvas/desktop/flow-cli.js --make-image --prompt "..." --aspect 9:16 --out output/<slug>/media --name hook_01
+node canvas/desktop/flow-cli.js --fetch 1 --out output/<slug>/media --name c01
+```
+
+- Lệnh tự mở Brave đúng profile, tải ảnh tham chiếu, điền prompt, bấm tạo, chờ và tải file về. Tài khoản đang dùng thiếu điểm (mặc định dưới 50) thì tự đổi profile. Chọn tay: `--account "ten|email|id"`.
+- Thêm tài khoản: `--add-account "ten"`, **người dùng tự đăng nhập Google** và mở một project, rồi chạy `--status`.
+- Tạo tuần tự từng clip. Không chạy hai lệnh cùng lúc, không dùng Flow trong canvas song song. Không đóng, thu nhỏ hay tải lại cửa sổ Brave khi đang tạo.
+- Nhắc đúng **tên tệp ảnh (cả đuôi)** trong prompt để chèn `@`. Cảnh không lời thì ghi rõ trong prompt.
+- Gặp đăng nhập, captcha, "hoạt động bất thường": dừng và nhờ người dùng. Không né.
+- Lỗi hoặc hết giờ nhưng Flow đã tạo xong: dùng `--fetch` lấy lại, **đừng tạo lại** (tốn điểm).
+- Đã chạy thật: tải video (`--fetch`), đọc trạng thái. **Chưa chạy thật:** tạo trọn vòng bằng lệnh này, tạo ảnh, thêm và đổi tài khoản.
+
+### 6.1c Muse: qua canvas (API)
+Ảnh và video Muse tạo trên canvas, gọi API muse2api. **Canvas chỉ dùng để tạo ảnh/video cho Muse** (không dùng canvas cho Flow).
 
 Gọi canvas bằng `edit/canvas-tools/cv.py` (`call(tên_tool, input)` tới `127.0.0.1:17371`). Token ở `%USERPROFILE%\.infinite-canvas\canvas-agent.json`, **không bao giờ đọc ra, in ra hay commit**. Tool chính: `canvas_get_state`, `canvas_apply_ops`, `canvas_generate_image|video|audio`, `canvas_create_node`, `canvas_run_generation`, `canvas_delete_nodes` (khoá `ids`). Danh sách đầy đủ: `canvas/app/canvas-agent/src/canvas/schemas.ts`. Kiểm tra nhanh Muse: `edit/canvas-tools/muse.py models|test "prompt"` (cần `MUSE2API_KEY` trong terminal).
 

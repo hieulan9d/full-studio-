@@ -160,8 +160,12 @@
     catch { if (shown()) return; realClick(add); await waitFor(shown, 7000, 150, 'asset picker (retry)'); }
   }
   const optName = (o) => txt(o).split('\n')[0].trim();
+  // So tên file chịu được khác biệt Unicode (NFC/NFD của chữ có dấu), hoa/thường và đuôi file
+  const normName = (n) => String(n || '').normalize('NFC').replace(/\s+/g, ' ').trim().toLowerCase();
+  const stripExt = (n) => n.replace(/\.[a-z0-9]{2,5}$/, '');
+  const sameName = (a, b) => { const x = normName(a), y = normName(b); return !!x && (x === y || stripExt(x) === stripExt(y)); };
   async function pickAsset(name) {
-    const opt = await waitFor(() => $$(SEL.pickerOption).find((o) => optName(o) === name), 15000, 200, 'asset ' + name);
+    const opt = await waitFor(() => $$(SEL.pickerOption).find((o) => sameName(optName(o), name)), 15000, 200, 'asset ' + name);
     realClick(opt); await sleep(500);
     // chọn từ "@" thì Flow chèn chip luôn; chọn từ nút + thì phải bấm "Thêm vào câu lệnh"
     const addBtn = await waitFor(() => { const b = $(SEL.pickerAdd); return b && b.getBoundingClientRect().width && !b.disabled ? b : null; }, 2500, 150, 'add').catch(() => null);
@@ -178,7 +182,15 @@
     const dt = new DataTransfer(); dt.items.add(file);
     cap.input.files = dt.files;
     cap.input.dispatchEvent(new Event('change', { bubbles: true }));
-    await waitFor(() => $$(SEL.pickerOption).find((o) => optName(o) === file.name), 30000, 300, 'upload ' + file.name);
+    const has = () => $$(SEL.pickerOption).find((o) => sameName(optName(o), file.name));
+    try { await waitFor(has, 30000, 300, 'upload ' + file.name); }
+    catch (e) {
+      // hộp chọn có thể đã đóng/đổi sau khi tải lên: mở lại và kiểm tra lần nữa trước khi báo lỗi
+      note('upload: hết giờ, mở lại hộp chọn để kiểm tra ' + file.name + ' (tuỳ chọn thấy: ' + $$(SEL.pickerOption).length + ')');
+      await closePicker().catch(() => {}); await sleep(1500);
+      await openPicker(); await sleep(2000);
+      if (!has()) throw e;
+    }
     await sleep(3500); // chờ upload xong (thanh tiến trình)
     await closePicker();
   }
@@ -230,13 +242,16 @@
   // baseline = mọi video đang có trên trang (theo src) để nhận ra video MỚI sau khi bấm tạo
   // ảnh sinh ra nằm trong lưới tile; lấy theo src (asb/ hoặc flow-content/image)
   // chữ ký (?Expires=...&Signature=...) đổi liên tục nên so sánh theo URL đã bỏ query
-  const keyOf = (u) => String(u).split('?')[0];
+  // bỏ cả đuôi kích thước "=mm,22,15": ảnh thu nhỏ và thẻ <video> của cùng một tệp chỉ khác đuôi này
+  const keyOf = (u) => String(u).split('?')[0].replace(/=[\w,-]*$/, '');
+  // Flow mới: ô video có thể là <img class="thumbnail"> hoặc thẻ <video>
+  const tileMedia = (t) => $('img.thumbnail', t)?.src || (t.querySelector('video') ? videoSrc(t.querySelector('video')) : '');
   const tileImgSrcs = () => $$('cdk-virtual-scroll-viewport img, .tiles-container img')
     .filter((i) => !i.closest('.cdk-overlay-container') && !/\b\d{1,3}%/.test(txt(i.closest('flow-image-tile, .tile, [class*=tile]') || i.parentElement || i)))
     .map((i) => i.currentSrc || i.src || '').filter((u) => /flow\.google\.com\/asb\/|flow-content\.google\/image\//.test(u));
   // video xong: thẻ <flow-video-tile> có ảnh thu nhỏ mà URL chính là URL video (không cần <video>, thẻ đang tạo thì chưa có)
   const videoSrcs = () => [...new Set([
-    ...$$('flow-video-tile').filter((t) => !/\b\d{1,3}%/.test(txt(t))).map((t) => $('img.thumbnail', t)?.src || ''),
+    ...$$('flow-video-tile').filter((t) => !/\b\d{1,3}%/.test(txt(t))).map(tileMedia),
     ...$$('video').map(videoSrc),
   ].filter((u) => /flow\.google\.com\/asb\/|flow-content\.google\//.test(u)))];
   const mediaIdsOnPage = (kind) => [...new Set(kind === 'image' ? tileImgSrcs() : videoSrcs())];
@@ -307,8 +322,8 @@
     // ô lỗi của Flow nằm TRONG <flow-video-tile> (có chữ "Không thành công"), không chỉ là thẻ <flow-error-tile> riêng
     const err = top.find((t) => t.tagName === 'FLOW-ERROR-TILE' || t.querySelector('flow-error-tile') || /Không thành công|Generation failed|unusual activity/i.test(txt(t)));
     if (err && (g.seen || elapsed > 4000)) return { state: 'failed', error: txt(err).replace(/\s+/g, ' ').slice(0, 220), videos: [] };
-    if (g.seen && top.length >= (j.expect || 1) && top.every((t) => !isRunning(t) && $('img.thumbnail', t)?.src)) {
-      return { state: 'done', videos: top.map((t) => { const u = $('img.thumbnail', t).src; return { id: keyOf(u), url: u }; }) };
+    if (g.seen && top.length >= (j.expect || 1) && top.every((t) => !isRunning(t) && tileMedia(t))) {
+      return { state: 'done', videos: top.map((t) => { const u = tileMedia(t); return { id: keyOf(u), url: u }; }) };
     }
     if (!g.seen && elapsed > 120000) return { state: 'failed', error: 'Không thấy ô video mới xuất hiện trên Flow sau khi bấm tạo', videos: [] };
     return { state: 'running', videos: [], elapsed, seen: g.seen };

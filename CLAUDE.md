@@ -6,6 +6,10 @@
 Mỗi phong cách có folder `memory/` (cạnh `PHONG-CACH.md`/`AGENTS.md`): `README.md`, `y-nguoi-dung.md`, `loi-da-gap.md`, `cach-lam-tot.md`, `nhat-ky-video.md`.
 **Đọc `memory/README.md` rồi các file trong đó TRƯỚC khi làm video thuộc phong cách đó; ghi lại bài học SAU khi làm xong** (một dòng nhật ký, bẫy mới, lời khen/chê của người dùng). Phong cách mới tạo từ video mẫu cũng phải có `memory/` (sao từ một phong cách có sẵn).
 
+## Nguồn tạo ảnh/video AI (người dùng chốt 2026-11-26)
+- **Flow:** AI agent tạo **trực tiếp trên Brave**, mỗi profile là 1 tài khoản, bằng `node canvas/desktop/flow-cli.js` (`HUONG-DAN-AI.md` mục 6.1b).
+- **Muse (ảnh và video):** dùng **canvas** gọi API. Canvas không dùng để tạo Flow nữa.
+
 ## Làm một video (luồng điều phối bằng subagent)
 Khi người dùng đưa chủ đề / brief và muốn ra video: theo **mục 2 của `HUONG-DAN-AI.md`**. Gọi lần lượt subagent
 `content` (viết kịch bản, **dừng chờ người dùng duyệt**), `tao-asset` (giọng + clip AI, chỉ sau khi duyệt), `edit` (dựng bằng kit

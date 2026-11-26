@@ -57,6 +57,15 @@ let mode = null; // "headless" | "visible" | null (trình duyệt không do app 
 let browserAccount = null; // tài khoản của trình duyệt do app mở
 
 async function stopOwnBrowser() {
+  // flow-cli.js: cửa sổ Flow có thể do lần chạy trước mở (chưa kết nối). Phải kết nối rồi đóng, kẻo đổi tài khoản mà vẫn dùng profile cũ.
+  const info = !(browser && browser.connected) && (await debugAlive());
+  if (info) {
+    try {
+      const mod = await import("puppeteer-core");
+      const puppeteer = mod.default && mod.default.connect ? mod.default : mod;
+      browser = await puppeteer.connect({ browserWSEndpoint: info.webSocketDebuggerUrl, defaultViewport: null });
+    } catch {}
+  }
   try { await browser?.close(); } catch {}
   browser = null;
   if (child) { try { child.kill(); } catch {} child = null; }
@@ -175,12 +184,14 @@ async function downloadVideoViaUi(page, key, baseline = []) {
   await cdp.send("Browser.setDownloadBehavior", { behavior: "allow", downloadPath: dir });
   try {
     const opened = await page.evaluate(`(() => {
-      const k = (x) => String(x.querySelector('img.thumbnail')?.src || '').split('?')[0];
+      const norm = (u) => String(u || '').split('?')[0].replace(/=[\\w,-]*$/, '');
+      const media = (x) => x.querySelector('img.thumbnail') || x.querySelector('video');
+      const k = (x) => { const m = media(x); return norm(m && (m.currentSrc || m.src)); };
       const tiles = [...document.querySelectorAll('flow-video-tile')].filter((x) => k(x) && !/\\b\\d{1,3}%/.test(x.innerText));
-      const base = ${JSON.stringify(baseline.map((u) => String(u).split("?")[0]))};
+      const base = ${JSON.stringify(baseline.map((u) => String(u).split("?")[0].replace(/=[\w,-]*$/, "")))};
       // địa chỉ ảnh thu nhỏ có thể đổi sau khi phát hiện: nếu không khớp thì lấy ô mới nhất chưa có từ trước
       const t = tiles.find((x) => k(x) === ${JSON.stringify(key)}) || tiles.find((x) => !base.includes(k(x))) || tiles[0];
-      const i = t && t.querySelector('img.thumbnail'); if (!i) return false; i.click(); return true; })()`);
+      const i = t && media(t); if (!i) return false; i.click(); return true; })()`);
     if (!opened) throw new Error("Không tìm thấy ô video vừa tạo trên trang Flow.");
     for (let i = 0; i < 40 && !/\/edit\//.test(page.url()); i++) await sleep(500);
     const dlBtn = `button[aria-label="Tải nội dung nghe nhìn xuống"]`;
@@ -461,4 +472,14 @@ function destroy() {
   // không đóng Chrome của Flow: người dùng có thể đang dùng; phiên đăng nhập nằm trong profile riêng
 }
 
-module.exports = { setup, destroy };
+// Tải lại video đã có trên Flow (index 0 = mới nhất), không tạo mới nên không tốn điểm. Dùng cho flow-cli.js.
+async function fetchVideo(index = 0) {
+  const page = await ensureProjectPage();
+  await inject(page);
+  const urls = await page.evaluate(`window.__flowUi.mediaIdsOnPage('video')`);
+  if (!urls[index]) throw new Error(`Không thấy video thứ ${index + 1} trên trang (đang thấy ${urls.length}).`);
+  const key = urls[index].split("?")[0].replace(/=[\w,-]*$/, "");
+  return downloadVideoViaUi(page, key, urls.filter((_, i) => i !== index));
+}
+
+module.exports = { setup, destroy, fetchVideo };
