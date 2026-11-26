@@ -8,6 +8,7 @@
 //   node flow-cli.js --prompt-file canh1.txt --image "Nhan vat.png" --aspect 9:16 --seconds 6 --out E:\XUAT-VIDEO --name canh1
 //   node flow-cli.js --fetch 1            (tải video mới nhất đã có, không tốn điểm)
 //
+// Flow báo lỗi thì tự đóng trình duyệt, mở lại và tạo lại (--retries, mặc định 2 lần). Captcha/đăng nhập/hết điểm/chính sách thì dừng.
 // Ảnh tham chiếu được đặt tên trên Flow theo tên tệp: nhắc đúng tên tệp (cả đuôi) trong prompt để chèn "@".
 const Module = require("node:module");
 const fs = require("node:fs");
@@ -24,6 +25,7 @@ Module._load = function (request, ...rest) {
   return request === "electron" ? electron : load.call(this, request, ...rest);
 };
 const driver = require("./flow-driver.js");
+const { generateWithRetry } = require("./flow-retry.js");
 driver.setup({ getPath: () => process.env.FLOW_DATA || "D:\\infiniti canvas" });
 
 const argv = process.argv.slice(2);
@@ -73,8 +75,10 @@ async function main() {
     mime: MIME[path.extname(p).toLowerCase()] || "image/png",
     base64: fs.readFileSync(p).toString("base64"),
   }));
+  const retries = Number(opt("--retries", "2"));
+  const restart = () => driver.closeBrowser();
   if (argv.includes("--make-image")) {
-    const made = await handlers["flow:generate-image"](null, {
+    const generate = () => handlers["flow:generate-image"](null, {
       prompt,
       images,
       model: opt("--model", "Nano Banana Pro"),
@@ -82,10 +86,10 @@ async function main() {
       count: 1,
       timeoutMin: Number(opt("--timeout", "5")),
     });
-    if (!made.ok) throw new Error(made.error);
-    return made.items.forEach((item) => save(item.data, name, out, item.mime));
+    const items = await generateWithRetry({ generate, restart, retries });
+    return items.forEach((item) => save(item.data, name, out, item.mime));
   }
-  const res = await handlers["flow:generate-video"](null, {
+  const generate = () => handlers["flow:generate-video"](null, {
     prompt,
     images,
     model: opt("--model", "Omni 1.2 Flash"),
@@ -96,8 +100,8 @@ async function main() {
     count: 1,
     timeoutMin: Number(opt("--timeout", "10")),
   });
-  if (!res.ok) throw new Error(res.error);
-  res.items.forEach((item) => save(item.data, name, out));
+  const items = await generateWithRetry({ generate, restart, retries, fetchLast: () => driver.fetchVideo(0) });
+  items.forEach((item) => save(item.data, name, out));
 }
 
 main()

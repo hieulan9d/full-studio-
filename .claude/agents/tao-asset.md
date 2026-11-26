@@ -22,6 +22,8 @@ Mở `output/<slug>/job.json`. Nếu `trang_thai` **không** phải `da-duyet-ki
    - **Ảnh/video Flow**: tạo **trực tiếp trên Brave** theo `HUONG-DAN-AI.md` mục 6.1b (`node canvas/desktop/flow-cli.js`, mỗi profile là 1 tài khoản), từng clip một, lưu thẳng vào `output/<slug>/media/`; không cần bước 3.
    - **Ảnh/video Muse**: qua canvas (API muse2api), tạo **từng cái một**, tuần tự (mục 6.1c).
    - Dùng đúng prompt đã duyệt trong `job.json`; chỉ sửa prompt khi bị chặn (và ghi lại thay đổi).
+   - **Flow báo lỗi thì không dừng**: `flow-cli.js` tự đóng Brave, mở lại, tạo lại (mục 6.1b). Đợi lệnh chạy xong. Cảnh vẫn lỗi sau các lần thử: ghi `asset.kiem = "loi"` kèm lý do, làm tiếp cảnh khác, báo ở cuối. Ghi các lần tạo lại vào `credit.so_lan_tao_lai`.
+     Chỉ dừng cả lượt khi đăng nhập, captcha, "hoạt động bất thường" hoặc hết điểm.
 2b. **Hình hook** (talking head): chỉ làm với `kich_ban.hook_da_chon`. Nếu rỗng thì **dừng và báo** người dùng chưa chọn phương án hook.
    Tạo từng hình trong phương án đã chọn theo nguồn: `flow-anh` bằng `flow-cli.js --make-image`, `muse` bằng `canvas_generate_image` (ảnh rẻ hơn clip), 9:16 hoặc tỉ lệ ghi trong `job.json`; lưu `output/<slug>/media/hook_NN.png`
    và ghi `kich_ban.hook_phuong_an[].hinh[].asset`. Prompt hình: không chữ nêu tuổi/giới tính người, không trẻ em; nội dung y tế dùng sơ đồ/minh hoạ, **không ảnh cơ thể thật**,

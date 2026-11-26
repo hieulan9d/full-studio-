@@ -169,9 +169,10 @@ node canvas/desktop/flow-cli.js --fetch 1 --out output/<slug>/media --name c01
 - Thêm tài khoản: `--add-account "ten"`, **người dùng tự đăng nhập Google** và mở một project, rồi chạy `--status`.
 - Tạo tuần tự từng clip. Không chạy hai lệnh cùng lúc, không dùng Flow trong canvas song song. Không đóng, thu nhỏ hay tải lại cửa sổ Brave khi đang tạo.
 - Nhắc đúng **tên tệp ảnh (cả đuôi)** trong prompt để chèn `@`. Cảnh không lời thì ghi rõ trong prompt.
-- Gặp đăng nhập, captcha, "hoạt động bất thường": dừng và nhờ người dùng. Không né.
-- Lỗi hoặc hết giờ nhưng Flow đã tạo xong: dùng `--fetch` lấy lại, **đừng tạo lại** (tốn điểm).
-- Đã chạy thật: tải video (`--fetch`), đọc trạng thái. **Chưa chạy thật:** tạo trọn vòng bằng lệnh này, tạo ảnh, thêm và đổi tài khoản.
+- **Flow báo lỗi thì không dừng** (người dùng chốt 2026-11-26): `flow-cli.js` tự đóng Brave, mở lại và tạo lại, tối đa 2 lần tạo lại (đổi bằng `--retries N`). Đừng tắt hay chạy lại tay khi lệnh đang tự thử. Hết lượt mà vẫn lỗi: ghi vào `job.json`, làm tiếp cảnh khác, cuối cùng báo người dùng cảnh còn thiếu.
+- Chỉ dừng khi: đăng nhập, captcha, "hoạt động bất thường" (không né), hết điểm, chưa chọn project, không có trình duyệt. Bị chính sách chặn: sửa prompt (ghi lại thay đổi) rồi chạy lại, không gửi nguyên prompt cũ.
+- Tạo xong nhưng lỗi lúc tải video: lệnh chỉ tải lại, không tạo lại. Hết giờ chờ thì lệnh **có** tạo lại, nên có thể tốn điểm hai lần cho một cảnh; trước khi tự chạy lại tay, thử `--fetch` trước.
+- Đã chạy thật: tải video (`--fetch`), đọc trạng thái, tạo video trọn vòng (2026-11-26), đóng/mở lại Brave. **Chưa chạy thật:** tự tạo lại khi Flow báo lỗi thật (mới thử bằng lỗi giả), tạo ảnh, thêm và đổi tài khoản. Clip Flow có dấu ngôi sao của Google ở góc dưới phải.
 
 ### 6.1c Muse: qua canvas (API)
 Ảnh và video Muse tạo trên canvas, gọi API muse2api. **Canvas chỉ dùng để tạo ảnh/video cho Muse** (không dùng canvas cho Flow).

@@ -155,7 +155,8 @@ Vòng đời `trang_thai`: `moi` → `cho-duyet-kich-ban` → `da-duyet-kich-ban
 **Giọng đọc**: dùng node âm thanh trên canvas, model `omnivoice`, nhập lời **thẳng vào ô soạn** (không nối node văn bản vào, nếu không giọng đọc thừa "Văn bản 1"). Dùng đúng mã giọng người dùng chỉ định. Sau đó cắt lặng đầu/cuối, whisper nghe lại để lấy mốc từng chữ. Nhân bản giọng **chỉ khi chủ giọng đồng ý**.
 
 **Video/ảnh**:
-- Flow: ảnh `flow::flow-nano-banana-pro`; video `flow::flow-omni-1.2-flash` (≤15 s) hoặc `flow::flow-omni-1.1-flash` (≤10 s). Hay đòi captcha: để người dùng xử lý.
+- Flow: **tạo trực tiếp trên Brave** bằng `node canvas/desktop/flow-cli.js` (không qua canvas), xem `HUONG-DAN-AI.md` mục 6.1b. Canvas chỉ dùng cho Muse và giọng.
+- **Flow báo lỗi thì không dừng**: lệnh tự đóng Brave, mở lại, tạo lại (tối đa 2 lần). Chỉ dừng khi đăng nhập, captcha, "hoạt động bất thường", hết điểm; để người dùng xử lý.
 - Muse: `muse-image`, `muse-video`. **Tạo từng video một, tuần tự.**
 - Sinh theo **đợt nhỏ** (3 rồi 5–6 clip), mỗi clip ~1–2 phút. Không chạy hai tiến trình tạo cùng lúc. Đừng thu nhỏ/che cửa sổ Flow khi đang tạo.
 - Clip dùng ảnh tham chiếu thường có **khung 0 giây trắng**: cắt ~0,3 s đầu.

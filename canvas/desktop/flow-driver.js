@@ -267,7 +267,9 @@ async function generate(job, onProgress) {
       if (job.kind === "image") await sleep(2500); // để ảnh tải đủ độ phân giải trước khi lấy
       console.log(`${tag}: xong, tải ${Math.min(st.videos.length, job.count || 1)} tệp`);
       const out = [];
-      for (const v of st.videos.slice(0, job.count || 1)) out.push(job.kind === "image" ? await downloadVideo(page, v.url) : await downloadVideoViaUi(page, v.id, sub.baseline));
+      try {
+        for (const v of st.videos.slice(0, job.count || 1)) out.push(job.kind === "image" ? await downloadVideo(page, v.url) : await downloadVideoViaUi(page, v.id, sub.baseline));
+      } catch (e) { e.stage = "download"; throw e; } // Flow đã tạo xong: chỉ được tải lại, không tạo lại
       refreshCredits(page).catch(() => {}); // cập nhật điểm còn lại (hiện trên menu)
       return out; // [{data, mime}]
     }
@@ -297,7 +299,7 @@ function setup(app) {
   const enqueue = (kind) => (_e, job) => {
     const p = queue.then(() => generate({ ...job, kind }));
     queue = p.catch(() => {});
-    return p.then((items) => ({ ok: true, items, data: items[0].data, mime: items[0].mime }), (e) => ({ ok: false, error: String(e.message || e) }));
+    return p.then((items) => ({ ok: true, items, data: items[0].data, mime: items[0].mime }), (e) => ({ ok: false, error: String(e.message || e), stage: e.stage }));
   };
   ipcMain.handle("flow:generate-video", enqueue("video"));
   // job: {prompt, model, ratio, quality, count, images:[{base64,mime,name}]} -> items:[{data,mime}]
@@ -482,4 +484,4 @@ async function fetchVideo(index = 0) {
   return downloadVideoViaUi(page, key, urls.filter((_, i) => i !== index));
 }
 
-module.exports = { setup, destroy, fetchVideo };
+module.exports = { setup, destroy, fetchVideo, closeBrowser: stopOwnBrowser };
