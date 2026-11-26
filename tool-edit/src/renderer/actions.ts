@@ -3,6 +3,8 @@ import { DEFAULT_TRANSFORM, timelineEnd, type Clip, type Op, type Project } from
 import { api } from './bridge';
 import { player } from './player';
 import { store, type Toast } from './store';
+import { defaultChart, chartEnd, type ChartKind } from '../core/chart';
+import { expandTemplate, findTemplate } from '../core/templates';
 import { expandGroups, nextTrackName, findFreeStart, freshIds, newGroupId, splitTargets, trackKindForMedia } from './timeline-math';
 import { thumbnail } from './engine';
 import { EASE_PRESETS, easeFromName, findKeyAt, textPatchFor, valueAt, type Ease } from '../core/anim';
@@ -818,6 +820,40 @@ export async function addShapeClip(kind: ShapeKind) {
   }
   const [cid] = freshIds(p, 'c', 1);
   ops.push({ op: 'add_clip', clip: { id: cid, track, src: { type: 'shape', shape: defaultShape(kind) }, start, duration: dur, in: 0, volume: 1, transform: { ...DEFAULT_TRANSFORM }, keyframes: {} } });
+  if (await commit(ops)) store.set({ selection: [cid], rightTab: 'props' });
+}
+
+
+/** Them mot MAU dung san (nhom clip) tai con tro, tren cac track trong; chon luon cac clip moi. */
+export async function addTemplate(id: string, vars: Record<string, string | number>) {
+  const tpl = findTemplate(id);
+  if (!tpl) return toast('Không có mẫu này', 'error');
+  const s = store.get();
+  const res = expandTemplate(tpl, vars, s.project, s.playhead);
+  if ('error' in res) return toast(viText(res.error), 'error');
+  if (await commit(res.ops)) {
+    store.set({ selection: res.clipIds, templatesOpen: false });
+    toast(`Đã thêm mẫu "${tpl.name}" (${res.clipIds.length} clip, ghép thành một nhóm)`, 'ok');
+  }
+}
+
+/** Them bieu do / so dem tai con tro tren track video cao nhat con trong. */
+export async function addChartClip(kind: ChartKind) {
+  const s = store.get();
+  const p = s.project;
+  const spec = defaultChart(kind);
+  const dur = Math.max(3, chartEnd(spec) + 1.5);
+  const start = s.playhead;
+  const vtracks = [...p.tracks.filter((t) => t.kind === 'video')].reverse();
+  let track = vtracks.find((t) => findFreeStart(p, t.id, start, dur) === r6(start))?.id;
+  const ops: Op[] = [];
+  if (!track) {
+    const [tid] = freshIds(p, 'v', 1);
+    ops.push({ op: 'add_track', track: { id: tid, kind: 'video', name: nextTrackName(p, 'video') } });
+    track = tid;
+  }
+  const [cid] = freshIds(p, 'c', 1);
+  ops.push({ op: 'add_clip', clip: { id: cid, track, src: { type: 'chart', chart: spec }, start, duration: dur, in: 0, volume: 1, transform: { ...DEFAULT_TRANSFORM }, keyframes: {} } });
   if (await commit(ops)) store.set({ selection: [cid], rightTab: 'props' });
 }
 

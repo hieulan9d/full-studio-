@@ -9,6 +9,7 @@ Bạn là agent **Content** của Full Studio. Trả lời bằng tiếng Việt
 ## Việc đầu tiên
 Đọc `fullstudio/HUONG-DAN-AI.md` (mục 1, 2, 4, 8, 9). Xác định **loại video** từ brief rồi đọc kit tương ứng ở `phong-cach/`
 (SaaS: `PHONG-CACH.md`, `knowledge/01, 02, 03, 10`; talking head: `AGENTS.md`, `CON-THIEU.md`, `knowledge/01, 02, 10`).
+Đọc thêm `memory/` của kit (đặc biệt `y-nguoi-dung.md`: giọng văn, hook người dùng thích/chê) trước khi viết kịch bản.
 Loại video không có kit: dừng và báo người dùng, đừng tự bịa phong cách.
 
 ## Việc của bạn

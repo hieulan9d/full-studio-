@@ -3,10 +3,14 @@ import { Renderer, type Layer } from '../render/renderer';
 import { CachedVideo } from '../render/decoder';
 import { rasterizeText } from '../render/text-raster';
 import { rasterizeShape } from '../render/shape-raster';
+import { rasterizeChart } from '../render/chart-raster';
 import { resolveClip } from '../core/anim';
 import { speedAt, srcTimeAt } from '../core/speed';
 import { bakeLut, bakeSizeFor, gradeKey, isIdentity, parseCube, stageAParams, toF16, type CubeLut, type Grade } from '../core/grade';
-import type { Clip, Project } from '../core/schema';
+import { DEFAULT_TRANSFORM, newProject, type Clip, type Project } from '../core/schema';
+import { planTransition, smooth, type LayerPatch } from '../core/transition';
+import { expandTemplate, type Template } from '../core/templates';
+import { Session } from '../core/session';
 import { drawScope, statsOf, type ScopeKind } from '../core/scopes';
 import type { ExportReq, RenderReq } from './bridge';
 
@@ -153,21 +157,21 @@ export function pruneMedia(p: Project) {
 }
 
 /** Danh sach lop (duoi len tren) dang hien o thoi diem t. size = kich thuoc khung se ve (de co chu theo khung). */
-export async function layersAt(p: Project, t: number, size?: { width: number; height: number }): Promise<Layer[]> {
-  for (const v of videos.values()) v.beginFrame(); // bo ghim khung cua lan render truoc
-  const frame = size ?? { width: p.width, height: p.height };
+/** Cac lop (duoi len tren) cua MOT clip tai thoi diem clip-local `lt` (co the vuot do dai clip: dung cho phan duoi cua clip truoc trong chuyen canh). */
+async function clipLayers(p: Project, c: Clip, lt: number, t: number, frame: { width: number; height: number }): Promise<Layer[]> {
   const out: Layer[] = [];
   const eps = 1e-6;
-  for (const tr of p.tracks) {
-    if (tr.kind !== 'video') continue;
-    const c = p.clips.find((x) => !x.disabled && x.track === tr.id && t >= x.start - eps && t < x.start + x.duration - eps);
-    if (!c) continue;
-    const lt = t - c.start;
+  void eps;
     const res = resolveClip(c, lt); // gia tri thuc tai thoi diem nay (da ap keyframe)
     const before = out.length;
     if (c.src.type === 'shape') {
       const r = rasterizeShape(res.shape!, frame.width, frame.height);
-      out.push({ type: 'text', canvas: r.canvas, width: r.width, height: r.height, inset: r.pad, transform: res.transform });
+      const lay: Layer = { type: 'text', canvas: r.canvas, width: r.width, height: r.height, inset: r.pad, transform: res.transform };
+      if (res.fx?.backdrop && res.shape!.kind !== 'ring') lay.mask = rasterizeShape({ ...res.shape!, fill: res.shape!.fill || '#ffffff', fillOpacity: 1 }, frame.width, frame.height).canvas;
+      out.push(lay);
+    } else if (c.src.type === 'chart') {
+      const r = rasterizeChart(c.src.chart, frame.width, frame.height, lt);
+      out.push({ type: 'text', canvas: r.canvas, width: r.width, height: r.height, inset: 0, transform: res.transform });
     } else if (c.src.type === 'gen') {
       out.push({ type: 'gen', kind: c.src.kind, param: c.src.param, time: t });
     } else if (c.src.type === 'text') {
@@ -202,7 +206,7 @@ export async function layersAt(p: Project, t: number, size?: { width: number; he
             if (res.fx) out[i].fx = res.fx;
             if (c.blend) out[i].blend = c.blend;
           }
-          continue;
+          return out;
         }
         const fr = await getImageFrame(m.id);
         out.push({ type: 'video', frame: fr, width: fr.displayWidth, height: fr.displayHeight, transform: res.transform, grade: await gradeLayer(c.grade) });
@@ -212,6 +216,68 @@ export async function layersAt(p: Project, t: number, size?: { width: number; he
       if (res.fx) out[i].fx = res.fx;
       if (c.blend) out[i].blend = c.blend;
     }
+  return out;
+}
+
+/** Ap mot LayerPatch (chuyen canh) len cac lop: sao chep transform/fx de khong anh huong lop dung chung. */
+function patchLayers(layers: Layer[], pt: LayerPatch, frame: { width: number; height: number }): Layer[] {
+  if (pt.hide) return [];
+  const clamp01 = (x: number) => Math.min(1, Math.max(0, x));
+  return layers.map((l) => {
+    if (l.type === 'gen') return l; // lop sinh tu dong khong co transform
+    const tf = { ...l.transform };
+    if (pt.opacity !== undefined) tf.opacity = clamp01(tf.opacity * pt.opacity);
+    if (pt.dx) tf.x += pt.dx;
+    if (pt.dy) tf.y += pt.dy;
+    if (pt.scale !== undefined) tf.scale *= pt.scale;
+    if (pt.rot) tf.rotation += pt.rot;
+    if (pt.rotX !== undefined) tf.rotX = (tf.rotX ?? 0) + pt.rotX;
+    if (pt.rotY !== undefined) tf.rotY = (tf.rotY ?? 0) + pt.rotY;
+    const out = { ...l, transform: tf } as Layer;
+    if (pt.blur || pt.wipe) {
+      const fx = { ...(out.fx ?? {}) };
+      if (pt.blur) fx.blur = { radius: (fx.blur?.radius ?? 0) + pt.blur * (Math.min(frame.width, frame.height) / 1080) };
+      if (pt.wipe) fx.wipe = { ...pt.wipe };
+      out.fx = fx;
+    }
+    return out;
+  });
+}
+
+let whiteCanvas: OffscreenCanvas | null = null;
+
+/** Danh sach lop (duoi len tren) dang hien o thoi diem t. size = kich thuoc khung se ve (de co chu theo khung). */
+export async function layersAt(p: Project, t: number, size?: { width: number; height: number }): Promise<Layer[]> {
+  for (const v of videos.values()) v.beginFrame(); // bo ghim khung cua lan render truoc
+  const frame = size ?? { width: p.width, height: p.height };
+  const out: Layer[] = [];
+  const eps = 1e-6;
+  for (const tr of p.tracks) {
+    if (tr.kind !== 'video') continue;
+    const c = p.clips.find((x) => !x.disabled && x.track === tr.id && t >= x.start - eps && t < x.start + x.duration - eps);
+    if (!c) continue;
+    const lt = t - c.start;
+    const tn = c.transition;
+    if (tn && lt < tn.duration) {
+      // chuyen canh VAO: clip truoc (sat nhau tren cung track) keo dai them phan duoi, hoac vao tu nen neu khong co clip truoc
+      const prev = p.clips.find((x) => !x.disabled && x.id !== c.id && x.track === c.track && Math.abs(x.start + x.duration - c.start) < 1e-4);
+      const plan = planTransition(tn.kind, smooth(lt / tn.duration));
+      const a = prev ? await clipLayers(p, prev, prev.duration + lt, t, frame) : [];
+      const b = await clipLayers(p, c, lt, t, frame);
+      out.push(...patchLayers(a, plan.out, frame), ...patchLayers(b, plan.in, frame));
+      if (plan.flash) {
+        whiteCanvas ??= (() => {
+          const cv = new OffscreenCanvas(2, 2);
+          const g = cv.getContext('2d')!;
+          g.fillStyle = '#fff';
+          g.fillRect(0, 0, 2, 2);
+          return cv;
+        })();
+        out.push({ type: 'text', canvas: whiteCanvas, width: 2, height: 2, inset: 0, transform: { ...DEFAULT_TRANSFORM, scale: Math.max(frame.width, frame.height), opacity: plan.flash } });
+      }
+      continue;
+    }
+    out.push(...(await clipLayers(p, c, lt, t, frame)));
   }
   return out;
 }
@@ -302,6 +368,26 @@ async function toPng(rgba: Uint8ClampedArray, w: number, h: number): Promise<Uin
   return new Uint8Array(await blob.arrayBuffer());
 }
 export { toPng };
+
+/** Anh xem truoc cua mot mau dung san: nen thanh mau + mau tai 60% thoi luong. Co nho vi mot lan/mau. */
+const templateThumbs = new Map<string, { rgba: Uint8ClampedArray; width: number; height: number }>();
+export async function templateThumb(tpl: Template, aspect: '9:16' | '16:9') {
+  const key = `${tpl.id}:${aspect}`;
+  const hit = templateThumbs.get(key);
+  if (hit) return hit;
+  const p0 = newProject();
+  if (aspect === '16:9') [p0.width, p0.height] = [1920, 1080];
+  const s = new Session();
+  s.load(p0);
+  s.apply([{ op: 'add_clip', clip: { id: 'bg', track: 'v1', src: { type: 'gen', kind: 'bars', param: 0 }, start: 0, duration: tpl.duration, in: 0, volume: 1, transform: { ...DEFAULT_TRANSFORM, fit: 'cover' }, keyframes: {} } }], 'human');
+  const ex = expandTemplate(tpl, {}, s.project, 0);
+  if ('error' in ex) throw new Error(ex.error);
+  const r = s.apply(ex.ops, 'human');
+  if (!r.ok) throw new Error(r.errors.join('; '));
+  const out = await renderFrameRgba(s.project, Math.min(tpl.duration - 0.05, tpl.duration * 0.62), 0.2, aspect);
+  templateThumbs.set(key, out);
+  return out;
+}
 
 export function renderFrameRgba(p: Project, t: number, scale: number, aspect?: string) {
   return locked(async () => {

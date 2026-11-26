@@ -7,6 +7,8 @@ import type { Clip, Project } from '../../core/schema';
 import { ANIM_PRESETS, ANIM_UNITS, type TextSpec } from '../../core/text';
 import { hasVietnameseDiacritics } from '../../core/vn';
 import { SPEED_PRESETS } from '../../core/speed';
+import { CHART_KINDS, CHART_LABEL, parseChartData, type ChartSpec } from '../../core/chart';
+import { TRANSITION_KINDS, TRANSITION_LABEL, TRANSITION_MAX, type Transition, type TransitionKind } from '../../core/transition';
 import { BLEND_LABEL, BLEND_MODES, FX_DEFAULT, FX_LABEL, FX_NAMES, SHAPE_KINDS, type FxName } from '../../core/fx';
 import { beginGesture, endGesture, setBlend, setFx } from '../actions';
 import { applyPresetAction, applySpeedPreset, clearSpeed, clipLocal, commit, removeBackground, setClipMatte, textBehindPerson, gotoKeyframe, loadFonts, renameProject, setProp, setText, toggleKeyframe } from '../actions';
@@ -237,6 +239,27 @@ function PresetPicker({ clip }: { clip: Clip }) {
   );
 }
 
+/** Chuyển cảnh VÀO ở đầu clip: với clip liền trước trên cùng track (sát nhau), hoặc hiện dần từ nền nếu không có. */
+function TransitionControls({ clip, project }: { clip: Clip; project: Project }) {
+  const tn = clip.transition;
+  const prev = project.clips.find((x) => x.id !== clip.id && x.track === clip.track && Math.abs(x.start + x.duration - clip.start) < 1e-4);
+  const set = (t: Transition | null) => void commit([{ op: 'set_transition', id: clip.id, transition: t }]);
+  return (
+    <Section title="Chuyển cảnh vào">
+      <Row label="Kiểu">
+        <select value={tn?.kind ?? ''} data-testid="tn-kind" onChange={(e) => (e.target.value ? set({ kind: e.target.value as TransitionKind, duration: tn?.duration ?? Math.min(0.5, clip.duration) }) : set(null))}>
+          <option value="">Không</option>
+          {TRANSITION_KINDS.map((k) => <option key={k} value={k}>{TRANSITION_LABEL[k]}</option>)}
+        </select>
+      </Row>
+      {tn && <Row label="Thời lượng (s)"><NumField testid="tn-dur" value={tn.duration} step={0.1} min={0.1} max={Math.min(TRANSITION_MAX, clip.duration)} onCommit={(n) => set({ ...tn, duration: n })} /></Row>}
+      <div className="kbd" style={{ padding: '0 12px 6px', lineHeight: 1.5 }}>
+        {prev ? 'Chuyển từ clip liền trước: clip trước kéo dài thêm phần đuôi nếu nguồn còn, không thì giữ khung cuối. Âm thanh chưa chéo mờ.' : 'Không có clip liền trước (sát nhau): clip này vào từ nền / lớp bên dưới.'}
+      </div>
+    </Section>
+  );
+}
+
 function TransformControls({ clip, project }: { clip: Clip; project: Project }) {
   const m = clip.src.type === 'media' ? project.media.find((x) => x.id === (clip.src as { mediaId: string }).mediaId) : undefined;
   const tf = clip.transform;
@@ -248,6 +271,9 @@ function TransformControls({ clip, project }: { clip: Clip; project: Project }) 
         <AnimField clip={clip} prop="transform.y" label="Vị trí Y (%)" mul={100} step={1} />
         <AnimField clip={clip} prop="transform.scale" label="Tỉ lệ (%)" mul={100} step={5} min={1} />
         <AnimField clip={clip} prop="transform.rotation" label="Xoay (độ)" step={1} />
+        <AnimField clip={clip} prop="transform.rotX" label="Xoay 3D ngang (độ)" step={1} />
+        <AnimField clip={clip} prop="transform.rotY" label="Xoay 3D dọc (độ)" step={1} />
+        {(tf.rotX || tf.rotY || clip.keyframes?.['transform.rotX']?.length || clip.keyframes?.['transform.rotY']?.length) ? <Row label="Phối cảnh"><NumField testid="f-persp" value={tf.persp ?? 1.2} step={0.1} min={0.3} max={20} onCommit={(n) => setT({ persp: n })} /><span className="kbd">nhỏ = méo mạnh</span></Row> : null}
         <AnimField clip={clip} prop="transform.opacity" label="Độ đục (%)" mul={100} step={5} min={0} max={100} />
         {clip.src.type !== 'text' && (
           <Row label="Vừa khung">
@@ -332,6 +358,7 @@ function MatteControls({ clip, project }: { clip: Clip; project: Project }) {
 }
 
 const FX_FIELDS: Record<FxName, { prop: string; label: string; step: number; min?: number; max?: number; mul?: number }[]> = {
+  backdrop: [{ prop: 'fx.backdrop.radius', label: 'Bán kính mờ (px)', step: 2, min: 0, max: 200 }],
   crop: [{ prop: 'fx.crop.left', label: 'Cắt trái (%)', step: 1, min: 0, max: 95, mul: 100 }, { prop: 'fx.crop.top', label: 'Cắt trên (%)', step: 1, min: 0, max: 95, mul: 100 }, { prop: 'fx.crop.right', label: 'Cắt phải (%)', step: 1, min: 0, max: 95, mul: 100 }, { prop: 'fx.crop.bottom', label: 'Cắt dưới (%)', step: 1, min: 0, max: 95, mul: 100 }],
   blur: [{ prop: 'fx.blur.radius', label: 'Bán kính (px)', step: 2, min: 0, max: 200 }],
   glow: [{ prop: 'fx.glow.radius', label: 'Bán kính', step: 2, min: 0, max: 200 }, { prop: 'fx.glow.intensity', label: 'Cường độ', step: 0.1, min: 0, max: 6 }, { prop: 'fx.glow.threshold', label: 'Ngưỡng', step: 0.05, min: 0, max: 1 }],
@@ -392,6 +419,43 @@ function ShapeControls({ clip }: { clip: Clip }) {
   );
 }
 
+/** Ô chữ một dòng: ghi khi rời ô / Enter (không ghi mỗi phím gõ). */
+function TextBox({ value, onCommit, testid, placeholder, multiline }: { value: string; onCommit: (v: string) => void; testid?: string; placeholder?: string; multiline?: boolean }) {
+  const [v, setV] = useState(value);
+  useEffect(() => setV(value), [value]);
+  const done = () => v !== value && onCommit(v);
+  const common = { value: v, 'data-testid': testid, placeholder, onChange: (e: React.ChangeEvent<HTMLInputElement & HTMLTextAreaElement>) => setV(e.target.value), onBlur: done, onKeyDown: (e: React.KeyboardEvent) => e.stopPropagation(), style: { width: '100%' } as React.CSSProperties };
+  return multiline ? <textarea rows={5} {...common} onKeyDown={(e) => e.stopPropagation()} /> : <input type="text" {...common} onKeyDown={(e) => { e.stopPropagation(); if (e.key === 'Enter') done(); }} />;
+}
+
+function ChartControls({ clip }: { clip: Clip }) {
+  const sp = (clip.src as { chart: ChartSpec }).chart;
+  const set = (patch: Record<string, unknown>) => void commit([{ op: 'set_chart', id: clip.id, patch } as never]);
+  const dataTxt = sp.data.map((d) => `${d.label}: ${d.value}`).join(String.fromCharCode(10));
+  const num = sp.kind === 'number';
+  return (
+    <Section title="Biểu đồ">
+      <Row label="Kiểu"><select value={sp.kind} data-testid="chart-kind" onChange={(e) => set({ kind: e.target.value })}>{CHART_KINDS.map((k) => <option key={k} value={k}>{CHART_LABEL[k]}</option>)}</select></Row>
+      <Row label="Tiêu đề"><TextBox value={sp.title} testid="chart-title" onCommit={(v) => set({ title: v })} /></Row>
+      <div className="kbd" style={{ padding: '2px 12px' }}>{num ? 'Dòng đầu: "Chú thích: giá trị đích".' : 'Dữ liệu, mỗi dòng "Nhãn: giá trị":'}</div>
+      <div style={{ padding: '0 12px 4px' }}><TextBox multiline value={dataTxt} testid="chart-data" onCommit={(v) => { const d = parseChartData(v); if (d.length) set({ data: d }); }} /></div>
+      {num && <Row label="Đếm từ"><NumField testid="chart-from" value={sp.from} step={10} onCommit={(n) => set({ from: n })} /></Row>}
+      <Row label="Tiền tố / hậu tố"><TextBox value={sp.prefix} testid="chart-prefix" onCommit={(v) => set({ prefix: v })} /><TextBox value={sp.suffix} testid="chart-suffix" onCommit={(v) => set({ suffix: v })} /></Row>
+      <Row label="Số lẻ"><NumField testid="chart-decimals" value={sp.decimals} step={1} min={0} max={6} onCommit={(n) => set({ decimals: Math.round(n) })} /></Row>
+      {!num && <Row label="Trục tối đa"><NumField testid="chart-max" value={sp.max} step={10} min={0} onCommit={(n) => set({ max: n })} /><span className="kbd">0 = tự động</span></Row>}
+      <Row label="Rộng / cao (px)"><NumField testid="chart-w" value={sp.w} step={20} min={100} max={4000} onCommit={(n) => set({ w: n })} /><NumField testid="chart-h" value={sp.h} step={20} min={100} max={4000} onCommit={(n) => set({ h: n })} /></Row>
+      <Row label="Nền thẻ"><ColorField value={sp.bg} onCommit={(c) => set({ bg: c })} /><NumField testid="chart-bgop" value={sp.bgOpacity} step={0.05} min={0} max={1} onCommit={(n) => set({ bgOpacity: n })} /></Row>
+      <Row label="Màu chữ"><ColorField value={sp.textColor} onCommit={(c) => set({ textColor: c })} /></Row>
+      <Row label="Bảng màu"><TextBox value={sp.palette.join(', ')} testid="chart-palette" onCommit={(v) => { const p = v.split(/[ ,;]+/).filter((x) => /^#[0-9a-fA-F]{6}$/.test(x)); if (p.length) set({ palette: p }); }} /></Row>
+      <Row label="Cỡ chữ"><NumField testid="chart-fs" value={sp.fontSize} step={2} min={8} max={400} onCommit={(n) => set({ fontSize: n })} /></Row>
+      {!num && <Row label="Hiển thị"><Check value={sp.grid} label="lưới" onCommit={(b) => set({ grid: b })} /><Check value={sp.valueLabels} label="giá trị" onCommit={(b) => set({ valueLabels: b })} /></Row>}
+      <Row label="Hoạt họa vào (s)"><NumField testid="chart-dur" value={sp.duration} step={0.1} min={0} max={20} onCommit={(n) => set({ duration: n })} /></Row>
+      <Row label="Trễ / so le (s)"><NumField testid="chart-delay" value={sp.delay} step={0.05} min={0} max={20} onCommit={(n) => set({ delay: n })} /><NumField testid="chart-stagger" value={sp.stagger} step={0.02} min={0} max={5} onCommit={(n) => set({ stagger: n })} /></Row>
+      <Row label="Kiểu chậm dần"><select value={sp.ease} data-testid="chart-ease" onChange={(e) => set({ ease: e.target.value })}><option value="out">Nhanh rồi chậm</option><option value="inout">Mượt hai đầu</option><option value="linear">Đều</option></select></Row>
+    </Section>
+  );
+}
+
 export function Inspector() {
   const project = useStore((s) => s.project);
   const selection = useStore((s) => s.selection);
@@ -434,7 +498,9 @@ export function Inspector() {
       </div>
       {clip.src.type === 'text' && <TextControls clip={clip} spec={clip.src.text} />}
       <TransformControls clip={clip} project={project} />
+      {project.tracks.find((t) => t.id === clip.track)?.kind === 'video' && <TransitionControls clip={clip} project={project} />}
       {clip.src.type === 'shape' && <ShapeControls clip={clip} />}
+      {clip.src.type === 'chart' && <ChartControls clip={clip} />}
       {(clip.src.type !== 'media' || m?.kind !== 'audio') && <FxControls clip={clip} />}
       {clip.src.type === 'media' && m && m.kind !== 'image' && <SpeedControls clip={clip} />}
       {clip.src.type === 'media' && m?.kind === 'video' && <MatteControls clip={clip} project={project} />}

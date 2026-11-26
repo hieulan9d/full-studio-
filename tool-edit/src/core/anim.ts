@@ -98,14 +98,14 @@ export function evalTrack(keys: Keyframe[], t: number): number {
 }
 
 // ---- thuoc tinh co the keyframe ----
-export const CLIP_PROPS = ['transform.x', 'transform.y', 'transform.scale', 'transform.rotation', 'transform.opacity', 'volume', 'speed'] as const;
+export const CLIP_PROPS = ['transform.x', 'transform.y', 'transform.scale', 'transform.rotation', 'transform.rotX', 'transform.rotY', 'transform.opacity', 'volume', 'speed'] as const;
 export const TEXT_PROPS = ['text.size', 'text.letterSpacing', 'text.lineHeight', 'text.fill.angle', 'text.fill.offset', 'text.stroke.width', 'text.shadow.opacity', 'text.shadow.blur', 'text.shadow.x', 'text.shadow.y', 'text.glow.strength', 'text.glow.radius'] as const;
 export const ANIM_PROPS: string[] = [...CLIP_PROPS, ...TEXT_PROPS, ...FX_PROPS, ...SHAPE_PROPS];
 
 /** Nhan tieng Viet de hien trong giao dien. */
 export const PROP_LABEL: Record<string, string> = {
   ...FX_PROP_LABEL, ...SHAPE_PROP_LABEL,
-  'transform.x': 'Vị trí X', 'transform.y': 'Vị trí Y', 'transform.scale': 'Tỉ lệ', 'transform.rotation': 'Xoay', 'transform.opacity': 'Độ đục', volume: 'Âm lượng', speed: 'Tốc độ',
+  'transform.x': 'Vị trí X', 'transform.y': 'Vị trí Y', 'transform.scale': 'Tỉ lệ', 'transform.rotation': 'Xoay', 'transform.rotX': 'Xoay 3D ngang (X)', 'transform.rotY': 'Xoay 3D dọc (Y)', 'transform.opacity': 'Độ đục', volume: 'Âm lượng', speed: 'Tốc độ',
   'text.size': 'Có chữ', 'text.letterSpacing': 'Giãn chữ', 'text.lineHeight': 'Giãn dòng', 'text.fill.angle': 'Góc gradient', 'text.fill.offset': 'Dịch gradient',
   'text.stroke.width': 'Độ dày viền', 'text.shadow.opacity': 'Độ đục bóng', 'text.shadow.blur': 'Mở bóng', 'text.shadow.x': 'Bóng X', 'text.shadow.y': 'Bóng Y', 'text.glow.strength': 'Cường độ glow', 'text.glow.radius': 'Bán kính glow',
 };
@@ -136,7 +136,10 @@ export function baseValue(clip: Clip, prop: string): number {
   const [head, ...rest] = prop.split('.');
   if (head === 'volume') return clip.volume;
   if (head === 'speed') return clip.speed ?? 1;
-  if (head === 'transform') return getPath(clip.transform, rest);
+  if (head === 'transform') {
+    const v = getPath(clip.transform, rest);
+    return Number.isNaN(v) && (rest[0] === 'rotX' || rest[0] === 'rotY') ? 0 : v; // truong 3D la tuy chon, mac dinh 0
+  }
   if (head === 'text' && clip.src.type === 'text') return getPath(clip.src.text, rest);
   if (head === 'shape' && clip.src.type === 'shape') return getPath(clip.src.shape, rest);
   if (head === 'fx') return getPath((clip.fx as unknown as Record<string, unknown>)?.[rest[0]] ?? (FX_DEFAULT as unknown as Record<string, unknown>)[rest[0]], rest.slice(1));

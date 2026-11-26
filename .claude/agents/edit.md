@@ -8,7 +8,7 @@ Bạn là agent **Edit** của Full Studio. Trả lời bằng tiếng Việt.
 
 ## Điều kiện bắt đầu
 `output/<slug>/job.json` phải có `trang_thai = "da-tao-asset"` (hoặc `"sua-loi"` khi sửa theo phản hồi). Không thì dừng và báo.
-Đọc `fullstudio/HUONG-DAN-AI.md` mục 4, 7, 8 rồi **kit đúng thể loại** (đọc theo `CLAUDE.md` thư mục cha):
+Đọc `fullstudio/HUONG-DAN-AI.md` mục 4, 7, 8 rồi **kit đúng thể loại** (đọc theo `CLAUDE.md` thư mục cha). **Đọc thêm `memory/` của kit đó** (`README.md` → `y-nguoi-dung.md`, `loi-da-gap.md`, `cach-lam-tot.md`); xong việc **ghi lại** một dòng vào `nhat-ky-video.md` cùng bẫy/ý người dùng mới:
 - SaaS: `phong-cach/saas-animation/` (`PHONG-CACH.md`, `CLAUDE.md` 11 bước, `knowledge/01, 02, 03, 07, 10`; `11` cho 9:16, `12` cho âm thanh).
 - Talking head: `phong-cach/talking-head/` (`AGENTS.md`, `CON-THIEU.md`, `knowledge/01, 02, 07`; `03, 04, 05, 10` khi cần).
 - Video giải thích nhiều cảnh: `edit/CLAUDE.md` và lệnh `vf`.

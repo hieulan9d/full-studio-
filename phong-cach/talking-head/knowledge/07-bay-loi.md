@@ -52,6 +52,25 @@ Mỗi mục dưới đây từng làm mất 10–60 phút. Định dạng: **tri
 26. **Ghép contact sheet bằng `ffmpeg -pattern_type glob` không chạy trên bản ffmpeg Windows này.** → Dùng `-framerate 1 -start_number 0 -i g_%02d.png`.
 27. **Đường dẫn có dấu tiếng Việt** (`D:/dự án antigravity/...`) dùng được trong `File()` của ExtendScript và trong `args` của `ae_run_script`.
 
+## Từ video Bojomi, tiếng Việt (2026-11-16/17)
+
+28. **`H.scl(l).setValue(...)` báo "Can not call setValue() on a property with keyframes"** khi layer đã có keyframe scale (vd. sau `T.keyword`/`T.punchIn`). → Co chữ bằng `H.mulScale(H.scl(l), k)`.
+29. **Bộ đếm số `H.counter` + `.toFixed` lỗi "v.toFixed is not a function"**: `effect("Value")("Slider")` là Property, không phải số; chữ hiện nguyên "00%". → Expression `var v=effect("Value")("Slider")*1; v.toFixed(1).replace(".",",")+" mg"`. Kiểm bằng `property.expressionError`.
+30. **File `.jsx` chứa chữ Việt: `$.evalFile` đọc theo mã máy, chữ hỏng.** → Viết nguồn UTF-8 (`build.src.jsx`), chạy `enc.py` đổi mọi ký tự ngoài ASCII thành `\uXXXX` ra `build.jsx`, nạp bản đó.
+31. **Flow tạo video từ ảnh: `UI_TIMEOUT: upload ...` hoặc "Target closed"** khi tên node ảnh tham chiếu là tên tự đặt dài có xuống dòng và `【Văn bản 1】`. → Đổi tên node ảnh ngắn, không dấu (`canvas_update_node` `patch:{title:'vc_hook1'}`) rồi tạo lại; mỗi lần **một** clip, chờ xong mới gửi tiếp.
+32. **Flow trả sai**: một clip ra con mèo không liên quan; clip khác đòi `size:"1:1"` nhưng trả **16:9 đã phóng** (mất mép chủ thể). Sau vài lần Flow báo "hoạt động bất thường… tiện ích trình duyệt". → **Dừng, không né kiểm tra**, nhờ người dùng kiểm cửa sổ Flow (captcha/đăng nhập). Chỗ nào chưa có clip thì dùng ảnh tĩnh zoom chậm.
+33. **Muse (`muse::muse-video`) qua `canvas_generate_video` chỉ tạo node chữ + node cấu hình ở trạng thái `idle`**, không tự chạy. → `canvas_run_generation {nodeId: <node cấu hình>}` rồi chờ `status: success` (20–60 s/clip 5 s, 720×1280). Muse chèn dấu sao AI nhỏ ở mép dưới → phóng clip ≥ 122 %.
+34. **Xuất file khỏi canvas im lặng không chạy** khi node "Xuất file" ngoài khung nhìn. → `canvas_set_viewport` trước, rồi `update_node` đặt `exportAll:true` và `exportRequest` **giá trị mới mỗi lần**; đọc `canvas/exports/manifest.json`, nhận file bằng `nodeId`.
+35. **`ae_render` báo thất bại ("không phản hồi 1800 s" / "Connection closed") dù file đã ra.** → Kiểm `ffprobe -count_frames` (đủ khung = xong); nhìn mốc giờ file. Sau khi người dùng mở lại AE: `ae_open_project` rồi **chờ**, `ae_status` có thể liệt kê comp cũ trong khi `app.project.file` rỗng; render theo **tên** `MAIN` (theo id có lúc báo không thấy).
+36. **Cắt lời lỗi trong clip đã chuẩn bị**: lấy ranh giới từ năng lượng 20 ms (chỗ im lặng ≤ −50 dB), làm tròn theo khung, `trim`+`concat` cho **cả aroll và matte** (cùng số khung), fade âm 10 ms; phiên âm lại để kiểm. Mọi mốc DATA sau đó ánh xạ bằng hàm `m(t)` (knowledge/13), đừng sửa tay từng mốc.
+37. **Whisper tiếng Việt**: sai tên thương hiệu và từ mượn (BOJOMI, An Vượng, MK-7); **đọc "µg" thành "mg"** nên lời và nhãn bao bì mâu thuẫn; **ảo giác ở đuôi** sau khoảng lặng ("subscribe…"). → Chữ màn hình lấy từ nhãn bao bì; nêu mọi chỗ lời ≠ chữ trong báo cáo; đo năng lượng đoạn đuôi trước khi cắt.
+38. **Tường sau lưng có logo/chữ lớn làm chữ "sau lưng người" rối.** Phủ xanh 88 % vẫn lộ logo. → Solid màu thương hiệu **100 %** với mask phía trên (mờ dần xuống bàn), dính vào `CAM` để zoom cùng người; chữ đặt trên lớp này, dưới `MATTE_Person`.
+39. **Ảnh sản phẩm làm thẻ trắng/khung che mặt khi zoom 110 %** (tóc lên tới y ≈ 580). → PNG tách nền ở y < 560, x ≥ 700; ảnh hướng dẫn to nên thay bằng bảng chữ.
+40. **Contact sheet `sheet.sh` mốc 0,5 khung/s đủ xem toàn video 70 s trong một ảnh**; `H.saveFrames` vẫn ghi bất đồng bộ (chờ 8–15 s trước khi ghép).
+
+41. **Đo lệch khẩu hình bằng chuyển động (hiệu khung) cho kết quả sai** (miệng "đi trước" tiếng 80–300 ms), dời hình theo số đó làm lệch hơn. → Đo **độ mở miệng** (bám mặt, cắt chặt vùng miệng, 59,94 fps, cửa sổ 8 s), xác nhận bằng dải ảnh miệng kèm dB ở âm môi (b, p, m). Miệng đi trước tiếng 0–60 ms là tự nhiên. Chiều: tiếng trễ d → `in_hình = in_tiếng − d`. Chi tiết: `fullstudio/docs/kinh-nghiem-giao-gemini.md` mục 4.
+42. **Phụ đề từng từ lấy mốc Whisper: từ đầu câu sau khoảng lặng hay sớm hàng trăm ms** ("Khi" sớm 0,7 s). → Kiểm đầu từ bằng năng lượng tiếng; sửa mốc từ (Tool Edit: `set_text` `animator.times`).
+
 ## Thói quen chống lỗi
 
 - Dựng từng giai đoạn, **xuất khung so với mẫu sau mỗi giai đoạn**. Bản Foodtage cần 8 vòng so mới đạt.

@@ -38,7 +38,11 @@ export interface FxCrop {
   right: number;
   bottom: number;
 }
+export interface FxBackdrop {
+  radius: number; // px @ canh ngan 1080: lam mo phan nen NAM SAU hinh dang cua lop (kinh mo / frosted glass)
+}
 export interface Fx {
+  backdrop?: FxBackdrop;
   crop?: FxCrop;
   blur?: FxBlur;
   glow?: FxGlow;
@@ -48,10 +52,11 @@ export interface Fx {
   wipe?: FxWipe;
 }
 export type FxName = keyof Fx;
-export const FX_NAMES: FxName[] = ['crop', 'blur', 'glow', 'shadow', 'round', 'vignette', 'wipe'];
-export const FX_LABEL: Record<FxName, string> = { crop: 'Cắt khung (Crop)', blur: 'Làm mờ (Gaussian)', glow: 'Phát sáng (Glow)', shadow: 'Bóng đổ', round: 'Bo góc', vignette: 'Vignette', wipe: 'Quét (Linear Wipe)' };
+export const FX_NAMES: FxName[] = ['backdrop', 'crop', 'blur', 'glow', 'shadow', 'round', 'vignette', 'wipe'];
+export const FX_LABEL: Record<FxName, string> = { backdrop: 'Kính mờ (làm mờ nền sau)', crop: 'Cắt khung (Crop)', blur: 'Làm mờ (Gaussian)', glow: 'Phát sáng (Glow)', shadow: 'Bóng đổ', round: 'Bo góc', vignette: 'Vignette', wipe: 'Quét (Linear Wipe)' };
 
 export const FX_DEFAULT: { [K in FxName]: Required<Fx>[K] } = {
+  backdrop: { radius: 28 },
   crop: { left: 0, top: 0, right: 0, bottom: 0 },
   blur: { radius: 20 },
   glow: { radius: 40, intensity: 1, color: '', threshold: 0.3 },
@@ -63,11 +68,11 @@ export const FX_DEFAULT: { [K in FxName]: Required<Fx>[K] } = {
 
 /** Cac thuoc tinh fx keyframe duoc: 'fx.<ten>.<truong>' (so). */
 export const FX_PROPS: string[] = [
-  'fx.blur.radius', 'fx.glow.radius', 'fx.glow.intensity', 'fx.glow.threshold', 'fx.shadow.x', 'fx.shadow.y', 'fx.shadow.blur', 'fx.shadow.opacity',
+  'fx.backdrop.radius', 'fx.blur.radius', 'fx.glow.radius', 'fx.glow.intensity', 'fx.glow.threshold', 'fx.shadow.x', 'fx.shadow.y', 'fx.shadow.blur', 'fx.shadow.opacity',
   'fx.round.radius', 'fx.crop.left', 'fx.crop.top', 'fx.crop.right', 'fx.crop.bottom', 'fx.vignette.amount', 'fx.vignette.softness', 'fx.wipe.progress', 'fx.wipe.angle', 'fx.wipe.feather',
 ];
 export const FX_PROP_LABEL: Record<string, string> = {
-  'fx.blur.radius': 'Mờ (px)', 'fx.glow.radius': 'Glow: bán kính', 'fx.glow.intensity': 'Glow: cường độ', 'fx.glow.threshold': 'Glow: ngưỡng',
+  'fx.backdrop.radius': 'Kính mờ: bán kính', 'fx.blur.radius': 'Mờ (px)', 'fx.glow.radius': 'Glow: bán kính', 'fx.glow.intensity': 'Glow: cường độ', 'fx.glow.threshold': 'Glow: ngưỡng',
   'fx.shadow.x': 'Bóng X', 'fx.shadow.y': 'Bóng Y', 'fx.shadow.blur': 'Bóng: mờ', 'fx.shadow.opacity': 'Bóng: độ đục', 'fx.round.radius': 'Bo góc', 'fx.crop.left': 'Cắt trái', 'fx.crop.top': 'Cắt trên', 'fx.crop.right': 'Cắt phải', 'fx.crop.bottom': 'Cắt dưới',
   'fx.vignette.amount': 'Vignette', 'fx.vignette.softness': 'Vignette: mềm', 'fx.wipe.progress': 'Quét: tiến độ', 'fx.wipe.angle': 'Quét: góc', 'fx.wipe.feather': 'Quét: mềm',
 };
@@ -99,6 +104,7 @@ export function validateFx(fx: Fx, where: string): string[] {
     if (!fin(v) || v < lo || v > hi) e.push(`${where}.${n} phai trong ${lo}..${hi}`);
   };
   for (const k of Object.keys(fx)) if (!FX_NAMES.includes(k as FxName)) e.push(`${where}: hieu ung "${k}" khong co (${FX_NAMES.join('|')})`);
+  if (fx.backdrop) rng('backdrop.radius', fx.backdrop.radius, 0, 200);
   if (fx.blur) rng('blur.radius', fx.blur.radius, 0, 200);
   if (fx.glow) {
     rng('glow.radius', fx.glow.radius, 0, 200);

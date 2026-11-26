@@ -17,6 +17,9 @@ import { BLEND_MODES, FX_NAMES, SHAPE_KINDS, defaultShape } from '../core/fx';
 import { defaultGrade, mergeGrade, parseCube, type DeepPartialGrade } from '../core/grade';
 import { INPUT_SPACES, INPUT_SPACE_IDS } from '../core/colorspace';
 import { SPEED_PRESETS, speedPresetKeys } from '../core/speed';
+import { TRANSITION_KINDS, type TransitionKind } from '../core/transition';
+import { TEMPLATES, expandTemplate, findTemplate } from '../core/templates';
+import { CHART_KINDS, chartEnd, defaultChart, mergeChart, validateChart, type ChartKind } from '../core/chart';
 
 const BASE = `http://127.0.0.1:${process.env.TOOL_EDIT_PORT ?? 17480}`;
 const SOURCE = process.env.TOOL_EDIT_AI_NAME ? `ai:${process.env.TOOL_EDIT_AI_NAME}` : 'ai:mcp';
@@ -120,6 +123,8 @@ const OPS_HELP = `Moi phan tu la mot object co truong "op". Cac op:
 - {"op":"add_clip","clip":{"id","track","src":{"type":"media","mediaId":"m1"},"start":giay,"duration":giay,"in":giay trong nguon,"volume":1,"transform":{"x":0,"y":0,"scale":1,"rotation":0,"opacity":1,"fit":"contain"|"cover"}}}
 - {"op":"remove_clip","id":"c1"}
 - {"op":"set_clip","id":"c1","patch":{"start","duration","in","track","volume","disabled":true|false (vo hieu hoa clip: khong hien/khong phat/khong xuat)}}
+- {"op":"set_chart","id":"c3","patch":{"kind":"bar|hbar|line|pie|donut|number","title","data":[{"label","value","color"}],"from","prefix","suffix","decimals","max","w","h","bg","bgOpacity","radius","textColor","font","fontSize","palette":["#rrggbb"],"grid","valueLabels","duration","stagger","delay","ease":"out|inout|linear"}}  (clip bieu do tao bang add_chart; data/palette thay ca mang)
+- {"op":"set_transition","id":"c2","transition":{"kind":"dissolve|fadeblack|fadewhite|slideleft|slideright|slideup|slidedown|wipeleft|wiperight|wipeup|wipedown|zoomin|zoomout|blur|spin|flip|cube|glitch","duration":0.5}|null}  (chuyen canh VAO o dau clip c2: voi clip lien truoc cung track neu sat nhau, khong thi vao tu nen; null = go)
 - {"op":"group_clips","ids":["c1","c2"],"group":"g1"}  (ghep clip: chon/keo/xoa cung nhau)  va  {"op":"ungroup","group":"g1"}
 - {"op":"set_transform","id":"c1","patch":{"x","y","scale","rotation","opacity","fit"}}  (x,y theo ty le khung; 0 = giua)
 - {"op":"split_clip","id":"c1","at":giay tren timeline,"newId":"c2"}
@@ -583,6 +588,27 @@ server.registerTool(
 );
 
 
+server.registerTool(
+  'set_transition',
+  {
+    description: 'DE XUAT dat CHUYEN CANH VAO o dau mot clip video/anh/chu/hinh. Neu clip lien truoc tren CUNG track va sat nhau (khong ho): chuyen tu clip do sang clip nay (clip truoc keo dai them phan duoi neu nguon con, khong thi giu khung cuoi). Neu khong co clip truoc: clip nay vao tu nen. Kieu: dissolve (hoa tan), fadeblack, fadewhite, slide*, wipe*, zoomin/zoomout, blur, spin, flip (lat 3D), cube (3D), glitch. Chua cheo am thanh. remove=true de go.',
+    inputSchema: {
+      clip_id: z.string().describe('clip DICH (clip vao)'),
+      kind: z.enum(TRANSITION_KINDS as [string, ...string[]]).optional(),
+      duration: z.number().min(0.1).max(5).default(0.5).describe('giay, khong dai hon clip'),
+      remove: z.boolean().default(false),
+      note: z.string().default(''),
+    },
+  },
+  wrap(async ({ clip_id, kind, duration, remove, note }) => {
+    if (!remove && !kind) return fail('can kind (hoac remove=true)');
+    const op: Op = { op: 'set_transition', id: clip_id, transition: remove ? null : { kind: kind as TransitionKind, duration } };
+    const r = await http('POST', '/propose', { ops: [op], note: note || (remove ? `Go chuyen canh ${clip_id}` : `Chuyen canh ${kind} ${duration}s vao ${clip_id}`), source: SOURCE });
+    if (r.status !== 200) return fail(`De xuat khong hop le, chua tao: ${JSON.stringify(r.json?.errors ?? r.json)}`);
+    return text({ ...r.json, next: 'Xem ket qua bang preview_frame o t trong khoang chuyen canh (dau clip den +duration).' });
+  }),
+);
+
 const WHEEL = z.object({ r: z.number().optional(), g: z.number().optional(), b: z.number().optional(), m: z.number().optional() }).describe('r,g,b = lech mau theo kenh; m = chung. lift -0.5..0.5, gamma -1..2, gain -1..2 (0 = giu), offset -0.5..0.5');
 const RNG = (lo: string, hi: string, soft: string) => z.object({ [lo]: z.number().min(0).max(1).optional(), [hi]: z.number().min(0).max(1).optional(), [soft]: z.number().min(0).max(1).optional() });
 const LOGW = z.object({ shadows: WHEEL.optional(), mids: WHEEL.optional(), highlights: WHEEL.optional(), shadowRange: z.number().min(0.05).max(0.6).optional(), highlightRange: z.number().min(0.4).max(0.95).optional() }).describe('3 banh mau theo vung: shadows (cong, chi vung toi), mids (mu), highlights (nhan, chi vung sang). Gia tri -1..1');
@@ -830,6 +856,114 @@ server.registerTool(
     const r = await http('POST', '/propose', { ops, note: a.note || `Them hinh ${a.kind}`, source: SOURCE });
     if (r.status !== 200) return fail(`De xuat khong hop le, chua tao: ${JSON.stringify(r.json?.errors ?? r.json)}`);
     return text({ ...r.json, clip_id: id, track, next: 'Nguoi dung can bam Chap nhan trong app.' });
+  }),
+);
+
+server.registerTool(
+  'add_chart',
+  {
+    description: 'DE XUAT them BIEU DO / SO DEM co hoat hoa vao (cot, cot ngang, duong, tron, vanh khuyen, so dem tang dan) tai start/duration, tu chon track video con trong. Du lieu: data=[{label,value,color?}] (number: data[0].value la gia tri dich, data[0].label la chu thich duoi so, from = gia tri bat dau). Kich thuoc px theo canh ngan 1080 (mac dinh 900x620). Thoi gian hoat hoa: delay, duration, stagger (giay tu dau clip); clip nen dai hon chart_end de giu hinh cuoi. Sua sau bang propose_ops {"op":"set_chart"}. Dinh dang so kieu Viet (1.250,5).',
+    inputSchema: {
+      kind: z.enum(CHART_KINDS as [string, ...string[]]),
+      data: z.array(z.object({ label: z.string().max(60), value: z.number(), color: HEXC.optional() })).min(1).max(24),
+      start: z.number().min(0),
+      duration: z.number().positive().optional().describe('mac dinh = hoat hoa xong + 1.5 giay (toi thieu 3)'),
+      title: z.string().max(120).default(''),
+      from: z.number().optional(),
+      prefix: z.string().max(12).optional(),
+      suffix: z.string().max(12).optional(),
+      decimals: z.number().int().min(0).max(6).optional(),
+      max: z.number().min(0).optional(),
+      w: z.number().min(100).max(4000).optional(),
+      h: z.number().min(100).max(4000).optional(),
+      bg: HEXC.optional(),
+      bg_opacity: z.number().min(0).max(1).optional(),
+      text_color: HEXC.optional(),
+      palette: z.array(HEXC).min(1).max(16).optional(),
+      font: z.string().optional(),
+      font_size: z.number().min(8).max(400).optional(),
+      anim_duration: z.number().min(0).max(20).optional(),
+      anim_delay: z.number().min(0).max(20).optional(),
+      stagger: z.number().min(0).max(5).optional(),
+      x: z.number().optional(),
+      y: z.number().optional(),
+      track: z.string().optional(),
+      note: z.string().default(''),
+    },
+  },
+  wrap(async (a) => {
+    const p = (await http('GET', '/project')).json as Project;
+    const spec = defaultChart(a.kind as ChartKind);
+    const patch: Record<string, unknown> = { data: a.data, title: a.title };
+    if (a.from !== undefined) patch.from = a.from;
+    if (a.prefix !== undefined) patch.prefix = a.prefix;
+    if (a.suffix !== undefined) patch.suffix = a.suffix;
+    if (a.decimals !== undefined) patch.decimals = a.decimals;
+    if (a.max !== undefined) patch.max = a.max;
+    if (a.w) patch.w = a.w;
+    if (a.h) patch.h = a.h;
+    if (a.bg) patch.bg = a.bg;
+    if (a.bg_opacity !== undefined) patch.bgOpacity = a.bg_opacity;
+    if (a.text_color) patch.textColor = a.text_color;
+    if (a.palette) patch.palette = a.palette;
+    if (a.font) patch.font = a.font;
+    if (a.font_size) patch.fontSize = a.font_size;
+    if (a.anim_duration !== undefined) patch.duration = a.anim_duration;
+    if (a.anim_delay !== undefined) patch.delay = a.anim_delay;
+    if (a.stagger !== undefined) patch.stagger = a.stagger;
+    const chart = mergeChart(spec, patch as never);
+    const errs = validateChart(chart, 'chart');
+    if (errs.length) return fail(`bieu do khong hop le: ${errs.join('; ')}`);
+    const duration = a.duration ?? Math.max(3, chartEnd(chart) + 1.5);
+    const ops: Op[] = [];
+    let track = a.track as string | undefined;
+    if (track) {
+      const t = p.tracks.find((x) => x.id === track);
+      if (!t || t.kind !== 'video') return fail(`track "${track}" khong ton tai hoac khong phai track video`);
+    } else {
+      const free = (id: string) => !p.clips.some((c) => c.track === id && a.start < c.start + c.duration - 1e-6 && c.start < a.start + duration - 1e-6);
+      track = [...p.tracks.filter((t) => t.kind === 'video')].reverse().find((t) => free(t.id))?.id;
+      if (!track) {
+        track = nextId(p, 'v');
+        ops.push({ op: 'add_track', track: { id: track, kind: 'video', name: `Video ${p.tracks.filter((t) => t.kind === 'video').length + 1}` } });
+      }
+    }
+    const id = nextId(p, 'c');
+    const tf: Record<string, number> = {};
+    if (a.x !== undefined) tf.x = a.x;
+    if (a.y !== undefined) tf.y = a.y;
+    ops.push({ op: 'add_clip', clip: { id, track, src: { type: 'chart', chart }, start: a.start, duration, in: 0, volume: 1, transform: { ...DEFAULT_TRANSFORM, ...tf }, keyframes: {} } });
+    const r = await http('POST', '/propose', { ops, note: a.note || `Them bieu do ${a.kind}`, source: SOURCE });
+    if (r.status !== 200) return fail(`De xuat khong hop le, chua tao: ${JSON.stringify(r.json?.errors ?? r.json)}`);
+    return text({ ...r.json, clip_id: id, track, chart_end: +chartEnd(chart).toFixed(2), next: 'Xem bang preview_frame o t sau chart_end (tinh tu dau clip) de kiem hinh cuoi.' });
+  }),
+);
+
+server.registerTool(
+  'list_templates',
+  { description: 'Danh sach MAU DUNG SAN (the kinh, tieu de lon, lower third, so lieu, nut, the gia, bieu do cot, thong bao app): id, ten, mo ta, thoi luong, cac bien (id, kieu text|number|color|data, mac dinh). Dung voi add_template.', inputSchema: {} },
+  wrap(async () => text(TEMPLATES.map((t) => ({ id: t.id, name: t.name, category: t.category, description: t.description, duration: t.duration, vars: t.vars })))),
+);
+
+server.registerTool(
+  'add_template',
+  {
+    description: 'DE XUAT them mot MAU DUNG SAN tai thoi diem start: mot nhom clip (hinh, chu, bieu do, hieu ung kinh mo) ghep thanh MOT NHOM (clip ghep), tu chon cac track trong (hoac tao track moi), giu dung thu tu lop. vars = gia tri bien (xem list_templates): text = chuoi, number = so, color = #rrggbb, data = nhieu dong "Nhan: gia tri". Bien thieu dung mac dinh. Vi tri tinh theo canh ngan 1080 nen dung cho ca 9:16 va 16:9. Sau khi them, sua tung clip bang propose_ops nhu clip thuong.',
+    inputSchema: {
+      template_id: z.enum(TEMPLATES.map((t) => t.id) as [string, ...string[]]),
+      start: z.number().min(0),
+      vars: z.record(z.string(), z.union([z.string(), z.number()])).default({}),
+      note: z.string().default(''),
+    },
+  },
+  wrap(async ({ template_id, start, vars, note }) => {
+    const p = (await http('GET', '/project')).json as Project;
+    const tpl = findTemplate(template_id)!;
+    const res = expandTemplate(tpl, vars, p, start);
+    if ('error' in res) return fail(res.error);
+    const r = await http('POST', '/propose', { ops: res.ops, note: note || `Them mau ${tpl.name}`, source: SOURCE });
+    if (r.status !== 200) return fail(`De xuat khong hop le, chua tao: ${JSON.stringify(r.json?.errors ?? r.json)}`);
+    return text({ ...r.json, template: template_id, clip_ids: res.clipIds, group: res.group, duration: res.duration, next: 'Xem bang preview_frame trong khoang start..start+duration. Huy ghep / sua tung clip bang propose_ops (group_clips / ungroup / set_text / set_shape / set_chart).' });
   }),
 );
 

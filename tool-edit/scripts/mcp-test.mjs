@@ -22,7 +22,7 @@ const body = (r) => JSON.parse(r.content.find((c) => c.type === 'text').text);
 // ---- tools/list va schema
 const { tools } = await client.listTools();
 const names = tools.map((t) => t.name).sort();
-ok(['app_status', 'contact_sheet', 'job_cancel', 'job_status', 'media_import', 'preview_frame', 'project_get', 'propose_ops', 'proposals_list', 'render_start', 'snapshot_create', 'snapshots_list', 'add_text', 'set_keyframes', 'apply_preset', 'list_presets', 'list_fonts', 'transcribe', 'get_transcript', 'fix_transcript', 'generate_captions', 'cut_silences', 'cut_words', 'list_library', 'suggest_sfx', 'duck_music', 'detect_beats', 'beat_markers', 'qc_check', 'remove_background', 'apply_matte', 'text_behind_person', 'set_speed', 'grade_get', 'grade_set', 'apply_lut', 'analyze_frame', 'scope_image', 'match_color', 'set_fx', 'set_blend', 'add_shape', 'export_timeline'].every((n) => names.includes(n)) && names.length === 43, 'tools/list du 43 tool', names.join(','));
+ok(['app_status', 'contact_sheet', 'job_cancel', 'job_status', 'media_import', 'preview_frame', 'project_get', 'propose_ops', 'proposals_list', 'render_start', 'snapshot_create', 'snapshots_list', 'add_text', 'set_keyframes', 'apply_preset', 'list_presets', 'list_fonts', 'transcribe', 'get_transcript', 'fix_transcript', 'generate_captions', 'cut_silences', 'cut_words', 'list_library', 'suggest_sfx', 'duck_music', 'detect_beats', 'beat_markers', 'qc_check', 'remove_background', 'apply_matte', 'text_behind_person', 'set_speed', 'grade_get', 'grade_set', 'apply_lut', 'analyze_frame', 'scope_image', 'match_color', 'set_fx', 'set_blend', 'add_shape', 'export_timeline', 'set_transition', 'add_chart', 'list_templates', 'add_template'].every((n) => names.includes(n)) && names.length === 47, 'tools/list du 47 tool', names.join(','));
 ok(!names.some((n) => /accept|reject|undo|apply|restore/.test(n) && n !== 'apply_preset' && n !== 'apply_matte' && n !== 'apply_lut'), 'AI KHONG co tool ap dung/duyet/hoan tac/khoi phuc truc tiep (apply_preset, apply_matte, apply_lut chi tao DE XUAT, da kiem rieng)');
 const flat = JSON.stringify(tools.map((t) => t.inputSchema));
 ok(!/anyOf|oneOf|allOf/.test(flat), 'schema khong dung anyOf/oneOf/allOf (than thien Gemini/GPT)', (flat.match(/anyOf|oneOf|allOf/g) ?? []).join(','));
@@ -317,6 +317,36 @@ if (existsSync(colPath)) {
   ok(kfOk.ok, 'set_keyframes shape.trim (ve vien) hop le tren clip hinh');
   const kfBad = await call('set_keyframes', { clip_id: 'g1', property: 'fx.wipe.progress', keys: [{ t: 0, value: 0 }] });
   ok(kfBad.isError === true, 'set_keyframes fx.wipe.progress khi clip chua co wipe bi tu choi');
+}
+
+
+// ---- chuyen canh, bieu do, mau dung san (F-94, F-96, F-97) ----
+{
+  const lt = body(await call('list_templates'));
+  ok(Array.isArray(lt) && lt.length === 8 && lt.every((t) => t.id && Array.isArray(t.vars) && t.vars.length) && lt.some((t) => t.id === 'glass-card'), 'list_templates: 8 mau, moi mau co danh sach bien');
+  const ct = await call('add_chart', { kind: 'bar', data: [{ label: 'A', value: 10 }, { label: 'B', value: 30 }], start: 0, title: 'MCP' });
+  const cj = body(ct);
+  ok(cj.ok && cj.proposal_id && cj.clip_id && cj.chart_end > 0, 'add_chart: tao de xuat clip bieu do, tra clip_id va chart_end', JSON.stringify(cj).slice(0, 100));
+  await fetch(`${BASE}/proposals/${cj.proposal_id}/accept`, { method: 'POST' });
+  const chc = body(await call('project_get')).clips.find((c) => c.id === cj.clip_id);
+  ok(chc && chc.src.type === 'chart' && chc.src.chart.kind === 'bar' && chc.src.chart.data.length === 2 && chc.src.chart.title === 'MCP', 'Sau khi duyet: clip bieu do dung du lieu');
+  const badChart = await call('add_chart', { kind: 'pie', data: [{ label: 'A', value: -3 }], start: 0 });
+  ok(badChart.isError === true, 'add_chart: tron voi gia tri am bi tu choi');
+  const sc = await call('set_transition', { clip_id: cj.clip_id, kind: 'dissolve', duration: 0.5 });
+  const sj = body(sc);
+  ok(sj.ok && sj.proposal_id, 'set_transition: tao de xuat chuyen canh');
+  await fetch(`${BASE}/proposals/${sj.proposal_id}/accept`, { method: 'POST' });
+  ok(body(await call('project_get')).clips.find((c) => c.id === cj.clip_id).transition?.kind === 'dissolve', 'Sau khi duyet: clip co chuyen canh dissolve');
+  ok((await call('set_transition', { clip_id: 'khong-co', kind: 'flip' })).isError === true, 'set_transition: clip khong ton tai bi tu choi');
+  ok((await call('set_transition', { clip_id: cj.clip_id })).isError === true, 'set_transition: thieu kind (va khong remove) bi tu choi');
+  const at = body(await call('add_template', { template_id: 'glass-card', start: 8, vars: { title: 'Xin chao MCP' } }));
+  ok(at.ok && at.proposal_id && at.clip_ids?.length === 4 && at.group, 'add_template: tao de xuat 4 clip cung nhom', JSON.stringify(at).slice(0, 120));
+  await fetch(`${BASE}/proposals/${at.proposal_id}/accept`, { method: 'POST' });
+  const pj = body(await call('project_get'));
+  const tcl = pj.clips.filter((c) => c.tag === 'tpl:glass-card');
+  ok(tcl.length === 4 && tcl.some((c) => c.src.type === 'text' && c.src.text.content === 'Xin chao MCP'), 'Sau khi duyet: mau them dung, chu thay theo bien');
+  ok((await call('add_template', { template_id: 'glass-card', start: 0, vars: { khong_co: 1 } })).isError === true, 'add_template: bien la bi tu choi');
+  ok((await call('add_template', { template_id: 'stat-counter', start: 0, vars: { value: 'abc' } })).isError === true, 'add_template: sai kieu bien (so) bi tu choi');
 }
 
 await client.close();

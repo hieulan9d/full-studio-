@@ -3,6 +3,8 @@ import { validateKeyframes, type Ease, type Keyframe, type KeyframeMap } from '.
 import { mergeFx, validateFx, validateShape, type BlendMode, BLEND_MODES, type DeepPartialFx, type Fx, type ShapeSpec } from './fx';
 import { mergeGrade, validateGrade, type DeepPartialGrade, type Grade } from './grade';
 import { SPEED_MAX, SPEED_MIN, srcSpan } from './speed';
+import { validateTransition, type Transition } from './transition';
+import { validateChart, type ChartSpec, type DeepPartialChart } from './chart';
 import type { CaptionOpts } from './captions';
 import { validateText, type DeepPartialText, type TextSpec } from './text';
 import { validateTranscript, type DuckOpts, type Range, type Transcript } from './transcript';
@@ -20,6 +22,9 @@ export interface Transform {
   y: number; // dich doc so voi diem neo, ty le chieu cao khung
   scale: number; // 1 = vua khung theo fit (video/anh) hoac kich thuoc goc (chu)
   rotation: number; // do
+  rotX?: number; // do: xoay 3D quanh truc ngang (2.5D); mac dinh 0
+  rotY?: number; // do: xoay 3D quanh truc doc; mac dinh 0
+  persp?: number; // khoang cach may quay (boi so canh dai cua khung), mac dinh 1.2; nho hon = phoi canh manh hon
   opacity: number; // 0..1
   fit: 'contain' | 'cover';
   anchorH: AnchorH; // diem neo tren khung (tu co theo 9:16 / 16:9)
@@ -81,7 +86,7 @@ export interface Track {
   name: string;
 }
 
-export type Source = { type: 'media'; mediaId: string } | { type: 'gen'; kind: GenKind; param: number } | { type: 'text'; text: TextSpec } | { type: 'shape'; shape: ShapeSpec };
+export type Source = { type: 'media'; mediaId: string } | { type: 'gen'; kind: GenKind; param: number } | { type: 'text'; text: TextSpec } | { type: 'shape'; shape: ShapeSpec } | { type: 'chart'; chart: ChartSpec };
 
 export interface Clip {
   id: string;
@@ -100,6 +105,7 @@ export interface Clip {
   grade?: Grade; // chinh mau (clip video/anh)
   fx?: Fx; // hieu ung lop: blur, glow, bong, bo goc, vignette, wipe
   blend?: BlendMode; // che do tron voi lop duoi (mac dinh normal)
+  transition?: Transition; // chuyen canh VAO o dau clip (voi clip lien truoc tren cung track, hoac vao tu nen)
   disabled?: boolean; // vo hieu hoa (nhu CapCut): giu tren timeline nhung khong hien hinh, khong phat tieng, khong xuat
   group?: string; // clip ghep: cac clip cung `group` duoc chon / keo / xoa cung nhau (huy ghep = go truong nay)
 }
@@ -158,6 +164,8 @@ export type Op =
   | { op: 'set_blend'; id: string; blend: BlendMode }
   | { op: 'set_shape'; id: string; patch: import('./fx').DeepPartialShape }
   | { op: 'set_grade'; id: string; grade: DeepPartialGrade | null } // gop vao grade hien co; null = go grade
+  | { op: 'set_chart'; id: string; patch: DeepPartialChart } // gop vao bieu do hien co (data/palette thay ca mang)
+  | { op: 'set_transition'; id: string; transition: Transition | null } // null = go chuyen canh
   | { op: 'group_clips'; ids: string[]; group: string } // ghep >= 2 clip thanh mot nhom (clip ghep)
   | { op: 'ungroup'; group: string }; // huy ghep: go nhom khoi moi clip
 
@@ -252,7 +260,10 @@ export function validate(p: Project): string[] {
     if (!(c.in >= 0)) errs.push(`clip ${c.id}: in phai >= 0`);
     const tf = c.transform;
     if (![tf.x, tf.y, tf.scale, tf.rotation, tf.opacity, tf.margin].every(Number.isFinite)) errs.push(`clip ${c.id}: transform phai la so huu han`);
+    for (const k of ['rotX', 'rotY', 'persp'] as const) if (tf[k] !== undefined && !Number.isFinite(tf[k])) errs.push(`clip ${c.id}: transform.${k} phai la so huu han`);
+    if (tf.persp !== undefined && !(tf.persp >= 0.3 && tf.persp <= 20)) errs.push(`clip ${c.id}: transform.persp phai trong 0.3..20`);
     if (!['left', 'center', 'right'].includes(tf.anchorH) || !['top', 'middle', 'bottom'].includes(tf.anchorV)) errs.push(`clip ${c.id}: anchorH/anchorV khong hop le`);
+    if (c.transition) errs.push(...validateTransition(c.transition, c.duration, `clip ${c.id}.transition`));
     if (c.disabled !== undefined && typeof c.disabled !== 'boolean') errs.push(`clip ${c.id}: disabled phai la true/false`);
     if (c.group !== undefined && (typeof c.group !== 'string' || !c.group)) errs.push(`clip ${c.id}: group phai la chuoi khong rong`);
     if (c.fx) errs.push(...validateFx(c.fx, `clip ${c.id}.fx`));
@@ -260,6 +271,9 @@ export function validate(p: Project): string[] {
     if (c.src.type === 'shape') {
       if (trackKind.get(c.track) === 'audio') errs.push(`clip ${c.id}: clip hinh phai nam tren track video`);
       errs.push(...validateShape(c.src.shape, `clip ${c.id}.shape`));
+    } else if (c.src.type === 'chart') {
+      if (trackKind.get(c.track) === 'audio') errs.push(`clip ${c.id}: clip bieu do phai nam tren track video`);
+      errs.push(...validateChart(c.src.chart, `clip ${c.id}.chart`));
     } else if (c.src.type === 'gen') {
       if (!GEN_KINDS.includes(c.src.kind)) errs.push(`clip ${c.id}: kind la ${c.src.kind}`);
     } else if (c.src.type === 'text') {

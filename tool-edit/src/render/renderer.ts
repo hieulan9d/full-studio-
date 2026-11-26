@@ -136,9 +136,20 @@ struct VO { @builtin(position) pos: vec4f, @location(0) uv: vec2f };
   let d = c * l.size;
   // xoay theo chieu kim dong ho tren man hinh (truc y huong xuong)
   let r = vec2f(d.x * l.cs.x - d.y * l.cs.y, d.x * l.cs.y + d.y * l.cs.x);
-  let px = l.center + r;
+  // 2.5D: xoay quanh truc Y roi truc X (ex2.z, ex2.y rad), phoi canh voi khoang cach ex2.w px; w = (D+z)/D de GPU noi suy uv dung phoi canh
+  var off = r;
+  var w = 1.0;
+  if (l.ex2.w > 0.0) {
+    let x1 = r.x * cos(l.ex2.z);
+    let z1 = r.x * sin(l.ex2.z);
+    let y2 = r.y * cos(l.ex2.y);
+    let z2 = z1 - r.y * sin(l.ex2.y);
+    off = vec2f(x1, y2);
+    w = max(0.05, (l.ex2.w + z2) / l.ex2.w);
+  }
+  let px = l.center + off / w; // chia w = vi tri man hinh sau phoi canh; clip.xy nhan lai w de GPU noi suy uv dung phoi canh
   var o: VO;
-  o.pos = vec4f(px.x / l.canvas.x * 2.0 - 1.0, 1.0 - px.y / l.canvas.y * 2.0, 0.0, 1.0);
+  o.pos = vec4f((px.x / l.canvas.x * 2.0 - 1.0) * w, (1.0 - px.y / l.canvas.y * 2.0) * w, 0.0, w);
   o.uv = c + vec2f(0.5, 0.5);
   return o;
 }
@@ -349,6 +360,13 @@ fn s0(uv: vec2f) -> vec4f { return textureSampleLevel(t0, sm, uv, 0.0); }
 }
 
 @fragment fn fs_comp(in: VO) -> @location(0) vec4f { return s0(in.uv); }
+
+// Kinh mo: t0 = lop (premultiplied), t1 = nen da lam mo. Ra: nen mo * alpha cua lop (premultiplied) -> ghep 'over' len khung de THAY phan nen duoi hinh dang lop bang ban mo
+@fragment fn fs_backdrop(in: VO) -> @location(0) vec4f {
+  let a = s0(in.uv).a;
+  let b = textureSampleLevel(t1, sm, in.uv, 0.0);
+  return vec4f(b.rgb * a, a);
+}
 `;
 
 // Lop chu: texture RGBA premultiplied (tu Canvas 2D), ma hoa sRGB; doi sang tuyen tinh roi tron kieu premultiplied.
@@ -365,9 +383,19 @@ struct VO { @builtin(position) pos: vec4f, @location(0) uv: vec2f };
   let c = q[i];
   let d = c * l.size;
   let r = vec2f(d.x * l.cs.x - d.y * l.cs.y, d.x * l.cs.y + d.y * l.cs.x);
-  let px = l.center + r;
+  var off = r;
+  var w = 1.0;
+  if (l.p2 > 0.0) {
+    let x1 = r.x * cos(l.p1);
+    let z1 = r.x * sin(l.p1);
+    let y2 = r.y * cos(l.p0);
+    let z2 = z1 - r.y * sin(l.p0);
+    off = vec2f(x1, y2);
+    w = max(0.05, (l.p2 + z2) / l.p2);
+  }
+  let px = l.center + off / w; // chia w = vi tri man hinh sau phoi canh; clip.xy nhan lai w de GPU noi suy uv dung phoi canh
   var o: VO;
-  o.pos = vec4f(px.x / l.canvas.x * 2.0 - 1.0, 1.0 - px.y / l.canvas.y * 2.0, 0.0, 1.0);
+  o.pos = vec4f((px.x / l.canvas.x * 2.0 - 1.0) * w, (1.0 - px.y / l.canvas.y * 2.0) * w, 0.0, w);
   o.uv = c + vec2f(0.5, 0.5);
   return o;
 }
@@ -412,7 +440,7 @@ export type Layer = LayerFx &
   (
   | { type: 'gen'; kind: GenKind; param: number; time: number }
   | { type: 'video'; frame: VideoFrame; width: number; height: number; transform: Transform; matte?: VideoFrame; matteOpts?: MatteOpts; matteW?: number; matteH?: number; grade?: GradeLutData }
-  | { type: 'text'; canvas: OffscreenCanvas; width: number; height: number; inset: number; transform: Transform }
+  | { type: 'text'; canvas: OffscreenCanvas; width: number; height: number; inset: number; transform: Transform; mask?: OffscreenCanvas } // mask: hinh dang day du (khong theo do duc to) de cat nen kinh mo
   );
 
 export interface FrameOpts {
@@ -578,7 +606,10 @@ export class Renderer {
     const cx = ax + t.x * canvasW + (ah === 'left' ? sw / 2 - inset : ah === 'right' ? -(sw / 2 - inset) : 0);
     const cy = ay + t.y * canvasH + (av === 'top' ? sh / 2 - inset : av === 'bottom' ? -(sh / 2 - inset) : 0);
     const rad = (t.rotation * Math.PI) / 180;
-    return { cx, cy, sw, sh, cos: Math.cos(rad), sin: Math.sin(rad) };
+    const rx = ((t.rotX ?? 0) * Math.PI) / 180,
+      ry = ((t.rotY ?? 0) * Math.PI) / 180;
+    const persp = rx !== 0 || ry !== 0 ? (t.persp ?? 1.2) * Math.max(canvasW, canvasH) : 0; // 0 = khong 3D
+    return { cx, cy, sw, sh, cos: Math.cos(rad), sin: Math.sin(rad), rx, ry, persp };
   }
 
   /** Texture RGBA 8-bit tai su dung theo kich thuoc (moi lop chu trong mot khung lay mot texture rieng). */
@@ -666,10 +697,10 @@ export class Renderer {
   }
 
   /** Ve mot lop: truc tiep neu khong co hieu ung/blend, nguoc lai ve rieng ra texture premultiplied, chay chuoi hieu ung, roi ghep theo blend. */
-  private drawWithFx(enc: GPUCommandEncoder, hview: GPUTextureView, layer: Layer, o: FrameOpts) {
+  private drawWithFx(enc: GPUCommandEncoder, hdr: GPUTexture, hview: GPUTextureView, layer: Layer, o: FrameOpts) {
     const fx = layer.fx;
     const blend = layer.blend ?? 'normal';
-    const chain = !!fx && (!!fx.blur || !!fx.glow || !!fx.shadow || !!fx.vignette || !!fx.wipe);
+    const chain = !!fx && (!!fx.backdrop || !!fx.blur || !!fx.glow || !!fx.shadow || !!fx.vignette || !!fx.wipe);
     if (!chain && blend === 'normal') return this.drawLayer(enc, hview, layer, o);
     const { width: w, height: h } = o;
     const k = Math.min(w, h) / 1080; // px @1080 -> px that
@@ -688,6 +719,13 @@ export class Renderer {
       this.fxPass(enc, this.fxPipe('fs_blur'), a, a, b.createView(), [0, 1 / h, radius, 0], true);
       return b;
     };
+    let silhouette = cur; // hinh dang goc cua lop (truoc blur/glow/bong) de cat kinh mo
+    if (fx?.backdrop && fx.backdrop.radius > 0 && layer.type === 'text' && layer.mask) {
+      // hinh co do duc to thap (kinh): dung mat na day du de nen mo thay HOAN TOAN trong hinh dang, khong chi theo do duc to
+      silhouette = this.acquireFxTex(w, h);
+      enc.beginRenderPass({ colorAttachments: [{ view: silhouette.createView(), loadOp: 'clear', storeOp: 'store', clearValue: [0, 0, 0, 0] }] }).end();
+      this.drawLayer(enc, silhouette.createView(), { ...layer, canvas: layer.mask, mask: undefined }, o);
+    }
     if (fx?.blur && fx.blur.radius > 0) {
       const src = cur;
       const out = blur(src, fx.blur.radius * k);
@@ -710,6 +748,15 @@ export class Renderer {
       const rad = (fx.wipe.angle * Math.PI) / 180;
       swap((src, dst) => this.fxPass(enc, this.fxPipe('fs_wipe'), src, src, dst.createView(), [fx.wipe!.progress, Math.cos(rad), Math.sin(rad), fx.wipe!.feather], true));
     }
+    if (fx?.backdrop && fx.backdrop.radius > 0) {
+      // kinh mo: chup khung dang ve (moi thu nam duoi lop nay), lam mo, thay vao dung hinh dang lop
+      const bgc = this.acquireFxTex(w, h);
+      this.fxPass(enc, this.fxPipe('fs_comp'), hdr, hdr, bgc.createView(), [], true);
+      const bl = blur(bgc, fx.backdrop.radius * k);
+      const bd = this.acquireFxTex(w, h);
+      this.fxPass(enc, this.fxPipe('fs_backdrop'), silhouette, bl, bd.createView(), [], true);
+      this.fxPass(enc, this.fxPipe('fs_comp', 'normal'), bd, bd, hview, [], false);
+    }
     this.fxPass(enc, this.fxPipe('fs_comp', blend), cur, cur, hview, [], false);
     for (const list of this.fxPool.values()) for (const e of list) e.used = false; // lenh da xep thu tu: lop sau dung lai duoc texture
   }
@@ -727,7 +774,7 @@ export class Renderer {
     if (!layers.length) clear();
     for (const layer of layers) {
       if (first) clear();
-      this.drawWithFx(enc, hview, layer, o);
+      this.drawWithFx(enc, hdr, hview, layer, o);
     }
   }
 
@@ -753,7 +800,7 @@ export class Renderer {
         const wn = g?.win && g.win.enabled ? g.win : null;
         const wr = wn ? (wn.rot * Math.PI) / 180 : 0;
         const k = g ? (g.size - 1) / g.size : 1;
-        this.device.queue.writeBuffer(ub, 0, new Float32Array([r.cx, r.cy, r.sw, r.sh, o.width, o.height, r.cos, r.sin, layer.transform.opacity, mo.lo, mo.hi, mo.feather, 1 / (layer.matteW ?? 1080), 1 / (layer.matteH ?? 1920), k, g ? 0.5 / g.size : 0, layer.fx?.round?.radius ?? 0, layer.fx?.crop?.left ?? 0, layer.fx?.crop?.top ?? 0, layer.fx?.crop?.right ?? 0, layer.fx?.crop?.bottom ?? 0, 0, 0, 0, wn?.cx ?? 0.5, wn?.cy ?? 0.5, wn?.w ?? 1, wn?.h ?? 1, Math.cos(wr), Math.sin(wr), wn?.feather ?? 0, wn?.shape === 'rect' ? 1 : 0, wn ? 1 : 0, wn?.invert ? 1 : 0, 0, 0, ga ? ga.curve : 0, ga ? ga.tonemap : 0, ga && ga.on ? (ga.gamut ? 2 : 1) : 0, g?.mix ?? 1, ga ? ga.mul[0] : 1, ga ? ga.mul[1] : 1, ga ? ga.mul[2] : 1, 0, ga ? ga.m[0] : 1, ga ? ga.m[1] : 0, ga ? ga.m[2] : 0, 0, ga ? ga.m[3] : 0, ga ? ga.m[4] : 1, ga ? ga.m[5] : 0, 0, ga ? ga.m[6] : 0, ga ? ga.m[7] : 0, ga ? ga.m[8] : 1, 0]));
+        this.device.queue.writeBuffer(ub, 0, new Float32Array([r.cx, r.cy, r.sw, r.sh, o.width, o.height, r.cos, r.sin, layer.transform.opacity, mo.lo, mo.hi, mo.feather, 1 / (layer.matteW ?? 1080), 1 / (layer.matteH ?? 1920), k, g ? 0.5 / g.size : 0, layer.fx?.round?.radius ?? 0, layer.fx?.crop?.left ?? 0, layer.fx?.crop?.top ?? 0, layer.fx?.crop?.right ?? 0, layer.fx?.crop?.bottom ?? 0, r.rx, r.ry, r.persp, wn?.cx ?? 0.5, wn?.cy ?? 0.5, wn?.w ?? 1, wn?.h ?? 1, Math.cos(wr), Math.sin(wr), wn?.feather ?? 0, wn?.shape === 'rect' ? 1 : 0, wn ? 1 : 0, wn?.invert ? 1 : 0, 0, 0, ga ? ga.curve : 0, ga ? ga.tonemap : 0, ga && ga.on ? (ga.gamut ? 2 : 1) : 0, g?.mix ?? 1, ga ? ga.mul[0] : 1, ga ? ga.mul[1] : 1, ga ? ga.mul[2] : 1, 0, ga ? ga.m[0] : 1, ga ? ga.m[1] : 0, ga ? ga.m[2] : 0, 0, ga ? ga.m[3] : 0, ga ? ga.m[4] : 1, ga ? ga.m[5] : 0, 0, ga ? ga.m[6] : 0, ga ? ga.m[7] : 0, ga ? ga.m[8] : 1, 0]));
         const ext = this.device.importExternalTexture({ source: layer.frame, colorSpace: 'srgb' });
         const pipe = this.getLayerPipe(!!layer.matte, !!g);
         const entries: GPUBindGroupEntry[] = [
@@ -775,7 +822,7 @@ export class Renderer {
         this.device.queue.copyExternalImageToTexture({ source: layer.canvas }, { texture: tex, premultipliedAlpha: true }, [layer.width, layer.height]);
         const ub = this.device.createBuffer({ size: 48, usage: GPUBufferUsage.UNIFORM | GPUBufferUsage.COPY_DST });
         this.temps.push(ub);
-        this.device.queue.writeBuffer(ub, 0, new Float32Array([r.cx, r.cy, r.sw, r.sh, o.width, o.height, r.cos, r.sin, layer.transform.opacity, 0, 0, 0]));
+        this.device.queue.writeBuffer(ub, 0, new Float32Array([r.cx, r.cy, r.sw, r.sh, o.width, o.height, r.cos, r.sin, layer.transform.opacity, r.rx, r.ry, r.persp]));
         const pass = enc.beginRenderPass({ colorAttachments: [{ view: hview, loadOp: 'load', storeOp: 'store' }] });
         pass.setPipeline(this.textPipe);
         pass.setBindGroup(

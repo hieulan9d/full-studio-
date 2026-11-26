@@ -38,6 +38,7 @@ export interface State {
   autoApplyAi: boolean;
   layout: Layout;
   settingsOpen: boolean;
+  templatesOpen: boolean; // hop thoai Mau dung san
   exportOpen: boolean; // hop thoai "Xuat sang..."
   modal: Modal | null;
   project: Project;
@@ -86,6 +87,7 @@ const initial: State = {
   autoApplyAi: true,
   layout: { ...DEFAULT_LAYOUT },
   settingsOpen: false,
+  templatesOpen: false,
   exportOpen: false,
   modal: null,
   project: newProject(),

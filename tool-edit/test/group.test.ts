@@ -3,6 +3,7 @@ import { Session } from '../src/core/session';
 import { DEFAULT_TRANSFORM, newProject, validate, type Clip, type Media } from '../src/core/schema';
 import { expandGroups, newGroupId } from '../src/renderer/timeline-math';
 import { buildAudioPlan } from '../src/main/exporter';
+import { planTransition, smooth, TRANSITION_KINDS, validateTransition } from '../src/core/transition';
 import { statsOf, type ScopeCounts } from '../src/core/scopes';
 
 let n = 0;
@@ -106,6 +107,37 @@ t('remove_track: chi go track rong; clip con thi bi tu choi', () => {
   assert.ok(r.ok, JSON.stringify(r));
   assert.ok(s.undo());
   assert.ok(s.project.tracks.some((x) => x.id === 'v1') && s.project.clips.every((c) => c.track === 'v1'));
+});
+
+t('transition: op set_transition dat/go, kiem kind va do dai', () => {
+  const s = mk();
+  assert.ok(s.apply([{ op: 'set_transition', id: 'c2', transition: { kind: 'dissolve', duration: 0.5 } }], 'human').ok);
+  assert.deepEqual(s.project.clips.find((c) => c.id === 'c2')!.transition, { kind: 'dissolve', duration: 0.5 });
+  assert.ok(!s.apply([{ op: 'set_transition', id: 'c2', transition: { kind: 'khong-co' as never, duration: 0.5 } }], 'human').ok);
+  assert.ok(!s.apply([{ op: 'set_transition', id: 'c2', transition: { kind: 'blur', duration: 99 } }], 'human').ok, 'dai hon clip');
+  assert.ok(!s.apply([{ op: 'set_transition', id: 'c2', transition: { kind: 'blur', duration: 0 } }], 'human').ok);
+  assert.ok(s.apply([{ op: 'set_transition', id: 'c2', transition: null }], 'human').ok);
+  assert.equal(s.project.clips.find((c) => c.id === 'c2')!.transition, undefined);
+  assert.deepEqual(validate(s.project), []);
+  assert.deepEqual(validateTransition({ kind: 'cube', duration: 1 }, 2, 'x'), []);
+});
+
+t('transition: ke hoach moi kieu hop le o p = 0, 0.5, 1 va dung dau/cuoi', () => {
+  for (const k of TRANSITION_KINDS) {
+    const a = planTransition(k, 0);
+    const b = planTransition(k, 1);
+    // p=0: lop RA hien nguyen (khong an, khong doi), lop VAO hau nhu khong thay; p=1: nguoc lai
+    assert.ok(!a.out.hide && (a.out.opacity ?? 1) > 0.5, `${k}: p=0 lop ra phai hien`);
+    assert.ok(!b.in.hide && (b.in.opacity ?? 1) > 0.5, `${k}: p=1 lop vao phai hien`);
+    const q = planTransition(k, 0.5);
+    for (const side of [q.out, q.in]) if (side.opacity !== undefined) assert.ok(side.opacity >= -1e-9 && side.opacity <= 1 + 1e-9, `${k}: opacity trong 0..1`);
+  }
+  assert.equal(planTransition('fadeblack', 0.25).in.hide, true);
+  assert.equal(planTransition('flip', 0.25).in.hide, true);
+  assert.equal(planTransition('flip', 0.75).out.hide, true);
+  assert.deepEqual(planTransition('slideleft', 0.5).out.dx, -0.5);
+  assert.ok(Math.abs(smooth(0.5) - 0.5) < 1e-9 && smooth(0) === 0 && smooth(1) === 1);
+  assert.ok(planTransition('fadewhite', 0.5).flash! > 0.8);
 });
 
 console.log(`${n} test nhom clip/scope dat`);

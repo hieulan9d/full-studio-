@@ -122,6 +122,9 @@ Quy trình ngắn: chọn **mức giống 1–4** (mặc định 3, hỏi ngư�
 Nguyên tắc: mọi kết luận về màu, cỡ, nhịp, ease phải đến từ **số đo**, không đến từ ấn tượng. Bạn chỉ "xem" video qua ảnh khung có mốc giờ, số đo và lời nói theo từng từ.
 Bản quyền: học **kỹ thuật** của mẫu, **không** dùng lại logo, nhân vật, footage, nhạc, giọng, chữ của mẫu; mức 4 chỉ khi người dùng có quyền với mẫu. Công cụ `refkit.py` cần whisper cho lời nói; **chưa kiểm** trên máy này, chạy `refkit.py` không tham số để xem hướng dẫn, và dùng `--no-words` nếu thiếu whisper.
 
+### 4.2 Memory của từng phong cách
+Mỗi kit có `memory/` (`README.md`, `y-nguoi-dung.md`, `loi-da-gap.md`, `cach-lam-tot.md`, `nhat-ky-video.md`): kinh nghiệm sống thêm dần theo từng video, khác với `knowledge/` (luật đã chốt). **Đọc trước khi làm, ghi sau khi làm** (quy ước nhãn [chạy thật]/[người dùng nói]/[chưa kiểm] ở `memory/README.md`). `y-nguoi-dung.md` thắng mặc định của kit. Hiện có ở: `saas-animation`, `talking-head`, `ugc-ai-thoi-trang`, `quang-cao-viet-han`. Khi tạo thể loại mới (mục 4.1), tạo luôn `memory/` bằng cách chép từ kit có sẵn và đổi tên phong cách. Bản trong git (`fullstudio/phong-cach/`) và bản thư mục cha: sửa một bản thì chép sang bản kia.
+
 Quy tắc ngắn: cần motion/UI/3D/glow → kit After Effects. Cần nhiều tập, nhanh, rẻ → `vf`. Nguyên liệu AI (giọng, ảnh, video) luôn lấy từ canvas và Voice Studio.
 
 Chưa có một kit nào cho loại video thứ ba. Khi người dùng thêm kit mới, thêm một dòng vào bảng này và vào `CLAUDE.md` của thư mục cha.
@@ -267,4 +270,4 @@ Kit đã có chỗ nhận B-roll: thư mục `assets/broll/`, hàm `T.brollCard`
 
 ## 12. Cách giữ file này đúng
 
-Khi làm xong việc thật hoặc phát hiện bẫy mới: ghi vào file kiến thức của đúng kit (`CHANGELOG.md` của SaaS, `CON-THIEU.md` của talking head, `edit/kien-thuc/`), và **cập nhật nhãn [thiết kế]/[chưa kiểm] ở đây khi chúng đã thành thật**. Không ghi điều chưa kiểm chứng như thể đã chạy được. Không ghi token, key, cookie, mật khẩu vào bất kỳ file nào.
+Khi làm xong việc thật hoặc phát hiện bẫy mới: ghi vào **`memory/` của đúng phong cách** (nhật ký, bẫy, ý người dùng), và nếu đã chắc chắn thì vào file kiến thức của kit (`CHANGELOG.md` của SaaS, `CON-THIEU.md` của talking head, `edit/kien-thuc/`), và **cập nhật nhãn [thiết kế]/[chưa kiểm] ở đây khi chúng đã thành thật**. Không ghi điều chưa kiểm chứng như thể đã chạy được. Không ghi token, key, cookie, mật khẩu vào bất kỳ file nào.

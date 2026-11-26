@@ -7,6 +7,8 @@ import { buildCaptions, captionClipsOf, CAPTION_TAG } from './captions';
 import { applyPresetToClip } from './presets';
 import { DEFAULT_MATTE, DEFAULT_TRANSFORM, MediaCache, Op, Project, newProject, validate } from './schema';
 import { defaultText, mergeText } from './text';
+import { validateTransition } from './transition';
+import { defaultChart, mergeChart, validateChart } from './chart';
 import { duckKeyframes, speechRanges } from './transcript';
 
 export interface ApplyResult {
@@ -181,6 +183,7 @@ function applyOne(p: Project, o: Op): string | null {
       c.keyframes = c.keyframes ?? {};
       if (c.src.type === 'text') c.src.text = mergeText(defaultText(), c.src.text); // cho phep gui chi phan can doi
       if (c.src.type === 'shape') c.src.shape = mergeShape(defaultShape(c.src.shape?.kind), c.src.shape);
+      if (c.src.type === 'chart') c.src.chart = mergeChart(defaultChart(c.src.chart?.kind), c.src.chart); // cho phep gui chi phan can
       p.clips.push(c);
       return null;
     }
@@ -199,6 +202,27 @@ function applyOne(p: Project, o: Op): string | null {
       if (o.patch.disabled !== undefined && typeof o.patch.disabled !== 'boolean') return `clip ${o.id}: disabled phai la true/false`;
       Object.assign(c, o.patch);
       if (c.disabled === false) delete c.disabled; // bat lai = bo truong
+      return null;
+    }
+    case 'set_chart': {
+      const c = p.clips.find((x) => x.id === o.id);
+      if (!c) return `khong co clip ${o.id}`;
+      if (c.src.type !== 'chart') return `clip ${o.id} khong phai clip bieu do`;
+      const merged = mergeChart(c.src.chart, o.patch);
+      const errs = validateChart(merged, `clip ${o.id}.chart`);
+      if (errs.length) return errs.join('; ');
+      c.src.chart = merged;
+      return null;
+    }
+    case 'set_transition': {
+      const c = p.clips.find((x) => x.id === o.id);
+      if (!c) return `khong co clip ${o.id}`;
+      if (o.transition === null) delete c.transition;
+      else {
+        const errs = validateTransition(o.transition, c.duration, `clip ${o.id}.transition`);
+        if (errs.length) return errs.join('; ');
+        c.transition = { kind: o.transition.kind, duration: o.transition.duration };
+      }
       return null;
     }
     case 'group_clips': {

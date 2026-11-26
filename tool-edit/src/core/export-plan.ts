@@ -109,6 +109,7 @@ function samplesOf(c: Clip, W: number, H: number, mw: number, mh: number): { sam
 export function nonNativeReason(c: Clip, m: Media | undefined, target: ExportTarget): string | null {
   if (c.src.type === 'text') return 'chữ';
   if (c.src.type === 'shape') return 'hình vector';
+  if (c.src.type === 'chart') return 'biểu đồ';
   if (c.src.type === 'gen') return 'nền sinh tự động';
   if (!m) return 'thiếu media';
   if (target === 'edl' && m.kind === 'image') return 'ảnh';
@@ -116,6 +117,8 @@ export function nonNativeReason(c: Clip, m: Media | undefined, target: ExportTar
   if (c.grade && !isIdentity(c.grade)) return 'chỉnh màu';
   if (c.fx && Object.keys(c.fx).length) return 'hiệu ứng lớp';
   if (c.blend && c.blend !== 'normal') return 'chế độ trộn';
+  if (c.transition) return 'chuyển cảnh';
+  if (c.transform.rotX || c.transform.rotY) return 'xoay 3D';
   if (isVariableSpeed(c)) return 'speed ramp';
   if (Math.abs((c.speed ?? 1) - 1) > 1e-9 && target !== 'capcut') return 'đổi tốc độ';
   if (Object.keys(c.keyframes ?? {}).some((k) => k.startsWith('fx.') || k.startsWith('text.') || k.startsWith('shape.'))) return 'keyframe hiệu ứng';

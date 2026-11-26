@@ -34,6 +34,7 @@ Dùng `lib/`, `tools/`, `audio/` và mẫu `projects/orbiq/build.jsx` trong fold
 ## Video talking head dọc (người nói + đồ hoạ)
 Khi người dùng yêu cầu tạo hoặc edit video talking head dọc 1080×1920 (TikTok/Reels/Shorts, clip người nói, phụ đề từng từ,
 chữ sau lưng người, B-roll, After Effects), **phải đọc folder `phong-cach/talking-head/` trước khi làm**:
+0. `phong-cach/talking-head/PHONG-CACH.md` (tóm tắt phong cách, 3 biến thể) rồi `memory/` (ý người dùng, lỗi đã gặp)
 1. `phong-cach/talking-head/AGENTS.md` (hướng dẫn chính, quy trình tóm tắt, luật dựng)
 2. `phong-cach/talking-head/CON-THIEU.md` (những gì chưa kiểm chứng: tiếng Việt, ngành y, v.v.)
 3. `phong-cach/talking-head/knowledge/01, 02, 07` (07 bắt buộc: các bẫy đã gặp)

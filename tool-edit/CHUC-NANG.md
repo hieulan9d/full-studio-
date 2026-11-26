@@ -90,6 +90,10 @@ Mã `F-xx` dùng để tham chiếu trong `NHAT-KY.md`. Khi một chức năng b
 | F-108 | Scope: YCbCr parade, đơn vị trục % / 8-bit / 10-bit / IRE | Scope | chạy |
 | F-92 | Chỉnh màu "sống" (kéo là hình đổi ngay) + cửa sổ Scope riêng nổi (Ctrl+L) | Màu | chạy (xem mục) |
 | F-93 | Đóng gói thành ToolEdit.exe chạy được (npm run package) | Hệ thống | chạy (xem mục) |
+| F-94 | Chuyển cảnh GPU giữa hai clip (18 kiểu) hoặc vào từ nền | Timeline | chạy (xem mục) |
+| F-95 | Xoay 3D nhẹ (2.5D) có phối cảnh, keyframe được | Engine | chạy (xem mục) |
+| F-96 | Clip biểu đồ / số đếm (cột, cột ngang, đường, tròn, vành khuyên, số tăng dần) | Đồ họa | chạy (xem mục) |
+| F-97 | Kính mờ (làm mờ nền sau hình) + thư viện 8 mẫu dựng sẵn | Đồ họa | chạy (xem mục) |
 | F-90 | Scope màu chính xác hơn: vùng đo, mức hợp lệ 16/235, đọc giá trị khi rê chuột, RGB chồng | Màu | chạy (xem mục) |
 | F-71 | Snapshot/restore dự án | 1 | chạy (AI chỉ tạo; chỉ người khôi phục) |
 
@@ -524,7 +528,7 @@ Danh sách tool MCP hiện có sẽ nằm ở **mục 4** (cập nhật khi thê
 
 ## 4. Tool MCP và route HTTP hiện có
 
-**Tool MCP** (server `tool-edit`, `dist/mcp.mjs`, 43 tool). Chi tiết tham số xem `src/mcp/server.ts`.
+**Tool MCP** (server `tool-edit`, `dist/mcp.mjs`, 47 tool). Chi tiết tham số xem `src/mcp/server.ts`.
 
 | Tool | Làm gì | Tham số chính | Trả về | F | Cần duyệt? |
 |---|---|---|---|---|---|
@@ -615,7 +619,7 @@ Quy ước khi thiết kế tool MCP:
 | `npm run selftest` | selftest GPU (ramp, thanh màu, BT.709, benchmark) → `out/selftest.json` |
 | `npm run e2e` | 38 kiểm đầu-cuối HTTP (app phải chạy **với `TOOL_EDIT_DEV_API=1`**; cần `out/media/{seq,color,test-a}.mp4`) |
 | `npm run e2e-text` | 51 kiểm dựng chữ + keyframe bằng điểm ảnh, font, cảnh báo, preview = file xuất (app chạy với `TOOL_EDIT_DEV_API=1`) |
-| `npm run mcp-test` | 106 kiểm MCP (43 tool) (app chạy với `TOOL_EDIT_DEV_API=1`) |
+| `npm run mcp-test` | 118 kiểm MCP (47 tool) (app chạy với `TOOL_EDIT_DEV_API=1`) |
 | `npm run ui-test` | 52 kiểm giao diện thật (app chạy với `TOOL_EDIT_DEV_API=1 TOOL_EDIT_CDP_PORT=9333`; cần thêm `out/media/{img.png,beep.wav}`) |
 | `npm run ui-test-text` | 44 kiểm giao diện chữ/keyframe/graph editor (app chạy với `TOOL_EDIT_DEV_API=1 TOOL_EDIT_CDP_PORT=9333`) |
 | `npm run e2e-audio` | 43 kiểm đầu-cuối âm thanh bằng dữ liệu thật: whisper GPU, phụ đề, cắt lặng, duck, loudness, SFX duyệt từng mục, nhịp (app chạy với `TOOL_EDIT_DEV_API=1`; tự tạo file thử trong `out/media/`) |
@@ -780,3 +784,28 @@ Kiểm: tsc sạch, `npm test` đạt, toàn bộ ui-test/e2e/mcp-test/security-
 - **Bẫy:** (1) CapCut chỉ thấy bản nháp mới sau khi **đóng và mở lại** CapCut; (2) xmeml cần `<file id>` dùng lại cho cùng file, nếu không Premiere nhân đôi media; (3) script AE chỉ chứa ASCII (chuỗi Unicode đã escape `\uXXXX`) vì ExtendScript đọc file theo mã hoá hệ thống, và **không có hộp thoại** (trả chuỗi kết quả); (4) `safeName` bỏ dấu tiếng Việt khỏi tên thư mục/file.
 - **Cách nâng cấp:** thêm đích mới → thêm vào `TARGETS` (`export-plan.ts`), viết writer thuần trong `export-writers.ts`, nối vào `writeTimelineFiles` (`main.ts`), thêm test; thêm loại hiệu ứng chuyển được nguyên bản → sửa `nonNativeReason`.
 - **Phụ thuộc:** F-11 (xuất, ffmpeg), F-06 (đường dẫn media), F-60/F-63 (hiệu ứng/hình), F-20 (chữ).
+
+### F-94 Chuyển cảnh
+- **Là gì:** thuộc tính `transition: {kind, duration}` trên clip, tác dụng ở ĐẦU clip. Nếu có clip liền trước trên cùng track (sát nhau, lệch < 0,1 ms) thì chuyển từ clip đó sang clip này: clip trước kéo dài thêm phần đuôi (nguồn còn thì chạy tiếp, hết thì giữ khung cuối). Không có clip trước thì clip này vào từ nền / lớp bên dưới. Dùng được cho video, ảnh, chữ, hình, biểu đồ. Thời lượng 0,1–5 giây và không dài hơn clip.
+- **18 kiểu:** `dissolve`, `fadeblack`, `fadewhite`, `slideleft/right/up/down`, `wipeleft/right/up/down`, `zoomin`, `zoomout`, `blur`, `spin`, `flip` (lật 3D), `cube` (khối 3D), `glitch`. Không có shader riêng: mỗi kiểu là bộ tham số (độ đục, dịch, tỉ lệ, xoay, xoay 3D, mờ, quét) áp lên lớp ra và lớp vào (`core/transition.ts`, `engine.layersAt`), nên xem trước và xuất đi chung một đường GPU. Tiến độ làm mượt (ease in-out bậc ba).
+- **Dùng:** chọn clip, mục "Chuyển cảnh vào" ở tab Thuộc tính (kiểu + thời lượng); clip có vạch sáng ở đầu. Op `set_transition` (null = gỡ), công cụ MCP `set_transition`. Xuất sang Premiere/DaVinci/AE/CapCut: clip có chuyển cảnh bị tính là "lớp phủ" (vẽ sẵn), phần đuôi của clip trước không có trong lớp phủ nên chỉ còn đoạn vào.
+- **Giới hạn:** âm thanh chưa chéo mờ (clip trước dừng đúng chỗ cắt); chỉ chuyển cảnh VÀO (chưa có "ra" riêng); chuyển cảnh với lớp "nền sinh tự động" (gen) không có tác dụng vì lớp đó không có biến đổi.
+- **Kiểm (e2e-transition, điểm ảnh thật):** p=0 giống clip trước, p=1 giống clip sau; hòa tan 50/50 đúng trong ánh sáng tuyến tính (sai khác 0,05); trượt, quét đúng cột/hàng (sai khác 0,00); mờ qua đen đúng độ đục; lật 3D đúng hình học phối cảnh; cả 18 kiểu vẽ được; vào từ nền; xuất MP4 khớp xem trước.
+
+### F-95 Xoay 3D (2.5D)
+- **Là gì:** `transform.rotX`, `rotY` (độ) và `persp` (khoảng cách máy quay, bội số cạnh dài khung, mặc định 1,2; nhỏ = méo mạnh) cho MỌI loại clip (video, ảnh, chữ, hình, biểu đồ). Shader đỉnh xoay quanh trục Y rồi X, chia w phối cảnh và nhân lại w ở clip-space để GPU nội suy uv ĐÚNG phối cảnh (không méo kiểu affine).
+- **Dùng:** Thuộc tính > Biến đổi: "Xoay 3D ngang/dọc (độ)" (có nút keyframe); ô "Phối cảnh" hiện khi có xoay. rotX = rotY = 0 cho kết quả giống hệt như trước.
+- **Kiểm (e2e-transition):** cạnh trái/phải/trên/dưới của hình sau xoay 60°/50° khớp công thức hình học (lệch ≤ 0,5% khung), phối cảnh xa (persp 3) đúng, keyframe xoay 3D thu hẹp hình.
+- **Giới hạn:** khung chọn bằng chuột (gizmo) vẫn vẽ theo hình chữ nhật chưa xoay; xoay quanh tâm clip (chưa có điểm neo xoay riêng); không có che khuất theo độ sâu giữa các lớp (chỉ thứ tự lớp).
+
+### F-96 Clip biểu đồ / số đếm
+- **Là gì:** nguồn clip `{type:'chart', chart}`: `bar` (cột), `hbar` (cột ngang), `line` (đường), `pie` (tròn), `donut` (vành khuyên), `number` (số đếm từ `from` tới giá trị đích). Dữ liệu `data:[{label,value,color?}]` (1–24 mục), tiêu đề, tiền tố/hậu tố, số lẻ, trục tối đa, kích thước (px @ cạnh ngắn 1080), nền thẻ + độ đục + bo góc, bảng màu, font, lưới, nhãn giá trị. Hoạt họa vào theo `delay`, `duration`, `stagger` (so le giữa các cột), `ease`; sau đó giữ hình cuối. Số định dạng kiểu Việt (1.250,5), không phụ thuộc locale máy.
+- **Dùng:** thanh trên "+ Biểu đồ" (đặt tại con trỏ) rồi chỉnh ở Thuộc tính > Biểu đồ (nhập dữ liệu mỗi dòng "Nhãn: giá trị"). Op `set_chart`; MCP `add_chart` (tạo) và `propose_ops` với `set_chart` (sửa). Vẽ bằng Canvas 2D (`render/chart-raster.ts`) rồi đi chung đường GPU như chữ/hình: chuyển cảnh, 3D, hiệu ứng lớp, kính mờ đều áp lên được.
+- **Kiểm:** unit test (định dạng số, trục đẹp, hoạt họa, validate, merge); e2e-chart (điểm ảnh): cột B (100) cao gấp đôi cột A (50) đúng 2,00; cột ngang 3,98 (≈ 4); diện tích tròn 2,99 (≈ 3); đang hoạt họa (50%) cột cao 0,50 và tròn quét 0,50; vành khuyên rỗng giữa; đường vẽ dần; số đếm đổi rồi đứng yên; không đổi hình sau khi xong.
+- **Giới hạn:** không keyframe được các số bên trong biểu đồ (chỉ biến đổi/hiệu ứng của clip); chưa có biểu đồ nhiều chuỗi / xếp chồng / trục kép; font phải có trong máy (chưa kiểm glyph tiếng Việt như clip chữ); chưa xuất sang phần mềm khác (tính là lớp phủ).
+
+### F-97 Kính mờ và mẫu dựng sẵn
+- **Kính mờ:** hiệu ứng lớp `backdrop {radius}` (tab Thuộc tính > Hiệu ứng > "Kính mờ"): chụp mọi thứ đang nằm DƯỚI clip, làm mờ, rồi thay vào đúng hình dạng clip. Hình vector dùng mặt nạ đầy đủ nên kính mờ HOÀN TOÀN trong hình dù độ đục tô thấp (kính trắng 12%); độ đục clip = 0 thì kính biến mất; bo góc, chuyển cảnh, xoay 3D đều theo. Dùng chung đường mờ tách hai pass có sẵn (không thêm bộ nhớ lớn). Kiểm (e2e-glass): độ sắc nét nền giảm 216 → 14, ngoài hình không đổi (sai khác 0,00), cắt đúng mép, bo góc lớn thì góc ngoài sắc nét, bán kính lớn mờ hơn.
+- **Mẫu dựng sẵn (8 mẫu):** Thẻ kính, Tên + chức danh (lower third), Tiêu đề lớn (chữ gradient), Số liệu nổi bật, Nút kêu gọi, Thẻ giá, Biểu đồ cột, Thông báo kiểu ứng dụng. Mỗi mẫu là DỮ LIỆU (không phải mã): danh sách clip (hình, chữ, biểu đồ) + keyframe + biến thay được (chữ, số, màu, dữ liệu). Hộp thoại "Mẫu" trên thanh trên: ảnh xem trước vẽ thật trên nền thanh màu, điền biến, "Thêm vào timeline tại con trỏ". Mỗi lần thêm sinh các `add_clip` cùng MỘT nhóm (clip ghép), tự chọn track trống (thiếu thì tạo mới, giữ đúng thứ tự lớp), một bước hoàn tác. Vị trí và keyframe x, y tính bằng px @ 1080 nên đúng cả 9:16 và 16:9. MCP: `list_templates`, `add_template` (`template_id`, `start`, `vars`).
+- **Kiểm:** unit test mẫu (mọi mẫu hợp lệ, thứ tự lớp, dùng lại track, biến, đổi px sang tỉ lệ cho 9:16 và 16:9); ui-test-motion (hộp thoại, thêm mẫu, nhóm, hoàn tác); mcp-test (118/118).
+- **Giới hạn:** chỉ 8 mẫu, người dùng chưa tự lưu mẫu của mình; mẫu dùng font mặc định Segoe UI; ký tự ✓ trong thông báo phụ thuộc font; mẫu chưa có âm thanh/SFX.

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { TemplatesDialog } from './TemplatesDialog';
 import { ScopeWindow, loadScopeWin, toggleScopeWin } from './ScopeWindow';
 import { toggleDisableSelection, groupSelection, ungroupSelection, separateAudio, copyClips, duplicateClips, pasteClips, addTextClip, addTrack, commit, deleteSelection, ensureThumbs, exportPreset, goHome, importDialog, importFolderDialog, importPaths, loadSettings, openProjectAction, redo, saveProjectAction, select, setLayout, splitAtPlayhead, undo } from '../actions';
 import { audio } from '../audio';
@@ -268,6 +269,7 @@ export function App() {
         </div>
       )}
       <ScopeWindow />
+      <TemplatesDialog />
       <SettingsDialog />
       <Toast />
       <ModalHost />

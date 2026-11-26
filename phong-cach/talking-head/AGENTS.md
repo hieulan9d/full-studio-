@@ -9,7 +9,9 @@ Trả lời người dùng bằng **tiếng Việt**. Ảnh kiểm tra là để
 
 ## Đọc trước (theo thứ tự)
 
-0. **`CON-THIEU.md`**: những gì kit chưa có hoặc chưa kiểm tra, kèm cách xử lý tạm. Máy chưa cài gì thì đọc `knowledge/00-cai-dat.md` (cầu nối MCP với AE, extension Claude Bridge, Python, font).
+0a. **`PHONG-CACH.md`**: tóm tắt phong cách (3 biến thể, dấu hiệu, con số chuẩn, thứ cần tránh). Rồi **`memory/README.md`** và 4 file trong đó (ý người dùng, lỗi đã gặp, cách làm tốt, nhật ký): đọc trước khi làm, ghi sau khi làm.
+
+0b. **`CON-THIEU.md`**: những gì kit chưa có hoặc chưa kiểm tra, kèm cách xử lý tạm. Máy chưa cài gì thì đọc `knowledge/00-cai-dat.md` (cầu nối MCP với AE, extension Claude Bridge, Python, font).
 1. `knowledge/01-the-loai.md`: talking head là gì, luật khi nào hiện mặt người và khi nào hiện đồ hoạ, nhịp, ba nguồn đã học.
 2. `knowledge/02-quy-trinh.md`: **quy trình từng bước, lệnh cụ thể**. Đây là xương sống.
 3. `knowledge/07-bay-loi.md`: **bắt buộc**. Các lỗi đã gặp khi điều khiển AE bằng script. Mỗi lỗi từng tốn hàng chục phút.
@@ -22,6 +24,8 @@ Trả lời người dùng bằng **tiếng Việt**. Ảnh kiểm tra là để
    - `08-qc.md`: kiểm tra chất lượng.
    - `09-vi-du-foodtage.md`: phân tích từng giây của ví dụ.
    - `10-tieng-viet-va-nganh-nhay-cam.md`: font tiếng Việt, nội dung y tế và phụ khoa.
+   - `13-vi-du-bojomi.md`: **ví dụ tiếng Việt đã dựng và render** (giới thiệu sản phẩm, màu thương hiệu, B-roll 9:16, bảng thành phần). Mã mẫu: `examples/bojomi/`.
+   - `14-luat-nhip-va-sfx.md`: **luật nhịp + SFX** (mật độ tối thiểu, tìm điểm nhấn, bảng điểm nhấn → SFX → hiệu ứng). Đọc trước khi lập plan.
    - `12-hook.md`: **luật làm hook** (chữ kèm hình trong 3–5 s đầu, công thức lời, cách đo). Plan phải có mục Hook.
    - `11-vi-du-hook-mo-dau-viet.md`: **ví dụ tiếng Việt thứ hai** (chuyên gia, tối-xanh, không phụ đề từng từ, chia đôi màn hình, nháy trắng, B-roll thẻ dọc). Bảng cảnh + luật + chỗ chưa đo.
 
@@ -29,6 +33,8 @@ Trả lời người dùng bằng **tiếng Việt**. Ảnh kiểm tra là để
 
 ```
 AGENTS.md / CLAUDE.md   hướng dẫn cho AI (file này)
+PHONG-CACH.md           tóm tắt phong cách (đọc đầu tiên)
+memory/                 kinh nghiệm sống: ý người dùng, lỗi, cách làm tốt, nhật ký (đọc trước, ghi sau)
 CON-THIEU.md            những gì còn thiếu hoặc chưa kiểm tra (người dùng cập nhật dần)
 README.md               hướng dẫn cho người
 ae-bridge/              cầu nối MCP với After Effects: server Node + extension CEP "Claude Bridge" (cài: knowledge/00)
@@ -38,6 +44,7 @@ lib/th-lib.jsx          thư viện talking head T.* (nền + matte + zoom, từ
 tools/                  prep.sh, transcribe.py, cut_silence.py, matte.py, caption_groups.py,
                         sfx_match.py, fonts_vi.py, sheet.sh, compare.sh, models/ (mô hình tách người)
 templates/              brief.md, plan.md, report.md
+examples/bojomi/        ví dụ tiếng Việt: build.src.jsx, plan.md, report.md, gen_broll_muse.py
 examples/foodtage/      ví dụ đầy đủ (assets, media, ref/video-mau.mp4, build.jsx, result/foodtage_v1.mp4)
 ```
 

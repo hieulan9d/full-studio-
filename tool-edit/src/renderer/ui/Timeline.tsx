@@ -2,6 +2,8 @@
 import { memo, useEffect, useMemo, useRef, useState } from 'react';
 import { timelineEnd, type Clip, type Op, type Project } from '../../core/schema';
 import { diffProjects } from '../../core/diff';
+import { TRANSITION_LABEL } from '../../core/transition';
+import { CHART_LABEL } from '../../core/chart';
 import { Icon } from './Icon';
 import { addMediaToTimeline, addTrack, commit, copyClips, deleteSelection, toggleDisableSelection, duplicateClips, groupSelection, select, separateAudio, setLayout, setZoom, splitAtPlayhead, ungroupSelection } from '../actions';
 import { audio, PEAKS_PER_SEC } from '../audio';
@@ -80,6 +82,7 @@ const ClipView = memo(function ClipView({ clip, rect, kind, label, selected, dra
       onPointerDown={(e) => onDown(e, clip, 'move')}
       onContextMenu={(e) => onCtx(e, clip)}
     >
+      {clip.transition && <i className="trn" data-testid="trn-mark" title={`Chuyển cảnh vào: ${TRANSITION_LABEL[clip.transition.kind]} ${clip.transition.duration}s`} style={{ width: Math.min(w, clip.transition.duration * zoom) }} />}
       {showWave && clip.src.type === 'media' && <WaveCanvas mediaId={clip.src.mediaId} inSec={rect.in} dur={rect.duration} w={w} h={height - 8} />}
       <div className="lbl">{clip.disabled && <Icon n="eyeoff" size={11} />}{clip.group && <Icon n="link" size={11} />} {label}{pending ? ' (đang chuẩn bị)' : ''}</div>
       {kfTimes.map((t) => <i key={t} className="kfm" data-kf={t} title={`Keyframe ${t.toFixed(2)}s`} style={{ left: t * zoom }} onPointerDown={(e) => { e.stopPropagation(); onKf(t); }} />)}
@@ -442,9 +445,9 @@ export function Timeline() {
                   const rect = drag?.preview[c.id] ?? { start: c.start, duration: c.duration, in: c.in, track: c.track };
                   if (rect.track !== tr.id) return null;
                   const m = c.src.type === 'media' ? project.media.find((x) => x.id === (c.src as { mediaId: string }).mediaId) : undefined;
-                  const kind: 'video' | 'audio' | 'image' | 'text' = tr.kind === 'audio' ? 'audio' : c.src.type === 'text' || c.src.type === 'shape' ? 'text' : m?.kind === 'image' ? 'image' : 'video';
+                  const kind: 'video' | 'audio' | 'image' | 'text' = tr.kind === 'audio' ? 'audio' : c.src.type === 'text' || c.src.type === 'shape' || c.src.type === 'chart' ? 'text' : m?.kind === 'image' ? 'image' : 'video';
                   const kfTimes = [...new Set(Object.values(c.keyframes ?? {}).flat().map((k) => Math.round(k.t * 1e4) / 1e4))].filter((t) => t >= 0 && t <= rect.duration).sort((a, b) => a - b);
-                  const label = m ? m.path.split(/[\\/]/).pop()! : c.src.type === 'gen' ? `gen:${c.src.kind}` : c.src.type === 'text' ? 'Chữ: ' + c.src.text.content.split(String.fromCharCode(10))[0].slice(0, 40) : c.src.type === 'shape' ? 'Hình: ' + c.src.shape.kind : c.id;
+                  const label = m ? m.path.split(/[\\/]/).pop()! : c.src.type === 'gen' ? `gen:${c.src.kind}` : c.src.type === 'text' ? 'Chữ: ' + c.src.text.content.split(String.fromCharCode(10))[0].slice(0, 40) : c.src.type === 'shape' ? 'Hình: ' + c.src.shape.kind : c.src.type === 'chart' ? 'Biểu đồ: ' + CHART_LABEL[c.src.chart.kind] + (c.src.chart.title ? ' · ' + c.src.chart.title.slice(0, 30) : '') : c.id;
                   const pending = !!m && m.kind !== 'audio' && m.cache?.status !== 'ready';
                   return <ClipView key={c.id} clip={c} rect={rect} kind={kind} label={label} selected={sel.has(c.id)} dragging={!!drag?.moved && drag.ids.includes(c.id)} pending={pending} zoom={zoom} height={H} hasAudio={!!m?.hasAudio || m?.kind === 'audio'} kfTimes={kfTimes} onKf={(t) => player.seek(c.start + t)} onDown={onDown} onCtx={onCtx} />;
                 })}

@@ -3,7 +3,8 @@ import { viText } from '../vi-runtime';
 import { useEffect, useRef, useState } from 'react';
 import type { Clip, Op, Project } from '../../core/schema';
 import type { ProposalView } from '../bridge';
-import { setLayout, goHome, importFolderDialog, addMediaToTimeline, addShapeClip, addTextClip, decideProposal, exportPreset, importDialog, newProjectAction, openProjectAction, redo, renameProject, restoreAutosave, saveProjectAction, snapshotCreate, snapshotRestore, splitAtPlayhead, toggleDraft, undo } from '../actions';
+import { CHART_KINDS, CHART_LABEL } from '../../core/chart';
+import { addChartClip, setLayout, goHome, importFolderDialog, addMediaToTimeline, addShapeClip, addTextClip, decideProposal, exportPreset, importDialog, newProjectAction, openProjectAction, redo, renameProject, restoreAutosave, saveProjectAction, snapshotCreate, snapshotRestore, splitAtPlayhead, toggleDraft, undo } from '../actions';
 import { PRESETS } from '../../core/presets';
 import { LevelMeter } from './LevelMeter';
 import { Stage } from './Stage';
@@ -45,6 +46,11 @@ export function TopBar() {
           <option value="ellipse">Elip</option>
           <option value="ring">Vòng (viền)</option>
           <option value="star">Sao</option>
+        </select>
+        <button onClick={() => store.set({ templatesOpen: true })} data-testid="open-templates" className="ib" title="Mẫu dựng sẵn: thẻ kính, tiêu đề, lower third, số liệu, nút, biểu đồ"><Icon n="sparkles" />Mẫu</button>
+        <select value="" data-testid="add-chart" title="Thêm biểu đồ / số đếm tại con trỏ" onChange={(e) => { if (e.target.value) void addChartClip(e.target.value as never); e.target.value = ''; }}>
+          <option value="">+ Biểu đồ</option>
+          {CHART_KINDS.map((k) => <option key={k} value={k}>{CHART_LABEL[k]}</option>)}
         </select>
         <select value="" data-testid="add-preset" onChange={(e) => { if (e.target.value) void addTextClip(e.target.value); e.target.value = ''; }} title="Thêm chữ từ preset">
           <option value="">+ Chữ từ preset...</option>
@@ -235,6 +241,8 @@ function summarize(ops: Op[], project: { clips: Clip[] }): { kind: 'add' | 'del'
     else if (o.op === 'ripple_delete') push('del', `- xóa liền clip ${o.id}`);
     else if (o.op === 'remove_ranges') push('del', `- cắt ${o.ranges.length} đoạn khỏi clip ${o.id} (${t(o.ranges.reduce((a: number, r: any) => a + (r.e - r.s), 0))}): ${o.ranges.slice(0, 4).map((r: any) => `${t(r.s)}–${t(r.e)}`).join(', ')}${o.ranges.length > 4 ? '…' : ''}`);
     else if (o.op === 'split_clip') push('mod', `~ cắt clip ${o.id} tai ${t(o.at)}`);
+    else if (o.op === 'set_chart') push('mod', `~ biểu đồ ${o.id}: ${Object.keys(o.patch).join(', ')}`);
+    else if (o.op === 'set_transition') push('mod', o.transition ? `~ chuyển cảnh clip ${o.id}: ${o.transition.kind} ${o.transition.duration}s` : `~ gỡ chuyển cảnh clip ${o.id}`);
     else if (o.op === 'group_clips') push('mod', `~ ghép ${o.ids.length} clip thành nhóm ${o.group}`);
     else if (o.op === 'ungroup') push('mod', `~ hủy ghép nhóm ${o.group}`);
     else if (o.op === 'set_clip' || o.op === 'set_transform') push('mod', `~ clip ${o.id}: ${kv(o.patch)}`);

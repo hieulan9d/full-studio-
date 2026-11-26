@@ -4,6 +4,7 @@
 import { resolveClip } from '../core/anim';
 import type { Clip, Project, Transform } from '../core/schema';
 import { Renderer } from '../render/renderer';
+import { rasterizeChart } from '../render/chart-raster';
 import { rasterizeShape } from '../render/shape-raster';
 import { rasterizeText } from '../render/text-raster';
 
@@ -56,6 +57,11 @@ export function boxOf(p: Project, c: Clip, W: number, H: number, playhead: numbe
       bh = r0.height - 2 * r0.pad;
     const r = Renderer.layerRect(W, H, r0.width, r0.height, tf, { noFit: true, inset: r0.pad });
     return { clipId: c.id, cx: r.cx, cy: r.cy, w: bw * tf.scale, h: bh * tf.scale, rot: tf.rotation, kind: 'shape' };
+  }
+  if (c.src.type === 'chart') {
+    const r0 = rasterizeChart(c.src.chart, W, H, lt);
+    const r = Renderer.layerRect(W, H, r0.width, r0.height, tf, { noFit: true, inset: 0 });
+    return { clipId: c.id, cx: r.cx, cy: r.cy, w: r0.width * tf.scale, h: r0.height * tf.scale, rot: tf.rotation, kind: 'shape' };
   }
   if (c.src.type === 'media') {
     const m = p.media.find((x) => x.id === (c.src as { mediaId: string }).mediaId);

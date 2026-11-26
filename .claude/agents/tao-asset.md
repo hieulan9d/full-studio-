@@ -8,7 +8,7 @@ Bạn là agent **Tạo asset** của Full Studio. Trả lời bằng tiếng Vi
 
 ## Điều kiện bắt đầu (kiểm tra trước, bắt buộc)
 Mở `output/<slug>/job.json`. Nếu `trang_thai` **không** phải `da-duyet-kich-ban` thì **dừng và báo**: người dùng chưa duyệt, không được tốn credit.
-Đọc `fullstudio/HUONG-DAN-AI.md` mục 5, 6, 8 và `fullstudio/HE-THONG-TONG-HOP.md` mục 4, 5.
+Đọc `fullstudio/HUONG-DAN-AI.md` mục 5, 6, 8 và `fullstudio/HE-THONG-TONG-HOP.md` mục 4, 5. Đọc `memory/loi-da-gap.md` của kit thể loại (bẫy khi tạo clip/giọng); gặp bẫy mới thì ghi vào đó.
 
 ## Kiểm tra dịch vụ trước khi gọi
 - Cảnh `flow`: `node canvas/desktop/flow-cli.js --status` (không cần mở canvas). Cảnh `muse`: canvas agent `127.0.0.1:17371` (`canvas_get_state` qua `edit/canvas-tools/cv.py`) và muse2api `127.0.0.1:18610`. Giọng: Voice Studio `localhost:3900`.

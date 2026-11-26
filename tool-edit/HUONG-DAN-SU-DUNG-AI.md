@@ -37,7 +37,7 @@ Trả lời người dùng bằng **tiếng Việt**, ngắn gọn: đã làm g�
 6. **Xuất**: `render_start` (preset `9:16` hoặc `16:9`, NVENC chạy nền theo job) rồi `job_status` đến khi xong. Báo đường dẫn file cho người dùng.
 7. Cần mang sang phần mềm khác: `export_timeline` (Premiere, DaVinci Resolve, CapCut, After Effects, EDL).
 
-## 4. Danh sách tool MCP (43)
+## 4. Danh sách tool MCP (47)
 
 Chi tiết tham số nằm trong mô tả của từng tool; đọc mô tả khi gọi lần đầu.
 
@@ -51,10 +51,17 @@ Chi tiết tham số nằm trong mô tả của từng tool; đọc mô tả khi
 | Âm thanh | `list_library`, `suggest_sfx`, `duck_music`, `detect_beats`, `beat_markers` | Kho SFX/nhạc, SFX theo sự kiện, hạ nhạc khi có lời, nhịp nhạc |
 | Tách nền/tốc độ | `remove_background`, `apply_matte`, `text_behind_person`, `set_speed` | Tách người (RVM), chữ sau lưng người, tốc độ và speed ramp |
 | Màu | `grade_get`, `grade_set`, `apply_lut`, `match_color` | Chỉnh màu (không gian màu log, tone-map ACES, qualifier HSL, log wheels, cửa sổ), LUT, khớp màu giữa clip |
-| Hiệu ứng/hình | `set_fx`, `set_blend`, `add_shape` | Blur, glow, bóng, bo góc, vignette, wipe; chế độ trộn; hình vector |
+| Hiệu ứng/hình | `set_fx`, `set_blend`, `add_shape` | Blur, glow, bóng, bo góc, vignette, wipe, **kính mờ (`backdrop`)**; chế độ trộn; hình vector |
+| Chuyển động/đồ họa | `set_transition`, `add_chart`, `list_templates`, `add_template` | Chuyển cảnh 18 kiểu; biểu đồ / số đếm; mẫu dựng sẵn (thẻ kính, lower third, tiêu đề, số liệu, nút, giá, biểu đồ cột, thông báo app) |
 | An toàn/xuất | `snapshot_create`, `snapshots_list`, `qc_check`, `render_start`, `export_timeline` | Điểm quay lại, kiểm chất lượng, xuất video, xuất sang phần mềm khác |
 
 ## 5. Luật dựng (đã trả giá bằng lỗi thật)
+
+- **Chuyển cảnh (`set_transition`)**: đặt trên clip ĐÍCH (clip vào), tác dụng ở đầu clip. Muốn chuyển từ clip A sang B: hai clip phải **sát nhau trên cùng track**; nếu có khoảng hở thì B chỉ "vào từ nền". `duration` ≤ độ dài B và ≤ 5 giây (thường 0,3–0,8 s; `flip`, `cube`, `spin` cần 0,6–1 s mới thấy rõ). Âm thanh **không** chéo mờ: nếu cần, tự hạ/nâng âm lượng bằng keyframe `volume`. Kiểm bằng `preview_frame` ở giữa khoảng chuyển cảnh (đầu clip + duration/2).
+- **Xoay 3D**: `set_transform` với `rotX`, `rotY` (độ), `persp` (mặc định 1,2; nhỏ = méo mạnh), keyframe được (`transform.rotX/rotY`). Dùng cho thẻ nghiêng, lật, trượt có chiều sâu.
+- **Biểu đồ (`add_chart`)**: dữ liệu `[{label,value}]`; `number` dùng `data[0]` và `from`; nền thẻ mặc định tối trong suốt 88% (đặt `bg_opacity` 0 nếu muốn chồng lên hình). Clip phải dài hơn `chart_end` (tool trả về) để giữ hình cuối; sửa tiếp bằng `propose_ops` `set_chart`. Số kiểu Việt (dấu chấm ngăn nghìn): giá trị truyền vào tool là SỐ thường.
+- **Kính mờ**: thêm `fx.backdrop {radius}` (qua `set_fx`) cho hình vector hoặc clip video; kính chỉ thấy khi có thứ gì nằm DƯỚI nó (track thấp hơn). Hình kính điển hình: rect bo góc, `fill #ffffff` độ đục 0,1–0,15, viền sáng 2 px, bóng mềm.
+- **Mẫu dựng sẵn**: `list_templates` rồi `add_template` (`vars` đúng kiểu: text/number/color/data). Một mẫu là MỘT nhóm clip (clip ghép), nằm trên các track trống; muốn sửa từng phần dùng `project_get` (tag `tpl:<id>`) rồi `set_text`/`set_shape`/`set_chart`, hoặc `ungroup`. Đặt mẫu ở `start` còn trống để khỏi tạo thêm nhiều track.
 
 - **Việc dài chạy nền** (nhập, phiên âm, tách nền, xuất): lấy `job_id`, hỏi `job_status`, **không giả định đã xong**. Không có hộp thoại chặn.
 - **Keyframe `t` tính từ ĐẦU CLIP**, không phải đầu timeline. `x`, `y` của transform theo tỉ lệ khung (0 = giữa).
@@ -92,9 +99,10 @@ Tool Edit được xây để thay dần After Effects. Khi người dùng muố
 - Whisper **tiếng Việt thật** chưa đo độ chính xác: đọc lại `get_transcript` và `fix_transcript` trước khi tạo phụ đề.
 - AI **không nghe được**: SFX, nhịp, duck nhạc chưa được kiểm bằng tai. Nhờ người dùng nghe.
 - Bản xuất sang Premiere, DaVinci, After Effects, CapCut **chưa mở thử trong phần mềm thật**.
+- Chuyển cảnh chưa chéo mờ âm thanh; chuyển cảnh với lớp nền sinh tự động (gen) không có tác dụng; xuất sang phần mềm khác tính chuyển cảnh, xoay 3D, biểu đồ là lớp phủ vẽ sẵn. Biểu đồ không keyframe được số liệu bên trong. Kính mờ chưa kiểm trên nền video chuyển động nhanh (độ mờ chỉ dùng một bán kính cố định mỗi khung).
 - Chưa có: keyframe chỉnh màu, cửa sổ bám chuyển động, Canon Log, HLG/PQ, nội suy khung RIFE (chỉ trộn khung), dựng lại video SaaS (F-61). Mặt nạ `qual` mềm ở mép (LUT 65³). Scope đếm 256 mức trên ảnh sau Output Transform sRGB.
 - MCP mới thử bằng client SDK và Claude; Gemini/GPT chưa kiểm.
 - Chưa có proxy chỉnh sửa (dùng thẳng cache đã chuẩn hoá).
 
 ---
-Cập nhật gần nhất: 2026-11-18 (chỉnh màu chuẩn: không gian màu log, ACES, qualifier, log wheels, cửa sổ, YCbCr parade; AI tự áp dụng + nút bật/tắt; `project_get` có `summary`; kiểm phụ thuộc khi mở app; trần RAM cache giải mã; hỏi trạng thái nền theo nhịp thích ứng).
+Cập nhật gần nhất: 2026-11-21 (chuyển cảnh 18 kiểu, xoay 3D, biểu đồ / số đếm, kính mờ, 8 mẫu dựng sẵn, 4 tool MCP mới: set_transition, add_chart, list_templates, add_template; trước đó 2026-11-18: chỉnh màu chuẩn: không gian màu log, ACES, qualifier, log wheels, cửa sổ, YCbCr parade; AI tự áp dụng + nút bật/tắt; `project_get` có `summary`; kiểm phụ thuộc khi mở app; trần RAM cache giải mã; hỏi trạng thái nền theo nhịp thích ứng).
