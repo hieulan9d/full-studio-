@@ -8,7 +8,8 @@ Mỗi phong cách có folder `memory/` (cạnh `PHONG-CACH.md`/`AGENTS.md`): `RE
 
 ## Nguồn tạo ảnh/video AI (người dùng chốt 2026-11-26)
 - **Flow:** AI agent tạo **trực tiếp trên Brave**, mỗi profile là 1 tài khoản, bằng `node canvas/desktop/flow-cli.js` (`HUONG-DAN-AI.md` mục 6.1b).
-- **Muse (ảnh và video):** dùng **canvas** gọi API. Canvas không dùng để tạo Flow nữa.
+- **Gemini web (video, người dùng chốt 2026-11-27):** như Flow, AI agent tạo **trực tiếp trên Brave** bằng `node canvas/desktop/gemini-driver.js` (mục 6.1d), không qua canvas.
+- **Muse (ảnh và video):** dùng **canvas** gọi API. AI agent không dùng canvas để tạo Flow hay Gemini.
 
 ## Làm một video (luồng điều phối bằng subagent)
 Khi người dùng đưa chủ đề / brief và muốn ra video: theo **mục 2 của `HUONG-DAN-AI.md`**. Gọi lần lượt subagent

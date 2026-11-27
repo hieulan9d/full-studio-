@@ -4,8 +4,8 @@
 //   node flow-cli.js --status                       (các tài khoản/profile và số điểm)
 //   node flow-cli.js --add-account "ten"            (profile mới; người dùng tự đăng nhập)
 //   node flow-cli.js --account "ten|email|id" ...   (chọn tài khoản/profile)
-//   node flow-cli.js --make-image --prompt "..." --aspect 9:16 --out thu-muc --name hook_01
-//   node flow-cli.js --prompt-file canh1.txt --image "Nhan vat.png" --aspect 9:16 --seconds 6 --out E:\XUAT-VIDEO --name canh1
+//   node flow-cli.js --make-image --prompt "..." --aspect 9:16 --name hook_01
+//   node flow-cli.js --prompt-file canh1.txt --image "Nhan vat.png" --aspect 9:16 --seconds 6 --name canh1
 //   node flow-cli.js --fetch 1            (tải video mới nhất đã có, không tốn điểm)
 //
 // Flow báo lỗi thì tự đóng trình duyệt, mở lại và tạo lại (--retries, mặc định 2 lần). Captcha/đăng nhập/hết điểm/chính sách thì dừng.
@@ -26,25 +26,24 @@ Module._load = function (request, ...rest) {
 };
 const driver = require("./flow-driver.js");
 const { generateWithRetry } = require("./flow-retry.js");
+const { saveOutput, outputDir } = require("./output-dir.js");
+const { lockAccount } = require("./account-lock.js");
 driver.setup({ getPath: () => process.env.FLOW_DATA || "D:\\infiniti canvas" });
 
 const argv = process.argv.slice(2);
 const all = (flag) => argv.flatMap((a, i) => (a === flag && argv[i + 1] ? [argv[i + 1]] : []));
 const opt = (flag, fallback) => all(flag)[0] ?? fallback;
 
-function save(data, name, dir, mime = "video/mp4") {
-  fs.mkdirSync(dir, { recursive: true });
-  const ext = /jpe?g/.test(mime) ? "jpg" : /png/.test(mime) ? "png" : /webp/.test(mime) ? "webp" : "mp4";
-  let file = path.join(dir, `${name}.${ext}`);
-  for (let i = 2; fs.existsSync(file); i++) file = path.join(dir, `${name}-${i}.${ext}`); // không ghi đè
-  fs.writeFileSync(file, data);
+// mọi tệp về một thư mục duy nhất (output-dir.js)
+function save(data, name, mime = "video/mp4") {
+  const file = saveOutput(data, name, mime);
   console.log(`Đã lưu: ${file} (${(data.length / 1048576).toFixed(1)} MB)`);
 }
 
 const MIME = { ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp" };
 
 async function main() {
-  const out = opt("--out", "E:\\XUAT-VIDEO");
+  if (argv.includes("--out")) console.warn("Bỏ qua --out: mọi tệp lưu vào " + outputDir());
   const name = opt("--name", `flow-${new Date().toISOString().slice(0, 19).replace(/[-:T]/g, "")}`);
   const wanted = opt("--account");
   if (wanted) {
@@ -64,7 +63,7 @@ async function main() {
   if (argv.includes("--status")) return console.log(JSON.stringify(await handlers["flow:status"](), null, 1));
   if (argv.includes("--fetch")) {
     const v = await driver.fetchVideo(Number(opt("--fetch", "1")) - 1);
-    return save(v.data, name, out);
+    return save(v.data, name);
   }
 
   const file = opt("--prompt-file");
@@ -76,6 +75,8 @@ async function main() {
     base64: fs.readFileSync(p).toString("base64"),
   }));
   const retries = Number(opt("--retries", "2"));
+  const dataDir = process.env.FLOW_DATA || "D:\\infiniti canvas";
+  if (process.env.FLOW_ACCOUNT) process.once("exit", lockAccount(dataDir, "flow-" + process.env.FLOW_ACCOUNT));
   const restart = () => driver.closeBrowser();
   if (argv.includes("--make-image")) {
     const generate = () => handlers["flow:generate-image"](null, {
@@ -87,7 +88,7 @@ async function main() {
       timeoutMin: Number(opt("--timeout", "5")),
     });
     const items = await generateWithRetry({ generate, restart, retries });
-    return items.forEach((item) => save(item.data, name, out, item.mime));
+    return items.forEach((item) => save(item.data, name, item.mime));
   }
   const generate = () => handlers["flow:generate-video"](null, {
     prompt,
@@ -101,7 +102,7 @@ async function main() {
     timeoutMin: Number(opt("--timeout", "10")),
   });
   const items = await generateWithRetry({ generate, restart, retries, fetchLast: () => driver.fetchVideo(0) });
-  items.forEach((item) => save(item.data, name, out));
+  items.forEach((item) => save(item.data, name));
 }
 
 main()

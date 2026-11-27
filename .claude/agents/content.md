@@ -17,7 +17,7 @@ Loại video không có kit: dừng và báo người dùng, đừng tự bịa 
 2. Viết kịch bản theo **cấu trúc của kit** (hook, thân, CTA; thời lượng theo kit). Kịch bản tiếng Việt viết sẵn cho TTS khi có giọng đọc
    (câu ngắn, số bằng chữ, thuật ngữ khó viết theo cách đọc: xem `edit/kien-thuc/dao-ly/feedback-viet-loi-thoai-cho-voice.md`).
 3. Chia **danh sách cảnh**. Mỗi cảnh ghi: mốc thời gian, nội dung, lời đọc, chữ trên màn hình, và **nguồn asset**:
-   `quay-that` | `flow` | `muse` | `do-hoa` (làm bằng After Effects/vf). Với `flow`/`muse`: viết sẵn prompt 9:16, thời lượng clip,
+   `quay-that` | `flow` | `gemini` | `muse` | `do-hoa` (làm bằng After Effects/vf). Với `flow`/`gemini`/`muse` (`gemini` chỉ chọn được tỉ lệ, không chọn số giây, ít lượt mỗi ngày): viết sẵn prompt 9:16, thời lượng clip,
    ảnh tham chiếu cần dùng.
 3b. **Chỉ với talking head** (`kit = phong-cach/talking-head`): đọc thêm `knowledge/12-hook.md`. Viết **2–3 phương án hook** (3–5 s đầu: lời hứa cụ thể, bằng chứng nếu có thật,
    rồi vào ý chính). Mỗi phương án liệt kê từng **từ khoá + chữ hai cấp (nhãn nhỏ / từ khoá to) + hình minh hoạ cùng giây + nguồn hình**

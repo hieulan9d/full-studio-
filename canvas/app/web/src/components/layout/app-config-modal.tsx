@@ -11,6 +11,7 @@ import { ConfigLocalProxy } from "@/components/layout/config-local-proxy";
 import { ConfigPromptSources } from "@/components/layout/config-prompt-sources";
 import { ConfigLocalStorage } from "@/components/layout/config-local-storage";
 import { ConfigFlowAccounts } from "@/components/layout/config-flow-accounts";
+import { ConfigGeminiAccounts } from "@/components/layout/config-gemini-accounts";
 import type { AppLocale } from "@/i18n";
 import { exportAppConfig, importAppConfig } from "@/services/config-file";
 import { syncAppDataToWebdav, type AppSyncDomainKey, type AppSyncProgressEvent } from "@/services/app-sync";
@@ -357,6 +358,9 @@ export function AppConfigPanel({ showDoneButton = false, initialTab = "channels"
                     },
                     ...((window as unknown as { desktop?: { flow?: unknown } }).desktop?.flow
                         ? [{ key: "flow-accounts", label: t("config.tabs.flowAccounts"), children: <ConfigFlowAccounts active={activeTab === "flow-accounts"} /> }]
+                        : []),
+                    ...((window as unknown as { desktop?: { gemini?: unknown } }).desktop?.gemini
+                        ? [{ key: "gemini-accounts", label: t("config.tabs.geminiAccounts"), children: <ConfigGeminiAccounts active={activeTab === "gemini-accounts"} /> }]
                         : []),
                 ]}
             />

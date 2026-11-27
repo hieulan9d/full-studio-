@@ -9,6 +9,10 @@ const WEB_PORT = 3100;
 const root = app.isPackaged ? process.resourcesPath : path.resolve(__dirname, "..");
 const webDir = app.isPackaged ? path.join(root, "web") : path.join(root, "app", "web", "dist");
 const flow = require("./flow-driver");
+const gemini = require("./gemini-driver");
+const output = require("./output-dir");
+ipcMain.handle("desktop:save-output", (_e, data, name, mime) => output.saveOutput(data, name, mime));
+for (const name of ["generateVideo", "accounts", "check", "add", "open", "use", "rename", "remove"]) ipcMain.handle(`gemini:${name}`, (_e, ...args) => gemini[name](...args));
 
 const MIME = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".json": "application/json", ".svg": "image/svg+xml", ".png": "image/png", ".jpg": "image/jpeg", ".ico": "image/x-icon", ".woff2": "font/woff2", ".woff": "font/woff", ".mp4": "video/mp4", ".wasm": "application/wasm" };
 
@@ -211,7 +215,7 @@ async function syncFlowScripts() {
   let scripts;
   try {
     const dir = path.join(root, "flow-canvas");
-    scripts = { image: fs.readFileSync(path.join(dir, "flow-image-script.js"), "utf8"), video: fs.readFileSync(path.join(dir, "flow-video-script.js"), "utf8") };
+    scripts = { image: fs.readFileSync(path.join(dir, "flow-image-script.js"), "utf8"), video: fs.readFileSync(path.join(dir, "flow-video-script.js"), "utf8"), gemini: fs.readFileSync(path.join(dir, "gemini-video-script.js"), "utf8") };
   } catch { return; }
   const changed = await win.webContents.executeJavaScript(`(() => {
     const key = "infinite-canvas:ai_config_store";
@@ -222,6 +226,16 @@ async function syncFlowScripts() {
     if (!Array.isArray(channels)) return false;
     const scripts = ${JSON.stringify(scripts)};
     let changed = false;
+    let gem = channels.find((c) => c.id === "gemini-web");
+    if (!gem) {
+      gem = { id: "gemini-web", name: "Gemini web (tự động)", baseUrl: "http://127.0.0.1:9334", apiKey: "gemini-web", apiFormat: "openai", models: [] };
+      channels.push(gem);
+      changed = true;
+    }
+    if (!gem.models.length) { gem.models = [{ name: "gemini-web-video", capability: "video" }]; changed = true; }
+    for (const m of gem.models) if (m.script !== scripts.gemini) { m.script = scripts.gemini; changed = true; }
+    const all = data.state.config.models;
+    if (Array.isArray(all) && !all.includes("gemini-web::gemini-web-video")) { all.push("gemini-web::gemini-web-video"); changed = true; }
     for (const ch of channels) {
       if (ch.id !== "flow") continue;
       if (ch.name !== "Google Flow (tự động)") { ch.name = "Google Flow (tự động)"; changed = true; }
@@ -253,6 +267,7 @@ async function syncFlowScripts() {
 async function main() {
   await startWebServer();
   flow.setup(app);
+  gemini.setup(app.getPath("userData"));
   startMuse2api();
   startVoiceStudio();
   startProxy();

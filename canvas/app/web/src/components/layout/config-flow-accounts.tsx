@@ -30,7 +30,9 @@ export function ConfigFlowAccounts({ active }: { active: boolean }) {
             try {
                 setState(await action());
             } catch (reason) {
-                void message.error(reason instanceof Error ? reason.message : String(reason));
+                void message.error(reason instanceof Error ? reason.message : String(reason), 8);
+                // báo lỗi xong vẫn nạp lại danh sách: có thể một phần đã cập nhật được
+                await flow?.accounts().then(setState, () => undefined);
             } finally {
                 setBusy("");
             }

@@ -43,7 +43,7 @@ Phiên chính (quản lý): đọc brief, chọn loại video, chọn kit, gọi
 Subagent CONTENT → kịch bản + danh sách cảnh ──► NGƯỜI DÙNG DUYỆT (cổng 1)
                                                       │ duyệt rồi mới đi tiếp
                                                       ▼
-Subagent TẠO ASSET → giọng AI; ảnh/video Flow (AI tự thao tác trên Brave); ảnh/video Muse (canvas, API); làm sạch logo nếu cần
+Subagent TẠO ASSET → giọng AI; ảnh/video Flow và video Gemini (AI tự thao tác trên Brave); ảnh/video Muse (canvas, API); làm sạch logo nếu cần
    │
    ▼
 Subagent EDIT → dựng bằng After Effects (MCP) hoặc bản nháp CapCut / `vf`
@@ -58,7 +58,7 @@ Quyết định của người dùng (đã chốt):
 - **Subagent Content đưa kịch bản cho người dùng duyệt. Chỉ khi người dùng duyệt mới tạo video.** Không tự tốn credit Flow/Muse trước khi được duyệt.
 - Phát hiện lỗi sau khi giao: sửa **đúng cảnh lỗi**, không dựng lại cả video.
 
-Bản kịch bản gửi duyệt phải có: hook, lời đọc, danh sách cảnh (mốc thời gian, nội dung, **nguồn asset của từng cảnh**: quay thật / Flow / Muse / đồ hoạ), và **số clip AI sẽ tạo**. Talking head thêm: **2–3 phương án hook** (chữ + hình minh hoạ, `phong-cach/talking-head/knowledge/12-hook.md`) và **số ảnh AI cho hook**; người dùng chọn một phương án khi duyệt, phiên chính ghi `kich_ban.hook_da_chon` trong `job.json` cùng lúc chuyển `da-duyet-kich-ban`.
+Bản kịch bản gửi duyệt phải có: hook, lời đọc, danh sách cảnh (mốc thời gian, nội dung, **nguồn asset của từng cảnh**: quay thật / Flow / Gemini / Muse / đồ hoạ), và **số clip AI sẽ tạo**. Talking head thêm: **2–3 phương án hook** (chữ + hình minh hoạ, `phong-cach/talking-head/knowledge/12-hook.md`) và **số ảnh AI cho hook**; người dùng chọn một phương án khi duyệt, phiên chính ghi `kich_ban.hook_da_chon` trong `job.json` cùng lúc chuyển `da-duyet-kich-ban`.
 
 **Đã có (viết ngày 2026-11-15, chưa chạy thử trên video thật):**
 - Ba subagent: `.claude/agents/content.md`, `tao-asset.md`, `edit.md` (mỗi cái tự kiểm trạng thái trong `job.json` trước khi chạy).
@@ -155,17 +155,20 @@ Trước khi gọi bất cứ dịch vụ nào, **kiểm tra nó đang chạy** 
 | Nguồn | Model | Ghi chú |
 |---|---|---|
 | **Google Flow** (**trực tiếp trên Brave**, mục 6.1b; không qua canvas) | ảnh `Nano Banana Pro` (hoặc `… 2 Lite`, `… 2.1`); video `Omni 1.2 Flash` (tối đa 15 s), `Omni 1.1 Flash` (tối đa 10 s) | 3–15 giây, 360p/720p. Mỗi profile Brave là 1 tài khoản. Có điểm tín dụng. Hay đòi captcha |
+| **Gemini web** (**trực tiếp trên Brave**, mục 6.1d; không qua canvas) | công cụ "Tạo video" | Chỉ chọn 16:9 hoặc 9:16; video thử dài 10 giây, 720p. Giới hạn lượt mỗi ngày |
 | **Muse** (qua muse2api) | `muse-image`, `muse-video` | Video 1–10 giây, tỉ lệ đặt bằng `aspect_ratio`. **Tạo từng video một, tuần tự.** Bẫy: có tài khoản bị chặn video "không khả dụng ở khu vực này" (đổi tài khoản là được); chạy ngầm liên tục từ lúc mở canvas |
 | **ChatGPT image** | | **[thiết kế]** chưa có, sẽ thêm sau |
+
+**Một thư mục xuất duy nhất** (người dùng chốt 2026-11-27): mọi ảnh/video tạo ra (canvas: Muse, Flow, Gemini; `flow-cli.js`, `gemini-driver.js`) lưu vào `E:\XUAT-VIDEO\AI` (đổi bằng biến `OUTPUT_DIR` hoặc `outputDir` trong `%APPDATA%\infinite-canvas-flow-config.json`; mã: `canvas/desktop/output-dir.js`). `--out` bị bỏ qua. Đặt `--name <slug>_...` để biết tệp thuộc video nào; bước dựng chép tệp cần dùng từ đó vào dự án. Phần lưu từ canvas chưa thử trên app thật.
 
 ### 6.1b Quy trình Flow: AI agent tạo ngay trên web [chạy thật một phần, 2026-11-26]
 Mỗi **profile Brave là một tài khoản Flow** (đăng nhập riêng, project riêng; danh sách ở `D:\infiniti canvas\flow-driver.json`). Agent chạy từ thư mục gốc dự án:
 
 ```
 node canvas/desktop/flow-cli.js --status
-node canvas/desktop/flow-cli.js --prompt-file canh.txt --image nhan-vat.png --aspect 9:16 --seconds 6 --out output/<slug>/media --name c01
-node canvas/desktop/flow-cli.js --make-image --prompt "..." --aspect 9:16 --out output/<slug>/media --name hook_01
-node canvas/desktop/flow-cli.js --fetch 1 --out output/<slug>/media --name c01
+node canvas/desktop/flow-cli.js --prompt-file canh.txt --image nhan-vat.png --aspect 9:16 --seconds 6 --name <slug>_c01
+node canvas/desktop/flow-cli.js --make-image --prompt "..." --aspect 9:16 --name <slug>_hook_01
+node canvas/desktop/flow-cli.js --fetch 1 --name <slug>_c01
 ```
 
 - Lệnh tự mở Brave đúng profile, tải ảnh tham chiếu, điền prompt, bấm tạo, chờ và tải file về. Tài khoản đang dùng thiếu điểm (mặc định dưới 50) thì tự đổi profile. Chọn tay: `--account "ten|email|id"`.
@@ -176,6 +179,42 @@ node canvas/desktop/flow-cli.js --fetch 1 --out output/<slug>/media --name c01
 - Chỉ dừng khi: đăng nhập, captcha, "hoạt động bất thường" (không né), hết điểm, chưa chọn project, không có trình duyệt. Bị chính sách chặn: sửa prompt (ghi lại thay đổi) rồi chạy lại, không gửi nguyên prompt cũ.
 - Tạo xong nhưng lỗi lúc tải video: lệnh chỉ tải lại, không tạo lại. Hết giờ chờ thì lệnh **có** tạo lại, nên có thể tốn điểm hai lần cho một cảnh; trước khi tự chạy lại tay, thử `--fetch` trước.
 - Đã chạy thật: tải video (`--fetch`), đọc trạng thái, tạo video trọn vòng (2026-11-26), đóng/mở lại Brave. **Chưa chạy thật:** tự tạo lại khi Flow báo lỗi thật (mới thử bằng lỗi giả), tạo ảnh, thêm và đổi tài khoản. Clip Flow có dấu ngôi sao của Google ở góc dưới phải.
+
+### 6.1d Gemini web: tạo video bằng lượt trong ngày [chạy thật một phần, 2026-11-27]
+Mỗi tài khoản là một profile Brave riêng (`gemini-browser-profile-*` trong `D:\infiniti canvas`, danh sách ở `gemini-driver.json`, mỗi tài khoản một cổng debug từ 9400, tách khỏi Flow). **Người dùng tự thêm và đăng nhập**: canvas → Cài đặt → "Tài khoản Gemini" → Thêm tài khoản → đăng nhập Google → Kiểm tra. Mỗi tài khoản một cửa sổ, mở được nhiều tài khoản cùng lúc.
+
+```
+node canvas/desktop/gemini-driver.js --check
+node canvas/desktop/gemini-driver.js --make-video --prompt-file canh.txt --image nhan-vat.png --aspect 9:16 --name <slug>_c01
+node canvas/desktop/gemini-driver.js --fetch https://gemini.google.com/app/<id> --name <slug>_c01
+```
+
+- **Chỉ tạo sau khi người dùng duyệt kịch bản**: mỗi lần gửi tốn một lượt. Chỉ chọn được 16:9 hoặc 9:16, không chọn được số giây và độ phân giải. Video thử ra 720×1280, 10 giây, có tiếng, có dấu ngôi sao ở góc dưới phải.
+- Lỗi thì **không tự tạo lại**. Hết giờ chờ hoặc lỗi tải: dùng `--fetch` với địa chỉ cuộc trò chuyện đã in ra. Gemini báo hết hạn mức thì đổi tài khoản khác.
+- Gặp captcha, xác minh, điều khoản mới: dừng, để người dùng xử lý. Tự động hoá trang web có rủi ro điều khoản.
+- **AI agent không tạo Gemini qua canvas** (như Flow, người dùng chốt 2026-11-27). Model dưới đây chỉ để người dùng tự bấm tay.
+- Canvas: model **Gemini web (tự động)** → `gemini-web-video` (script `canvas/flow-canvas/gemini-video-script.js`).
+- **Đã chạy thật:** `--make-video` trọn một lệnh (prompt không ảnh, 9:16), tải video bằng `--fetch`. **Chưa thử:** ảnh tham chiếu, 16:9, nhận báo hết hạn mức, đổi tài khoản, tạo từ canvas. Tài khoản thử là gói Pro; hạn mức tài khoản miễn phí (người dùng cho biết 3–4/ngày) chưa kiểm chứng.
+
+### 6.1e Tạo nhiều video một lượt, nhiều cửa sổ Brave [2026-11-27, mới thử bằng tạo giả]
+Người dùng đăng nhập tài khoản trong canvas; agent dùng lại profile. Mỗi tài khoản một cửa sổ, một cổng, một việc tại một thời điểm.
+
+```
+node canvas/desktop/ai-batch.js jobs.json --source gemini --parallel 3
+```
+
+Đã chạy thật (2026-11-27): một video Flow và một video Gemini tạo cùng lúc bằng hai lệnh đơn; tắt rồi mở lại hai cửa sổ, mỗi bên còn 1 tab (`clean-tabs.js`). **Chưa chạy thật:** `ai-batch.js`, hai tài khoản cùng một nguồn song song.
+
+Hạn mức Gemini (đo 2026-11-27, một tài khoản Pro): tính theo mức sử dụng, đặt lại theo khung vài giờ và theo tuần, xem ở `https://gemini.google.com/usage`; không có số video/ngày cố định. Sau 1 video thành công (và 2 yêu cầu lỗi) khung hiện tại báo 19%. Chưa đo tới lúc hết hạn mức.
+
+`jobs.json`: `[{"name":"<slug>_c01","promptFile":"c01.txt","images":["a.png"],"aspect":"9:16","seconds":6}]` (`seconds` chỉ cho Flow). Chạy một lệnh đơn với tài khoản chỉ định: đặt biến `FLOW_ACCOUNT` hoặc `GEMINI_ACCOUNT`.
+
+Kết quả mỗi việc và cách agent xử lý:
+- `xong`: dùng tệp trong thư mục xuất.
+- `het-luot`: tài khoản dừng, việc tự chuyển sang tài khoản khác.
+- `bi-chan` (captcha, "hoạt động bất thường", đăng nhập, chưa có project): tài khoản dừng, việc **không** gửi lại. **Không né, không tự tạo project mới để thử lại**: báo người dùng.
+- `sua-prompt` (bị chặn vì prompt/ảnh): agent sửa prompt hoặc đổi ảnh cho đúng chính sách, ghi lại thay đổi, chạy lại riêng việc đó, tối đa 2 lần. Không lách chính sách.
+- `loi`, `chua-chay`: xem `detail`. Với Gemini, thử `--fetch` trước khi tạo lại.
 
 ### 6.1c Muse: qua canvas (API)
 Ảnh và video Muse tạo trên canvas, gọi API muse2api. **Canvas chỉ dùng để tạo ảnh/video cho Muse** (không dùng canvas cho Flow).
@@ -229,7 +268,7 @@ Kit đã có chỗ nhận B-roll: thư mục `assets/broll/`, hàm `T.brollCard`
 
 ## 8. Những việc phải hỏi người dùng trước
 
-- Tạo clip AI số lượng lớn (tốn credit Flow/Muse) khi **kịch bản chưa được duyệt**.
+- Tạo clip AI số lượng lớn (tốn credit Flow/Muse hoặc lượt Gemini) khi **kịch bản chưa được duyệt**.
 - Tải tư liệu từ internet (nhắc kiểm tra bản quyền; ưu tiên Pexels/Pixabay/CC), tải hay cài công cụ ngoài (như CleanPlate).
 - Ghi đè bản nháp CapCut, xoá nhiều cảnh cùng lúc, **đổi giọng đọc**.
 - **Đẩy lên GitHub** (repo public) hoặc bất kỳ nơi nào bên ngoài.

@@ -1,6 +1,6 @@
 ---
 name: tao-asset
-description: Tạo nguyên liệu cho video đã được người dùng DUYỆT kịch bản - giọng đọc (Voice Studio), ảnh/video Flow (thao tác trực tiếp trên Brave), ảnh/video Muse (canvas, API). Chỉ chạy khi job.json có trang_thai "da-duyet-kich-ban". Không dựng video.
+description: Tạo nguyên liệu cho video đã được người dùng DUYỆT kịch bản - giọng đọc (Voice Studio), ảnh/video Flow và video Gemini (thao tác trực tiếp trên Brave), ảnh/video Muse (canvas, API). Chỉ chạy khi job.json có trang_thai "da-duyet-kich-ban". Không dựng video.
 tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 
@@ -11,15 +11,18 @@ Mở `output/<slug>/job.json`. Nếu `trang_thai` **không** phải `da-duyet-ki
 Đọc `fullstudio/HUONG-DAN-AI.md` mục 5, 6, 8 và `fullstudio/HE-THONG-TONG-HOP.md` mục 4, 5. Đọc `memory/loi-da-gap.md` của kit thể loại (bẫy khi tạo clip/giọng); gặp bẫy mới thì ghi vào đó.
 
 ## Kiểm tra dịch vụ trước khi gọi
-- Cảnh `flow`: `node canvas/desktop/flow-cli.js --status` (không cần mở canvas). Cảnh `muse`: canvas agent `127.0.0.1:17371` (`canvas_get_state` qua `edit/canvas-tools/cv.py`) và muse2api `127.0.0.1:18610`. Giọng: Voice Studio `localhost:3900`.
+- Cảnh `flow`: `node canvas/desktop/flow-cli.js --status` (không cần mở canvas). Cảnh `gemini`: `node canvas/desktop/gemini-driver.js --check` (không cần mở canvas). Cảnh `muse`: canvas agent `127.0.0.1:17371` (`canvas_get_state` qua `edit/canvas-tools/cv.py`) và muse2api `127.0.0.1:18610`. Giọng: Voice Studio `localhost:3900`.
 - `ConnectionRefused`: báo người dùng mở `full studido.exe` hoặc `canvas/app.bat`, đợi ~15 giây. Không tự cài, không tự đổi cấu hình.
 - Không đọc, in hay ghi token, API key, cookie. Không né captcha: gặp captcha thì dừng và nhờ người dùng.
 
 ## Việc của bạn
 1. **Giọng đọc** (nếu job có lời đọc): tạo bằng node âm thanh trên canvas, lời nhập thẳng vào ô soạn (không nối node văn bản). Dùng đúng giọng
    ghi trong `job.json`; **không đổi giọng**. Xuất file, cắt lặng đầu/cuối, whisper nghe lại lấy mốc từng chữ, chuẩn âm lượng. Sai chữ thì tạo lại tối đa 4 lần.
-2. **Clip/ảnh AI** theo `scenes[]` có nguồn `flow` hoặc `muse`:
-   - **Ảnh/video Flow**: tạo **trực tiếp trên Brave** theo `HUONG-DAN-AI.md` mục 6.1b (`node canvas/desktop/flow-cli.js`, mỗi profile là 1 tài khoản), từng clip một, lưu thẳng vào `output/<slug>/media/`; không cần bước 3.
+2. **Clip/ảnh AI** theo `scenes[]` có nguồn `flow`, `gemini` hoặc `muse`:
+   - **Ảnh/video Flow**: tạo **trực tiếp trên Brave** theo `HUONG-DAN-AI.md` mục 6.1b (`node canvas/desktop/flow-cli.js`, mỗi profile là 1 tài khoản), từng clip một; không cần bước 3.
+   - **Video Gemini**: tạo **trực tiếp trên Brave** theo mục 6.1d (`node canvas/desktop/gemini-driver.js --make-video --name <slug>_cNN`), từng clip một. Mỗi lần gửi tốn một lượt trong ngày: **lỗi thì không tự tạo lại**, lấy lại bằng `--fetch`.
+   - Flow và Gemini lưu vào thư mục xuất chung (`E:\XUAT-VIDEO\AI`): chép tệp cần dùng sang `output/<slug>/media/`.
+   - **Nhiều clip Flow/Gemini**: dùng `node canvas/desktop/ai-batch.js` (mục 6.1e), xử lý từng trạng thái `sua-prompt`, `bi-chan` đúng như mục đó.
    - **Ảnh/video Muse**: qua canvas (API muse2api), tạo **từng cái một**, tuần tự (mục 6.1c).
    - Dùng đúng prompt đã duyệt trong `job.json`; chỉ sửa prompt khi bị chặn (và ghi lại thay đổi).
    - **Flow báo lỗi thì không dừng**: `flow-cli.js` tự đóng Brave, mở lại, tạo lại (mục 6.1b). Đợi lệnh chạy xong. Cảnh vẫn lỗi sau các lần thử: ghi `asset.kiem = "loi"` kèm lý do, làm tiếp cảnh khác, báo ở cuối. Ghi các lần tạo lại vào `credit.so_lan_tao_lai`.

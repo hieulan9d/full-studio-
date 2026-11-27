@@ -6,8 +6,11 @@ const { ipcMain, dialog } = require("electron");
 const { spawn } = require("node:child_process");
 const fs = require("node:fs");
 const path = require("node:path");
+const { cleanTabs } = require("./clean-tabs");
 
-const DEBUG_PORT = 9333;
+const DEBUG_PORT = 9333; // tài khoản đầu; tài khoản thêm sau có cổng riêng (9340 trở đi) để mở nhiều cửa sổ cùng lúc
+const pinned = () => process.env.FLOW_ACCOUNT || ""; // chỉ dùng đúng một tài khoản (chạy song song)
+const debugPort = () => acct()?.port || DEBUG_PORT;
 const HOME = "https://flow.google.com/";
 const BROWSERS = [
   process.env.FLOW_BROWSER,
@@ -45,11 +48,28 @@ const loadConfig = () => {
   if (Array.isArray(raw.accounts) && raw.accounts.length) store = { accounts: raw.accounts, active: raw.active, minCredits: raw.minCredits };
   else store = { accounts: [{ id: "a1", name: "Tài khoản 1", profile: "flow-browser-profile", projectId: raw.projectId || "" }], active: "a1", minCredits: raw.minCredits }; // bản cũ: một tài khoản
   if (!acct() || acct().id !== store.active) store.active = store.accounts[0].id;
+  let next = Math.max(9339, ...store.accounts.map((a) => a.port || 0));
+  let added = false;
+  store.accounts.forEach((a, i) => { if (!a.port) { a.port = i === 0 ? DEBUG_PORT : ++next; added = true; } });
+  if (pinned()) {
+    const a = store.accounts.find((x) => [x.id, x.name, x.email].includes(pinned()));
+    if (!a) throw new Error("Không có tài khoản Flow: " + pinned());
+    store.active = a.id;
+  } else if (added && raw.accounts) saveConfig();
 };
-const saveConfig = () => { try { fs.writeFileSync(configPath, JSON.stringify(store, null, 2)); } catch {} };
+const saveConfig = () => {
+  try {
+    let out = store;
+    if (pinned()) { // nhiều tiến trình cùng ghi: chỉ cập nhật tài khoản của mình, giữ nguyên phần còn lại
+      const disk = JSON.parse(fs.readFileSync(configPath, "utf8"));
+      out = { ...disk, accounts: disk.accounts.map((a) => (a.id === store.active ? { ...a, ...acct() } : a)) };
+    }
+    fs.writeFileSync(configPath, JSON.stringify(out, null, 2));
+  } catch {}
+};
 
 async function debugAlive() {
-  try { const r = await fetch(`http://127.0.0.1:${DEBUG_PORT}/json/version`, { signal: AbortSignal.timeout(1500) }); return r.ok ? await r.json() : null; } catch { return null; }
+  try { const r = await fetch(`http://127.0.0.1:${debugPort()}/json/version`, { signal: AbortSignal.timeout(1500) }); return r.ok ? await r.json() : null; } catch { return null; }
 }
 
 // Trình duyệt do app mở là cửa sổ thật (profile riêng đã đăng nhập). Chế độ headless bị Flow từ chối nên không dùng mặc định.
@@ -57,6 +77,7 @@ let mode = null; // "headless" | "visible" | null (trình duyệt không do app 
 let browserAccount = null; // tài khoản của trình duyệt do app mở
 
 async function stopOwnBrowser() {
+  detachOtherAccount();
   // flow-cli.js: cửa sổ Flow có thể do lần chạy trước mở (chưa kết nối). Phải kết nối rồi đóng, kẻo đổi tài khoản mà vẫn dùng profile cũ.
   const info = !(browser && browser.connected) && (await debugAlive());
   if (info) {
@@ -81,23 +102,32 @@ async function launchBrowser(visible) {
   fs.mkdirSync(profile, { recursive: true });
   const start = config.projectId ? `${HOME}project/${config.projectId}` : HOME;
   child = spawn(exe, [
-    `--remote-debugging-port=${DEBUG_PORT}`, "--remote-debugging-address=127.0.0.1", `--user-data-dir=${profile}`,
+    `--remote-debugging-port=${debugPort()}`, "--remote-debugging-address=127.0.0.1", `--user-data-dir=${profile}`,
     "--no-first-run", "--no-default-browser-check", "--window-size=1280,860",
     "--disable-background-timer-throttling", "--disable-renderer-backgrounding", "--disable-backgrounding-occluded-windows", "--disable-features=CalculateNativeWinOcclusion",
     ...(visible ? [] : ["--headless=new", "--disable-gpu", "--mute-audio"]),
     start,
-  ], { detached: false, stdio: "ignore" });
+  ], { detached: visible, stdio: "ignore" }); // cửa sổ thật phải còn lại khi lệnh/app kết thúc
+  if (visible) child.unref();
   const me = child;
   me.on("exit", () => { if (child === me) { child = null; browser = null; mode = null; } });
   mode = visible ? "visible" : "headless";
   let info = null;
   for (let i = 0; i < 40 && !(info = await debugAlive()); i++) await sleep(500);
-  if (!info) throw new Error("Không mở được trình duyệt Flow (cổng debug " + DEBUG_PORT + ").");
+  if (!info) throw new Error("Không mở được trình duyệt Flow (cổng debug " + debugPort() + ").");
+  await cleanTabs(debugPort(), start);
   return info;
 }
 
+// đang nối với cửa sổ của tài khoản khác: chỉ ngắt, để cửa sổ đó mở
+function detachOtherAccount() {
+  if (!browserAccount || browserAccount === acct().id) return;
+  try { browser?.disconnect(); } catch {}
+  browser = null; child = null; mode = null; browserAccount = null;
+}
+
 async function ensureBrowser({ visible = true } = {}) {
-  if (child && browserAccount && browserAccount !== acct().id) await stopOwnBrowser(); // đã đổi tài khoản: mở trình duyệt với profile của tài khoản đó
+  detachOtherAccount();
   // Flow từ chối trình duyệt ẩn (coi là hoạt động bất thường) → luôn dùng cửa sổ thật; bạn có thể thu nhỏ nó.
   if (visible && mode === "headless") await stopOwnBrowser(); // đổi sang cửa sổ thật để đăng nhập
   if (browser && browser.connected) return browser;
@@ -106,6 +136,7 @@ async function ensureBrowser({ visible = true } = {}) {
   const mod = await import("puppeteer-core"); // ES Module: không dùng được require()
   const puppeteer = mod.default && mod.default.connect ? mod.default : mod;
   browser = await puppeteer.connect({ browserWSEndpoint: info.webSocketDebuggerUrl, defaultViewport: null });
+  browserAccount = acct().id;
   browser.on("disconnected", () => { browser = null; });
   // nhớ project ngay khi bạn mở một project trong cửa sổ Flow (không cần đợi lần tạo tiếp theo)
   browser.on("targetchanged", (t) => {
@@ -368,7 +399,7 @@ const minCredits = (kind) => ({ image: 50, video: 50, ...(store.minCredits || {}
 async function pickAccountWithCredits(job) {
   const need = minCredits(job.kind);
   const original = store.active;
-  const order = [original, ...store.accounts.map((a) => a.id).filter((id) => id !== original)];
+  const order = pinned() ? [original] : [original, ...store.accounts.map((a) => a.id).filter((id) => id !== original)];
   const notes = [];
   for (const id of order) {
     const a = store.accounts.find((x) => x.id === id);
@@ -402,17 +433,26 @@ function switchAccount(id) {
   });
 }
 
-// đọc điểm của mọi tài khoản đã có project (lần lượt đổi qua từng tài khoản), xong quay về tài khoản đang dùng
+// đọc điểm của mọi tài khoản (lần lượt đổi qua từng tài khoản), xong quay về tài khoản đang dùng.
+// Chưa có project vẫn đọc được điểm ở trang chủ Flow; thiếu gì thì báo ra, không im lặng bỏ qua.
 function refreshAllCredits() {
   return inQueue(async () => {
     const original = store.active;
+    const problems = [];
     for (const a of [...store.accounts]) {
-      if (!a.projectId) continue;
       if (a.id !== store.active) { store.active = a.id; await stopOwnBrowser(); }
-      try { await refreshCredits(await ensureProjectPage()); } catch (e) { console.log(`[flow] ${a.name}: ${e.message || e}`); }
+      try {
+        const page = a.projectId ? await ensureProjectPage() : await flowPage(true);
+        await page.bringToFront().catch(() => {});
+        let credits = null;
+        for (let i = 0; i < 4 && credits == null; i++) { await sleep(2500); credits = await refreshCredits(page); }
+        if (credits == null) problems.push(`${a.name}: không đọc được điểm. Đăng nhập Google trong cửa sổ Flow vừa mở rồi bấm lại.`);
+        else if (!config.projectId) problems.push(`${a.name}: đã đọc được ${credits} điểm nhưng chưa có project. Mở hoặc tạo một project trong cửa sổ Flow.`);
+      } catch (e) { problems.push(`${a.name}: ${e.message || e}`); }
     }
     if (store.active !== original) { store.active = original; saveConfig(); await stopOwnBrowser(); }
     onChange();
+    if (problems.length) throw new Error(problems.join(" | "));
   });
 }
 

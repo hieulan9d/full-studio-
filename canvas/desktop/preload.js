@@ -4,6 +4,17 @@ contextBridge.exposeInMainWorld("desktop", {
   getDataDir: () => ipcRenderer.invoke("desktop:get-data-dir"),
   chooseDataDir: () => ipcRenderer.invoke("desktop:choose-data-dir"),
   openDataDir: () => ipcRenderer.invoke("desktop:open-data-dir"),
+  saveOutput: (data, name, mime) => ipcRenderer.invoke("desktop:save-output", data, name, mime),
+  gemini: {
+    generateVideo: (job) => ipcRenderer.invoke("gemini:generateVideo", job),
+    accounts: () => ipcRenderer.invoke("gemini:accounts"),
+    check: () => ipcRenderer.invoke("gemini:check"),
+    add: () => ipcRenderer.invoke("gemini:add"),
+    open: (id) => ipcRenderer.invoke("gemini:open", id),
+    use: (id) => ipcRenderer.invoke("gemini:use", id),
+    rename: (id, name) => ipcRenderer.invoke("gemini:rename", id, name),
+    remove: (id) => ipcRenderer.invoke("gemini:remove", id),
+  },
   flow: {
     status: () => ipcRenderer.invoke("flow:status"),
     show: () => ipcRenderer.invoke("flow:show"),
