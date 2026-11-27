@@ -1,0 +1,99 @@
+{
+ "mau": "dai",
+ "video": "clip-nguoi-noi.mp4",
+ "words": "words.json",
+ "caption": {
+  "keywords": [
+   "sảy thai"
+  ],
+  "accent": "#fb7ba7"
+ },
+ "items": [
+  {
+   "type": "hook",
+   "t": 0.1,
+   "end": 1.6,
+   "pill": "HẰNG THU PHARMA",
+   "lines": [
+    "VÙNG NHẠY CẢM BÁO ĐỘNG",
+    "3 TÍN HIỆU ĐỪNG TỰ CHỊU!"
+   ]
+  },
+  {
+   "type": "steps",
+   "t": 1.7,
+   "end": 2.8,
+   "cards": [
+    {
+     "image": "broll/anh1.jpg",
+     "label": "01. TỰ CHỊU"
+    },
+    {
+     "image": "broll/anh1.jpg",
+     "label": "02. THĂM KHÁM"
+    },
+    {
+     "label": "03. CHĂM SÓC",
+     "sub": "Dịu nhẹ"
+    }
+   ]
+  },
+  {
+   "type": "split",
+   "t": 3.0,
+   "end": 5.2,
+   "image": "broll/anh1.jpg",
+   "tag": "TÍN HIỆU 1 & 2 • MẤT TỰ TIN",
+   "caption": "Ẩm ướt kéo dài • Có mùi khi ngồi gần!"
+  },
+  {
+   "type": "pair",
+   "t": 5.3,
+   "end": 6.2,
+   "pill": "CÔNG TẮC NUÔI CƠ",
+   "cards": [
+    {
+     "image": "broll/anh1.jpg",
+     "label": "NHỊN ĂN ĐẠM"
+    },
+    {
+     "image": "broll/anh1.jpg",
+     "label": "L-LEUCINE CAO"
+    }
+   ]
+  },
+  {
+   "type": "bigtitle",
+   "t": 6.3,
+   "end": 7.0,
+   "pill": "30 PHÚT VÀNG",
+   "text": "CÔNG TẮC NUÔI CƠ"
+  },
+  {
+   "type": "product",
+   "t": 7.1,
+   "end": 8.6,
+   "image": "broll/anh1.jpg",
+   "pill": "VIÊN ĐẶT PHỤ KHOA LT PLUS",
+   "info": {
+    "tag": "CHUẨN ĐỊNH LƯỢNG",
+    "title": [
+     "4 THẢO DƯỢC • LT PLUS",
+     "HẰNG THU"
+    ],
+    "sub": "Cân bằng pH"
+   }
+  },
+  {
+   "type": "cta",
+   "t": 8.7,
+   "end": 10,
+   "pill": "TƯ VẤN BẢO MẬT 100%",
+   "lines": [
+    "VIÊN ĐẶT PHỤ KHOA LT PLUS HẰNG THU",
+    "NHẮN RIÊNG CHỮ \"LT PLUS\" ĐỂ HẰNG HƯỚNG DẪN KÍN ĐÁO!"
+   ],
+   "disclaimer": "Hỗ trợ làm sạch, cân bằng pH. Đọc kỹ hướng dẫn sử dụng trước khi dùng."
+  }
+ ]
+}

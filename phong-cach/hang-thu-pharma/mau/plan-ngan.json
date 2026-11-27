@@ -1,0 +1,76 @@
+{
+ "mau": "ngan",
+ "video": "clip-nguoi-noi.mp4",
+ "words": "words.json",
+ "matte": "matte.mp4",
+ "caption": {
+  "keywords": [
+   "sảy thai",
+   "tuần"
+  ],
+  "accent": "#fde331"
+ },
+ "items": [
+  {
+   "type": "hook",
+   "t": 0,
+   "end": 2.8,
+   "lines": [
+    "BỊ SẢY THAI SỚM",
+    "CÓ ĐÁNG LO",
+    "HAY KHÔNG?"
+   ]
+  },
+  {
+   "type": "icons",
+   "t": 0.1,
+   "end": 2.8,
+   "icons": [
+    "🛡",
+    "🩺"
+   ]
+  },
+  {
+   "type": "card",
+   "t": 3.0,
+   "end": 5.0,
+   "side": "trai",
+   "image": "broll/anh1.jpg",
+   "tag": "DẤU HIỆU",
+   "title": "THEO DÕI SỚM",
+   "sub": "Đừng tự đoán"
+  },
+  {
+   "type": "title",
+   "t": 5.1,
+   "end": 6.6,
+   "lines": [
+    "KHÔNG PHẢI AI",
+    "CŨNG GIỐNG NHAU!"
+   ],
+   "number": "04"
+  },
+  {
+   "type": "card",
+   "t": 6.7,
+   "end": 10,
+   "side": "phai",
+   "tag": "NÊN LÀM",
+   "title": "ĐI KHÁM SỚM",
+   "sub": "Nói rõ tiền sử",
+   "color": "#14966e"
+  },
+  {
+   "type": "dark",
+   "t": 8.4,
+   "end": 10
+  },
+  {
+   "type": "zoom",
+   "t": 6.7,
+   "end": 10,
+   "from": 1.0,
+   "to": 1.08
+  }
+ ]
+}

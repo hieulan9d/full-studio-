@@ -1,0 +1,24 @@
+[  0.00 ->  10.06] Mình vừa mới hoàn thiện một mạch 10 kịch bản video social, 1 kịch bản video quảng cáo, thêm khung sườn bà giảng cho khóa học mới, cũng như nội dung chi tiết cho trang landing page
+[ 10.06 ->  15.30] Mà tất cả mình chỉ làm trong một phim chat duy nhất, không cần mở thêm bất cứ một cái tab nào khác
+[ 15.30 ->  20.00] Và cái mô đồ mà mình đang sử dụng là Google Gemini 4 Argon vừa mới ra mắt
+[ 20.00 ->  25.96] Thông thường khi mà làm dự án dài, mình sẽ viết những câu prompt dày và mang nhiều tập nghĩa
+[ 25.96 ->  29.80] Và AI nó sẽ thường xuyên gặp cái trường hợp là bị đầy bộ nhớ
+[ 29.80 ->  32.12] Và khi đó nó dẫn đến cái việc là xa lịch thông tin
+[ 32.12 ->  35.02] Nhưng khi sử dụng mô đồ Gemini 4 Agong
+[ 35.02 ->  37.94] Với cái giới hạn đầu ra lên tới 1 triệu token
+[ 37.94 ->  42.50] Và mình đã xử lý liên hoàn 4 cái hạn mục này ngay trong 1 cái luồng duy nhất
+[ 42.50 ->  46.28] Thì cái kịch bản mình viết ra nó sẽ luôn có 3 option hook
+[ 46.28 ->  48.58] Và nó sẽ có 1 cái kịch bản chi tiết
+[ 48.58 ->  52.94] Và sau cái kịch bản chi tiết này nó sẽ luôn đi kèm 1 cái bài viết ngắn gọn
+[ 52.94 ->  54.54] Để mà mình để dành đăng Facebook
+[ 54.54 ->  57.84] Thì từ kịch bản số 1 cho tới kịch bản số 10
+[ 57.84 ->  59.82] Nó vẫn luôn làm đúng như vậy
+[ 59.82 ->  63.28] Viết kịch bản xong thì mình hoàn toàn có thể lên lịch quay với lại Gemini
+[ 63.28 ->  65.50] Bằng cái tính năng Task in Gemini này
+[ 65.50 ->  67.60] Và bản trải nghiệm lần này là Pro
+[ 67.60 ->  71.58] Cho nên rất mong Google sẽ sớm có bản miễn phí để cho tất cả mọi người trải nghiệm thứ
+[ 71.58 ->  73.10] Và cách sử dụng rất là đơn giản ha
+[ 73.10 ->  76.56] Bạn chuyển từ cái cuộc trò chuyện sang cái phần Task, cái phần nhiệm vụ ở bên này
+[ 76.56 ->  79.06] Rồi sau đó là gõ một câu lệnh rất đơn giản
+[ 79.06 ->  81.94] Như mình là từ 10 cái kịch bản mà mình vừa mới viết xong
+[ 81.94 -> 100.64] Hãy subscribe cho kênh Ghiền Mì Gõ Để không bỏ lỡ những video hấp dẫn

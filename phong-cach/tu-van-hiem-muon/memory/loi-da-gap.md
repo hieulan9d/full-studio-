@@ -1,0 +1,18 @@
+# Lỗi đã gặp
+
+- Whisper trên GPU máy này thiếu `cublas64_12.dll`, phải chạy CPU (large-v3-turbo ~1 phút/video).
+- `refkit.py analyze` ghi ảnh bằng cv2: thư mục xuất phải là đường dẫn ASCII (đặt tên 01, 02…).
+- Whisper chép sai từ y khoa và bịa câu "subscribe kênh…" ở đuôi lặng.
+- Tài khoản Google thứ hai trong cùng profile có URL `/u/1/project/…`: `flow-driver.js` không nhận ra và sẽ nhảy về project của tài khoản cũ. Dùng script bám đúng tab đang mở (lái `flow-page-driver.js` qua cổng 9333).
+- Omni 12 s hay đọc lặp cụm cuối hoặc chế thêm lời khi câu thoại ngắn: lấy mốc từ rồi cắt đuôi.
+- Khung người dẫn lệch nhau giữa các clip: căn theo đỉnh đầu từ matte, mép bàn đặt tay cho từng clip.
+- Tải ảnh Flow có lần lấy nhầm ảnh tham chiếu thay vì ảnh mới: luôn xem lưới ảnh nền trước khi dựng.
+- Câu "Không để ý, bạn dễ lỡ…" bị đọc thành "không dễ lỡ" (ngược nghĩa): tránh câu mở bằng "Không…", luôn nghe lại bằng whisper.
+- Chữ "friendly" trong prompt giải phẫu làm tử cung có mặt hoạt hình: ghi "without any face or eyes".
+- Câu thoại dưới ~30 âm tiết cho clip 12 s thì Flow chế thêm lời vô nghĩa (v02 clip 2, 3, 4), phải cắt và mất minh hoạ nửa sau. Viết 35–40 âm tiết mỗi clip, hoặc tạo clip 8–10 s cho câu ngắn.
+- 2026-11-26: chạy hàng loạt (~15 clip liên tục) Flow báo "hoạt động bất thường". Dừng ngay, không tự thử lại, không tìm cách né; hỏi người dùng. `day_chuyen.py` đã sửa để dừng ngay khi gặp cảnh báo.
+- 2026-11-26: nghỉ rồi chạy lại đợt 3 video, Flow báo "hoạt động bất thường" ngay ở video đầu (clip 4). Không chạy tự động tiếp trên tài khoản này; chuyển sang người dùng tạo tay (`day_chuyen.py --tay`).
+- 2026-11-26: đã đưa người dùng prompt 06/clip5 tự viết theo trí nhớ (không đọc prompts.md vì dòng dài bị lược), lời khác kịch bản duyệt, người dùng tốn điểm tạo. Luôn đọc đúng dòng trong prompts.md trước khi dán prompt.
+- 2026-11-26: `flow-cli.js` không dùng tab người dùng đang mở nếu tab là `/u/1/…`: nó vào project đã lưu của tài khoản khác. Tạo lô thì dùng `output/hiem-muon-lo/tao_flow.py` (gọi `flowgen.js`, bám tab đang mở; sửa `PID` theo project).
+- 2026-11-26: tạo tự động liên tục, 24 clip xong thì clip thứ 25 (11/clip5) Flow báo "hoạt động bất thường" (tài khoản Ultra người dùng mở). Script dừng ngay, không thử lại.
+- 2026-11-26: hình lịch trong clip vẫn có số dù prompt dặn không số, số có chỗ sai (vd "34") và không khớp ngày trong lời. Cần lịch không số thì phải ghi rõ "blank calendar pages".

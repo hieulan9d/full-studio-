@@ -23,7 +23,9 @@ Hiện có **hai loại video** (mỗi loại một kit kiến thức riêng, sa
 | **Talking head dọc** | Người nói trước camera, 1080×1920 (TikTok/Reels/Shorts), phụ đề từng từ, chữ sau lưng người, B-roll | `phong-cach/talking-head/` |
 | **UGC AI một cú máy** (thời trang/sản phẩm, người mẫu AI nói, camera cố định, không chữ) — **thể loại thử, đã chạy thật 1 lần (2026-11-15)**; bẫy Flow chặn chữ tuổi/giới tính ở mục 6b của kit | `phong-cach/ugc-ai-thoi-trang/` (`PHONG-CACH.md`, `ref-notes.md`) |
 
+| **Bán hàng phòng khám Việt Hàn / Thiện Trang** (người dẫn thật + B-roll thật + chữ pill, khung xanh thương hiệu) — rút từ 9 video của khách 2026-11-19, **chưa dựng thử** | `phong-cach/viet-han/` (`PHONG-CACH.md`, `phan-tich/`) |
 
+| **Tư vấn hiếm muộn** (một người dẫn nói suốt video + nền đồ hoạ y khoa đổi theo ý) — rút từ 20 video mẫu 2026-11-26, **chưa dựng thử** | `phong-cach/tu-van-hiem-muon/` (`PHONG-CACH.md`, `ref-notes.md`, `memory/`) |
 
 Hai kit **khác nhau, đừng nhầm**. Chúng dùng chung thư viện `saas-lib.jsx` nhưng luật, hiệu ứng và quy trình khác nhau.
 

@@ -1,0 +1,423 @@
+<template>
+  <!--
+    HyperFrames Scene Template: Commercial End-Card Hero Lockup ("Thơm Xinh Cứ Bling!" Standard)
+    Complies 100% with HyperFrames 12-Rule Render Contract:
+    - Root styled via #root, inset: 0
+    - Every timed element has class="clip", data-start, data-duration, stable id
+    - Motion applied to inner children, never directly transforming .clip
+    - Deterministic seeded sparkle positions & finite GSAP timeline tweens (no Math.random, no repeat: -1)
+  -->
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Playfair Display", Georgia, serif;
+    }
+
+    .ec-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 38% 36%, #ffe2ee 0%, #f99ac1 36%, #e7468f 72%, #cb1c6d 100%);
+    }
+
+    /* Upper-Left Corporate Endorsement Ribbon (UL Standard) */
+    .ec-ul-clip {
+      position: absolute;
+      left: 3.4%;
+      top: 8.2%;
+      width: 5.4%;
+      aspect-ratio: 1 / 1;
+      z-index: 6;
+    }
+
+    .ec-ul-card {
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      box-shadow: 0 8px 22px rgba(120, 12, 62, 0.18);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10%;
+      box-sizing: border-box;
+    }
+
+    .ec-ul-mark {
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: 28px;
+      line-height: 1;
+      color: #163396;
+      letter-spacing: -0.03em;
+    }
+
+    .ec-ul-name {
+      margin-top: 4px;
+      font-family: "Inter", sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      color: #163396;
+    }
+
+    /* Left 48%: Product Packshot & Ambassador Stage */
+    .ec-hero-clip {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 56%;
+      height: 94%;
+      z-index: 3;
+    }
+
+    .ec-hero-stage {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .ec-packshot-wrap {
+      position: absolute;
+      left: 10%;
+      top: 6%;
+      width: 48%;
+      transform-origin: 50% 60%;
+    }
+
+    .ec-packshot-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+    }
+
+    /* Right 52%: Brand Logo + 2-Line Luxury Bling Lockup */
+    .ec-lockup-clip {
+      position: absolute;
+      right: 4.2%;
+      top: 9%;
+      width: 42%;
+      height: 58%;
+      z-index: 5;
+    }
+
+    .ec-lockup-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .ec-brand-pill {
+      display: inline-block;
+      padding: 10px 28px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: #0b2d78;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 800;
+      font-size: 46px;
+      letter-spacing: -0.02em;
+      box-shadow: 0 10px 24px rgba(132, 14, 68, 0.22);
+      margin-bottom: 18px;
+    }
+
+    .ec-slogan-line1 {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 700;
+      font-size: 74px;
+      line-height: 1.02;
+      color: #ffffff;
+      letter-spacing: -0.015em;
+      text-shadow: 0 5px 16px rgba(136, 12, 66, 0.42);
+    }
+
+    .ec-slogan-row2 {
+      position: relative;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-top: -4px;
+    }
+
+    .ec-slogan-prefix {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 700;
+      font-size: 64px;
+      color: #ffffff;
+      text-shadow: 0 5px 14px rgba(136, 12, 66, 0.42);
+    }
+
+    /* 3D Metallic Gold Glitter Word ("Bling!") */
+    .ec-bling-stack {
+      position: relative;
+      display: inline-block;
+      padding: 0 10px 16px 4px;
+    }
+
+    .ec-bling-extrude {
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 800;
+      font-size: 124px;
+      line-height: 1;
+      color: #8f5814;
+      text-shadow:
+        0 2px 0 #7c4a0d,
+        0 4px 0 #683c08,
+        0 7px 0 #522d04,
+        0 12px 22px rgba(102, 8, 48, 0.55);
+      user-select: none;
+    }
+
+    .ec-bling-gold {
+      position: absolute;
+      left: 4px;
+      top: 0;
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 800;
+      font-size: 124px;
+      line-height: 1;
+      background-image:
+        linear-gradient(
+          115deg,
+          rgba(255, 255, 255, 0) 32%,
+          rgba(255, 255, 255, 0.96) 49%,
+          rgba(255, 250, 220, 0.92) 52%,
+          rgba(255, 255, 255, 0) 68%
+        ),
+        linear-gradient(
+          180deg,
+          #fff9de 0%,
+          #f6cf73 26%,
+          #d8962e 52%,
+          #ffeba8 76%,
+          #b87418 100%
+        );
+      background-size: 240% 100%, 100% 100%;
+      background-position: -130% 0, 0 0;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(255, 246, 208, 0.88);
+    }
+
+    /* 4-Point Bling Star Sparkles */
+    .ec-star {
+      position: absolute;
+      width: 44px;
+      height: 44px;
+      pointer-events: none;
+    }
+
+    /* Endorser Signature + Title */
+    .ec-sig-clip {
+      position: absolute;
+      right: 5.5%;
+      bottom: 12.5%;
+      width: 26%;
+      z-index: 5;
+    }
+
+    .ec-sig-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .ec-sig-svg {
+      width: 240px;
+      height: 68px;
+      overflow: visible;
+    }
+
+    .ec-sig-path {
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 3.2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .ec-sig-role {
+      margin-top: 2px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 400;
+      font-size: 26px;
+      color: #ffffff;
+      letter-spacing: 0.015em;
+      text-shadow: 0 2px 10px rgba(120, 10, 58, 0.35);
+    }
+
+    /* Regulatory / Legal Disclaimer Super */
+    .ec-legal-clip {
+      position: absolute;
+      right: 3.4%;
+      bottom: 3.0%;
+      width: 44%;
+      z-index: 5;
+    }
+
+    .ec-legal-text {
+      font-family: "Inter", sans-serif;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 1.3;
+      color: rgba(255, 255, 255, 0.88);
+      text-align: right;
+    }
+  </style>
+
+  <div id="root" data-composition-id="endcard" data-width="1920" data-height="1080">
+    <div class="ec-bg"></div>
+
+    <!-- Top-Left Corporate UL Ribbon -->
+    <div id="ec-ul" class="clip ec-ul-clip" data-start="0.48" data-duration="2.50" data-track-index="4">
+      <div id="ec-ul-card" class="ec-ul-card">
+        <div id="ec-ul-mark" class="ec-ul-mark">U</div>
+        <div id="ec-ul-name" class="ec-ul-name" data-var-text="corp_name">BrandCorp</div>
+      </div>
+    </div>
+
+    <!-- Left Hero Packshot Stage -->
+    <div id="ec-hero" class="clip ec-hero-clip" data-start="0" data-duration="2.98" data-track-index="1">
+      <div id="ec-hero-stage" class="ec-hero-stage">
+        <div id="ec-packshot" class="ec-packshot-wrap">
+          <img
+            id="ec-packshot-img"
+            class="ec-packshot-img"
+            src="assets/packshot.png"
+            data-var-src="packshot_src"
+            alt=""
+          />
+          <svg id="ec-star-pack" class="ec-star" style="right: -12px; top: 14%;" viewBox="0 0 64 64">
+            <path fill="#FFF6CC" d="M32 0 L37 25 L64 32 L37 39 L32 64 L27 39 L0 32 L27 25 Z" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Brand Lockup & 3D Gold Bling Slogan -->
+    <div id="ec-lockup" class="clip ec-lockup-clip" data-start="0.06" data-duration="2.92" data-track-index="2">
+      <div id="ec-lockup-inner" class="ec-lockup-inner">
+        <div id="ec-brand-logo" class="ec-brand-pill" data-var-text="brand_name">BRAND</div>
+        <div id="ec-line1" class="ec-slogan-line1" data-var-text="slogan_lead">Thơm xinh</div>
+        <div class="ec-slogan-row2">
+          <span id="ec-prefix" class="ec-slogan-prefix" data-var-text="slogan_prefix">cứ</span>
+          <span class="ec-bling-stack" data-layout-allow-overlap data-layout-allow-overflow>
+            <span class="ec-bling-extrude" data-var-text="slogan_bling">Bling!</span>
+            <span id="ec-bling-gold" class="ec-bling-gold" data-var-text="slogan_bling">Bling!</span>
+            <svg id="ec-star-left" class="ec-star" style="left: -26px; bottom: 18px;" viewBox="0 0 64 64">
+              <path fill="#FFEFA6" d="M32 0 L36 26 L64 32 L36 38 L32 64 L28 38 L0 32 L28 26 Z" />
+            </svg>
+            <svg id="ec-star-right" class="ec-star" style="right: -18px; bottom: 26px;" viewBox="0 0 64 64">
+              <path fill="#FFF8D9" d="M32 0 L36 26 L64 32 L36 38 L32 64 L28 38 L0 32 L28 26 Z" />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Endorser Signature Write-On & Role -->
+    <div id="ec-sig" class="clip ec-sig-clip" data-start="0.16" data-duration="2.82" data-track-index="3">
+      <div class="ec-sig-inner">
+        <svg class="ec-sig-svg" viewBox="0 0 280 76">
+          <path
+            id="ec-sig-path"
+            class="ec-sig-path"
+            d="M18 46 C42 18, 68 16, 54 48 C48 60, 74 34, 92 38 C104 40, 112 50, 126 36 C142 20, 152 48, 168 42 C188 34, 212 16, 202 48 C196 64, 232 34, 258 28"
+          />
+        </svg>
+        <div id="ec-sig-role" class="ec-sig-role" data-var-text="endorser_role">Brand Ambassador</div>
+      </div>
+    </div>
+
+    <!-- Legal Disclaimer -->
+    <div id="ec-legal" class="clip ec-legal-clip" data-start="0" data-duration="2.98" data-track-index="5" data-layout-allow-caption-zone>
+      <div class="ec-legal-text" data-var-text="legal_text">
+        Sản phẩm chính hãng đã được kiểm định chất lượng. Đọc kỹ hướng dẫn sử dụng trước khi dùng.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tl = gsap.timeline({ paused: true });
+
+    // 1. Hero Packshot energetic lift + tilt settle (-28deg commercial angle)
+    tl.fromTo(
+      "#ec-packshot",
+      { y: 60, scale: 0.86, rotation: -36, opacity: 0 },
+      { y: 0, scale: 1, rotation: -26, opacity: 1, duration: 0.42, ease: "back.out(1.35)" },
+      0.02,
+    );
+
+    // 2. Brand Logo + Headline blur-in arrival -> holds dead still after 0.30s
+    tl.fromTo(
+      "#ec-lockup-inner",
+      { opacity: 0, scale: 0.94, filter: "blur(8px)" },
+      { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.24, ease: "power4.out" },
+      0.08,
+    );
+
+    // 3. Specular Gold Light Sweep across "Bling!"
+    tl.fromTo(
+      "#ec-bling-gold",
+      { backgroundPosition: "-130% 0, 0 0" },
+      { backgroundPosition: "210% 0, 0 0", duration: 0.62, ease: "power2.inOut" },
+      0.24,
+    );
+
+    // 4. Deterministic 4-Point Bling Stars staggered pop & spin
+    const stars = [
+      { sel: "#ec-star-left", t: 0.28 },
+      { sel: "#ec-star-right", t: 0.38 },
+      { sel: "#ec-star-pack", t: 0.46 },
+    ];
+    stars.forEach((s) => {
+      tl.fromTo(
+        s.sel,
+        { scale: 0, rotation: -25, opacity: 0 },
+        { scale: 1.18, rotation: 20, opacity: 1, duration: 0.22, ease: "back.out(2.0)" },
+        s.t,
+      ).to(
+        s.sel,
+        { scale: 0.88, rotation: 45, opacity: 0.92, duration: 0.36, ease: "sine.inOut" },
+        s.t + 0.22,
+      );
+    });
+
+    // 5. Handwritten SVG Signature stroke-dashoffset write-on
+    const sigPath = document.querySelector("#ec-sig-path");
+    const sigLen = sigPath ? sigPath.getTotalLength() : 420;
+    tl.fromTo(
+      "#ec-sig-path",
+      { strokeDasharray: sigLen, strokeDashoffset: sigLen },
+      { strokeDashoffset: 0, duration: 0.64, ease: "power2.out" },
+      0.16,
+    );
+    tl.fromTo(
+      "#ec-sig-role",
+      { opacity: 0, y: 6, filter: "blur(4px)" },
+      { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.24, ease: "power3.out" },
+      0.46,
+    );
+
+    // 6. Top-Left Corporate UL Ribbon Drop & Mark Reveal
+    tl.fromTo(
+      "#ec-ul-card",
+      { clipPath: "inset(0% 0% 100% 0%)" },
+      { clipPath: "inset(0% 0% 0% 0%)", duration: 0.20, ease: "power3.out" },
+      0.48,
+    );
+    tl.fromTo(
+      ["#ec-ul-mark", "#ec-ul-name"],
+      { opacity: 0, scale: 0.72, filter: "blur(4px)" },
+      { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.28, stagger: 0.06, ease: "expo.out" },
+      0.60,
+    );
+
+    window.__timelines["endcard"] = tl;
+  </script>
+</template>

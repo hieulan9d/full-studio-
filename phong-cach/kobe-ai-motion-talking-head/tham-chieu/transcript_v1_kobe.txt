@@ -1,0 +1,75 @@
+[  0.00 ->   6.82] Muốn dùng AI để làm ra video talking head mượt mà như thế này, nhưng mà bạn lại ngán cái giao diện nhìn không khác gì cái phần mềm code
+[  6.82 ->  11.70] Hay bạn đang sợ là video AI của bạn đang là một cái bản sao công nghiệp đại gia
+[ 11.70 ->  18.74] Xem hết cái video chưa tới 2 phút này để mình chỉ cho các bạn cái cách để có thể đơn giản hóa AI với cái kết quả khác biệt hoàn toàn
+[ 18.74 ->  23.16] Đa số người mới làm video AI mình thấy là đang bị kẹt ở 2 cái bẫy rất lớn này
+[ 23.16 ->  25.18] Một là bị thuốc bởi cái sự phức tạp
+[ 25.18 ->  27.24] Nào là phải cài AI agent
+[ 27.24 ->  28.84] Nào là phải cài API
+[ 28.84 ->  30.96] Rồi phải chọn đúng cái model này
+[ 30.96 ->  31.94] Đúng cái section này
+[ 31.94 ->  33.12] Đúng cái code này
+[ 33.12 ->  34.32] Thì nó mới hoạt động được
+[ 34.32 ->  35.98] Nói chung là đủ thứ rắc rối
+[ 35.98 ->  37.82] Mà thật sự ra thì nó không cần thiết
+[ 37.82 ->  38.80] Cái bảy thứ 2
+[ 38.80 ->  41.04] Đó chính là mua skill được đóng gói
+[ 41.04 ->  44.24] Từ những người không hề có cái nghề dẫn video
+[ 44.24 ->  45.54] Và khi mà bạn mua vào
+[ 45.54 ->  46.40] Bạn nghe theo
+[ 46.40 ->  48.12] Ném cái video vô cho AI
+[ 48.12 ->  50.30] Và chỉ gõ một cái dòng lệnh duy nhất là
+[ 50.30 ->  52.12] Hãy edit cái video này cho tao
+[ 52.12 ->  57.30] Thì kết quả video cho ra được chắc chắn là vô cùng mờ nhạt và thậm chí là vô hồn
+[ 57.30 ->  62.36] Và chưa kể là nếu 1.000 người mà mua chung 1 cái skill thì nó sẽ để ra 1.000 cái video giống hệt nhau
+[ 62.36 ->  66.96] Cái skill edit video đối với mình nó giống như là cái kỹ xảo trong phim điện ảnh vậy đó
+[ 66.96 ->  71.68] Bạn sẽ thấy có rất nhiều bộ phim mà kỹ xảo vô cùng đắt tiền, diễn viên vô cùng nổi tiếng
+[ 71.68 ->  75.10] Nhưng nếu như mà cái người đạo diễn đó dở, cái kịch bản đó dở
+[ 75.10 ->  77.64] Thì cái bộ phim làm ra chắc chắn cũng sẽ dở
+[ 77.64 ->  80.52] Và việc dùng AI để edit nó cũng như vậy
+[ 80.52 ->  82.36] Cùng là một cái tài khoản claw
+[ 82.36 ->  83.82] 20 đô một tháng
+[ 83.82 ->  85.86] Tại sao cái skill edit video của mình
+[ 85.86 ->  88.28] Nó lại có những cái motion nó hấp dẫn hơn
+[ 88.28 ->  91.40] Nó khác biệt hơn so với những cái skill edit video khác
+[ 92.42 ->  94.04] Và toàn bộ sự khác biệt đó
+[ 94.04 ->  95.24] Mình sẽ chia sẻ trong khóa
+[ 95.24 ->  96.24] The Simple AI
+[ 96.24 ->  98.38] Video Edit Mastery by Kobe
+[ 98.38 -> 100.00] Thứ nhất là bạn sẽ được nhận ngay
+[100.00 -> 101.56] Bộ skill Kobe Media Motion
+[101.56 -> 103.94] Được mình huấn luyện từ những cái dự án thực tế
+[103.94 -> 104.66] Đã thành công
+[104.66 -> 106.64] Và chỉ cần 15 phút thực hành
+[106.64 -> 108.98] Là bạn sẽ xuất bản được ngay sản phẩm đầu tay
+[108.98 -> 109.78] Và chắc chắn rồi
+[109.78 -> 111.48] Mình không muốn các bạn là dần ở cái việc
+[111.48 -> 113.82] Là chỉ gõ một cái lệnh xong ra cái video
+[113.82 -> 115.88] Như vậy thì nếu mà 1.000 bạn
+[115.88 -> 117.62] Làm giống nhau thì y chang hồi nãy mình nói
+[117.62 -> 118.50] Rất là chán
+[118.50 -> 121.10] Cho nên chúng ta sẽ có thêm 2 bài học nền tảng
+[121.10 -> 122.60] Về edit và làm animation
+[122.60 -> 125.26] Ký thức này được mình đúc kết sau 6 năm làm editor
+[125.26 -> 126.80] Cũng như là content creator
+[126.80 -> 128.52] Và những cái sản phẩm video trước đó
+[128.52 -> 130.62] Các bạn có thể check ở trên kênh Kobe Media
+[130.62 -> 133.10] Sau cái bài học này các bạn sẽ nắm rõ được
+[133.10 -> 134.88] Cái cấu trúc của một cái video viral
+[134.88 -> 136.66] Một cái video hiệu quả là như thế nào
+[136.66 -> 139.44] Và đặc biệt là khả năng có thể tự nhạy số
+[139.44 -> 142.50] Tự hình tượng hóa từ cái kịch bản chữ Thorap
+[142.50 -> 144.76] Trở thành một cái animation sóng động
+[144.76 -> 145.80] Bonus số 3
+[145.80 -> 148.52] Đó chính là cá nhân hóa DNA độc bản
+[148.52 -> 151.10] Mình sẽ hướng dẫn cho các bạn là từ cái skill gốc
+[151.10 -> 154.52] Chúng ta sẽ thay đổi về cái bộ nhận diện màu sắc như thế nào
+[154.52 -> 156.52] Phong chữ element biến hóa ra sao
+[156.52 -> 160.38] Để nó trở thành của riêng bạn mà không cần biết bất cứ một cái dòng code nào
+[160.38 -> 163.52] Và yếu tố số 4 đó chính là sửa lỗi bằng mindset của editor
+[163.52 -> 167.58] Bình thường mọi người nhìn vô video AI thấy biến bùm bùm chéo chéo là tưởng nó đẹp
+[167.58 -> 171.64] Chứ thật ra là mọi người cũng sẽ ít khi để ý là nó đang bị sai ở chỗ nào
+[171.64 -> 175.80] Nên là mình sẽ trể cho các bạn cái cách để có thể nhìn thấu ra được cái lỗi sai đó
+[175.80 -> 179.34] Và huấn luyện AI sửa lại chỉ bằng những cái câu tiếng Việt đơn giản nhất
+[179.34 -> 180.70] Bấm ngay đăng ký ở phía bên dưới
+[180.70 -> 182.92] Và hẹn gặp lại các bạn trong bài học đầu tiên nha
+[182.92 -> 183.70] Peace out

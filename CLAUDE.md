@@ -55,4 +55,16 @@ Tool Edit là phần mềm dựng kiểu CapCut chạy bằng GPU, có MCP `tool
 - **Sửa/xây thêm chức năng cho phần mềm**: đọc `tool-edit/HUONG-DAN-AI.md`, rồi `KE-HOACH.md`, `CHUC-NANG.md`, `NHAT-KY.md`.
 - **Làm xong chức năng nào phải cập nhật CẢ BA**: `CHUC-NANG.md`, `NHAT-KY.md` và `tool-edit/HUONG-DAN-SU-DUNG-AI.md` (mục tool/luật/hạn chế + dòng "Cập nhật gần nhất"). Đừng nhầm với việc dựng video bằng After Effects.
 
+## Video bán hàng phòng khám Việt Hàn (KIH) / Thiện Trang
+Khi người dùng muốn video bán hàng/ưu đãi gói khám cho Việt Hàn hoặc Thiện Trang (người dẫn thật + B-roll quay thật + chữ pill vàng,
+khung xanh có tab logo và thanh hotline): đọc `phong-cach/viet-han/PHONG-CACH.md` (rút từ 9 video thật; số đo ở `phan-tich/`). Chưa dựng thử.
+
+## Video tư vấn hiếm muộn (một người dẫn + nền đồ hoạ y khoa động)
+Khi người dùng muốn reel dọc một người tư vấn nói suốt video, nền sau lưng đổi theo từng ý, thẻ hook trắng chữ đỏ, phụ đề
+từ đang đọc màu xanh: **dùng skill `video-tu-van-hiem-muon`** (`.claude/skills/video-tu-van-hiem-muon/`), rồi đọc `phong-cach/tu-van-hiem-muon/` (`memory/`, `PHONG-CACH.md`, `ref-notes.md`). Rút từ 20 video mẫu, đã dựng 16 video (2026-11-26).
+
+## Video Hằng Thu Pharma (HTPM) / An Vượng
+Khi người dùng muốn dựng video giống loạt thành phẩm HTPM (hỏi đáp ngắn 12–15 s, hoặc giới thiệu sản phẩm 38–54 s):
+đọc `phong-cach/hang-thu-pharma/` (`memory/`, `PHONG-CACH.md`, `AGENTS.md`). Rút từ 28 video ngày 26.11; công cụ `tools/dung.py` mới dựng thử.
+
 Trả lời bằng tiếng Việt.
