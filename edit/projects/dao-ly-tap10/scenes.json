@@ -1,0 +1,81 @@
+{
+ "scenes": [
+  {
+   "id": "c01",
+   "clip_s": 8,
+   "voice": "Ăn gì cũng ảnh hưởng đến tuổi thọ, nhưng không cần đổi hết một lúc. Sáu thay đổi nhỏ trên bàn ăn, liên quan đến nguy cơ mất mạng thấp hơn. Một: Bỏ đồ uống có đường.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, sitting at a kitchen table pushing away a tall glass of sweet soda, a glass of clear water in front, morning light. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the character slides the soda glass away and lifts the water glass, light steady"
+  },
+  {
+   "id": "c02",
+   "clip_s": 8,
+   "voice": "Ở Mỹ, người uống từ hai phần đồ uống có đường mỗi ngày có nguy cơ mất mạng cao hơn khoảng hai mươi phần trăm so với gần như không uống. Uống một đến hai phần, cao hơn khoảng mười phần trăm.",
+   "image_prompt": "A tall glass of dark soda with many sugar cubes piled beside it on a table, a tear-off calendar page behind, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the sugar cubes slowly dissolve at the base of the glass, bubbles rise"
+  },
+  {
+   "id": "c03",
+   "clip_s": 8,
+   "voice": "Chuyển sang loại không đường chưa phải lời giải. Hãy giảm dần độ ngọt của trà, cà phê, nước giải khát, và ưu tiên nước lọc.",
+   "image_prompt": "A glass of clear water and a cup of unsweetened tea on a wooden table beside a small teapot, soft window light, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "steam rises from the tea, light shifts slowly across the glass"
+  },
+  {
+   "id": "c04",
+   "clip_s": 8,
+   "voice": "Hai: Ăn ít thịt chế biến như xúc xích, giăm bông, thịt xông khói, thịt hộp. Người ăn nhiều nhất có nguy cơ cao hơn khoảng hai mươi phần trăm. Mỗi phần thêm mỗi ngày cũng tăng khoảng hai mươi phần trăm.",
+   "image_prompt": "A plate of sausages and ham slices with a small tin can beside it on a kitchen table, dim lamp light, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "a thin wisp of steam rises from the plate, the lamp flickers softly"
+  },
+  {
+   "id": "c05",
+   "clip_s": 8,
+   "voice": "Hãy bắt đầu bằng việc giảm số lần ăn, không cần bỏ hẳn món mình thích.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, at a Vietnamese kitchen counter choosing a fresh fish from a basket while a package of sausages is pushed aside, calm and practical. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the character lifts the fish and nods, the sausage package slides aside"
+  },
+  {
+   "id": "c06",
+   "clip_s": 8,
+   "voice": "Ba: Bớt thực phẩm siêu chế biến như khoai lát, mì ăn liền, bánh ngọt. Nhóm ăn nhiều nhất có nguy cơ cao hơn khoảng hai mươi phần trăm, nhưng độ chắc chắn còn thấp.",
+   "image_prompt": "A shelf stacked with instant noodle packs, chip bags and boxed cakes in a dim kitchen, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the dim light flickers across the packages, dust drifts in the beam"
+  },
+  {
+   "id": "c07",
+   "clip_s": 8,
+   "voice": "Hãy bắt đầu từ việc giảm nước ngọt và thịt chế biến, rồi xem thành phần và khẩu phần của món bạn hay dùng.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, reading the back of a food package held close in a market aisle, thoughtful. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the character tilts the package and leans closer, the market light steady"
+  },
+  {
+   "id": "c08",
+   "clip_s": 8,
+   "voice": "Bốn: Mỗi ngày một nắm nhỏ các loại hạt, khoảng hai mươi tám gam. Người thường ăn hạt có nguy cơ thấp hơn khoảng hai mươi phần trăm. Hãy chia sẵn một phần nhỏ, và đừng dùng nếu bạn dị ứng.",
+   "image_prompt": "A small bowl of mixed nuts on a wooden table beside a cup of tea, soft morning light, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the morning light moves across the bowl, steam rises from the tea"
+  },
+  {
+   "id": "c09",
+   "clip_s": 8,
+   "voice": "Năm: Thay một phần gạo trắng bằng ngũ cốc nguyên hạt. Thêm khoảng chín mươi gam mỗi ngày, nguy cơ thấp hơn mười bảy phần trăm. Bạn có thể trộn gạo lứt với gạo trắng.",
+   "image_prompt": "A bowl of brown rice mixed with white rice and a wooden spoon, steam rising, a Vietnamese kitchen table, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "steam rises slowly from the rice bowl, the light shifts gently"
+  },
+  {
+   "id": "c10",
+   "clip_s": 8,
+   "voice": "Sáu: Ăn đủ rau và trái cây, khoảng bốn trăm gam mỗi ngày. Mỗi thêm hai trăm gam, nguy cơ thấp hơn khoảng mười phần trăm. Đừng thay toàn bộ bằng nước ép.",
+   "image_prompt": "A basket overflowing with colorful vegetables and fruits on a market table, morning light, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the leaves sway slightly, the morning light grows brighter across the basket"
+  },
+  {
+   "id": "c11",
+   "clip_s": 8,
+   "voice": "Sáu thay đổi nhỏ, không cần làm cùng lúc. Chọn một thay đổi, và bắt đầu từ bữa ăn hôm nay.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, sitting at a dining table with a balanced meal in front, morning light through the window, calm and content. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the character lifts a spoon slowly and smiles, steam rises from the dishes"
+  }
+ ]
+}

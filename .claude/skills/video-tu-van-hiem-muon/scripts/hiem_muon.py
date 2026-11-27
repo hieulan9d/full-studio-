@@ -4,17 +4,22 @@
   python -X utf8 -B hiem_muon.py <du_an> prompt               viet tao-tay/prompts.html + prompts.md cho video chua dung
   python -X utf8 -B hiem_muon.py <du_an> nhap [N] [project]   tai N video moi nhat trong project Flow dang mo, xep theo loi, dung video du clip
   python -X utf8 -B hiem_muon.py <du_an> dung [id...]         dung tu <du_an>/<id>/clip1..N.mp4 co san
-<du_an> chua kich_ban.py: VIDEOS = {"01": {"ten", "hook": [3 dong], "clips": [(loi, canh_dau, canh_sau), ...]}}"""
+<du_an> chua kich_ban.py: VIDEOS = {"01": {"ten", "hook": [3 dong], "clips": [(loi, canh_dau, canh_sau), ...]}}
+va tuy chon DO_HOA = {"01": {...}} (the, chu chot, o hinh: xem dau tep do_hoa.py)."""
 import difflib, glob, html, importlib.util, json, os, re, shutil, subprocess, sys, tempfile
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import do_hoa as dh
+import hieu_ung as hu
 
 ROOT = os.path.abspath(os.path.dirname(__file__) + "/../../../..").replace("\\", "/")
 KIT = ROOT + "/phong-cach/tu-van-hiem-muon"
 SFXDIR = ROOT + "/phong-cach/saas-animation/audio/sfx"
 W, H, FPS, SPEED, SR = 1080, 1920, 24, 1.1, 48000
 FONT = "C:/Windows/Fonts/seguibli.ttf"
-D, VIDEOS = "", {}
+D, VIDEOS, DO_HOA = "", {}, {}
 PROMPT = (
     'The presenter from the reference image sits at the white desk, same face, hair, dark green blazer and jewelry. '
     'Replace the plain white backdrop with an animated medical advertising background in warm coral pink and gold tones, with '
@@ -175,20 +180,6 @@ def fit_font(lines, size, width):
     return ImageFont.truetype(FONT, size)
 
 
-def hook_card(lines):
-    font = fit_font(lines, 66, 900)
-    im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    d = ImageDraw.Draw(im)
-    cw, lh = int(max(d.textlength(t, font=font) for t in lines)) + 90, 84
-    ch = lh * len(lines) + 56
-    x, y = (W - cw) // 2, 1330 - ch // 2
-    d.rounded_rectangle([x + 4, y + 8, x + cw + 4, y + ch + 8], 56, fill=(0, 0, 0, 60))
-    d.rounded_rectangle([x, y, x + cw, y + ch], 56, fill=(255, 255, 255, 255))
-    for k, t in enumerate(lines):
-        d.text((W / 2, y + 28 + lh * k + lh / 2), t, font=font, fill=(213, 9, 33, 255), anchor="mm")
-    return np.array(im)
-
-
 def caption(words, on):
     text = " ".join(words)
     font = fit_font([text], 66, W - 90)
@@ -196,7 +187,7 @@ def caption(words, on):
     d = ImageDraw.Draw(im)
     x = (W - d.textlength(text, font=font)) / 2
     for k, w in enumerate(words):
-        d.text((x, 1400), w, font=font, fill=(89, 255, 65, 255) if k == on else (255, 255, 255, 255),
+        d.text((x, 1400), w, font=font, fill=dh.YELLOW + (255,) if k == on else (255, 255, 255, 255) if k < on else (185, 185, 185, 255),
                anchor="lm", stroke_width=7, stroke_fill=(0, 0, 0, 255))
         x += d.textlength(w + " ", font=font)
     return np.array(im)
@@ -220,6 +211,17 @@ def bg_change(path, segs):
         return None
     i = max(inside, key=lambda k: d[k])
     return i / 4 if d[i] > 9 else None
+
+
+def level(mix, target, folder):
+    """Dua ban tron ve do to dich (LUFS), chan dinh -1,5 dBFS."""
+    tmp = f"{folder}/do-to.f32"
+    mix.astype(np.float32).tofile(tmp)
+    log = subprocess.run(["ffmpeg", "-nostats", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", tmp, "-af", "ebur128",
+                          "-f", "null", "-"], capture_output=True, check=True).stderr.decode("utf-8", "replace")
+    os.remove(tmp)
+    loud = float(re.findall(r"I:\s+(-[\d.]+) LUFS", log)[-1])
+    return np.clip(mix * 10 ** ((target - loud) / 20), -0.84, 0.84)
 
 
 def build(vid, hook, recs, folder, out):
@@ -291,7 +293,24 @@ def build(vid, hook, recs, folder, out):
     for k in range(len(caps) - 1):
         if caps[k + 1][1][0] - caps[k][2] < 0.5:
             caps[k] = (caps[k][0], caps[k][1], caps[k + 1][1][0])
-    card, cache = hook_card(hook), {}
+    card, cache = dh.hook_card(hook), {}
+
+    # lop do hoa: moc lay theo tu trong cau thoai
+    spec = DO_HOA.get(vid, {})
+    errors = dh.problems(VIDEOS[vid], spec)
+    if errors:
+        raise SystemExit(f"{vid} DO_HOA sai: " + "; ".join(errors))
+
+    def at(c, phrase):
+        words, times = words_all[c]
+        return times[dh.find(words, phrase)][0]
+
+    clip_end = lambda c: starts[c + 1] if c + 1 < len(starts) else total
+    items = [(dh.render(s, folder), at(c - 1, phrase), clip_end(c - 1)) for c, phrase, s in spec.get("the", [])]
+    chot = None
+    if "chot" in spec:
+        chot = (dh.punch(spec["chot"][1]), at(0, spec["chot"][0]), clip_end(0))
+    icons = dh.hook_icons(spec["o_hook"]) if spec.get("o_hook") else None
 
     # sfx
     events = [(0.05, "pop_b", -9, False), (hook_end, "pop_a", -10, False)]
@@ -300,6 +319,9 @@ def build(vid, hook, recs, folder, out):
         events.append((s + 0.08, "pop_c" if k % 2 else "pop_a", -11, False))
     events += [(t, "whoosh_a", -17, True) for t in whooshes if min(abs(t - s) for s in starts) > 1.0]
     events.append((max(0.0, total - 1.1), "sparkle_a", -14, False))
+    events += [(a, "pop_c", -13, False) for _, a, _ in items]
+    if chot:
+        events.append((chot[1], "whoosh_b", -14, False))
     mix = audio(tmp, SR, 2)
     for t, name, db, at_peak in events:
         s = audio(f"{SFXDIR}/{name}.wav", SR, 2)
@@ -309,7 +331,7 @@ def build(vid, hook, recs, folder, out):
         n = min(len(s), len(mix) - i)
         if n > 0:
             mix[i:i + n] += s[:n]
-    mix = np.clip(mix * 1.1, -0.94, 0.94)[: int(total * SR)]          # bu ~0,8 dB ve -14 LUFS
+    mix = level(mix[: int(total * SR)], -14.4, folder)
     wav = f"{folder}/mix.f32"
     mix.astype(np.float32).tofile(wav)
 
@@ -326,16 +348,26 @@ def build(vid, hook, recs, folder, out):
         frame = np.frombuffer(buf, np.uint8).reshape(H, W, 3).copy()
         t = f / FPS
         if t < hook_end:
-            over(frame, card)
+            hu.sparkles(frame, t)
+            hu.show(frame, card, t, left=hook_end - t)
+            for k, im in enumerate(icons or []):
+                hu.show(frame, im, t - 0.18 - 0.16 * k, left=hook_end - t, glint=False, bob=9 if k else -9)
         else:
+            if chot and chot[1] <= t < chot[2]:
+                hu.sparkles(frame, t)
+                hu.dot_wave(frame, t - chot[1], min(1.0, (chot[2] - t) / 0.15))
+                hu.show(frame, chot[0], t - chot[1], left=chot[2] - t)
             for words, st, end in caps:
                 if st[0] <= t < end:
                     on = max(k for k in range(len(st)) if st[k] <= t)
                     key = (" ".join(words), on)
                     if key not in cache:
                         cache[key] = caption(words, on)
-                    over(frame, cache[key])
+                    hu.caption_in(frame, cache[key], t - st[0], over)
                     break
+        for im, a, b in items:
+            if a <= t < b:
+                hu.show(frame, im, t - a, enter="slide")
         enc.stdin.write(frame.tobytes())
         f += 1
     enc.stdin.close()
@@ -380,16 +412,17 @@ def hand_clips(vid, lines):
 
 
 def load(project):
-    global D, VIDEOS
+    global D, VIDEOS, DO_HOA
     D = os.path.abspath(project).replace("\\", "/")
     spec = importlib.util.spec_from_file_location("kich_ban", D + "/kich_ban.py")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     VIDEOS = mod.VIDEOS
+    DO_HOA = getattr(mod, "DO_HOA", {})
 
 
 def done(vid):
-    return bool(glob.glob(f"{D}/xong/{vid}.mp4") + glob.glob(f"{D}/xong/{vid} - *.mp4"))
+    return any(glob.glob(f"{D}/{d}/{vid}.mp4") + glob.glob(f"{D}/{d}/{vid} - *.mp4") for d in ("xong", "hoan-thanh"))
 
 
 def seconds(line):
@@ -417,6 +450,14 @@ def lint():
                 if "friendly" in s:
                     warns.append(f"{tag} 'friendly' lam noi tang co mat hoat hinh")
                 scenes.setdefault(s, set()).add(vid)
+    for vid, v in VIDEOS.items():
+        if done(vid):
+            continue
+        if vid not in DO_HOA:
+            warns.append(f"{vid} chua co DO_HOA (video se chi co the hook va phu de)")
+            continue
+        warns += [f"{vid} {p}" for p in dh.problems(v, DO_HOA[vid])]
+        print(f"-- chu tren man hinh video {vid} (dua vao ban duyet):", *dh.texts(DO_HOA[vid]), sep="\n   ")
     warns += [f"canh lap o {len(v)} video, nen doi hinh: {s}" for s, v in scenes.items() if len(v) >= 4]
     print("\n".join(warns) or "khong thay loi")
     print(len(warns), "canh bao")

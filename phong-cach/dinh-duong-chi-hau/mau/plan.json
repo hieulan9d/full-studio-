@@ -1,0 +1,14 @@
+{
+  "doan": [
+    { "file": "c1.mp4" },
+    { "file": "c2.mp4" },
+    { "file": "c3.mp4" }
+  ],
+  "chen": [
+    { "file": "can_oi.mp4", "t": 6.0, "den": 8.5 }
+  ],
+  "chu": [
+    { "kieu": "hook", "dong": ["QUẢ ỔI LIÊN QUAN GÌ", "ĐẾN COLLAGEN?"], "t": 0.2, "den": 3.6 },
+    { "kieu": "the", "dong": ["Vitamin C tham gia", "tạo collagen"], "t": 9.0, "den": 12.0 }
+  ]
+}

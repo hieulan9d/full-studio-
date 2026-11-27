@@ -27,6 +27,8 @@ Hiện có **hai loại video** (mỗi loại một kit kiến thức riêng, sa
 
 | **Tư vấn hiếm muộn** (một người dẫn nói suốt video + nền đồ hoạ y khoa đổi theo ý) — rút từ 20 video mẫu 2026-11-26, **chưa dựng thử** | `phong-cach/tu-van-hiem-muon/` (`PHONG-CACH.md`, `ref-notes.md`, `memory/`) |
 
+| **Dinh dưỡng "chị Hậu"** (một người dẫn giải đáp câu hỏi về bữa ăn/nhãn, thẻ hook xanh rêu, không nhạc, dựng bằng ffmpeg) — rút từ 1 video mẫu + kịch bản 3–7, 2026-11-27, **chưa làm tập mới** | `phong-cach/dinh-duong-chi-hau/` (`PHONG-CACH.md`, `AGENTS.md`, `memory/`) |
+
 Hai kit **khác nhau, đừng nhầm**. Chúng dùng chung thư viện `saas-lib.jsx` nhưng luật, hiệu ứng và quy trình khác nhau.
 
 Ngoài hai kit còn một dòng cũ chạy bằng ffmpeg, không cần After Effects: **video giải thích nhiều cảnh + giọng đọc, nhiều tập** (series "Đạo lý", video USP sản phẩm). Dòng này do `edit/` (lệnh `vf`) làm.

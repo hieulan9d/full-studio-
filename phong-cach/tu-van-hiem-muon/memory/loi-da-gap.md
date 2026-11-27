@@ -16,3 +16,6 @@
 - 2026-11-26: `flow-cli.js` không dùng tab người dùng đang mở nếu tab là `/u/1/…`: nó vào project đã lưu của tài khoản khác. Tạo lô thì dùng `output/hiem-muon-lo/tao_flow.py` (gọi `flowgen.js`, bám tab đang mở; sửa `PID` theo project).
 - 2026-11-26: tạo tự động liên tục, 24 clip xong thì clip thứ 25 (11/clip5) Flow báo "hoạt động bất thường" (tài khoản Ultra người dùng mở). Script dừng ngay, không thử lại.
 - 2026-11-26: hình lịch trong clip vẫn có số dù prompt dặn không số, số có chỗ sai (vd "34") và không khớp ngày trong lời. Cần lịch không số thì phải ghi rõ "blank calendar pages".
+- 2026-11-27: thay nền bằng RVM thì ghế màu kem còn dính mảng hai bên khuỷu tay: xoá điểm sáng ở hai rìa trước khi ghép (xem `dung_08.py`). Vẽ ImageDraw màu có alpha thấp lên ảnh RGBA sẽ đục lỗ thẻ: dùng màu đặc.
+- 2026-11-27: Gemini hết lượt video thì mục "Tạo video" bị mờ, `gemini-driver.js` báo nhầm "không thấy nút tỷ lệ khung hình". Chụp cửa sổ để kiểm; đổi tài khoản bằng biến `GEMINI_ACCOUNT`.
+- 2026-11-27: node cấu hình canvas có composerContent thì chỉ gửi ảnh được gọi bằng thẻ @[node:<id>] trong prompt; chỉ nối dây là mất ảnh tham chiếu (tốn 2 clip sai người). Đặt tên node ảnh ngắn, không ngoặc (vd nguoi-dan).

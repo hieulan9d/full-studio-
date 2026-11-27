@@ -7,3 +7,5 @@
 - Xen phóng 1.70 / 1.84 giữa các clip để chỗ nối trông như đổi cỡ khung giống mẫu.
 - 2026-11-26: tạo liền bằng `output/hiem-muon-v01/make_oneshot.py` (1 ảnh người dẫn, prompt tả 2 minh hoạ: nửa đầu / nửa sau) cho nền đổi đúng giữa clip, mặt giữ giống. Nối bằng `build_lien.py`. Tốt hơn tách nền ghép.
 - 2026-11-26: `day_chuyen.py --tay <id...>` dựng 10 video một lượt từ clip có sẵn (hook, phụ đề, SFX, 1,1x), không cần sửa tay.
+- 2026-11-27: **duyệt** video 08 bản 2 ("Ổn rồi"): thẻ hook vàng + 2 ô icon, chữ chốt lớn, thẻ ảnh hai bên đầu, dải ngày, thẻ mời bình luận, phụ đề tô vàng, giữ nguyên nền AI. Mẫu dựng: `output/hiem-muon-nang-cap/dung_08.py` (viết riêng cho video 08). Cùng ngày đã đưa vào script chung (`scripts/do_hoa.py` + `DO_HOA` trong `kich_ban.py`); dùng script chung, không dùng `dung_08.py` nữa.
+- 2026-11-27: **duyệt** bộ hiệu ứng chữ ("Giữ luôn"), là mặc định của script chung.

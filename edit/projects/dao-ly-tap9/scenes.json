@@ -1,0 +1,88 @@
+{
+ "scenes": [
+  {
+   "id": "c01",
+   "clip_s": 8,
+   "voice": "Hút thuốc lấy đi của người hút hơn mười năm sống. Có năm điều giúp bạn bỏ thuốc, hoặc giúp người thân bỏ. Một: Bỏ càng sớm càng tốt.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, standing at a window at dawn holding a crumpled cigarette pack, looking at the sunrise, thoughtful and determined. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the character slowly crushes the pack in one hand while the sunrise glow grows behind the window"
+  },
+  {
+   "id": "c02",
+   "clip_s": 8,
+   "voice": "Nghiên cứu ở Mỹ cho thấy người hút thuốc sống ít hơn người chưa từng hút trung bình hơn mười năm. Bỏ trước bốn mươi tuổi, tránh được khoảng chín mươi phần trăm phần nguy cơ mất mạng tăng thêm.",
+   "image_prompt": "A tall stack of calendar pages with the top pages curling and fading into ash, a smoldering cigarette in an ashtray beside it, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "ash drifts down slowly, the calendar pages curl at the edges, a thin thread of smoke rises"
+  },
+  {
+   "id": "c03",
+   "clip_s": 8,
+   "voice": "Bỏ càng sớm, lợi ích càng lớn. Bỏ rồi hút lại không có nghĩa là hết cách, chỉ cần xem lại lúc nào thèm, và nhờ hỗ trợ.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, sitting on a doorstep at dusk with a broken cigarette on the ground and a small lantern glowing beside, calm and hopeful. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the lantern flame steadies and the character slowly lifts the head toward the glow"
+  },
+  {
+   "id": "c04",
+   "clip_s": 8,
+   "voice": "Hai: Không hút trong nhà và trong xe, cũng không để khách hút trong nhà. Hít khói thuốc của người khác làm tăng nguy cơ tăng huyết áp, bệnh tim và đột quỵ khoảng ba mươi phần trăm.",
+   "image_prompt": "A Vietnamese living room with a large crossed-out cigarette symbol drawn on the wall, an empty ashtray turned upside down on a table, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "a faint haze of smoke clears from the room and the room light grows steadier"
+  },
+  {
+   "id": "c05",
+   "clip_s": 8,
+   "voice": "Hãy thống nhất cả gia đình: nhà và xe là nơi không hút thuốc, kể cả khi có khách.",
+   "image_prompt": "Two simple characters with round blank egg-shaped white heads sitting at a family table, one nodding and the other pointing to a crossed-out cigarette symbol on the wall, warm lamp light. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the characters nod slowly to each other, lamp light steady, steam rises from two cups"
+  },
+  {
+   "id": "c06",
+   "clip_s": 8,
+   "voice": "Ba: Dùng thuốc hỗ trợ ngay từ đầu, đừng chỉ chịu đựng. Thuốc cai kê đơn giúp tỷ lệ thành công cao hơn gấp đôi so với giả dược. Miếng dán và kẹo nhai ni cô tin tăng thêm khoảng năm mươi phần trăm.",
+   "image_prompt": "A small pill box, a pack of chewing gum and a round skin patch lined up on a wooden table under a warm lamp, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the lamp light moves softly across the items, a faint glow pulses on the pill box"
+  },
+  {
+   "id": "c07",
+   "clip_s": 8,
+   "voice": "Hãy hỏi bác sĩ. Mang theo tên thuốc đang dùng, bệnh nền và những lần cai trước đến buổi tư vấn.",
+   "image_prompt": "Two simple characters with round blank egg-shaped white heads sitting at a desk in a quiet clinic, one handing a small notebook to the other, soft lamp light. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the notebook slides across the desk and the doctor character nods, lamp light steady"
+  },
+  {
+   "id": "c08",
+   "clip_s": 8,
+   "voice": "Bốn: Chọn một ngày để ngừng hẳn, và báo cho gia đình, đồng nghiệp. Sau sáu tháng, hai mươi hai phần trăm người ngừng hẳn vẫn không hút, so với mười lăm phẩy năm phần trăm ở nhóm giảm dần.",
+   "image_prompt": "A wall calendar with a single date circled in bold and a cigarette pack crossed out with a big X on the wall beside it, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the circle around the date draws itself slowly, a soft light moves across the calendar"
+  },
+  {
+   "id": "c09",
+   "clip_s": 8,
+   "voice": "Tổng quan mới hơn chưa thấy khác biệt rõ giữa ngừng hẳn và giảm dần. Vì vậy hãy chọn cách bạn theo được, và có người hỗ trợ.",
+   "image_prompt": "Two paths in a misty park, one straight and one winding, meeting at a glowing lamp post, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "mist drifts slowly across both paths and the lamp glows steadily"
+  },
+  {
+   "id": "c10",
+   "clip_s": 8,
+   "voice": "Năm: Gọi tổng đài tư vấn cai thuốc miễn phí của Bệnh viện Bạch Mai: một tám không không sáu sáu không sáu. Kết hợp thuốc với tư vấn giúp tỷ lệ thành công cao gần gấp đôi.",
+   "image_prompt": "An old-fashioned telephone on a small wooden table beside a warm lamp and a wall clock, quiet room at night, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the lamp glows steadily, the clock hands move slowly, a soft shadow shifts across the wall"
+  },
+  {
+   "id": "c11",
+   "clip_s": 8,
+   "voice": "Thuốc lá điện tử không phải cách cai ở Việt Nam. Từ năm 2025, luật cấm sản xuất, kinh doanh, nhập khẩu và sử dụng thuốc lá điện tử, thuốc lá nung nóng.",
+   "image_prompt": "A small electronic vaping device with a large crossed-out symbol over it, a closed door behind, no people. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the crossed-out symbol glows faintly and the shadow of the door shifts slowly"
+  },
+  {
+   "id": "c12",
+   "clip_s": 8,
+   "voice": "Năm điều giúp bạn bỏ thuốc. Hôm nay, hãy chọn một ngày, và gọi một cuộc điện thoại.",
+   "image_prompt": "A simple minimalist character with a round blank egg-shaped white head and a plain white t-shirt, stepping out of a front door at dawn holding a phone to the ear, fresh morning light and a calm street. Hand-drawn black and white ink sketch on a pure black background, white chalk line art with fine crosshatch shading, rough pencil texture, Vietnamese everyday atmosphere, melancholic but calm and hopeful mood, scene centered with empty black space at the top and bottom for captions, vertical 9:16 composition, no text, no letters, no logos, no realistic human faces.",
+   "motion": "the character steps forward into the morning light, mist lifts from the street"
+  }
+ ]
+}

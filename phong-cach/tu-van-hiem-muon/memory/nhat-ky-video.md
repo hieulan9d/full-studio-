@@ -11,3 +11,14 @@
 - 2026-11-26: mở tab/project mới rồi chạy tiếp, chỉ thêm được 7 clip (16/1–5, 17/1–2) thì cảnh báo lại. Còn 18 clip (17/3 đến 20/5): người dùng tạo tay, không chạy tự động tiếp.
 - 2026-11-26: dựng xong 07–16 bằng `output/hiem-muon-lo/day_chuyen.py --tay` (31,9–38,8 s, 1080×1920, -13,3 đến -13,8 LUFS), chờ người dùng xem.
 - 2026-11-27: gom bài học 16 video thành skill `.claude/skills/video-tu-van-hiem-muon/` (script `hiem_muon.py`: kiem, prompt, nhap, dung). Thử dựng lại video 08: 31,9 s, khớp 100%.
+- 2026-11-27: bản thử nâng cấp video 08 theo mẫu HTPM ngắn (`output/hiem-muon-nang-cap/dung_08.py`, 31,9 s, -14,4 LUFS): thẻ hook vàng + 2 ô icon, thẻ ảnh hai bên đầu, chữ chốt trên nền tối, dải ngày, nền xanh đêm câu cuối. Dùng clip cũ, không tạo Flow. Chờ người dùng xem.
+- 2026-11-27: đưa kiểu đồ hoạ vào skill; dựng thử trong thư mục tạm video 08 (có thẻ, 31,9 s, -14,4 LUFS, khớp 100%) và 14 (không thẻ, 36,1 s). Chỉ 08 đã khai DO_HOA.
+- 2026-11-27: soạn DO_HOA cho 17–20 (thẻ chữ lớn, chưa có ảnh), ảnh xem thử `output/hiem-muon-lo/xem-the-17-20.jpg`, chờ người dùng duyệt chữ và tạo 18 clip.
+- 2026-11-27: người dùng **duyệt** chữ trên thẻ video 17–20. Chờ tạo tay 18 clip (17/3 trước), rồi `nhap` và dựng 17 cho xem trước.
+- 2026-11-27: tạo thử 1 clip trên Gemini web (17/clip4, 10 s, 720x1280, ảnh tham chiếu chạy được): mặt, áo, nền giống clip Flow, whisper khớp 100%; có dấu sao Gemini góc dưới phải. Chờ người dùng nghe giọng.
+- 2026-11-27: Gemini tạo được 17/clip3 (10 s đủ lời dù viết cho 12 s; bàn trơn, mất sổ và laptop). 17/clip5 bị "quá tải", chưa có.
+- 2026-11-27: dựng xong video 17 (38,1 s, -14,4 LUFS; clip 1-2 Flow, 3-5 Gemini), thẻ có ảnh cắt từ clip. Whisper nghe "hàu" thành "hầu", "kẽm" thành "kém" (clip 2 Flow). Chờ người dùng xem.
+- 2026-11-27: video 18 clip 1-2 tạo bằng Gemini, nghe đủ lời. Clip 3 lỗi trên cả hai tài khoản ("không thấy nút tỷ lệ", khả năng hết lượt); dừng. Người dùng muốn lỗi quá 2 lần thì chuyển Flow: không tạo Flow tự động, đưa trang `tao-tay/18-con-thieu.html` để tạo tay.
+- 2026-11-27: dựng xong video 18 (35,7 s, -14,5 LUFS; clip 1-2 Gemini, 3-5 người dùng bấm tạo Flow qua canvas), khớp lời 100%. Clip 2 (Gemini) có lịch kèm số và chữ tiếng Anh. Chờ người dùng xem.
+- 2026-11-27: dựng xong video 19 (34,7 s, -14,4 LUFS, khớp 100%; 5 clip người dùng bấm tạo). Clip 3: bàn trơn, không ghế, sổ, laptop; có lời Flow chế thêm ở đuôi (script chỉ giữ đoạn có lời kịch bản). Chờ người dùng xem.
+- 2026-11-27: dựng xong video 20 (37,0 s, -14,4 LUFS, khớp 99%, máy không nhận chữ 'xơ'; 5 clip người dùng bấm tạo). Clip 2, 3 không thấy ghế. Clip 2 Flow đọc lặp 'không', cần nghe lại. Chờ người dùng xem.

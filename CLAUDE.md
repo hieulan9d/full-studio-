@@ -67,4 +67,9 @@ từ đang đọc màu xanh: **dùng skill `video-tu-van-hiem-muon`** (`.claude/
 Khi người dùng muốn dựng video giống loạt thành phẩm HTPM (hỏi đáp ngắn 12–15 s, hoặc giới thiệu sản phẩm 38–54 s):
 đọc `phong-cach/hang-thu-pharma/` (`memory/`, `PHONG-CACH.md`, `AGENTS.md`). Rút từ 28 video ngày 26.11; công cụ `tools/dung.py` mới dựng thử.
 
+## Video dinh dưỡng "chị Hậu" (AVPM Chi Hau)
+Khi người dùng muốn reel dọc một người dẫn xưng "Hậu" giải đáp một câu hỏi về bữa ăn hoặc nhãn thực phẩm (đạm, canxi, collagen,
+nghệ…), không bán hàng, không nhạc, không phụ đề: đọc `phong-cach/dinh-duong-chi-hau/` (`memory/`, `PHONG-CACH.md`, `AGENTS.md`,
+`mau/kich-ban.md`). Rút từ **một** video mẫu và kịch bản 3–7 (2026-11-27), chưa làm tập mới. Khác kit Hằng Thu Pharma.
+
 Trả lời bằng tiếng Việt.

@@ -1,0 +1,553 @@
+{
+ "name": "Đạo lý - Tập 9",
+ "fps": 30,
+ "canvas": {
+  "w": 1080,
+  "h": 1920
+ },
+ "clips": [
+  {
+   "src": "media/v01.mp4",
+   "in": 0,
+   "dur": 8.0,
+   "speed": 1.039,
+   "size": "SP",
+   "label": "c01"
+  },
+  {
+   "src": "media/v02.mp4",
+   "in": 0,
+   "dur": 8.0,
+   "speed": 0.9238,
+   "size": "SP",
+   "label": "c02"
+  },
+  {
+   "src": "media/v03.mp4",
+   "in": 0,
+   "dur": 8.0,
+   "speed": 1.1594,
+   "size": "SP",
+   "label": "c03"
+  },
+  {
+   "src": "media/v04.mp4",
+   "in": 0,
+   "dur": 8.0,
+   "speed": 0.8811,
+   "size": "SP",
+   "label": "c04"
+  },
+  {
+   "src": "media/v05.mp4",
+   "in": 0,
+   "dur": 4.85,
+   "speed": 1.25,
+   "size": "SP",
+   "label": "c05"
+  },
+  {
+   "src": "media/v06.mp4",
+   "in": 0,
+   "dur": 8.0,
+   "speed": 0.8048,
+   "size": "SP",
+   "label": "c06"
+  },
+  {
+   "src": "media/v07.mp4",
+   "in": 0,
+   "dur": 5.925,
+   "speed": 1.25,
+   "size": "SP",
+   "label": "c07"
+  },
+  {
+   "src": "media/v08.mp4",
+   "in": 0,
+   "dur": 8.0,
+   "speed": 0.7394,
+   "size": "SP",
+   "label": "c08"
+  },
+  {
+   "src": "media/v09.mp4",
+   "in": 0,
+   "dur": 7.2,
+   "speed": 1.25,
+   "size": "SP",
+   "label": "c09"
+  },
+  {
+   "src": "media/v10.mp4",
+   "in": 0,
+   "dur": 8.0,
+   "speed": 0.8734,
+   "size": "SP",
+   "label": "c10"
+  },
+  {
+   "src": "media/v11.mp4",
+   "in": 0,
+   "dur": 8.0,
+   "speed": 0.9709,
+   "size": "SP",
+   "label": "c11"
+  },
+  {
+   "src": "media/v12.mp4",
+   "in": 0,
+   "dur": 5.302,
+   "speed": 1.25,
+   "size": "SP",
+   "label": "c12"
+  }
+ ],
+ "sections": [
+  {
+   "id": "c01",
+   "title": "c01",
+   "start": 0.0,
+   "end": 7.7,
+   "script": "",
+   "onscreen": [
+    {
+     "start": 0.0,
+     "end": 1.4,
+     "text": "Hút thuốc lấy đi của người",
+     "style": "Sub"
+    },
+    {
+     "start": 1.42,
+     "end": 2.44,
+     "text": "hút hơn mười năm sống.",
+     "style": "Sub"
+    },
+    {
+     "start": 2.76,
+     "end": 4.3,
+     "text": "Có năm điều giúp bạn bỏ thuốc,",
+     "style": "Sub"
+    },
+    {
+     "start": 4.32,
+     "end": 5.5,
+     "text": "hoặc giúp người thân bỏ.",
+     "style": "Sub"
+    },
+    {
+     "start": 5.52,
+     "end": 7.68,
+     "text": "Một – Bỏ càng sớm càng tốt.",
+     "style": "Sub"
+    },
+    {
+     "start": 7.7,
+     "end": 9.32,
+     "text": "Nghiên cứu ở Mỹ cho thấy người",
+     "style": "Sub"
+    },
+    {
+     "start": 9.34,
+     "end": 10.84,
+     "text": "hút thuốc sống ít hơn người chưa",
+     "style": "Sub"
+    },
+    {
+     "start": 10.86,
+     "end": 12.02,
+     "text": "từng hút trung bình hơn mười năm.",
+     "style": "Sub"
+    },
+    {
+     "start": 12.04,
+     "end": 13.24,
+     "text": "Bỏ trước 40 tuổi,",
+     "style": "Sub"
+    },
+    {
+     "start": 13.6,
+     "end": 15.22,
+     "text": "tránh được khoảng 90% phần",
+     "style": "Sub"
+    },
+    {
+     "start": 15.24,
+     "end": 16.34,
+     "text": "nguy cơ mất mạng tăng thêm.",
+     "style": "Sub"
+    },
+    {
+     "start": 16.36,
+     "end": 18.18,
+     "text": "Bỏ càng sớm, lợi ích càng lớn.",
+     "style": "Sub"
+    },
+    {
+     "start": 18.2,
+     "end": 20.34,
+     "text": "Bỏ rồi hút lại không có nghĩa là hết",
+     "style": "Sub"
+    },
+    {
+     "start": 20.36,
+     "end": 22.4,
+     "text": "cách, chỉ cần xem lại lúc nào thèm,",
+     "style": "Sub"
+    },
+    {
+     "start": 22.42,
+     "end": 23.24,
+     "text": "và nhờ hỗ trợ.",
+     "style": "Sub"
+    },
+    {
+     "start": 23.26,
+     "end": 24.96,
+     "text": "Hai – Không hút trong nhà và trong xe,",
+     "style": "Sub"
+    },
+    {
+     "start": 24.98,
+     "end": 26.6,
+     "text": "cũng không để khách hút trong nhà.",
+     "style": "Sub"
+    },
+    {
+     "start": 27.16,
+     "end": 28.26,
+     "text": "Hít khói thuốc của người khác",
+     "style": "Sub"
+    },
+    {
+     "start": 28.28,
+     "end": 29.7,
+     "text": "làm tăng nguy cơ tăng huyết áp,",
+     "style": "Sub"
+    },
+    {
+     "start": 29.72,
+     "end": 32.32,
+     "text": "bệnh tim và đột quỵ khoảng 30%.",
+     "style": "Sub"
+    },
+    {
+     "start": 32.34,
+     "end": 33.54,
+     "text": "Hãy thống nhất cả gia đình:",
+     "style": "Sub"
+    },
+    {
+     "start": 33.56,
+     "end": 35.26,
+     "text": "nhà và xe là nơi không hút thuốc,",
+     "style": "Sub"
+    },
+    {
+     "start": 35.28,
+     "end": 36.2,
+     "text": "kể cả khi có khách.",
+     "style": "Sub"
+    },
+    {
+     "start": 36.22,
+     "end": 38.02,
+     "text": "Ba – Dùng thuốc hỗ trợ ngay từ đầu,",
+     "style": "Sub"
+    },
+    {
+     "start": 38.04,
+     "end": 39.14,
+     "text": "đừng chỉ chịu đựng.",
+     "style": "Sub"
+    },
+    {
+     "start": 39.7,
+     "end": 41.3,
+     "text": "Thuốc cai kê đơn giúp tỷ lệ thành",
+     "style": "Sub"
+    },
+    {
+     "start": 41.32,
+     "end": 42.98,
+     "text": "công cao hơn gấp đôi so với giả dược.",
+     "style": "Sub"
+    },
+    {
+     "start": 43.0,
+     "end": 44.44,
+     "text": "Miếng dán và kẹo nhai",
+     "style": "Sub"
+    },
+    {
+     "start": 44.46,
+     "end": 46.14,
+     "text": "nicotine tăng thêm khoảng 50%.",
+     "style": "Sub"
+    },
+    {
+     "start": 46.16,
+     "end": 47.22,
+     "text": "Hãy hỏi bác sĩ.",
+     "style": "Sub"
+    },
+    {
+     "start": 47.24,
+     "end": 49.4,
+     "text": "Mang theo tên thuốc đang dùng, bệnh nền",
+     "style": "Sub"
+    },
+    {
+     "start": 49.42,
+     "end": 50.88,
+     "text": "và những lần cai trước đến buổi tư vấn.",
+     "style": "Sub"
+    },
+    {
+     "start": 50.9,
+     "end": 53.04,
+     "text": "Bốn – Chọn một ngày để ngừng hẳn,",
+     "style": "Sub"
+    },
+    {
+     "start": 53.06,
+     "end": 55.06,
+     "text": "và báo cho gia đình, đồng nghiệp.",
+     "style": "Sub"
+    },
+    {
+     "start": 55.08,
+     "end": 56.3,
+     "text": "Sau 6 tháng,",
+     "style": "Sub"
+    },
+    {
+     "start": 56.32,
+     "end": 58.64,
+     "text": "22% người ngừng hẳn vẫn không hút,",
+     "style": "Sub"
+    },
+    {
+     "start": 58.66,
+     "end": 61.22,
+     "text": "so với 15,5% ở nhóm giảm dần.",
+     "style": "Sub"
+    },
+    {
+     "start": 61.72,
+     "end": 63.12,
+     "text": "Tổng quan mới hơn chưa thấy khác",
+     "style": "Sub"
+    },
+    {
+     "start": 63.14,
+     "end": 64.68,
+     "text": "biệt rõ giữa ngừng hẳn và giảm dần.",
+     "style": "Sub"
+    },
+    {
+     "start": 64.86,
+     "end": 66.36,
+     "text": "Vì vậy hãy chọn cách bạn theo được,",
+     "style": "Sub"
+    },
+    {
+     "start": 66.38,
+     "end": 67.46,
+     "text": "và có người hỗ trợ.",
+     "style": "Sub"
+    },
+    {
+     "start": 67.48,
+     "end": 69.86,
+     "text": "Năm – Gọi tổng đài tư vấn cai thuốc miễn",
+     "style": "Sub"
+    },
+    {
+     "start": 69.88,
+     "end": 73.34,
+     "text": "phí của Bệnh viện Bạch Mai: 1800 6606.",
+     "style": "Sub"
+    },
+    {
+     "start": 73.36,
+     "end": 74.9,
+     "text": "Kết hợp thuốc với tư vấn giúp tỷ",
+     "style": "Sub"
+    },
+    {
+     "start": 74.92,
+     "end": 76.44,
+     "text": "lệ thành công cao gần gấp đôi.",
+     "style": "Sub"
+    },
+    {
+     "start": 76.64,
+     "end": 77.82,
+     "text": "Thuốc lá điện tử không phải",
+     "style": "Sub"
+    },
+    {
+     "start": 77.84,
+     "end": 78.76,
+     "text": "cách cai ở Việt Nam.",
+     "style": "Sub"
+    },
+    {
+     "start": 78.84,
+     "end": 81.18,
+     "text": "Từ năm 2025, luật cấm sản xuất,",
+     "style": "Sub"
+    },
+    {
+     "start": 81.2,
+     "end": 82.9,
+     "text": "kinh doanh, nhập khẩu",
+     "style": "Sub"
+    },
+    {
+     "start": 82.92,
+     "end": 84.0,
+     "text": "và sử dụng thuốc lá điện tử,",
+     "style": "Sub"
+    },
+    {
+     "start": 84.02,
+     "end": 84.86,
+     "text": "thuốc lá nung nóng.",
+     "style": "Sub"
+    },
+    {
+     "start": 84.88,
+     "end": 86.38,
+     "text": "Năm điều giúp bạn bỏ thuốc.",
+     "style": "Sub"
+    },
+    {
+     "start": 86.4,
+     "end": 87.7,
+     "text": "Hôm nay, hãy chọn một ngày,",
+     "style": "Sub"
+    },
+    {
+     "start": 87.72,
+     "end": 89.12,
+     "text": "và gọi một cuộc điện thoại.",
+     "style": "Sub"
+    }
+   ]
+  },
+  {
+   "id": "c02",
+   "title": "c02",
+   "start": 7.7,
+   "end": 16.36,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c03",
+   "title": "c03",
+   "start": 16.36,
+   "end": 23.26,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c04",
+   "title": "c04",
+   "start": 23.26,
+   "end": 32.34,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c05",
+   "title": "c05",
+   "start": 32.34,
+   "end": 36.22,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c06",
+   "title": "c06",
+   "start": 36.22,
+   "end": 46.16,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c07",
+   "title": "c07",
+   "start": 46.16,
+   "end": 50.9,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c08",
+   "title": "c08",
+   "start": 50.9,
+   "end": 61.72,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c09",
+   "title": "c09",
+   "start": 61.72,
+   "end": 67.48,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c10",
+   "title": "c10",
+   "start": 67.48,
+   "end": 76.64,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c11",
+   "title": "c11",
+   "start": 76.64,
+   "end": 84.88,
+   "script": "",
+   "onscreen": []
+  },
+  {
+   "id": "c12",
+   "title": "c12",
+   "start": 84.88,
+   "end": 89.12,
+   "script": "",
+   "onscreen": []
+  }
+ ],
+ "voice": {
+  "profile": "70afd348",
+  "pron": []
+ },
+ "voiceover": [
+  {
+   "section": "all",
+   "file": "voice/voice_all.wav",
+   "start": 0,
+   "dur": 89.121708,
+   "speedup": 1.0
+  }
+ ],
+ "music": null,
+ "subs": {
+  "mode": "sentence"
+ },
+ "rules": {
+  "shake_max": 9,
+  "alternate_sizes": false,
+  "shake_exempt": [
+   "media/"
+  ]
+ }
+}
